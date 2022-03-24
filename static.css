@@ -1,0 +1,142 @@
+@font-face
+{
+    font-family: Tahoma;
+        src: url('Tahoma Regular font.ttf');
+}
+
+
+
+
+
+:root {
+    --text-big: 30px;
+    --text-small: 20px;
+    --font-faily-body:adobe-text-pro, serif;
+    --color-blue:#2D63AB;
+    --color-yellow:#F2B705;
+    --color-dark_blue:#1D4881;
+    --color-light_blue:#3B83E3;
+}
+
+body{
+    width: 375px;
+    height: 1096px;
+    margin: 0px;
+}
+
+
+header{
+    text-align: center;
+    background-color: var(--color-blue);
+    color: white;
+}
+
+#diabetes{
+    font-size: var(--text-small);
+    font-family: var(--font-faily-body);
+    width: 330px;
+    height: 463px;
+    border-radius: 10px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    padding: 10px;
+    background-color: var(--color-yellow);
+}
+
+#diabetes h1{
+    font-size: var(--text-big);
+    font-family:Tahoma;
+    margin: 10px;
+}
+
+#diabetes p{
+    margin-left: 10px;
+}
+
+
+br{
+    height: 50px;
+}
+
+
+#video{
+    width: 330px;
+    height: 212px;
+    padding: 10px; 
+    border-radius: 10px;
+    margin: auto;
+    background-color: var(--color-dark_blue);
+    color: white;
+}
+
+#video h1{
+    font-size: var(--text-big);
+    font-family: Tahoma;
+    margin: 10px;
+}
+
+iframe{
+    width:287px;
+    height: 137px;
+    margin-left:19.5px;
+}
+
+#more_info{
+    font-size: var(--text-big);
+    font-family: Tahoma;
+    width: 330px;
+    height: 212px;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px ;
+    border-color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:9px ;
+    padding-bottom: 9px;
+    margin-left: 11.5px;
+    margin-right: 11.5px;
+    
+    
+    color:var(--color-light_blue);
+}
+#more_info h1{
+    font-size: var(--text-big);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+#more_info a{
+    font-size: var(--text-small);
+    color:var(--color-light_blue);
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+
+#login{
+    text-align: left;
+    width: 200px;
+    height: 60px;
+    margin-left:22.5px;
+    margin-bottom: 25px;
+}
+
+footer{
+    text-align: center;
+    font-size: var(--text-small);
+    font-family: Tahoma;
+    background-color:black ;
+    color:white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:25px ;
+    padding-bottom: 15px;
+    width: 355px;
+    height: 130px;
+}
+
+footer p{
+    margin: 9px;
+}
