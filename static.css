@@ -16,6 +16,7 @@
     --color-yellow:#F2B705;
     --color-dark_blue:#1D4881;
     --color-light_blue:#3B83E3;
+    --color-light_green: #D2F2DD;
 }
 
 body{
@@ -31,6 +32,19 @@ header{
     color: white;
 }
 
+h1{
+    font-size: var(--text-big);
+}
+
+p{
+    font-size: var(--text-small);
+    
+}
+
+section{
+    font-family: Tahoma;
+}
+
 #diabetes{
     font-size: var(--text-small);
     font-family: var(--font-faily-body);
@@ -44,8 +58,6 @@ header{
 }
 
 #diabetes h1{
-    font-size: var(--text-big);
-    font-family:Tahoma;
     margin: 10px;
 }
 
@@ -70,8 +82,6 @@ br{
 }
 
 #video h1{
-    font-size: var(--text-big);
-    font-family: Tahoma;
     margin: 10px;
 }
 
@@ -82,8 +92,6 @@ iframe{
 }
 
 #more_info{
-    font-size: var(--text-big);
-    font-family: Tahoma;
     width: 330px;
     height: 212px;
     border-style:solid;
@@ -96,29 +104,95 @@ iframe{
     padding-bottom: 9px;
     margin-left: 11.5px;
     margin-right: 11.5px;
-    
-    
     color:var(--color-light_blue);
 }
+
 #more_info h1{
-    font-size: var(--text-big);
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-left: 10px;
 }
 
-#more_info a{
+#more_info p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#more_info p a{
+    width: 280px;
+    height: 30px;
     font-size: var(--text-small);
     color:var(--color-light_blue);
-    margin-top: 5px;
     margin-left: 20px;
 }
 
 
+#service{
+    width: 330px;
+    height: 300px;
+    border-radius: 10px ;
+    padding: 10px;
+    margin-left: 12.5px;
+    background-color: var(--color-light_green);
+}
+
+#service h1{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#service p{
+    margin-left: 10px;
+}
+
+
+#developer{
+    width: 330px;
+    height: 300px;
+    border-radius: 10px ;
+    padding: 10px;
+    margin-left: 12.5px;
+    background-color: var(--color-yellow);
+}
+
+#developer h1{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#developer p{
+    margin-left: 10px;
+}
+
+
+#complaints{
+    width: 330px;
+    height: 300px;
+    border-radius: 10px ;
+    padding: 10px;
+    margin-left: 12.5px;
+    background-color: var(--color-dark_blue);
+    color: white;
+}
+
+#complaints h1{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#complaints p{
+    margin-left: 10px;
+}
+
+
+
 #login{
     text-align: left;
-    width: 200px;
-    height: 60px;
+    width: 250px;
+    height: 80px;
     margin-left:22.5px;
     margin-bottom: 25px;
 }
