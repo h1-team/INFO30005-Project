@@ -9,7 +9,4 @@ const router = require('./routes/router.js')
 
 app.use('/patient',router)
 
-
-app.listen(3000, () => {
-    console.log("demo is listening on port 3000!")
-})
+app.listen(port , ()=> console.log('> Server is up and running on http://localhost:' + port))
