@@ -13,34 +13,38 @@ db.once('open', () => {
 
 const exerciseSchema = new mongoose.Schema({
     pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    comment: String,
+    data: {type:Number, min:0},
+    comment: { type: String, default: "" },
     when: { type: Date, default: Date.now }
 })
 
 const weightSchema = new mongoose.Schema({
     pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    comment: String,
+    data: {type:Number, min:0},
+    comment: { type: String, default: "" },
     when: { type: Date, default: Date.now }
 })
 const glucoseSchema = new mongoose.Schema({
     pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    comment: String,
+    data: {type:Number, min:0},
+    comment: { type: String, default: "" },
     when: { type: Date, default: Date.now }
 })
 const insulinSchema = new mongoose.Schema({
     pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    comment: String,
+    data: {type:Number, min:0},
+    comment: { type: String, default: "" },
     when: { type: Date, default: Date.now }
 })
 
 const patientSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    photo: String,
-    name: String,
-    address: String,
+    photo: { type: String, default: "" },
+    name: { type: String, default: "" },
+    address: { type: String, default: "" },
     dob: Date,
-    phone: Number,
-    password: String,
+    phone: { type: String, default: "" },
+    password: { type: String, required:true,min:8},
     isExecrise: { type: Boolean, default: false },
     isGlucose: { type: Boolean, default: false },
     isWeight: { type: Boolean, default: false },

@@ -7,7 +7,7 @@ app.use(express.json())
 
 const router = require('./routes/router.js')
 
-app.use('/patient',router)
+app.use('/api/patient',router)
 
 app.listen(3000, () => {
     console.log("demo is listening on port 3000!")
