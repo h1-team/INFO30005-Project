@@ -11,31 +11,40 @@ db.once('open', () => {
     console.log('conntected to Mongo')
 })
 
-const exerciseSchema = new mongoose.Schema({
-    pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    data: {type:Number, min:0},
-    comment: { type: String, default: "" },
-    when: { type: Date, default: Date.now }
-})
-
-const weightSchema = new mongoose.Schema({
-    pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    data: {type:Number, min:0},
-    comment: { type: String, default: "" },
-    when: { type: Date, default: Date.now }
-})
-const glucoseSchema = new mongoose.Schema({
-    pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    data: {type:Number, min:0},
-    comment: { type: String, default: "" },
-    when: { type: Date, default: Date.now }
-})
-const insulinSchema = new mongoose.Schema({
-    pattientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patient' },
-    data: {type:Number, min:0},
-    comment: { type: String, default: "" },
-    when: { type: Date, default: Date.now }
-})
+const recordSchema = new mongoose.Schema({
+    patientId: {type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true},
+    recordDate: {type: String, required: true},
+    data: {
+      bgl: {
+        fullName: {type: String, default: "blood glocose level", immutable: true},
+        status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+        when: { type: Date, default: Date.now }
+      }, 
+      weight: {
+        fullName: {type: String, default: "weight", immutable: true},
+        status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+        when: { type: Date, default: Date.now }
+      }, 
+      doit: {
+        fullName: {type: String, default: "doses of insulin taken", immutable: true},
+        status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+        when: { type: Date, default: Date.now }
+      }, 
+      exercise: {
+        fullName: {type: String, default: "exercise", immutable: true},
+        status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+        when: { type: Date, default: Date.now }
+      },
+    }
+  });
 
 const patientSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
@@ -49,10 +58,7 @@ const patientSchema = new mongoose.Schema({
     isGlucose: { type: Boolean, default: false },
     isWeight: { type: Boolean, default: false },
     isInsulin: { type: Boolean, default: false },
-    execrise_records: [exerciseSchema],
-    weight_records: [weightSchema],
-    glucose_records: [glucoseSchema],
-    insulin_records: [insulinSchema]
+    records: [recordSchema]
 })
 
 
@@ -64,11 +70,7 @@ const testSchema = new mongoose.Schema({
 const Test = mongoose.model('test',testSchema)
 
 
-
+const Record = mongoose.model('record',recordSchema)
 const Patient = mongoose.model('patient',patientSchema)
-const Exercise = mongoose.model('exercise',exerciseSchema)
-const Insulin = mongoose.model('insulin',insulinSchema)
-const Glucose = mongoose.model('glucose',glucoseSchema)
-const Weight = mongoose.model('weight',weightSchema)
 
-module.exports = {Patient,Exercise,Insulin,Glucose,Weight,Test}
+module.exports = {Patient,Record}
