@@ -102,7 +102,9 @@ const updateRecord = async (req, res) => {
 
       record.save()
       console.log(record);
-      res.redirect("/api/record");
+      //res.redirect("/api/record");
+      res.send();
+
     } catch (err) {
       console.log("error happens in update record: ", err);
     }
