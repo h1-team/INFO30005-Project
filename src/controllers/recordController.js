@@ -1,4 +1,5 @@
 // import demo model 
+const { param } = require('express/lib/request');
 const {Patient} = require('../models/db.js')
 const {Record} = require('../models/db.js')
 
@@ -92,13 +93,28 @@ const renderRecordData = async (req, res) => {
 const updateRecord = async (req, res) => {
     console.log("updating record");
     try {
-      const patientId = await initPatient();
-      const recordId = await initRecord(patientId);
-      const record = await Record.findOne({_id: recordId});
-      const data = record.data[req.body.key]
-      data.value = req.body.value
-      data.comment = req.body.comment
-      data.status = "recorded"
+      id = req.body.patientId
+      date = req.body.recordDate
+      const patient = await Patient.findOne({patientId: id});
+      const record = await Record.findOne({patientId: id,recordDate:date});
+      if(record){
+        // update data
+      }else{
+        //
+        console.log("record",record)
+        newrecord = new Record({
+          patientId :req.body.patientId,
+          date :req.body.patientId
+        })
+        console.log("no record",record)
+      }
+      // const patientId = await initPatient();
+      // const recordId = await initRecord(patientId);
+      // const record = await Record.findOne({_id: recordId});
+      // const data = record.data[req.body.key]
+      // data.value = req.body.value
+      // data.comment = req.body.comment
+      // data.status = "recorded"
 
       record.save()
       console.log(record);
