@@ -73,4 +73,6 @@ const Test = mongoose.model('test',testSchema)
 const Record = mongoose.model('record',recordSchema)
 const Patient = mongoose.model('patient',patientSchema)
 
-module.exports = {Patient,Record}
+module.exports = {Patient,
+  Record,
+Test}

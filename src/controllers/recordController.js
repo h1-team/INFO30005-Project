@@ -38,7 +38,7 @@ async function initPatient() {
             const patient = await newPatient.save();
             return patient.id;
         } else {
-            const patient = await Patient.findOne({ firstName: "Pat" });
+            const patient = await Patient.findOne({ username: "Pat" });
             return patient.id;
         }
     } catch (err) {
@@ -85,7 +85,7 @@ const renderRecordData = async (req, res) => {
       res.render("recordData.hbs", { record: record });
     } catch (err) {
       res.status(400);
-      res.send("error happens when render record data");
+      res.send("fail to render record data");
     }
   };
 
