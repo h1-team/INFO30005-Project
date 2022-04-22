@@ -1,15 +1,16 @@
-const { MongoServerClosedError } = require('mongodb')
 const mongoose = require('mongoose')
-// let conntectionURL = 'mongodb://localhost:27017/bad_designer'
-let conntectionURL =
-    'mongodb+srv://yuanbo:xuyuanbo28@bad-designer.5vta5.mongodb.net/test'
-mongoose.connect(conntectionURL)
-const db = mongoose.connection
+// const { MongoServerClosedError } = require('mongodb')
+// const mongoose = require('mongoose')
+// // let conntectionURL = 'mongodb://localhost:27017/bad_designer'
+// let conntectionURL =
+//     'mongodb+srv://yuanbo:xuyuanbo28@bad-designer.5vta5.mongodb.net/test'
+// mongoose.connect(conntectionURL)
+// const db = mongoose.connection
 
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', () => {
-    console.log('conntected to Mongo')
-})
+// db.on('error', console.error.bind(console, 'connection error:'))
+// db.once('open', () => {
+//     console.log('conntected to Mongo')
+// })
 
 const recordSchema = new mongoose.Schema({
     patientId: {
