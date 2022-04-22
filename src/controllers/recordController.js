@@ -116,7 +116,7 @@ const updateRecord = async (req, res) => {
       // data.comment = req.body.comment
       // data.status = "recorded"
 
-      record.save()
+    // record.save()
       console.log(record);
       //res.redirect("/api/record");
       res.send();

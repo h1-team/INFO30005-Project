@@ -16,32 +16,24 @@ const recordSchema = new mongoose.Schema({
     recordDate: {type: String, required: true},
     data: {
       bgl: {
-        fullName: {type: String, default: "blood glocose level", immutable: true},
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
         data: {type:Number, min:0},
-        comment: { type: String, default: "" },
-        when: { type: Date, default: Date.now }
+        comment: { type: String, default: "" }
       }, 
       weight: {
-        fullName: {type: String, default: "weight", immutable: true},
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
         data: {type:Number, min:0},
-        comment: { type: String, default: "" },
-        when: { type: Date, default: Date.now }
+        comment: { type: String, default: "" }
       }, 
       doit: {
-        fullName: {type: String, default: "doses of insulin taken", immutable: true},
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
         data: {type:Number, min:0},
-        comment: { type: String, default: "" },
-        when: { type: Date, default: Date.now }
+        comment: { type: String, default: "" }
       }, 
       exercise: {
-        fullName: {type: String, default: "exercise", immutable: true},
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
         data: {type:Number, min:0},
-        comment: { type: String, default: "" },
-        when: { type: Date, default: Date.now }
+        comment: { type: String, default: "" }
       },
     }
   });
