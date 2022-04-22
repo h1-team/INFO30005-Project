@@ -19,6 +19,7 @@ const recordSchema = new mongoose.Schema({
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
         data: {type:Number, min:0},
         comment: { type: String, default: "" }
+        
       }, 
       weight: {
         status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},

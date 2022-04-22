@@ -93,20 +93,25 @@ const renderRecordData = async (req, res) => {
 const updateRecord = async (req, res) => {
     console.log("updating record");
     try {
+      //find the record of the that date,if exist  update,if not create a new record
       id = req.body.patientId
       date = req.body.recordDate
       const patient = await Patient.findOne({patientId: id});
       const record = await Record.findOne({patientId: id,recordDate:date});
       if(record){
         // update data
+        Object.assign(patient,req.body)
+        await patient.save()
+        .then((result) => res.send(result))
+        .catch((err) => res.send(err))
       }else{
-        //
-        console.log("record",record)
+        
+        console.log("create a new record",record)
         newrecord = new Record({
           patientId :req.body.patientId,
           date :req.body.patientId
         })
-        console.log("no record",record)
+        //console.log("no record",record)
       }
       // const patientId = await initPatient();
       // const recordId = await initRecord(patientId);
@@ -117,9 +122,9 @@ const updateRecord = async (req, res) => {
       // data.status = "recorded"
 
     // record.save()
-      console.log(record);
+      //console.log(record);
       //res.redirect("/api/record");
-      res.send();
+      res.send("dsds");
 
     } catch (err) {
       console.log("error happens in update record: ", err);
