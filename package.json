@@ -4,7 +4,8 @@
   "description": "* [Team Members](#team-members)\r * [Progress Chart](#progress-chart)\r ***",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./src/app.js",
+    "prettier": "prettier --single-quote --no-semi --tab-width 4 --write '**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
   }
 }
