@@ -1,138 +1,99 @@
-// import demo model
-const { param } = require('express/lib/request')
-const { Patient } = require('../models/db.js')
-const { Record } = require('../models/db.js')
+// import demo model 
+const {Patient} = require('../models/db.js')
+const {Record} = require('../models/db.js')
 
 function formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
-
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
-
-    return [year, month, day].join('-')
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+  
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+  
+    return [year, month, day].join("-");
 }
 
-async function initPatient() {
-    try {
-        const result = await Patient.find()
-        if (result.length == 0) {
-            const newPatient = new Patient({
-                username: 'Pat',
-                photo: '',
-                name: 'pig',
-                address: 'dsdsda',
-                phone: 21312,
-                password: '12345678',
-                isExercise: true,
-                isGlucose: true,
-                isWeightd: true,
-                isInsulin: true,
-                exercise_records: [],
-                weight_records: [],
-                glucose_records: [],
-                insulin_records: [],
-            })
-
-            const patient = await newPatient.save()
-            return patient.id
-        } else {
-            const patient = await Patient.findOne({ username: 'Pat' })
-            return patient.id
-        }
-    } catch (err) {
-        console.log('Fail to initialize patient: ', err)
-    }
-}
-
-async function initRecord(patientId) {
-    try {
-        const result = await Record.findOne({
-            patientId: patientId,
-            recordDate: formatDate(new Date()),
-        })
-        if (!result) {
-            const newRecord = new Record({
-                patientId: patientId,
-                recordDate: formatDate(new Date()),
-            })
-
-            const record = await newRecord.save()
-            return record.id
-        } else {
-            return result.id
-        }
-    } catch (err) {
-        console.log('Fail to initialize record: ', err)
-    }
-}
 
 const renderRecordData = async (req, res) => {
     try {
-        const patientId = await initPatient()
-        const recordId = await initRecord(patientId)
-        // const patient = await Patient.findOne({ _id: patientId }).lean();
-        const record = await Record.findOne({ _id: recordId })
-            .populate({
-                path: 'patientId',
-                options: { lean: true },
-            })
-            .lean()
-        console.log(record)
-
-        // console.log("-- record info when display -- ", record);
-        res.render('recordData.hbs', { record: record })
+      const patientId = await initPatient();
+      const recordId = await initRecord(patientId);
+      // const patient = await Patient.findOne({ _id: patientId }).lean();
+      const record = await Record.findOne({ _id: recordId })
+        .populate({
+          path: "patientId",
+          options: { lean: true },
+        })
+        .lean();
+      console.log(record);
+  
+      // console.log("-- record info when display -- ", record);
+      res.render("recordData.hbs", { record: record });
     } catch (err) {
-        res.status(400)
-        res.send('fail to render record data')
+      res.status(400);
+      res.send("error happens when render record data");
     }
-}
+  };
 
 const updateRecord = async (req, res) => {
-    console.log('updating record')
     try {
-        id = req.body.patientId
-        date = req.body.recordDate
-        const patient = await Patient.findOne({ patientId: id })
-        const record = await Record.findOne({ patientId: id, recordDate: date })
-        if (record) {
-            // update data
-        } else {
-            //
-            console.log('record', record)
-            newrecord = new Record({
-                patientId: req.body.patientId,
-                date: req.body.patientId,
-            })
-            console.log('no record', record)
-        }
-        // const patientId = await initPatient();
-        // const recordId = await initRecord(patientId);
-        // const record = await Record.findOne({_id: recordId});
-        // const data = record.data[req.body.key]
-        // data.value = req.body.value
-        // data.comment = req.body.comment
-        // data.status = "recorded"
-
-        // record.save()
-        console.log(record)
-        //res.redirect("/api/record");
-        res.send()
+      id = req.body.patientId
+      date = req.body.recordDate
+      const patient = await Patient.findById(id)
+      if(!patient){
+        throw new Error("no such patient")
+      }
+      const record = await Record.findOne({patientId: id,recordDate:date})
+      if(record){
+        // update data
+        console.log("updating record\n")
+        Object.assign(record,req.body)
+        changeStatus(patient.needExecrise,newRecord.data.exercise)
+        changeStatus(patient.needGlucose,newRecord.data.glucose)
+        changeStatus(patient.needWeight,newRecord.data.weight)
+        changeStatus(patient.needInsulin,newRecord.data.insulin)
+        await record.save()
+        .then((result) => res.send(result))
+        .catch((err) => res.status(404).send(err))
+      }else{
+        //create new record
+        newRecord = new Record()
+        Object.assign(newRecord,req.body)
+        changeStatus(patient.needExecrise,newRecord.data.exercise)
+        changeStatus(patient.needGlucose,newRecord.data.glucose)
+        changeStatus(patient.needWeight,newRecord.data.weight)
+        changeStatus(patient.needInsulin,newRecord.data.insulin)
+        await newRecord.save()
+        .then((result) => res.send(result))
+        .catch((err) => res.status(404).send(err))
+        console.log("new record\n",newRecord)
+      }
     } catch (err) {
-        console.log('error happens in update record: ', err)
+      res.status(404).send(err.toString())
     }
-}
+  }
 
-const findAll = async (req, res) => {
+const findAll =  async (req, res) => {
     result = await Record.find()
     res.send(result)
 }
 
-// exports an object, which contains a function named getAllDemoData
-module.exports = {
+function changeStatus(isNeed,record){
+  if(!isNeed){
+    record.status = "NO_NEED"
+  }else if(record.data == null){
+    record.status = "UNRECORDED"
+  }else{
+    record.status = "RECORDED"
+  }
+
+}
+
+
+// exports an object, which contains a function named getAllDemoData 
+module.exports = { 
     renderRecordData,
     updateRecord,
     findAll,
-}
+} 
