@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 // const { MongoServerClosedError } = require('mongodb')
 // const mongoose = require('mongoose')
 // // let conntectionURL = 'mongodb://localhost:27017/bad_designer'
@@ -12,76 +13,60 @@ const mongoose = require('mongoose')
 //     console.log('conntected to Mongo')
 // })
 
+
+const STATUS = ["RECORDED", "UNRECORDED", "NO_NEED"]
 const recordSchema = new mongoose.Schema({
-    patientId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Patient',
-        required: true,
-    },
-    recordDate: { type: String, required: true },
+    patientId: {type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true},
+    recordDate: {type: Date, required: true},
     data: {
-        bgl: {
-            status: {
-                type: String,
-                enum: ['recorded', 'unrecorded', 'no need'],
-                default: 'unrecorded',
-            },
-            data: { type: Number, min: 0 },
-            comment: { type: String, default: '' },
-        },
-        weight: {
-            status: {
-                type: String,
-                enum: ['recorded', 'unrecorded', 'no need'],
-                default: 'unrecorded',
-            },
-            data: { type: Number, min: 0 },
-            comment: { type: String, default: '' },
-        },
-        doit: {
-            status: {
-                type: String,
-                enum: ['recorded', 'unrecorded', 'no need'],
-                default: 'unrecorded',
-            },
-            data: { type: Number, min: 0 },
-            comment: { type: String, default: '' },
-        },
-        exercise: {
-            status: {
-                type: String,
-                enum: ['recorded', 'unrecorded', 'no need'],
-                default: 'unrecorded',
-            },
-            data: { type: Number, min: 0 },
-            comment: { type: String, default: '' },
-        },
-    },
-})
+      glucose: {
+        status: {type: String, enum: STATUS, default: "UNRECORDED"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+      }, 
+      weight: {
+        status: {type: String, enum: STATUS, default: "UNRECORDED"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+      }, 
+      insulin: {
+        status: {type: String, enum: STATUS, default: "UNRECORDED"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+      }, 
+      exercise: {
+        status: {type: String, enum: STATUS, default: "UNRECORDED"},
+        data: {type:Number, min:0},
+        comment: { type: String, default: "" },
+      },
+    }
+  });
 
 const patientSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    photo: { type: String, default: '' },
-    name: { type: String, default: '' },
-    address: { type: String, default: '' },
+    photo: { type: String, default: "" },
+    name: { type: String, default: "" },
+    address: { type: String, default: "" },
     dob: Date,
-    phone: { type: String, default: '' },
-    password: { type: String, required: true, min: 8 },
-    isExecrise: { type: Boolean, default: false },
-    isGlucose: { type: Boolean, default: false },
-    isWeight: { type: Boolean, default: false },
-    isInsulin: { type: Boolean, default: false },
-    records: [recordSchema],
+    phone: { type: String, default: "" },
+    password: { type: String, required:true,min:8},
+    needExecrise: { type: Boolean, default: true },
+    needGlucose: { type: Boolean, default: true },
+    needWeight: { type: Boolean, default: true },
+    needInsulin: { type: Boolean, default: true },
+    records: [recordSchema]
 })
+
 
 const testSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     age: { type: Number, default: 0 },
-    isMale: { type: Boolean, default: true },
+    isMale:{ type: Boolean, default: true }
 })
-const Test = mongoose.model('test', testSchema)
+const Test = mongoose.model('test',testSchema)
 
-const Record = mongoose.model('record', recordSchema)
-const Patient = mongoose.model('patient', patientSchema)
 
-module.exports = { Patient, Record, Test }
+const Record = mongoose.model('record',recordSchema)
+const Patient = mongoose.model('patient',patientSchema)
+
+module.exports = {Patient,Record}
