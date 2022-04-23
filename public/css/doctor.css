@@ -1,0 +1,357 @@
+:root {
+    --font-faily-body:adobe-text-pro, serif;
+    --color-blue:#2D63AB;
+    --color-yellow:#F2B705;
+    --color-light-yellow:#F9E29B
+    --color-dark_blue:#1D4881;
+    --color-light_blue:#3B83E3;
+    --color-light_green: #D2F2DD;
+    --color-xl-blue:#8DB9ED;
+    --line-color:#ccc;
+}
+
+
+* { 
+      box-sizing: border-box; 
+      font-size: 18px;
+      padding: 0;
+      margin: 0;
+}
+
+    
+header {
+      background-color: white;
+      height: 35px;
+      top: 0;
+      width: 100%;
+}
+
+
+nav ul { 
+      margin: 0 7% auto 0;
+      padding-right: initial;
+      text-align: left;
+      max-width: 100%
+}
+
+
+nav ul li { 
+      display: inline-block; 
+      margin-left: 10px;
+  }
+  
+*.info{
+      font-family: "PT Serif";
+      font-weight: normal;
+      color: #4b4b4b;
+}
+
+.top-anchor{
+    font: 0.7em normal, PT Serif;
+    color: black;
+}
+
+img { width: 100%; height: auto; display: block }
+  body {
+      display: flex;
+      text-align: center;
+      flex-flow: column nowrap;
+      align-items: center;
+}
+  
+.bg-dark { background-color:#F2B705; }
+  *.home{
+    background-color: var(--color-yellow);
+    color: black;
+    overflow: visible;
+  
+}
+
+*.text-black{
+    overflow: visible;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Phosphate;
+    font-style: normal;
+    font-weight: normal;
+    font-size: x-large;
+}
+
+button{
+    display: inline-block;
+    margin: 45px auto ;
+    padding: 0.9rem 2.5rem;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #707070;
+    color: black;
+    font-size: 17px;
+    --web-animation: fadein 0.3s ease-out;
+    --web-action-type: page;
+    --web-action-target: Log_in__simple_.html;
+    border-radius: 60px;
+    opacity: 0.6;
+}
+  
+button:hover{
+  
+    border-radius: 60px;
+    border: 1px solid #707070;
+    background-color: #c0a963;
+}
+  
+ul {
+    list-style: none;
+}
+  
+a {
+    text-decoration: none;
+}
+  
+.generic-anchor {
+    color: #8db9ed;
+}
+
+.generic-anchor:visited {
+    color: #8db9ed;
+}
+
+
+.generic-anchor:hover {
+    color: #ccc;
+}
+
+.footer-flex {
+    display: flex;
+    flex-flow: row;
+}
+  
+footer {
+    background: #373737;
+    margin-top: auto;
+    width: 100%;
+}
+  
+.footer-list-top {
+    width: 25%;
+}
+  
+.footer-list-top > li {
+    text-align: center;
+    padding-bottom: 10px;
+}
+  
+.footer-list-header {
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font: 2.3vw "Oswald", sans-serif;
+}
+  
+.footer-list-anchor {
+    font: 1.3em "Open Sans", sans-serif;
+}
+  
+.slogan{
+    color:white
+}
+  
+  
+  
+.footer-bottom-section {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}
+  
+.footer-bottom-section > div:first-child {
+    margin-right: auto;
+}
+  
+.footer-bottom-wrapper {
+    font-size: 1.5em;
+    color: #fff;
+}
+  
+.footer-address {
+    display: inline;
+    font-style: normal;
+}
+  
+/* Desktops */
+  @media all and (min-width:768px) { 
+    .container-block { padding: 4% 8% }
+    .footer-list-header {
+      font-size: 2em;
+}
+  
+.footer-list-anchor {
+      font-size: 1.1em;
+}
+  
+  
+.footer-bottom-wrapper {
+      font-size: 1.3em;
+    }
+}
+  
+/* Mobiles */
+  @media all and (max-width:767px) { 
+    .container-block { padding: 11% 8% } 
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      font-size: 3em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.5em;
+    }
+  
+    
+    .footer-bottom-section {
+      padding: 0 5px 10px 5px;
+    }
+  
+    .footer-bottom-wrapper {
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+}
+  
+  
+  
+  
+/*parent container */
+.container-flexbox {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; 
+}
+  
+/* Desktops: child columns */
+@media all and (min-width: 768px) {
+      .item-col-2 { width: 50% }
+      .footer-list-header {
+        font-size: 2em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.1em;
+      }
+    
+    
+      .footer-bottom-wrapper {
+        font-size: 1.3em;
+      }
+}
+  
+
+/* Mobiles: child columns */
+@media all and (max-width: 767px) {
+      .item-col-2 { width: 100% }
+      /* Vertical spacing under first child column */
+      .item-col-2:first-child { margin-bottom: 32px }
+  
+      main {
+        font-size: 5em;
+      }
+    
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        font-size: 3em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.5em;
+      }
+    
+      
+      .footer-bottom-section {
+        padding: 0 5px 10px 5px;
+      }
+    
+      .footer-bottom-wrapper {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+}
+  
+/* Desktops: inner padding for child columns */
+@media all and (min-width:768px) {
+      [class*="item-col-"].item-col-padding { padding: 2% 2% 2.2% 2% }
+}
+   
+/* Mobiles: inner padding for child columns  */
+@media all and (max-width:767px) {
+       [class*="item-col-"].item-col-padding { padding: 7% 7% 7% 7% }
+}
+
+
+@media only screen and (max-width: 568px) {
+      .image{
+        width: auto;
+      }
+      body {
+        font-size: 5em;
+      }
+    
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        font-size: 3em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.5em;
+      }
+    
+      
+      .footer-bottom-section {
+        padding: 0 5px 10px 5px;
+      }
+    
+      .footer-bottom-wrapper {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    @media only screen and (max-width: 480px) {
+    
+      .footer-bottom-rights {
+        display: block;
+      }
+    }
+    @media only screen and (max-width: 320px) {
+      .image{
+        width: auto;
+      }
+      .footer-list-header {
+        font-size: 2.2em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.2em;
+      }
+    
+      .footer-bottom-wrapper {
+        font-size: 1.3em;
+      }
+}
+
+@font-face{
+      font-family: Tahoma;
+          src: url('Tahoma Regular font.ttf');
+}
+  
