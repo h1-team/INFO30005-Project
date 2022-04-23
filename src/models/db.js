@@ -47,10 +47,10 @@ const patientSchema = new mongoose.Schema({
     dob: Date,
     phone: { type: String, default: "" },
     password: { type: String, required:true,min:8},
-    isExecrise: { type: Boolean, default: false },
-    isGlucose: { type: Boolean, default: false },
-    isWeight: { type: Boolean, default: false },
-    isInsulin: { type: Boolean, default: false },
+    // isExecrise: { type: Boolean, default: false },
+    // isGlucose: { type: Boolean, default: false },
+    // isWeight: { type: Boolean, default: false },
+    // isInsulin: { type: Boolean, default: false },
     records: [recordSchema]
 })
 
