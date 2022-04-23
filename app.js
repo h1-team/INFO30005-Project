@@ -1,3 +1,5 @@
+const exphbs = require('express-handlebars')
+
 // import express
 const express = require('express')
 // set the app up as an express app
@@ -5,6 +7,17 @@ const app = express()
 
 const port = process.env.PORT || 8080
 var path = require('path')
+
+// configure Handlebars
+app.engine(
+    'hbs',
+    exphbs.engine({
+        defaultLayout: 'main',
+        extname: 'hbs',
+    })
+)
+// set Handlebars view engine
+app.set('view engine', 'hbs')
 
 // Set up to handle POST requests
 app.use(express.json()) // needed if POST data is in JSON format
@@ -21,6 +34,11 @@ app.use('/api/record', recordRouter)
 
 // connect to MongoDB
 require('./models/index.js')
+
+// Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
+app.get('/', (req, res) => {
+    res.render('index.hbs')
+})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
