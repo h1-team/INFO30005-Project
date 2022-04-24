@@ -1,8 +1,19 @@
-
- <form class="login-form" action="login.js"> {{! login}}
-   <label for="ID"><i class="flex-form id"></i>ID</label>
-   <input type="ID" id="ID" class="input">
-   <label for="password"><i class="flex-form pass"></i> Password:</label>
-   <input id="password" type="password" class="input" >
-   <button type="submit" class="btn-login  log-bg" onclick="{{!login();}}">Login</button>
+<div class="">
+  <h1 class="center">Diabetes@HOME</h1>
+  <form class="login-form" action="{{!login.js"}}"> 
+    <label for="ID"><i class="flex-form id"></i>User ID:</label>
+    <input type="ID" id="ID" class="input">
+    <label for="password"><i class="flex-form pass"></i> Password:</label>
+    <input id="password" type="password" class="input" >
+    <div class="">
+      <div class="">
+        <input type="checkbox" >
+          <label class="">Remember me?</label>
+      </div>
+    </div>
+  <button type="submit" class="btn-login  log-bg" onclick="{{!login();}}">Log In</button>
+  <p class="">
+    <a href="/Forget_Password">Forget Password|</span>
+    <a href="/signup">Sign up</a>
+  </p>
 </form>
