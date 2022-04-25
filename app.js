@@ -39,6 +39,9 @@ require('./models/index.js')
 app.get('/', (req, res) => {
     res.render('welcome.hbs')
 })
+app.get('/login',(req,res)=>{
+    res.render('login.hbs')
+})
 app.get('/insert',(req,res)=>{
     res.render('insert.hbs')
 })
