@@ -18,7 +18,7 @@ app.engine(
 )
 // set Handlebars view engine
 app.set('view engine', 'hbs')
-
+app.use(express.static("./public"));
 // Set up to handle POST requests
 app.use(express.json()) // needed if POST data is in JSON format
 app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
@@ -37,7 +37,10 @@ require('./models/index.js')
 
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req, res) => {
-    res.render('recordData.hbs')
+    res.render('welcome.hbs')
+})
+app.get('/insert',(req,res)=>{
+    res.render('insert.hbs')
 })
 
 app.listen(process.env.PORT || 3000, () => {
