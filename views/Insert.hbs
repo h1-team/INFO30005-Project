@@ -134,10 +134,31 @@
 <script>
   insertForm.addEventListener('submit', async function (e){
       console.log(1)
+      function getTime(){
+        var date = new Date();
+        var year = date.getFullYear() 
+        var month = date.getMonth() +1
+        var day = date.getDate()
+        if(month<10){
+          month = "0" + month
+        }
+        if(day <10){
+          day = "0" +day
+        }
+        return year + '-' + month + '-' + day
+      }
+      //var d = Date.now()
+      //month = '' + (d.getMonth() + 1)
+      //day = '' + d.getDate()
+      //year = d.getFullYear()
+      //if (month.length < 2) month = '0' + month
+      //if (day.length < 2) day = '0' + day
         e.preventDefault()
         const data = {
             patientId:"626638131ce67f95df44fb8a",
-            recordDate:"2022-03-01T00:00:00.000+08:00",
+            //recordDate: [year, month, day].join('-'),
+            //recordDate: "2022-6-23",
+            recordDate: getTime(),
             data:{
                 glucose:{
                     data:glucose.value,
