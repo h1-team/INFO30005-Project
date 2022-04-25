@@ -13,10 +13,10 @@
         </div>
         
         <table class="pats_col">
-                {{#if this.bgl.required}}<tr><td>Blood glucose level:</td>{{#ifRecorded}}<td>{{this.bgl}}</td></tr>
-                {{#if this.weight.required}}<tr><td>Weight:</td>{{#ifRecorded}}<td>{{this.weight}}</td></tr>
-                {{#if this.DIT.required}}<tr><td>Doses of insulin taken:</td>{{#ifRecorded}}<td>{{this.DIT}}</td></tr>
-                {{#if this.exercise.required}}<tr><td>Exercise:</td>{{#ifRecorded}}<td>{{this.exercise}}</td></tr>
+                {{#if this.bgl.required}}<tr><td>Blood glucose level:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.bgl}}</td></tr>
+                {{#if this.weight.required}}<tr><td>Weight:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.weight}}</td></tr>
+                {{#if this.DIT.required}}<tr><td>Doses of insulin taken:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.DIT}}</td></tr>
+                {{#if this.exercise.required}}<tr><td>Exercise:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.exercise}}</td></tr>
         </table>
         {{/each}}
         
