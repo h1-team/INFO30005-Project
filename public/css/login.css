@@ -1,0 +1,377 @@
+
+.bg{
+        display: flex;
+        align-items: center;
+        flex-direction: column; 
+        justify-content: center;
+        width: 100%;
+        min-height: 100%;
+        padding: 60px 20px 60px 20px;
+        background: #3B83E3;
+    
+}
+.login{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    max-width: 983px;
+    min-width: fit-content !important;margin: 0px auto;
+    border-radius: 40px;
+    padding: 2.3rem;
+    border: 2px solid rgba(255, 255, 255, 0.6); 
+  }
+  .pat_bg{
+    background: #3B83E3; 
+  }
+  .doc_bg{
+    background: #5F97E0;
+  }
+  .login_form{
+    border-radius: 40px;
+    display: flex;
+    position: relative;
+  }
+  label{
+    color: white;
+  }
+  
+  h1 {
+  margin-bottom: 2rem;
+  color:#000;
+  text-align:center;
+  
+  font-family: Tahoma;
+  font-weight: bold;
+  }
+  
+    
+  input[type=ID],
+  input[type=password] {
+      margin-bottom: 1rem;
+      width: 100%;
+      padding: 1em 6em;
+      margin: 0.5em 0;
+      display: inline-block;
+      border: 0.1em solid #ccc;
+      box-sizing: border-box;
+  }
+  .checkbox{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  .forget{
+      margin-top: 1 rem;
+    color: white;
+  }
+  .forget:hover{
+    color: #E8D426;
+    text-decoration: none;
+  }
+  
+  
+  .btn-login{
+
+    background: #3A855D;
+    border: 1px solid #707070;
+    color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 16px;
+  }
+  .btn-login:hover {
+    background: #57b382;;
+  }
+  @media all and (min-width: 768px) {
+    .login { width: 40% }
+  }
+  @media all and (max-width: 768px) {
+    .login { width: 50% }
+}
+
+.generic-anchor {
+    color: #8db9ed;
+}
+
+.generic-anchor:visited {
+    color: #8db9ed;
+}
+
+
+.generic-anchor:hover {
+    color: #ccc;
+}
+
+.footer-flex {
+    display: flex;
+    flex-flow: row;
+}
+  
+footer {
+    background: #373737;
+    margin-top: auto;
+    width: 100%;
+}
+  
+.footer-list-top {
+    width: 25%;
+}
+  
+.footer-list-top > li {
+    text-align: center;
+    padding-bottom: 10px;
+}
+  
+.footer-list-header {
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font: 2.3vw "Oswald", sans-serif;
+}
+  
+.footer-list-anchor {
+    font: 1.3em "Open Sans", sans-serif;
+}
+  
+.slogan{
+    color:white
+}
+  
+  
+  
+.footer-bottom-section {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}
+  
+.footer-bottom-section > div:first-child {
+    margin-right: auto;
+}
+  
+.footer-bottom-wrapper {
+    font-size: 1.5em;
+    color: #fff;
+}
+  
+.footer-address {
+    display: inline;
+    font-style: normal;
+}
+  
+/* Desktops */
+  @media all and (min-width:768px) { 
+    .container-block { padding: 4% 8% }
+    .footer-list-header {
+      font-size: 2em;
+}
+  
+.footer-list-anchor {
+      font-size: 1.1em;
+}
+  
+  
+.footer-bottom-wrapper {
+      font-size: 1.3em;
+    }
+}
+  
+/* Mobiles */
+  @media all and (max-width:767px) { 
+    .container-block { padding: 11% 8% } 
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      font-size: 3em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.5em;
+    }
+  
+    
+    .footer-bottom-section {
+      padding: 0 5px 10px 5px;
+    }
+  
+    .footer-bottom-wrapper {
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+}
+  
+  
+  
+  
+/*parent container */
+.container-flexbox {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; 
+}
+  
+/* Desktops: child columns */
+@media all and (min-width: 768px) {
+      .item-col-2 { width: 50% }
+      .footer-list-header {
+        font-size: 2em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.1em;
+      }
+    
+    
+      .footer-bottom-wrapper {
+        font-size: 1.3em;
+      }
+}
+  
+
+/* Mobiles: child columns */
+@media all and (max-width: 767px) {
+      .item-col-2 { width: 100% }
+      /* Vertical spacing under first child column */
+      .item-col-2:first-child { margin-bottom: 32px }
+  
+      main {
+        font-size: 5em;
+      }
+    
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        font-size: 3em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.5em;
+      }
+    
+      
+      .footer-bottom-section {
+        padding: 0 5px 10px 5px;
+      }
+    
+      .footer-bottom-wrapper {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+}
+  
+/* Desktops: inner padding for child columns */
+@media all and (min-width:768px) {
+      [class*="item-col-"].item-col-padding { padding: 2% 2% 2.2% 2% }
+}
+   
+/* Mobiles: inner padding for child columns  */
+@media all and (max-width:767px) {
+       [class*="item-col-"].item-col-padding { padding: 7% 7% 7% 7% }
+}
+
+
+@media only screen and (max-width: 568px) {
+      .image{
+        width: auto;
+      }
+      body {
+        font-size: 5em;
+      }
+    
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        font-size: 3em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.5em;
+      }
+    
+      
+      .footer-bottom-section {
+        padding: 0 5px 10px 5px;
+      }
+    
+      .footer-bottom-wrapper {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    @media only screen and (max-width: 480px) {
+    
+      .footer-bottom-rights {
+        display: block;
+      }
+    }
+    @media only screen and (max-width: 320px) {
+      .image{
+        width: auto;
+      }
+      .footer-list-header {
+        font-size: 2.2em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.2em;
+      }
+    
+      .footer-bottom-wrapper {
+        font-size: 1.3em;
+      }
+}
+
+@font-face{
+      font-family: Tahoma;
+          src: url('Tahoma Regular font.ttf');
+}
+  * { 
+    box-sizing: border-box; 
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+  
+header {
+    background-color: white;
+    height: 35px;
+    top: 0;
+    width: 100%;
+}
+
+
+nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+}
+
+
+nav ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+*.info{
+    font-family: "PT Serif";
+    font-weight: normal;
+    color: #4b4b4b;
+}
+
+.top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: black;
+}
