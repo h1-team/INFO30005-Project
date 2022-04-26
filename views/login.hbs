@@ -1,23 +1,25 @@
 {{> header}}
-<body style="background-color: #3B83E3;">
-<h1 style="color: white; font-family:sans-serif">Diabetes@Home</h1>
-<div class="login doc_bg" style="background-color: ;">
+<body style="background-color: white;">
+<h1 style="color: black;">Diabetes@HOME</h1>
+<div class="login" style="background-color: #3B83E3;">
+  
     <form class="login-form"> 
-      <label for="ID">User ID:</label>
+      <label class="pat-text-color" for="ID">User ID:</label>
       <br/>
-      <input type="ID" id="ID" class="input">
+      <input  type="ID" id="ID" class="input">
       <br/>
-      <label for="password"> Password:</label>
+      <label class="pat-text-color" for="password"> Password:</label>
       <br/>
       <input id="password" type="password" class="input" >
       <div class="checkbox">
           <input type="checkbox" >
-          <label class="">Remember me?</label>
+          <label class="pat-text-color" class="">Remember me?</label>
       </div>
     <button type="submit" class="btn-login  log-bg" onclick="{{!login();}}">Log In</button>
     <a class="forget" href="/Forget_Password">Forget Password</a>
   </form>
 </div> 
 </body>
+
 
 {{> footer}}
