@@ -48,10 +48,10 @@ const updateRecord = async (req, res) => {
             // update data
             console.log('updating record\n')
             Object.assign(record, req.body)
-            changeStatus(patient.needExecrise, newRecord.data.exercise)
-            changeStatus(patient.needGlucose, newRecord.data.glucose)
-            changeStatus(patient.needWeight, newRecord.data.weight)
-            changeStatus(patient.needInsulin, newRecord.data.insulin)
+            changeStatus(patient.needExecrise, record.data.exercise)
+            changeStatus(patient.needGlucose, record.data.glucose)
+            changeStatus(patient.needWeight, record.data.weight)
+            changeStatus(patient.needInsulin, record.data.insulin)
             await record
                 .save()
                 .then((result) => res.send(result))
