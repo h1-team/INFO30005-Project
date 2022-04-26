@@ -1,5 +1,7 @@
-<h1>Diabetes@HOME</h1>
-<div class="login pat_bg">
+{{> header}}
+<body style="background-color: #3B83E3;">
+<h1 style="color: white; font-family:sans-serif">Diabetes@Home</h1>
+<div class="login doc_bg" style="background-color: ;">
     <form class="login-form"> 
       <label for="ID">User ID:</label>
       <br/>
@@ -13,9 +15,9 @@
           <label class="">Remember me?</label>
       </div>
     <button type="submit" class="btn-login  log-bg" onclick="{{!login();}}">Log In</button>
-    <p class="">
-      <a href="/Forget_Password">Forget Password|</span>
-      <a href="/signup">Sign up</a>
-    </p>
+    <a class="forget" href="/Forget_Password">Forget Password</a>
   </form>
 </div> 
+</body>
+
+{{> footer}}
