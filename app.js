@@ -18,11 +18,10 @@ app.engine(
 )
 // set Handlebars view engine
 app.set('view engine', 'hbs')
-app.use(express.static("./public"));
 // Set up to handle POST requests
 app.use(express.json()) // needed if POST data is in JSON format
 app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
-
+app.use(express.static('./public'));
 // link to the router
 const router = require('./routes/router.js')
 const recordRouter = require('./routes/recordRouter.js')
@@ -39,11 +38,12 @@ require('./models/index.js')
 app.get('/', (req, res) => {
     res.render('welcome.hbs')
 })
-app.get('/login',(req,res)=>{
-    res.render('login.hbs')
-})
 app.get('/insert',(req,res)=>{
     res.render('insert.hbs')
+})
+
+app.get('/login',(req,res)=>{
+    res.render('login.hbs')
 })
 
 

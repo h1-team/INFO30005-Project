@@ -39,8 +39,6 @@ const updateRecord = async (req, res) => {
     try {
         id = req.body.patientId
         date = req.body.recordDate
-        //date = formatDate(new Date())
-
         const patient = await Patient.findById(id)
         if (!patient) {
             throw new Error('no such patient')
