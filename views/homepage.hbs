@@ -22,27 +22,43 @@
             <p id = "date">22 Apr 2022</p>
             <p>Data need to be entered today :</p>
 
+
             <ul>
-                <li>
-                    <p>Blood glucose level</p>
-                    <img src="/icon/check.svg">
+
+                <li>{{#if (isrecord this.glucose)}}
+                        <p>Blood glucose level</p>
+                        <img src="/icon/check.svg">
+                    {{else}}
+                        <p>Blood glucose level</p>
+                        <img src="/icon/alarm.svg">
+                    {{/if}}
+                </li>
+                
+                <li>{{#if (isrecord this.weight)}}
+                        <p>Weight</p>
+                        <img src="/icon/check.svg">
+                    {{else}}
+                        <p>Weight</p>
+                        <img src="/icon/alarm.svg">
+                    {{/if}}
                 </li>
 
-                <li>
-                    <p>Wight</p>
-                    <img src="/icon/check.svg">
+                <li>{{#if (isrecord this.insulin)}}
+                        <p>Doses of insulin taken</p>
+                        <img src="/icon/check.svg">
+                    {{else}}
+                        <p>Doses of insulin taken</p>
+                        <img src="/icon/alarm.svg">
+                    {{/if}}
                 </li>
 
-
-                <li>
-                    <p>Doses of insulin taken</p>
-                    <img src="/icon/check.svg">
-                </li>
-
-
-                <li>
-                    <p>Excrise</p>
-                    <img src="/icon/check.svg">
+                <li>{{#if (isrecord this.exercise)}}
+                        <p>Exercise</p>
+                        <img src="/icon/check.svg">
+                    {{else}}
+                        <p>Exercise</p>
+                        <img src="/icon/alarm.svg">
+                    {{/if}}
                 </li>
             </ul>
 

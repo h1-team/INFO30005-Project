@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/h1-team/INFO30005-Project#readme",
   "dependencies": {
+    "axios": "^0.27.1",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
     "handlebars": "^4.7.7",
