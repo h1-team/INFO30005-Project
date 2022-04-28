@@ -74,4 +74,5 @@ insertForm.addEventListener('submit', async function (e) {
     method: "POST",
   })
   console.log(res)
+  alert("ds")
 })
