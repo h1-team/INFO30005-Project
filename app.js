@@ -97,7 +97,7 @@ app.get('/homepage', async(req,res)=>{
     
     async function getStatus(){
         try{const status = await axios({
-                url:"/api/record/getRecordStatus",
+                url:"https:/bad-designers.herokuapp/api/record/getRecordStatus",
                 data,
                 method:"POST"
         })
