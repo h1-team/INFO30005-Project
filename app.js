@@ -19,7 +19,7 @@ app.engine(
         helpers:{
             isrecord: a => a == "RECORDED",
             isunrecord: a => a == "UNRECORDED",
-            isneed: a => a != "NO_NEED",
+            isnoneed: a => a == "NO_NEED",
             isalert: a => a == "ALERT"
         }
     })
@@ -89,7 +89,7 @@ app.get('/homepage', async(req,res)=>{
         }
         return year + '-' + month + '-' + day
     }
-
+    
     const data = {
         patientId:"62694cb55403b01e62571abd",
         recordDate: getTime()

@@ -18,58 +18,59 @@
             </a>
         </div>
 
-        <table class="pats_col">
-            {{#if (isneed this.glucoseStatus)}}
-                <tr>
-                    {{#if (isalert this.glucoseStatus)}}
-                        <td><img src="/icon/red-circle.svg"></td>
-                    {{else if (isrecord this.glucoseStatus)}}
-                        <td><img src="/icon/green-circle.svg"></td>
-                    {{else}}
-                        <td><img src="/icon/grey-circle.svg"></td>
-                    {{/if}}
-                    <td>Blood glucose level:</td><td class="num" onchange="color(value)">{{this.glucose}}</td>
-                </tr>
-            {{/if}}
+        <table class="pat_col">
 
-            {{#if (isneed this.weightStatus)}}
-                <tr>
-                    {{#if (isalert this.weightStatus)}}
-                        <td><img src="/icon/red-circle.svg"></td>
-                    {{else if (isrecord this.weightStatus)}}
-                        <td><img src="/icon/green-circle.svg"></td>
-                    {{else}}
-                        <td><img src="/icon/grey-circle.svg"></td>
-                    {{/if}}    
-                    <td>Weight:</td><td class="num" onchange="color(value)">{{this.weight}}</td>
-                </tr>
-            {{/if}}
+            <tr>
+                {{#if (isalert this.glucoseStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.glucoseStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.glucoseStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                <td>Blood glucose level:</td><td class="num" onchange="color(value)">{{this.glucose}}</td>
+            </tr>
+
+            <tr>
+                {{#if (isalert this.weightStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.weightStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.weightStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}    
+                <td>Weight:</td><td class="num" onchange="color(value)">{{this.weight}}</td>
+            </tr>
             
-            {{#if (isneed this.insulinStatus)}}
-                <tr>
-                    {{#if (isalert this.insulinStatus)}}
-                        <td><img src="/icon/red-circle.svg"></td>
-                    {{else if (isrecord this.insulinStatus)}}
-                        <td><img src="/icon/green-circle.svg"></td>
-                    {{else}}
-                        <td><img src="/icon/grey-circle.svg"></td>
-                    {{/if}}    
-                    <td>Doses of insulin taken:</td><td class="num" onchange="color(value)">{{this.insulin}}</td>
-                </tr> 
-            {{/if}}
+            <tr>
+                {{#if (isalert this.insulinStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.insulinStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.insulinStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}    
+                <td>Doses of insulin taken:</td><td class="num" onchange="color(value)">{{this.insulin}}</td>
+            </tr> 
 
-            {{#if (isneed this.exerciseStatus)}}
-                <tr>
-                    {{#if (isalert this.exerciseStatus)}}
-                        <td><img src="/icon/red-circle.svg"></td>
-                    {{else if (isrecord this.exerciseStatus)}}
-                        <td><img src="/icon/green-circle.svg"></td>
-                    {{else}}
-                         <td><img src="/icon/grey-circle.svg"></td>
-                    {{/if}}    
-                    <td>Exercise:</td><td class="num" onchange="color(value)">{{this.exercise}}</td>
-                </tr>
-            {{/if}}
+            <tr>
+                {{#if (isalert this.exerciseStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.exerciseStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.exerciseStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                        <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}    
+                <td>Exercise:</td><td class="num" onchange="color(value)">{{this.exercise}}</td>
+            </tr>
             </table>
 
     </div>
