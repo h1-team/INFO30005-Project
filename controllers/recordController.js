@@ -56,6 +56,8 @@ const updateRecord = async (req, res) => {
             changeStatus(patient.needGlucose, record.data.glucose)
             changeStatus(patient.needWeight, record.data.weight)
             changeStatus(patient.needInsulin, record.data.insulin)
+            patient.records[0] = record
+            patient.save()
             await record
                 .save()
                 .then((result) => res.send(result))
@@ -68,6 +70,8 @@ const updateRecord = async (req, res) => {
             changeStatus(patient.needGlucose, newRecord.data.glucose)
             changeStatus(patient.needWeight, newRecord.data.weight)
             changeStatus(patient.needInsulin, newRecord.data.insulin)
+            patient.records.unshift(newRecord)
+            patient.save()
             await newRecord
                 .save()
                 .then((result) => res.send(result))
@@ -135,10 +139,35 @@ const getRecordStatus = async (req, res) => {
 
 }
 
+
+const getOneRecord = async (req, res) => {
+    try{
+        id = req.body.patientId
+        date = req.body.recordDate
+        const patient = await Patient.findById(id)
+        if (!patient) {
+            throw new Error('no such patient')
+        }
+        date = formatDate(date)
+        today = new Date(date)
+        tmr = new Date(today);
+        tmr.setDate(today.getDate() + 1)
+        record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
+        if(record){
+            res.send(record)
+        }else{
+            res.send({})
+        }
+    }catch(err){
+        res.status(404).send(err)
+    }
+}
+
 // exports an object, which contains a function named getAllDemoData
 module.exports = {
     renderRecordData,
     updateRecord,
     findAll,
     getRecordStatus,
+    getOneRecord,
 }

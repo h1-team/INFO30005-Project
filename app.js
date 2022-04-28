@@ -17,7 +17,10 @@ app.engine(
         defaultLayout: 'main',
         extname: 'hbs',
         helpers:{
-            isrecord: a => a == "RECORDED"
+            isrecord: a => a == "RECORDED",
+            isunrecord: a => a == "UNRECORDED",
+            isneed: a => a != "NO_NEED",
+            isalert: a => a == "ALERT"
         }
     })
 )
@@ -47,17 +50,8 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/aboutweb',(req,res)=>{
-    res.render('aboutweb.hbs',{
-        style:'about.css'
-    })
-})
-
-app.get('/aboutdia',(req,res)=>{
-    res.render('aboutdia.hbs',{
-        style:'about.css'
-    })
-})
+const patientController = require('./controllers/patientController')
+app.get('/dashboard',patientController.getAllPatientRecordToday)
 
 app.get('/insert',(req,res)=>{
     res.render('insert.hbs')
