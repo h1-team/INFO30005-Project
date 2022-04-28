@@ -61,6 +61,18 @@ app.get('/login',(req,res)=>{
     res.render('login.hbs')
 })
 
+app.get('/aboutweb',(req,res)=>{
+    res.render('aboutweb.hbs',{
+        style:'about.css'
+    })
+})
+
+app.get('/aboutdia',(req,res)=>{
+    res.render('aboutdia.hbs',{
+        style:'about.css'
+    })
+})
+
 app.get('/homepage', async(req,res)=>{
     function getTime(){
         var date = new Date();
