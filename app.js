@@ -77,12 +77,12 @@ app.get('/homepage', async(req,res)=>{
     }
 
     const data = {
-        patientId:"626638131ce67f95df44fb8a",
+        patientId:"62694cb55403b01e62571abd",
         recordDate: getTime()
     }
     
     async function getStatus(){
-        const status = await axios({
+        try{const status = await axios({
                 url:"http://localhost:3000/api/record/getRecordStatus",
                 data,
                 method:"POST"
@@ -90,9 +90,12 @@ app.get('/homepage', async(req,res)=>{
         res.render('homepage.hbs', {
             status: status.data,
             style: "homepage.css"
-        })
+        })}catch(error){
+            console.log(error)
+            res.send("404 Error")
+        }
     }
-    
+      
     getStatus()
 })
 
