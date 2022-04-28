@@ -28,40 +28,40 @@
                 <li>
                     {{#if (isrecord this.glucose)}}
                         <p>Blood glucose level</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Blood glucose level</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
                 
                 <li>
                     {{#if (isrecord this.weight)}}
                         <p>Weight</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Weight</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
 
                 <li>
                     {{#if (isrecord this.insulin)}}
                         <p>Doses of insulin taken</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Doses of insulin taken</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
 
                 <li>
                     {{#if (isrecord this.exercise)}}
                         <p>Exercise</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Exercise</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
                 {{/with}}
