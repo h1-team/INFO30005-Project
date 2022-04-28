@@ -4,7 +4,7 @@
   "description": "* [Team Members](#team-members)\r * [Progress Chart](#progress-chart)\r ***",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "prettier": "prettier --single-quote --no-semi --tab-width 4 --write '**/*.js' '*.js'"
   },
   "repository": {

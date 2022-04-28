@@ -1,24 +1,79 @@
-<p class="sign">Sign up for new patient from <a href="#here">here</a></p>
+<link rel="stylesheet" href="/css/dashboard.css">
+
+{{!-- <p class="sign">Sign up for new patient from <a href="#here">here</a></p>
 <form method="post" action="/search">
         <input type="search" size="10" name="patName" placeholder="search" pattern="[A-Za-z]*" title="search" search name>
         <input type="submit" value="Search">
-</form>
-<div class="container-block">
-    <div class="pat_info">
+</form> --}}
 
-        {{#each pats}}
+{{> header}}
+<div class="container">
+
+    {{#each patient}}
+    <div class="pat_info">
         <div class="pats_col">
-            a href="/pats/{{this._id}}"><img class="browsePage" src="{{this.photo}}"></a>
-            <a href="/pats/{{this._id}}">{{this.name}}</a> 
+            <a href="/api/patient/findOne/{{this.username}}">
+            {{this.name}}
+            <img class="browsePage" src="/picture/SpongeBob.svg.png">
+            </a>
         </div>
-        
+
         <table class="pats_col">
-                {{#if this.bgl.required}}<tr><td>Blood glucose level:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.bgl}}</td></tr>
-                {{#if this.weight.required}}<tr><td>Weight:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.weight}}</td></tr>
-                {{#if this.DIT.required}}<tr><td>Doses of insulin taken:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.DIT}}</td></tr>
-                {{#if this.exercise.required}}<tr><td>Exercise:</td>{{#ifRecorded}}<td class="num" onchange="color(value)">{{this.exercise}}</td></tr>
-        </table>
-        {{/each}}
-        
+            {{#if (isneed this.glucoseStatus)}}
+                <tr>
+                    {{#if (isalert this.glucoseStatus)}}
+                        <td><img src="/icon/red-circle.svg"></td>
+                    {{else if (isrecord this.glucoseStatus)}}
+                        <td><img src="/icon/green-circle.svg"></td>
+                    {{else}}
+                        <td><img src="/icon/grey-circle.svg"></td>
+                    {{/if}}
+                    <td>Blood glucose level:</td><td class="num" onchange="color(value)">{{this.glucose}}</td>
+                </tr>
+            {{/if}}
+
+            {{#if (isneed this.weightStatus)}}
+                <tr>
+                    {{#if (isalert this.weightStatus)}}
+                        <td><img src="/icon/red-circle.svg"></td>
+                    {{else if (isrecord this.weightStatus)}}
+                        <td><img src="/icon/green-circle.svg"></td>
+                    {{else}}
+                        <td><img src="/icon/grey-circle.svg"></td>
+                    {{/if}}    
+                    <td>Weight:</td><td class="num" onchange="color(value)">{{this.weight}}</td>
+                </tr>
+            {{/if}}
+            
+            {{#if (isneed this.insulinStatus)}}
+                <tr>
+                    {{#if (isalert this.insulinStatus)}}
+                        <td><img src="/icon/red-circle.svg"></td>
+                    {{else if (isrecord this.insulinStatus)}}
+                        <td><img src="/icon/green-circle.svg"></td>
+                    {{else}}
+                        <td><img src="/icon/grey-circle.svg"></td>
+                    {{/if}}    
+                    <td>Doses of insulin taken:</td><td class="num" onchange="color(value)">{{this.insulin}}</td>
+                </tr> 
+            {{/if}}
+
+            {{#if (isneed this.exerciseStatus)}}
+                <tr>
+                    {{#if (isalert this.exerciseStatus)}}
+                        <td><img src="/icon/red-circle.svg"></td>
+                    {{else if (isrecord this.exerciseStatus)}}
+                        <td><img src="/icon/green-circle.svg"></td>
+                    {{else}}
+                         <td><img src="/icon/grey-circle.svg"></td>
+                    {{/if}}    
+                    <td>Exercise:</td><td class="num" onchange="color(value)">{{this.exercise}}</td>
+                </tr>
+            {{/if}}
+            </table>
+
     </div>
+    {{/each}}
+
 </div>
+{{> footer}}

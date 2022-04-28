@@ -56,6 +56,7 @@ const getAllPatientRecordToday = async (req, res) => {
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {
         username = result[i].username
+        realname = result[i].name
         thresholdExecrise = result[i].thresholdExecrise
         thresholdGlucose = result[i].thresholdGlucose
         thresholdWeight = result[i].thresholdWeight
@@ -102,6 +103,7 @@ const getAllPatientRecordToday = async (req, res) => {
         }
         resjson = {
             "username": username,
+            "name": realname,
             "glucoseStatus":glucoseStatus,
             "glucose":glucose,
             "weightStatus":weightStatus,
@@ -120,10 +122,9 @@ const getAllPatientRecordToday = async (req, res) => {
 
     } 
 
-
-    res.send(arr)
+    // res.send(arr)
+    return res.render('dashboard', {patient: arr});
 }
-
 
 function formatDate(date) {
     var d = new Date(date),
@@ -136,7 +137,6 @@ function formatDate(date) {
 
     return [year, month, day].join('-')
 }
-
 
 // exports an object, which contains a function named getAllDemoData
 module.exports = {
