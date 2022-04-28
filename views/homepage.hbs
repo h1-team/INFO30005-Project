@@ -28,40 +28,40 @@
                 <li>
                     {{#if (isrecord this.glucose)}}
                         <p>Blood glucose level</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Blood glucose level</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
                 
                 <li>
                     {{#if (isrecord this.weight)}}
                         <p>Weight</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Weight</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
 
                 <li>
                     {{#if (isrecord this.insulin)}}
                         <p>Doses of insulin taken</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Doses of insulin taken</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
 
                 <li>
                     {{#if (isrecord this.exercise)}}
                         <p>Exercise</p>
-                        <img src="/icon/check.svg">
+                        <p>Successfully entered</p>
                     {{else}}
                         <p>Exercise</p>
-                        <img src="/icon/alarm.svg">
+                        <p>Not yet entered</p>
                     {{/if}}
                 </li>
                 {{/with}}
@@ -69,7 +69,7 @@
 
 
         
-            <a href="http://localhost:3000/insert" class = link> 
+            <a href="/insert" class = link> 
                 <p>Insert your data now</p>
                 <img src="/icon/circle-right.svg">
             </a>
@@ -100,7 +100,7 @@
         </div>
 
         
-        <a href="http://localhost:3000/insert" class="box">
+        <a href="/insert" class="box">
             <h2>Insert Data</h2>
             <p>To update new data</p>
             <img src="/icon/right.svg">

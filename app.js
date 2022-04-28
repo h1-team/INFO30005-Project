@@ -58,7 +58,9 @@ app.get('/insert',(req,res)=>{
 })
 
 app.get('/login',(req,res)=>{
-    res.render('login.hbs')
+    res.render('login.hbs',{
+        style:'login.css'
+    })
 })
 
 app.get('/aboutweb',(req,res)=>{
@@ -95,7 +97,7 @@ app.get('/homepage', async(req,res)=>{
     
     async function getStatus(){
         try{const status = await axios({
-                url:"http://localhost:3000/api/record/getRecordStatus",
+                url:"/api/record/getRecordStatus",
                 data,
                 method:"POST"
         })
@@ -107,7 +109,6 @@ app.get('/homepage', async(req,res)=>{
             res.send("404 Error")
         }
     }
-      
     getStatus()
 })
 
