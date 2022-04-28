@@ -15,7 +15,7 @@ function getTime() {
 
 async function init() {
   const res = await axios({
-    url: "http://localhost:3000/api/record/getOneRecord",
+    url: "/api/record/getOneRecord",
     data: {
       patientId: "62694cb55403b01e62571abd",
       recordDate: getTime(),
@@ -69,10 +69,12 @@ insertForm.addEventListener('submit', async function (e) {
   }
 
   const res = await axios({
-    url: "http://localhost:3000/api/record/updateData",
+    url: "/api/record/updateData",
     data,
     method: "POST",
+  }).catch(function (error) {
+    alert("invalid input")
+    
   })
-  console.log(res)
-  alert("ds")
+  //console.log(res)
 })
