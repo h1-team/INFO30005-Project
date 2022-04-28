@@ -65,14 +65,15 @@ p{
 }
 
 .text a{
+    color: black;
     background-color: var(--color-yellow);
-    font-size: 1em;
+    font-size: 1.2em;
     border-style:solid;
     border-width:0.05em;
     padding-left: 4em;
     padding-right: 4em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     border-radius: 2em;
 }
 
@@ -96,6 +97,11 @@ section{
     padding-left: 2vmax;
     padding-right: 2vmax;
     padding-top: 2vmax;
+    text-decoration: none
+}
+
+.box img{
+    width: 10%;
 }
 
 @media screen and (max-width: 1024px){

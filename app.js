@@ -42,8 +42,23 @@ require('./models/index.js')
 
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req, res) => {
-    res.render('welcome.hbs')
+    res.render('welcome.hbs',{
+        style:'welcome.css'
+    })
 })
+
+app.get('/aboutweb',(req,res)=>{
+    res.render('aboutweb.hbs',{
+        style:'about.css'
+    })
+})
+
+app.get('/aboutdia',(req,res)=>{
+    res.render('aboutdia.hbs',{
+        style:'about.css'
+    })
+})
+
 app.get('/insert',(req,res)=>{
     res.render('insert.hbs')
 })
@@ -51,8 +66,6 @@ app.get('/insert',(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login.hbs')
 })
-
-
 
 app.get('/homepage', async(req,res)=>{
     function getTime(){
@@ -91,7 +104,6 @@ app.get('/homepage', async(req,res)=>{
       
     getStatus()
 })
-
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
