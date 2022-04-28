@@ -19,7 +19,7 @@ app.engine(
         helpers:{
             isrecord: a => a == "RECORDED",
             isunrecord: a => a == "UNRECORDED",
-            isneed: a => a != "NO_NEED",
+            isnoneed: a => a == "NO_NEED",
             isalert: a => a == "ALERT"
         }
     })
