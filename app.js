@@ -89,7 +89,7 @@ app.get('/homepage', async(req,res)=>{
         }
         return year + '-' + month + '-' + day
     }
-
+    
     const data = {
         patientId:"62694cb55403b01e62571abd",
         recordDate: getTime()
