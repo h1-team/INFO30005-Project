@@ -88,7 +88,6 @@ app.get('/homepage', async(req,res)=>{
             res.send("404 Error")
         }
     }
-      
     getStatus()
 })
 
