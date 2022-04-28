@@ -56,6 +56,8 @@ const updateRecord = async (req, res) => {
             changeStatus(patient.needGlucose, record.data.glucose)
             changeStatus(patient.needWeight, record.data.weight)
             changeStatus(patient.needInsulin, record.data.insulin)
+            patient.records[0] = record
+            patient.save()
             await record
                 .save()
                 .then((result) => res.send(result))
@@ -68,6 +70,8 @@ const updateRecord = async (req, res) => {
             changeStatus(patient.needGlucose, newRecord.data.glucose)
             changeStatus(patient.needWeight, newRecord.data.weight)
             changeStatus(patient.needInsulin, newRecord.data.insulin)
+            patient.records.unshift(newRecord)
+            patient.save()
             await newRecord
                 .save()
                 .then((result) => res.send(result))
