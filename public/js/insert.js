@@ -76,5 +76,5 @@ insertForm.addEventListener('submit', async function (e) {
     alert("invalid input")
     
   })
-  //console.log(res)
+  alert("update success!")
 })
