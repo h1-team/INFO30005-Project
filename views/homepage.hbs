@@ -24,8 +24,9 @@
 
 
             <ul>
-
-                <li>{{#if (isrecord this.glucose)}}
+                {{#with status}}
+                <li>
+                    {{#if (isrecord this.glucose)}}
                         <p>Blood glucose level</p>
                         <img src="/icon/check.svg">
                     {{else}}
@@ -34,7 +35,8 @@
                     {{/if}}
                 </li>
                 
-                <li>{{#if (isrecord this.weight)}}
+                <li>
+                    {{#if (isrecord this.weight)}}
                         <p>Weight</p>
                         <img src="/icon/check.svg">
                     {{else}}
@@ -43,7 +45,8 @@
                     {{/if}}
                 </li>
 
-                <li>{{#if (isrecord this.insulin)}}
+                <li>
+                    {{#if (isrecord this.insulin)}}
                         <p>Doses of insulin taken</p>
                         <img src="/icon/check.svg">
                     {{else}}
@@ -52,7 +55,8 @@
                     {{/if}}
                 </li>
 
-                <li>{{#if (isrecord this.exercise)}}
+                <li>
+                    {{#if (isrecord this.exercise)}}
                         <p>Exercise</p>
                         <img src="/icon/check.svg">
                     {{else}}
@@ -60,6 +64,7 @@
                         <img src="/icon/alarm.svg">
                     {{/if}}
                 </li>
+                {{/with}}
             </ul>
 
 
