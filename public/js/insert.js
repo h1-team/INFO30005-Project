@@ -69,7 +69,7 @@ insertForm.addEventListener('submit', async function (e) {
   }
 
   const res = await axios({
-    url: "/api/record/updateData",
+    url: "https://bad-designers.herokuapp.com//api/record/updateData",
     data,
     method: "POST",
   }).catch(function (error) {
