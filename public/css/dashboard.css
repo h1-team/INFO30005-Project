@@ -1,23 +1,25 @@
-.container-block{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: normal;
-    text-align: center;
-    flex-flow: row wrap;
-    max-width: 300px;
-    min-width: fit-content !important;
-    margin: 50px 131px;
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap:40px;
+
+  
+  
+}
+.pat_info{
     border-radius: 40px;
-    padding: 1.3rem;
+    padding: 2.3rem;
     border: 2px solid rgba(255, 255, 255, 0.6);
-    background: #D2F2DD;
-  }
-  .pat_col{
-    text-align: left;
-    width: 40%;
+    background: #D2F2DD
+
+}
+table.pat_col{
     height: 1.2em;
-  } 
+    text-align: left;
+    margin-left: 1.2em;
+} 
+
   .name{
     text-align: left;
     font-size: small;
@@ -40,3 +42,235 @@
   form a{
     color: white;
   }
+  * { 
+    box-sizing: border-box; 
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+  }
+  /*header*/
+  header {
+    background-color: white;
+    height: 35px;
+    top: 0;
+    width: 100%;
+  }
+  nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+  }
+  nav ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+  }
+  
+  *.info{
+    font-family: "PT Serif";
+    font-weight: normal;
+    color: #4b4b4b;
+  }
+  .top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: black;
+  }
+  /*footer*/
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  .generic-anchor {
+    color: #8db9ed;
+  }
+  .generic-anchor:visited {
+    color: #8db9ed;
+  }
+  .generic-anchor:hover {
+    color: #ccc;
+  }
+  
+  .footer-flex {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    align-content: flex-start;
+  margin: 0;}
+  
+  footer {
+    background: #373737;
+    margin-top: auto;
+    margin-bottom: 0%;
+    width: 100%;
+  }
+  
+  .footer-list-top {
+    width: 25%;
+  }
+  
+  .footer-list-top > li {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+  .footer-list-header {
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font: 2.0vw  Tahoma;
+  }
+  
+  .footer-list-anchor {
+    font: 1.0em Tahoma;
+  }
+  
+  .slogan{
+    color:white
+  }
+  
+  
+  
+  .footer-bottom-section {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+  }
+  
+  .footer-bottom-section > div:first-child {
+    margin-right: auto;
+  }
+  
+  
+  
+  /* Desktops */
+  @media all and (min-width:850px) { 
+    .container-block { padding: 4% 8% }
+    .footer-list-header {
+      font-size: 2em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.1em;
+    }
+  
+  
+  }
+  
+  /* Mobiles */
+  @media all and (max-width:850px) { 
+    .container-block { padding: 11% 8% } 
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      font-size: 2em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.5em;
+    }
+  
+  }
+  
+  
+  
+  
+  /*parent container */
+  .container-flexbox {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; 
+  }
+  
+  /* Desktops: child columns */
+  @media all and (min-width: 750px) {
+      .item-col-2 { width: 50% }
+      .footer-list-header {
+        text-align: center;
+        font-size: 1.5em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1.1em;
+      }
+    
+    
+      .footer-bottom-wrapper {
+        font-size: 1.3em;
+      }
+  }
+  body {
+    font-family: Tahoma;
+    background: #3b7fd9;
+  }
+  
+  
+  /* Mobiles: child columns */
+  @media all and (max-width: 750px) {
+  
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        text-align: center;
+        font-size: 1em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1em;
+      }
+  
+      .footer-list-header {
+      font-size: 1.5em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.1em;
+    }
+  
+  }
+  
+  
+  @media only screen and (max-width: 560px) {
+    main {
+      font-size: 5em;
+    }
+  
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      text-align: center;
+      font-size: 1.5em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.2em;
+    }
+  
+    
+  }
+  @media only screen and (max-width: 320px) {
+    .footer-list-header {
+      font-size: 1.5em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.0em;
+    }
+  
+  }
+  
+    @font-face
+  {
+      font-family: Tahoma;
+          src: url('Tahoma Regular font.ttf');
+  }
+  

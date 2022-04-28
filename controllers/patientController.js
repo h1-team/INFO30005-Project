@@ -1,6 +1,6 @@
 // import demo model
 const { Patient } = require('../models/db.js')
-
+const { Record } = require('../models/db.js')
 const findAll = async (req, res) => {
     result = await Patient.find()
     res.send(result)
@@ -25,7 +25,7 @@ const editOne = async (req, res) => {
     console.log('editing patient ' + req.params.username)
     patient = await Patient.findOne({ username: req.params.username }, {})
     if (!patient) {
-        res.status(404).send('pateient not found')
+        res.status(404).send('patient not found')
         return
     }
     Object.assign(patient, req.body)
@@ -47,6 +47,97 @@ const deleteOne = async (req, res) => {
     res.send(result)
 }
 
+const getAllPatientRecordToday = async (req, res) => {
+    result = await Patient.find()
+    if (!result) {
+        res.status(404).send('patient not found')
+        return
+    }
+    var arr = new Array()
+    for (var i = 0; i < result.length; i++) {
+        username = result[i].username
+        thresholdExecrise = result[i].thresholdExecrise
+        thresholdGlucose = result[i].thresholdGlucose
+        thresholdWeight = result[i].thresholdWeight
+        thresholdInsulin = result[i].thresholdInsulin
+        
+        date = Date.now()
+        date = formatDate(date)
+        today = new Date(date)
+        tmr = new Date(today);
+        tmr.setDate(today.getDate() + 1)
+        const record = await Record.findOne({ patientId: result[i]._id, recordDate: { $gte: today, $lt: tmr } })
+        var glucoseStatus,weightStatus,insulinStatus,exerciseStatus
+        var glucose,weight,insulin,exercise
+        if (record) {
+            glucoseStatus = record.data.glucose.status
+            glucose = record.data.glucose.data
+            
+            weightStatus= record.data.weight.status
+            weight = record.data.weight.data
+
+            insulinStatus = record.data.insulin.status
+            insulin = record.data.insulin.data
+
+            exerciseStatus = record.data.exercise.status
+            exercise = record.data.exercise.data
+        }else{
+            glucoseStatus = result[i].needGlucose?"UNRECORDED":"NO_NEED"
+            weightStatus = result[i].needWeight?"UNRECORDED":"NO_NEED"
+            insulinStatus = result[i].needInsulin?"UNRECORDED":"NO_NEED"
+            exerciseStatus = result[i].needExecrise?"UNRECORDED":"NO_NEED"
+        }
+
+        if(glucoseStatus == "RECORDED" && ( glucose < thresholdGlucose*0.9 ||glucose > thresholdGlucose*1.1)){
+            glucoseStatus = "ALERT"
+        }
+        if(weightStatus == "RECORDED" && ( weight < thresholdWeight*0.9 ||weight > thresholdWeight*1.1)){
+            weightStatus = "ALERT"
+        }
+        if(insulinStatus == "RECORDED" && ( insulin < thresholdInsulin*0.9 ||insulin > thresholdInsulin*1.1)){
+            insulinStatus = "ALERT"
+        }
+        if(exerciseStatus == "RECORDED" && ( exercise < thresholdExecrise*0.9 ||exercise > thresholdExecrise*1.1)){
+            exerciseStatus = "ALERT"
+        }
+        resjson = {
+            "username": username,
+            "glucoseStatus":glucoseStatus,
+            "glucose":glucose,
+            "weightStatus":weightStatus,
+            "weight"   : weight,
+            "insulinStatus":insulinStatus,
+            "insulin"  : insulin,
+            "exerciseStatus":exerciseStatus,
+            "exercise" : exercise
+        }
+        if(glucoseStatus=="ALERT"||weightStatus=="ALERT"||insulinStatus=="ALERT"||exerciseStatus=="ALERT"){
+            arr.unshift(resjson)
+        }else{
+            arr.push(resjson)
+        }
+
+
+    } 
+
+
+    res.send(arr)
+}
+
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear()
+
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
+
+    return [year, month, day].join('-')
+}
+
+
 // exports an object, which contains a function named getAllDemoData
 module.exports = {
     findAll,
@@ -54,4 +145,5 @@ module.exports = {
     addOne,
     editOne,
     deleteOne,
+    getAllPatientRecordToday,
 }

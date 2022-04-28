@@ -43,15 +43,19 @@ const updateRecord = async (req, res) => {
         if (!patient) {
             throw new Error('no such patient')
         }
-        const record = await Record.findOne({ patientId: id, recordDate: date })
+        date = formatDate(date)
+        today = new Date(date)
+        tmr = new Date(today);
+        tmr.setDate(today.getDate() + 1)
+        const record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
         if (record) {
             // update data
             console.log('updating record\n')
             Object.assign(record, req.body)
-            changeStatus(patient.needExecrise, newRecord.data.exercise)
-            changeStatus(patient.needGlucose, newRecord.data.glucose)
-            changeStatus(patient.needWeight, newRecord.data.weight)
-            changeStatus(patient.needInsulin, newRecord.data.insulin)
+            changeStatus(patient.needExecrise, record.data.exercise)
+            changeStatus(patient.needGlucose, record.data.glucose)
+            changeStatus(patient.needWeight, record.data.weight)
+            changeStatus(patient.needInsulin, record.data.insulin)
             await record
                 .save()
                 .then((result) => res.send(result))
@@ -90,9 +94,51 @@ function changeStatus(isNeed, record) {
     }
 }
 
+const getRecordStatus = async (req, res) => {
+    try{
+        id = req.body.patientId
+        date = req.body.recordDate
+        const patient = await Patient.findById(id)
+        if (!patient) {
+            throw new Error('no such patient')
+        }
+        date = formatDate(date)
+        today = new Date(date)
+        tmr = new Date(today);
+        tmr.setDate(today.getDate() + 1)
+        result = await Patient.findById(req.body.patientId)
+        const record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
+        var glucose,weight,insulin,exercise
+        if (record) {
+            glucose = record.data.glucose.status
+            weight= record.data.weight.status
+            insulin = record.data.insulin.status
+            exercise = record.data.exercise.status
+        }else{
+            glucose = patient.needGlucose?"UNRECORDED":"NO_NEED"
+            weight = patient.needWeight?"UNRECORDED":"NO_NEED"
+            insulin = patient.needInsulin?"UNRECORDED":"NO_NEED"
+            exercise = patient.needExecrise?"UNRECORDED":"NO_NEED"
+        }
+        res.send(
+            {
+                "glucose" : glucose,
+                "weight"   : weight,
+                "insulin"  : insulin,
+                "exercise" : exercise
+            }
+        )
+    }catch (err){
+        res.status(404).send(err)
+    }
+    
+
+}
+
 // exports an object, which contains a function named getAllDemoData
 module.exports = {
     renderRecordData,
     updateRecord,
     findAll,
+    getRecordStatus,
 }
