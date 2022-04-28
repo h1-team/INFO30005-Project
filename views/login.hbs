@@ -1,4 +1,6 @@
-{{> header}}
+
+
+
 <body style="background-color: white;">
 <h1 style="color: black;">Diabetes@HOME</h1>
 <div class="login" style="background-color: #3B83E3;">
@@ -15,11 +17,12 @@
           <input type="checkbox" >
           <label class="pat-text-color" >Remember me?</label>
       </div>
-    <button type="submit" class="btn-login  log-bg" onclick="{{!login();}}">Log In</button>
-    <a class="forget" href="/Forget_Password">Forget Password</a>
+      
+      <button type="submit" class="btn-login  log-bg" onclick="location.href = '/homepage';return false;"> Log In</button>
+      <a class="forget" href="/Forget_Password">Forget Password</a>
   </form>
 </div> 
 </body>
 
 
-{{> footer}}
+

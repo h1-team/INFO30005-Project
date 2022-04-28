@@ -58,7 +58,9 @@ app.get('/insert',(req,res)=>{
 })
 
 app.get('/login',(req,res)=>{
-    res.render('login.hbs')
+    res.render('login.hbs',{
+        style:'login.css'
+    })
 })
 
 app.get('/aboutweb',(req,res)=>{
