@@ -1,0 +1,27 @@
+<div class="container-block container-flexbox">
+
+      <!-- First column -->
+      <div class="doc-col-2 bg-dark item-col-padding">
+        <h1 class="text-black">Welcome, Dr. {{thisdoctor.name}}</h1>
+        <nav>
+              <ul >
+                <li><a href="#dash" class="doc-nav">Dashboard</a></li>   
+                <li><a href="#inbox" class="doc-nav">Inbox</a></li>
+              </ul>  
+        </nav>  
+      </div>
+      <!-- second column -->
+      <div class="doc-col-2">
+        <ul>
+          <li>
+            <i>Today 
+            {{!date function}}
+            <script>
+            date = new Date().toLocaleDateString();
+            document.write(date);
+            </script></i>
+          </li>
+          <li>
+            <i>Now {{!temp();}}<span>&#8451;</span></i>                  
+      </div>
+  </div>

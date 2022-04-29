@@ -2,8 +2,8 @@ const exphbs = require('express-handlebars')
 // link to the router
 const router = require('./routes/router.js')
 const recordRouter = require('./routes/recordRouter.js')
-const homeRouter = require('./routes/homeRouter.js')
 
+const homeRouter = require('./routes/homeRouter.js')
 
 // connect to MongoDB
 require('./models/index.js')
@@ -36,9 +36,6 @@ app.set('view engine', 'hbs')
 app.use(express.json()) // needed if POST data is in JSON format
 app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
 app.use(express.static('./public'))
-
-
-
 
 // the patient routes are added to the end of the '/patient' path
 app.use('/', homeRouter)

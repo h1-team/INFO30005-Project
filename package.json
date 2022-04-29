@@ -4,7 +4,8 @@
   "description": "* [Team Members](#team-members)\r * [Progress Chart](#progress-chart)\r ***",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js",
+    "prettier": "prettier --single-quote --no-semi --tab-width 4 --write '**/*.js' '*.js'"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,16 @@
   },
   "homepage": "https://github.com/h1-team/INFO30005-Project#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "^4.17.3",
-    "express-handlebars": "^6.0.4",
+    "express-handlebars": "^6.0.5",
+    "handlebars": "^4.7.7",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.2.10"
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "prettier": "^2.6.2"
   }
 }

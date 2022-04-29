@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: tahoma;
+    src: url("../css/Tahoma.ttf");
+}
+li{
+    list-style: none;
+}
+img{
+    display: block;
+}
+
+header{
+    text-align: center;
+    background-color:#2D63AB;
+    color: white;
+}
+.contain{
+    width: 1200px;
+    margin: 0 auto;
+}
+.con_list{
+    display: flex;
+    margin-top: 20px;
+}
+
+.con_list_lf{
+    flex: 1;
+    background: #fcb505;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    font-family: tahoma;
+}
+.con_list_lf img{
+    width: 100%;
+}
+.con_list_lf p{
+    font-size: 40px;
+    font-weight: bold;
+}
+.con_list_rg{
+    flex: 1;
+    margin-left: 10px;
+    font-family: tahoma;
+}
+.con_list_rg img{
+    width: 100%;
+    height: 100%;
+}
+.con_video{
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.con_video iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.con_list_pet{
+    padding: 0;
+}
+.con_list_bor{
+    border: 1px #adadad solid;
+    border-radius: 10px;
+    padding: 20px 0 0 20px;
+    box-sizing: border-box;
+}
+.con_list_bor ul li{
+    margin: 20px 0;
+    color: #6097c7;
+    
+}
+.con_list_bor ul li a{
+    color: #6097c7;
+    font-size: 35px;
+}
+.con_list_bor ul li:nth-child(1){
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.w1{
+    flex: 2;
+}
+.w2{
+    flex: 3;
+}
+.con_dl{
+    padding: 20px 0;
+}
+
+footer{
+    width: 100%;
+    background: black;
+    padding:20px 0;
+    margin-top: 20px;
+}
+footer p{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+.webor{
+    border: 0;
+    border-radius: 0;
+    padding-bottom: 10px;
+}
+.c9{
+    background: #c9f5dc;
+    font-size: 33px;
+}
+.fa{
+    background: #fab208;
+    font-size: 33px;
+    padding-right: 10px;
+}
+.fa p{
+    font-size: 40px;
+    font-weight: bold;
+}
+.c10{
+    background: #104885;
+    color: #fff;
+    font-size: 33px;
+}
+.font1{
+    font-size: 22px;
+}
+
+@media screen and (max-width: 675px) {
+    .contain{
+        width: 90%;
+        margin-top: 20px;
+    }
+    .con_list{
+        display: initial;
+    }
+    .con_list_lf{
+        margin-right: 0;
+    }
+    .con_list_rg{
+        margin-left: 0;
+    }
+    .con_dl{
+        padding:20px;
+    }
+    .none{
+        display: none;
+    }
+    .c9{
+        font-size: 24px;
+    }
+    .fa{
+        font-size: 24px;
+    }
+    .c10{
+        font-size: 24px;
+    }
+    .con_list_bor ul li:nth-child(1){
+        font-size: 33px;
+    }
+    .con_list_bor ul li a{
+        font-size: 20px;
+    }
+}

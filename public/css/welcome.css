@@ -1,0 +1,168 @@
+:root {
+    --text-big: 3em;
+    --text-small:  1em;
+    --font-faily-body:adobe-text-pro, serif;
+    --color-blue:#2D63AB;
+    --color-yellow:#F2B705;
+    --color-gery:#EBEBEB;
+    --color-dark_blue:#1D4881;
+    --color-light_blue:#3B83E3;
+    --color-light_green: #D2F2DD;
+}
+
+
+
+body{
+    margin: 0;
+}
+
+
+header{
+    text-align: center;
+    background-color:var(--color-blue);
+    color: white;
+}
+
+h1{
+    margin:0px;
+}
+
+h2{
+    font-size: 3vmax;
+    margin-bottom: 3em;
+}
+
+
+h3{
+    height: fit-content;
+    font-size: 3vmax;
+    padding-top: 9vmax;
+    padding-bottom: 9vmax;
+    padding-right: 3vmax;
+    margin-left: 0.5em;
+    margin-right: 1vmax;
+    border-right-style:solid;
+    border-width:0.1vmax;
+}
+
+h4{
+    font-size: 2vmax;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+p{
+    font-size: 1.5vmax;
+}
+
+.text{
+    background-color:var(--color-gery);
+    width: 50%;
+    text-align: center;
+}
+
+.text p{
+    margin-bottom: 3em;
+}
+
+.text a{
+    color: black;
+    background-color: var(--color-yellow);
+    font-size: 1.2em;
+    border-style:solid;
+    border-width:0.05em;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 2em;
+}
+
+img{
+    width: 50%;
+}
+
+section{
+    display:flex;
+    height: 25vmax;
+}
+
+
+.box{
+    background-color: var(--color-light_blue);
+    width: 22vmax;
+    height: 17vmax;
+    border-radius: 1em;
+    color: white;
+    margin: 5vmax;
+    padding-left: 2vmax;
+    padding-right: 2vmax;
+    padding-top: 2vmax;
+    text-decoration: none
+}
+
+.box img{
+    width: 10%;
+}
+
+@media screen and (max-width: 1024px){
+    section{
+        height: 33vmax;
+    }
+    img{
+        width: 57%;
+    }
+
+    h3{
+        padding-top: 12vmax;
+        padding-bottom: 12vmax;
+    }
+    .text p{
+        margin-bottom: 3em;
+    }
+
+    .box{
+        margin-top: 8vmax;
+    }
+}
+
+@media screen and (max-width: 375px){
+
+    section{
+        height: 25em;
+        flex-direction: column;
+        align-items:center ;
+    }
+    .text {
+        width: 100%;
+        height: 25em;
+    }
+
+    .text p{
+        margin-top: 6em;
+        margin-bottom: 6em;
+    }
+
+    h2{
+        font-size: 2em;
+        margin-top: 2em;
+    }
+    .box{
+        margin-top:2em;
+        margin-bottom: 1em;
+        width: 30vmax;
+        height: 30vmax;
+    }
+    .box p{
+        font-size: 2vmax;
+    }
+
+    img{
+        display: none;
+    }
+
+    h3{
+        display: none;
+    }
+    
+}
