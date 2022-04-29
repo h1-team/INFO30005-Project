@@ -1,26 +1,31 @@
 <link rel="stylesheet" href="/css/dashboard.css">
-
-{{!-- <p class="sign">Sign up for new patient from <a href="#here">here</a></p>
-<form method="post" action="/search">
-        <input type="search" size="10" name="patName" placeholder="search" pattern="[A-Za-z]*" title="search" search name>
-        <input type="submit" value="Search">
-</form> --}}
-
+ 
 {{> header}}
+
+<p class="sign">Sign up for new patient from <a href="#here">here</a></p>
+
+<div class="legend">
+  <ul>
+    <li><img src="/icon/green-circle.svg"><p class="legend-item">Normal</p></li>   
+    <li><img src="/icon/red-circle.svg"><p class="legend-item">Exceeds the threshold</p></li>
+    <li><img src="/icon/grey-circle.svg"><p class="legend-item">Not yet entered</p></li>
+    <li><img src="/icon/white-circle.svg"><p class="legend-item">Not required</p></li>
+  </ul> 
+</div>
+
 <div class="container">
 
     {{#each patient}}
     <div class="pat_info">
-        <div class="pats_col">
-            <a href="/api/patient/findOne/{{this.username}}">
-            {{this.name}}
-            <img class="browsePage" src="/picture/SpongeBob.svg.png">
+        <div class="pats_col profile">
+            <a href="http://localhost:3000/api/patient/findOne/{{this.username}}">
+            <img src="/picture/SpongeBob.svg.png">
+            <div class="name">{{this.name}}</div>
             </a>
         </div>
 
-        <table class="pat_col">
-
-            <tr>
+        <table class="pats_col">
+                <tr>
                 {{#if (isalert this.glucoseStatus)}}
                     <td><img src="/icon/red-circle.svg"></td>
                 {{else if (isrecord this.glucoseStatus)}}
@@ -30,8 +35,12 @@
                 {{else}}
                     <td><img src="/icon/grey-circle.svg"></td>
                 {{/if}}
-                <td>Blood glucose level:</td><td class="num" onchange="color(value)">{{this.glucose}}</td>
-            </tr>
+                {{#if (isnoneed this.glucoseStatus)}}
+                    <td>Blood glucose level:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Blood glucose level:</td><td>{{this.glucose}}</td>
+                {{/if}}
+                </tr>
 
             <tr>
                 {{#if (isalert this.weightStatus)}}
@@ -42,8 +51,12 @@
                     <td><img src="/icon/white-circle.svg"></td>
                 {{else}}
                     <td><img src="/icon/grey-circle.svg"></td>
-                {{/if}}    
-                <td>Weight:</td><td class="num" onchange="color(value)">{{this.weight}}</td>
+                {{/if}}
+                {{#if (isnoneed this.weightStatus)}}
+                    <td>Weight:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Weight:</td><td>{{this.weight}}</td>
+                {{/if}}
             </tr>
             
             <tr>
@@ -55,8 +68,12 @@
                     <td><img src="/icon/white-circle.svg"></td>
                 {{else}}
                     <td><img src="/icon/grey-circle.svg"></td>
-                {{/if}}    
-                <td>Doses of insulin taken:</td><td class="num" onchange="color(value)">{{this.insulin}}</td>
+                {{/if}}
+                {{#if (isnoneed this.insulinStatus)}}
+                    <td>Doses of insulin taken:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Doses of insulin taken:</td><td>{{this.insulin}}</td>
+                {{/if}}
             </tr> 
 
             <tr>
@@ -67,9 +84,13 @@
                 {{else if (isnoneed this.exerciseStatus)}}
                     <td><img src="/icon/white-circle.svg"></td>
                 {{else}}
-                        <td><img src="/icon/grey-circle.svg"></td>
-                {{/if}}    
-                <td>Exercise:</td><td class="num" onchange="color(value)">{{this.exercise}}</td>
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                {{#if (isnoneed this.exerciseStatus)}}
+                    <td>Exercise:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Exercise:</td><td>{{this.exercise}}</td>
+                {{/if}}
             </tr>
             </table>
 
@@ -77,4 +98,5 @@
     {{/each}}
 
 </div>
+
 {{> footer}}
