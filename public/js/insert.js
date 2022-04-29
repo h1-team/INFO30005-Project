@@ -14,8 +14,10 @@ function getTime() {
 }
 
 async function init() {
+  axios.defaults.baseURL = "https://bad-designers.herokuapp.com/api";
   const res = await axios({
-    url: "/api/record/getOneRecord",
+
+    url: "/record/getOneRecord",
     data: {
       patientId: "62694cb55403b01e62571abd",
       recordDate: getTime(),
@@ -67,9 +69,9 @@ insertForm.addEventListener('submit', async function (e) {
       }
     },
   }
-
+  axios.defaults.baseURL = "https://bad-designers.herokuapp.com/api";
   const res = await axios({
-    url: "https://bad-designers.herokuapp.com//api/record/updateData",
+    url: "/record/updateData",
     data,
     method: "POST",
   }).catch(function (error) {
