@@ -8,9 +8,8 @@ const recordController = require('../controllers/recordController')
 recordRouter.post('/updateData', recordController.updateRecord)
 // recordRouter.get('/findAllRecord', recordController.findAll)
 
+recordRouter.post('/getOneRecord', recordController.getOneRecord)
 
-recordRouter.post('/getOneRecord',recordController.getOneRecord)
-
-recordRouter.post('/getRecordStatus',recordController.getRecordStatus)
+recordRouter.post('/getRecordStatus', recordController.getRecordStatus)
 // export the router
 module.exports = recordRouter

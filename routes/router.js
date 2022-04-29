@@ -10,7 +10,10 @@ router.get('/findOne/:username', patientController.findOneById)
 
 router.post('/addOne', patientController.addOne)
 
-router.get('/getAllPatientRecordToday', patientController.getAllPatientRecordToday)
+router.get(
+    '/getAllPatientRecordToday',
+    patientController.getAllPatientRecordToday
+)
 
 router.put('/editOne/:username', patientController.editOne)
 
