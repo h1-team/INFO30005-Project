@@ -153,6 +153,10 @@ li p{
         height: 300px;
     }
 
+    .today{
+        height: 470px;
+    }
+
     .today p {
         font-size: 20px;
     }
