@@ -94,11 +94,11 @@ app.get('/homepage', async(req,res)=>{
         patientId:"62694cb55403b01e62571abd",
         recordDate: getTime()
     }
-    
+
+    axios.defaults.baseURL = "https://bad-designers.herokuapp.com/api";
     async function getStatus(){
-        try{
-            const status = await axios({
-                url:"http://localhost:3000/api/record/getRecordStatus",
+        try{const status = await axios({
+                url:"/record/getRecordStatus",
                 data,
                 method:"POST"
         })
