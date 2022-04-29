@@ -54,7 +54,9 @@ const patientController = require('./controllers/patientController')
 app.get('/dashboard',patientController.getAllPatientRecordToday)
 
 app.get('/insert',(req,res)=>{
-    res.render('insert.hbs')
+    res.render('insert.hbs', {
+    style:'insert.css'
+    })
 })
 
 app.get('/login',(req,res)=>{
