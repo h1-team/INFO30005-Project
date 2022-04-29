@@ -35,7 +35,7 @@ const recordRouter = require('./routes/recordRouter.js')
 const { Patient } = require('./models/db.js')
 
 // the patient routes are added to the end of the '/patient' path
-app.use('/', homeRouter)
+
 app.use('/api/patient', router)
 // the record routes are added to the end of the '/record' path
 app.use('/api/record', recordRouter)
