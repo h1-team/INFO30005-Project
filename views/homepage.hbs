@@ -19,7 +19,13 @@
 
         <div class = "today">
             <h2>Today</h2>
-            <p id = "date">22 Apr 2022</p>
+
+            <p id="date">
+            <script> document.write(new Date().toLocaleDateString('en-AU',{  year: 'numeric', month: 'short', day: 'numeric'})); </script>
+            </p>
+
+
+
             <p>Data need to be entered today :</p>
 
 
