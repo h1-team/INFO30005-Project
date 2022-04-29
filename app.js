@@ -5,7 +5,7 @@ const express = require('express')
 // set the app up as an express app
 const app = express()
 
-const axios = require('axios').default
+const axios = require('axios').default;
 
 const port = process.env.PORT || 8080
 var path = require('path')
@@ -17,23 +17,27 @@ app.engine(
         defaultLayout: 'main',
         extname: 'hbs',
         helpers: {
-            isrecord: (a) => a == 'RECORDED',
-            isunrecord: (a) => a == 'UNRECORDED',
-            isnoneed: (a) => a == 'NO_NEED',
-            isalert: (a) => a == 'ALERT',
-        },
+            isrecord: a => a == "RECORDED",
+            isunrecord: a => a == "UNRECORDED",
+            isnoneed: a => a == "NO_NEED",
+            isalert: a => a == "ALERT"
+        }
     })
 )
 // set Handlebars view engine
 app.set('view engine', 'hbs')
 // Set up to handle POST requests
 app.use(express.json()) // needed if POST data is in JSON format
-app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
-app.use(express.static('./public'))
+app.use(express.urlencoded({
+    extended: false
+})) // only needed for URL-encoded input
+app.use(express.static('./public'));
 // link to the router
 const router = require('./routes/router.js')
 const recordRouter = require('./routes/recordRouter.js')
-const { Patient } = require('./models/db.js')
+const {
+    Patient
+} = require('./models/db.js')
 
 // the patient routes are added to the end of the '/patient' path
 app.use('/api/patient', router)
@@ -46,83 +50,87 @@ require('./models/index.js')
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req, res) => {
     res.render('welcome.hbs', {
-        style: 'welcome.css',
+        style: 'welcome.css'
     })
 })
+
+function getTime() {
+    var date = new Date();
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    if (month < 10) {
+        month = "0" + month
+    }
+    if (day < 10) {
+        day = "0" + day
+    }
+    return year + '-' + month + '-' + day
+}
+//axios.defaults.baseURL = "https://bad-designers.herokuapp.com/api";
+axios.defaults.baseURL = "http://localhost:3000/api";
 
 const patientController = require('./controllers/patientController')
 app.get('/dashboard', patientController.getAllPatientRecordToday)
 
-app.get('/insert', (req, res) => {
+app.get('/insert', async (req, res) => {
+    const result = await axios({
+
+        url: "/record/getOneRecord",
+        data: {
+            patientId: "62694cb55403b01e62571abd",
+            recordDate: getTime(),
+        },
+        method: "POST",
+    })
     res.render('insert.hbs', {
         style: 'insert.css',
+        data: result.data.data
     })
 })
 
 app.get('/login', (req, res) => {
     res.render('login.hbs', {
-        style: 'login.css',
+        style: 'login.css'
     })
 })
 
 app.get('/aboutweb', (req, res) => {
     res.render('aboutweb.hbs', {
-        style: 'about.css',
-    })
-})
-app.get('/aboutweb2', (req, res) => {
-    res.render('aboutweb2.hbs', {
-        style: 'about.css',
+        style: 'about.css'
     })
 })
 
 app.get('/aboutdia', (req, res) => {
     res.render('aboutdia.hbs', {
-        style: 'about.css',
-    })
-})
-
-app.get('/aboutdia2', (req, res) => {
-    res.render('aboutdia2.hbs', {
-        style: 'about.css',
+        style: 'about.css'
     })
 })
 
 app.get('/homepage', async (req, res) => {
-    function getTime() {
-        var date = new Date()
-        var year = date.getFullYear()
-        var month = date.getMonth() + 1
-        var day = date.getDate()
-        if (month < 10) {
-            month = '0' + month
-        }
-        if (day < 10) {
-            day = '0' + day
-        }
-        return year + '-' + month + '-' + day
-    }
+
 
     const data = {
-        patientId: '62694cb55403b01e62571abd',
-        recordDate: getTime(),
+        patientId: "62694cb55403b01e62571abd",
+        recordDate: getTime()
     }
 
-    axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+    axios.defaults.baseURL = "http://localhost:3000/api";
+
     async function getStatus() {
         try {
             const status = await axios({
-                url: '/record/getRecordStatus',
+                url: "/record/getRecordStatus",
                 data,
-                method: 'POST',
+                method: "POST"
             })
             res.render('homepage.hbs', {
                 status: status.data,
-                style: 'homepage.css',
+                style: "homepage.css"
             })
         } catch (error) {
             console.log(error)
-            res.send('404 Error')
+            res.send("404 Error")
         }
     }
     getStatus()

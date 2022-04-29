@@ -1,10 +1,3 @@
-
-{{> patient_header}}
-
-
-
-
-{{!-- <link rel="stylesheet" href="/css/insert.css"> --}}
 <div class="insertBox">
   <div class="content">
     <div class="left">
@@ -17,7 +10,7 @@
             <label for="glucose">
               Blood glucose level
             </label>
-            <input name="glucose" id="glucose" value="" type="text" />
+            <input name="glucose" id="glucose" value="{{data.glucose.data}}" type="text" />
             nom/L
             <p>
               Add new comment
@@ -40,6 +33,7 @@
               id="glucoseComment"
               class="comment"
               type="text"
+              value="{{data.glucose.comment}}"
               placeholder="Add your comment here"
             />
           </div>
@@ -49,7 +43,7 @@
             <label for="weight">
               Wight
             </label>
-            <input name="weight" id="weight" value="" type="text" />
+            <input name="weight" id="weight" value="{{data.weight.data}}" type="text" />
             Kg
             <p>
               Add new comment
@@ -72,6 +66,7 @@
               id="weightComment"
               class="comment"
               type="text"
+              value="{{data.weight.comment}}"
               placeholder="Add your comment here"
             />
           </div>
@@ -81,7 +76,7 @@
             <label for="insulin">
               Doses of insulin taken
             </label>
-            <input name="insulin" id="insulin" value="" type="text" />
+            <input name="insulin" id="insulin" value="{{data.insulin.data}}"  type="text" />
             Doses
             <p>
               Add new comment
@@ -103,6 +98,7 @@
               id="insulinComment"
               class="comment"
               type="text"
+              value="{{data.insulin.comment}}"
               placeholder="Add your comment here"
             />
           </div>
@@ -112,7 +108,7 @@
             <label for="exercise">
               Exercise
             </label>
-            <input name="exercise" id="exercise" value="" type="text" />
+            <input name="exercise" id="exercise" value="{{data.exercise.data}}" type="text" />
             Step count
             <p>
               Add new comment
@@ -134,6 +130,7 @@
               id="exerciseComment"
               class="comment"
               type="text"
+              value="{{data.exercise.comment}}"
               placeholder="Add your comment here"
             />
           </div>
@@ -147,5 +144,7 @@
     </div>
   </div>
 </div>
-<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+<script
+  src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"
+></script>
 <script src="/js/insert.js"></script>

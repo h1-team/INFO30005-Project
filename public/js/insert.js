@@ -13,7 +13,8 @@ function getTime() {
 }
 
 async function init() {
-    axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+    //axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+    axios.defaults.baseURL = "http://localhost:3000/api";
     const res = await axios({
         url: '/record/getOneRecord',
         data: {
@@ -64,7 +65,8 @@ insertForm.addEventListener('submit', async function (e) {
             },
         },
     }
-    axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+    //axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+    axios.defaults.baseURL = "http://localhost:3000/api";
     const res = await axios({
         url: '/record/updateData',
         data,
