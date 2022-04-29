@@ -1,5 +1,5 @@
 const axios = require('axios').default
-const exphbs = require('express-handlebars')
+
 function getTime() {
     var date = new Date()
     var year = date.getFullYear()
