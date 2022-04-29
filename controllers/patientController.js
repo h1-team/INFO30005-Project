@@ -72,19 +72,40 @@ const getAllPatientRecordToday = async (req, res) => {
             recordDate: { $gte: today, $lt: tmr },
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
-        var glucose, weight, insulin, exercise
+        var glucose =null, weight=null, insulin=null, exercise=null
         if (record) {
-            glucoseStatus = record.data.glucose.status
-            glucose = record.data.glucose.data
+            if(result[i].needGlucose){
+                glucoseStatus = record.data.glucose.status
+                glucose = record.data.glucose.data
+            }else{
+                glucoseStatus = 'NO_NEED'
+            }
+            if(result[i].needExecrise){
+                exerciseStatus = record.data.exercise.status
+                exercise = record.data.exercise.data
+            }else{
+                exerciseStatus = 'NO_NEED'
+            }
+            if(result[i].needInsulin){
+                insulinStatus = record.data.insulin.status
+                insulin = record.data.insulin.data
+            }else{
+                insulinStatus = 'NO_NEED'
+            }
+            if(result[i].needWeight){
+                weightStatus = record.data.weight.status
+                weight = record.data.weight.data
+            }else{
+                weightStatus = 'NO_NEED'
+            }
+            // weightStatus = record.data.weight.status
+            // weight = record.data.weight.data
 
-            weightStatus = record.data.weight.status
-            weight = record.data.weight.data
+            // insulinStatus = record.data.insulin.status
+            // insulin = record.data.insulin.data
 
-            insulinStatus = record.data.insulin.status
-            insulin = record.data.insulin.data
-
-            exerciseStatus = record.data.exercise.status
-            exercise = record.data.exercise.data
+            // exerciseStatus = record.data.exercise.status
+            // exercise = record.data.exercise.data
         } else {
             glucoseStatus = result[i].needGlucose ? 'UNRECORDED' : 'NO_NEED'
             weightStatus = result[i].needWeight ? 'UNRECORDED' : 'NO_NEED'
@@ -142,9 +163,8 @@ const getAllPatientRecordToday = async (req, res) => {
             arr.push(resjson)
         }
     }
-
-    // res.send(arr)
-    return res.render('dashboard', { patient: arr })
+    res.send(arr)
+    // return res.render('dashboard', { patient: arr })
 }
 
 function formatDate(date) {
