@@ -98,14 +98,6 @@ const getAllPatientRecordToday = async (req, res) => {
             }else{
                 weightStatus = 'NO_NEED'
             }
-            // weightStatus = record.data.weight.status
-            // weight = record.data.weight.data
-
-            // insulinStatus = record.data.insulin.status
-            // insulin = record.data.insulin.data
-
-            // exerciseStatus = record.data.exercise.status
-            // exercise = record.data.exercise.data
         } else {
             glucoseStatus = result[i].needGlucose ? 'UNRECORDED' : 'NO_NEED'
             weightStatus = result[i].needWeight ? 'UNRECORDED' : 'NO_NEED'
@@ -163,8 +155,8 @@ const getAllPatientRecordToday = async (req, res) => {
             arr.push(resjson)
         }
     }
-    res.send(arr)
-    // return res.render('dashboard', { patient: arr })
+    // res.send(arr)
+    return res.render('dashboard', { patient: arr })
 }
 
 function formatDate(date) {
