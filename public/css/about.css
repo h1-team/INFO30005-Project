@@ -98,9 +98,11 @@ footer{
     width: 100%;
     background: black;
     padding:20px 0;
+    margin-top: 20px;
 }
 footer p{
     text-align: center;
+    margin-bottom: 10px;
 }
 
 footer a{

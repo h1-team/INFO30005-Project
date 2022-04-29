@@ -70,9 +70,20 @@ app.get('/aboutweb',(req,res)=>{
         style:'about.css'
     })
 })
+app.get('/aboutweb2',(req,res)=>{
+    res.render('aboutweb2.hbs',{
+        style:'about.css'
+    })
+})
 
 app.get('/aboutdia',(req,res)=>{
     res.render('aboutdia.hbs',{
+        style:'about.css'
+    })
+})
+
+app.get('/aboutdia2',(req,res)=>{
+    res.render('aboutdia2.hbs',{
         style:'about.css'
     })
 })
