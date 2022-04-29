@@ -45,9 +45,12 @@ const updateRecord = async (req, res) => {
         }
         date = formatDate(date)
         today = new Date(date)
-        tmr = new Date(today);
+        tmr = new Date(today)
         tmr.setDate(today.getDate() + 1)
-        const record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
+        const record = await Record.findOne({
+            patientId: id,
+            recordDate: { $gte: today, $lt: tmr },
+        })
         if (record) {
             // update data
             console.log('updating record\n')
@@ -99,7 +102,7 @@ function changeStatus(isNeed, record) {
 }
 
 const getRecordStatus = async (req, res) => {
-    try{
+    try {
         id = req.body.patientId
         date = req.body.recordDate
         const patient = await Patient.findById(id)
@@ -108,40 +111,38 @@ const getRecordStatus = async (req, res) => {
         }
         date = formatDate(date)
         today = new Date(date)
-        tmr = new Date(today);
+        tmr = new Date(today)
         tmr.setDate(today.getDate() + 1)
         result = await Patient.findById(req.body.patientId)
-        const record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
-        var glucose,weight,insulin,exercise
+        const record = await Record.findOne({
+            patientId: id,
+            recordDate: { $gte: today, $lt: tmr },
+        })
+        var glucose, weight, insulin, exercise
         if (record) {
             glucose = record.data.glucose.status
-            weight= record.data.weight.status
+            weight = record.data.weight.status
             insulin = record.data.insulin.status
             exercise = record.data.exercise.status
-        }else{
-            glucose = patient.needGlucose?"UNRECORDED":"NO_NEED"
-            weight = patient.needWeight?"UNRECORDED":"NO_NEED"
-            insulin = patient.needInsulin?"UNRECORDED":"NO_NEED"
-            exercise = patient.needExecrise?"UNRECORDED":"NO_NEED"
+        } else {
+            glucose = patient.needGlucose ? 'UNRECORDED' : 'NO_NEED'
+            weight = patient.needWeight ? 'UNRECORDED' : 'NO_NEED'
+            insulin = patient.needInsulin ? 'UNRECORDED' : 'NO_NEED'
+            exercise = patient.needExecrise ? 'UNRECORDED' : 'NO_NEED'
         }
-        res.send(
-            {
-                "glucose" : glucose,
-                "weight"   : weight,
-                "insulin"  : insulin,
-                "exercise" : exercise
-            }
-        )
-    }catch (err){
+        res.send({
+            glucose: glucose,
+            weight: weight,
+            insulin: insulin,
+            exercise: exercise,
+        })
+    } catch (err) {
         res.status(404).send(err)
     }
-    
-
 }
 
-
 const getOneRecord = async (req, res) => {
-    try{
+    try {
         id = req.body.patientId
         date = req.body.recordDate
         const patient = await Patient.findById(id)
@@ -150,15 +151,18 @@ const getOneRecord = async (req, res) => {
         }
         date = formatDate(date)
         today = new Date(date)
-        tmr = new Date(today);
+        tmr = new Date(today)
         tmr.setDate(today.getDate() + 1)
-        record = await Record.findOne({ patientId: id, recordDate: { $gte: today, $lt: tmr } })
-        if(record){
+        record = await Record.findOne({
+            patientId: id,
+            recordDate: { $gte: today, $lt: tmr },
+        })
+        if (record) {
             res.send(record)
-        }else{
+        } else {
             res.send({})
         }
-    }catch(err){
+    } catch (err) {
         res.status(404).send(err)
     }
 }

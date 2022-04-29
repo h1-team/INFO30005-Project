@@ -61,20 +61,23 @@ const getAllPatientRecordToday = async (req, res) => {
         thresholdGlucose = result[i].thresholdGlucose
         thresholdWeight = result[i].thresholdWeight
         thresholdInsulin = result[i].thresholdInsulin
-        
+
         date = Date.now()
         date = formatDate(date)
         today = new Date(date)
-        tmr = new Date(today);
+        tmr = new Date(today)
         tmr.setDate(today.getDate() + 1)
-        const record = await Record.findOne({ patientId: result[i]._id, recordDate: { $gte: today, $lt: tmr } })
-        var glucoseStatus,weightStatus,insulinStatus,exerciseStatus
-        var glucose,weight,insulin,exercise
+        const record = await Record.findOne({
+            patientId: result[i]._id,
+            recordDate: { $gte: today, $lt: tmr },
+        })
+        var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
+        var glucose, weight, insulin, exercise
         if (record) {
             glucoseStatus = record.data.glucose.status
             glucose = record.data.glucose.data
-            
-            weightStatus= record.data.weight.status
+
+            weightStatus = record.data.weight.status
             weight = record.data.weight.data
 
             insulinStatus = record.data.insulin.status
@@ -82,48 +85,66 @@ const getAllPatientRecordToday = async (req, res) => {
 
             exerciseStatus = record.data.exercise.status
             exercise = record.data.exercise.data
-        }else{
-            glucoseStatus = result[i].needGlucose?"UNRECORDED":"NO_NEED"
-            weightStatus = result[i].needWeight?"UNRECORDED":"NO_NEED"
-            insulinStatus = result[i].needInsulin?"UNRECORDED":"NO_NEED"
-            exerciseStatus = result[i].needExecrise?"UNRECORDED":"NO_NEED"
+        } else {
+            glucoseStatus = result[i].needGlucose ? 'UNRECORDED' : 'NO_NEED'
+            weightStatus = result[i].needWeight ? 'UNRECORDED' : 'NO_NEED'
+            insulinStatus = result[i].needInsulin ? 'UNRECORDED' : 'NO_NEED'
+            exerciseStatus = result[i].needExecrise ? 'UNRECORDED' : 'NO_NEED'
         }
 
-        if(glucoseStatus == "RECORDED" && ( glucose < thresholdGlucose*0.9 ||glucose > thresholdGlucose*1.1)){
-            glucoseStatus = "ALERT"
+        if (
+            glucoseStatus == 'RECORDED' &&
+            (glucose < thresholdGlucose * 0.9 ||
+                glucose > thresholdGlucose * 1.1)
+        ) {
+            glucoseStatus = 'ALERT'
         }
-        if(weightStatus == "RECORDED" && ( weight < thresholdWeight*0.9 ||weight > thresholdWeight*1.1)){
-            weightStatus = "ALERT"
+        if (
+            weightStatus == 'RECORDED' &&
+            (weight < thresholdWeight * 0.9 || weight > thresholdWeight * 1.1)
+        ) {
+            weightStatus = 'ALERT'
         }
-        if(insulinStatus == "RECORDED" && ( insulin < thresholdInsulin*0.9 ||insulin > thresholdInsulin*1.1)){
-            insulinStatus = "ALERT"
+        if (
+            insulinStatus == 'RECORDED' &&
+            (insulin < thresholdInsulin * 0.9 ||
+                insulin > thresholdInsulin * 1.1)
+        ) {
+            insulinStatus = 'ALERT'
         }
-        if(exerciseStatus == "RECORDED" && ( exercise < thresholdExecrise*0.9 ||exercise > thresholdExecrise*1.1)){
-            exerciseStatus = "ALERT"
+        if (
+            exerciseStatus == 'RECORDED' &&
+            (exercise < thresholdExecrise * 0.9 ||
+                exercise > thresholdExecrise * 1.1)
+        ) {
+            exerciseStatus = 'ALERT'
         }
         resjson = {
-            "username": username,
-            "name": realname,
-            "glucoseStatus":glucoseStatus,
-            "glucose":glucose,
-            "weightStatus":weightStatus,
-            "weight"   : weight,
-            "insulinStatus":insulinStatus,
-            "insulin"  : insulin,
-            "exerciseStatus":exerciseStatus,
-            "exercise" : exercise
+            username: username,
+            name: realname,
+            glucoseStatus: glucoseStatus,
+            glucose: glucose,
+            weightStatus: weightStatus,
+            weight: weight,
+            insulinStatus: insulinStatus,
+            insulin: insulin,
+            exerciseStatus: exerciseStatus,
+            exercise: exercise,
         }
-        if(glucoseStatus=="ALERT"||weightStatus=="ALERT"||insulinStatus=="ALERT"||exerciseStatus=="ALERT"){
+        if (
+            glucoseStatus == 'ALERT' ||
+            weightStatus == 'ALERT' ||
+            insulinStatus == 'ALERT' ||
+            exerciseStatus == 'ALERT'
+        ) {
             arr.unshift(resjson)
-        }else{
+        } else {
             arr.push(resjson)
         }
-
-
-    } 
+    }
 
     // res.send(arr)
-    return res.render('dashboard', {patient: arr});
+    return res.render('dashboard', { patient: arr })
 }
 
 function formatDate(date) {
