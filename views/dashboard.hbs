@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+ 
+{{> header}}
+
+<p class="sign">Sign up for new patient from <a>here</a></p>
+
+<div class="legend">
+  <ul>
+    <li><img src="/icon/green-circle.svg"><p class="legend-item">Normal</p></li>   
+    <li><img src="/icon/red-circle.svg"><p class="legend-item">Exceeds the threshold</p></li>
+    <li><img src="/icon/grey-circle.svg"><p class="legend-item">Not yet entered</p></li>
+    <li><img src="/icon/white-circle.svg"><p class="legend-item">Not required</p></li>
+  </ul> 
+</div>
+
+<div class="container">
+
+    {{#each patient}}
+    <div class="pat_info">
+        <div class="pats_col profile">
+            <img src="/picture/SpongeBob.svg.png">
+            <div class="name">{{this.name}}</div>
+            </a>
+        </div>
+
+        <table class="pats_col">
+                <tr>
+                {{#if (isalert this.glucoseStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.glucoseStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.glucoseStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                {{#if (isnoneed this.glucoseStatus)}}
+                    <td>Blood glucose level:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Blood glucose level:</td><td>{{this.glucose}}</td>
+                {{/if}}
+                </tr>
+
+            <tr>
+                {{#if (isalert this.weightStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.weightStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.weightStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                {{#if (isnoneed this.weightStatus)}}
+                    <td>Weight:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Weight:</td><td>{{this.weight}}</td>
+                {{/if}}
+            </tr>
+            
+            <tr>
+                {{#if (isalert this.insulinStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.insulinStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.insulinStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                {{#if (isnoneed this.insulinStatus)}}
+                    <td>Doses of insulin taken:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Doses of insulin taken:</td><td>{{this.insulin}}</td>
+                {{/if}}
+            </tr> 
+
+            <tr>
+                {{#if (isalert this.exerciseStatus)}}
+                    <td><img src="/icon/red-circle.svg"></td>
+                {{else if (isrecord this.exerciseStatus)}}
+                    <td><img src="/icon/green-circle.svg"></td>
+                {{else if (isnoneed this.exerciseStatus)}}
+                    <td><img src="/icon/white-circle.svg"></td>
+                {{else}}
+                    <td><img src="/icon/grey-circle.svg"></td>
+                {{/if}}
+                {{#if (isnoneed this.exerciseStatus)}}
+                    <td>Exercise:</td><td>NO NEED</td>
+                {{else}}
+                    <td>Exercise:</td><td>{{this.exercise}}</td>
+                {{/if}}
+            </tr>
+            </table>
+
+    </div>
+    {{/each}}
+
+</div>
+
+{{> footer}}
