@@ -51,12 +51,7 @@ const patientSchema = new mongoose.Schema({
     records: [recordSchema],
 })
 
-const testSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    age: { type: Number, default: 0 },
-    isMale: { type: Boolean, default: true },
-})
-const Test = mongoose.model('test', testSchema)
+
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
