@@ -52,7 +52,16 @@ app.get('/', (req, res) => {
 
 const patientController = require('./controllers/patientController')
 app.get('/dashboard', patientController.getAllPatientRecordToday)
-
+app.get('/doctor', (req, res) => {
+    res.render('home.hbs', {
+        style: 'doctor.css',
+    })
+})
+app.get('/doctor_home', (req, res) => {
+    res.render('doctor.hbs', {
+        style: 'doctor_home.css',
+    })
+})
 app.get('/insert', (req, res) => {
     res.render('insert.hbs', {
         style: 'insert.css',

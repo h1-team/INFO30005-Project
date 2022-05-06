@@ -1,0 +1,33 @@
+
+{{#with thisdoctor}}
+<div class="container-block container-flexbox" >
+
+      <!-- First column -->
+      <div class="doc-col wel">
+        <h1 class="text-black">Welcome, Dr. {{!thisdoctor.name}}</h1>
+              <ul >
+                <li><img src="/icon/dashboard.svg"><a href="/inbox" class="item">Dashboard</a></li>   
+                <li><img src="/icon/inbox.svg"><a href="inbox" class="item">Inbox</a></li>
+              </ul>   
+      </div>
+      <!-- second column -->
+      <div class="doc-col today">
+        <ul>
+          <li>
+            <img src="/icon/calendar.svg">
+            <a class="item">
+            Today 
+            <script> document.write(new Date().toLocaleDateString('en-AU',{  year: 'numeric', month: 'short', day: 'numeric'})); </script>
+            </a>
+          </li>
+          <li>
+            <img src="/icon/sun.svg">    
+            <a class="item">22 &#8451;</a>
+          </li>   
+        </ul>            
+      </div>
+  </div>
+{{/with}}  
+<!--form class="logout" action="/logout" method="post">
+    <button type="submit">Log Out</button>
+</form !-->
