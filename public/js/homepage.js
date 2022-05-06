@@ -19,6 +19,7 @@ const data = {
 }
 
 axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+// axios.defaults.baseURL = 'http://localhost:3000/api'
 async function getStatus(res) {
     try {
         const status = await axios({

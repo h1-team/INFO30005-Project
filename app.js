@@ -3,11 +3,12 @@ const exphbs = require('express-handlebars')
 const express = require('express')
 // set the app up as an express app
 const app = express()
-
 const axios = require('axios').default
-
 const port = process.env.PORT || 8080
 var path = require('path')
+const homeRouter = require('./routes/homeRouter.js')
+
+
 
 // configure Handlebars
 app.engine(
@@ -34,6 +35,8 @@ const router = require('./routes/router.js')
 const recordRouter = require('./routes/recordRouter.js')
 const { Patient } = require('./models/db.js')
 
+
+app.use('/',homeRouter)
 // the patient routes are added to the end of the '/patient' path
 
 app.use('/api/patient', router)
@@ -43,6 +46,7 @@ app.use('/api/record', recordRouter)
 // connect to MongoDB
 require('./models/index.js')
 
+/*
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req, res) => {
     res.render('welcome.hbs', {
@@ -126,7 +130,7 @@ app.get('/homepage', async (req, res) => {
         }
     }
     getStatus()
-})
+})*/
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
