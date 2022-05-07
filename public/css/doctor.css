@@ -81,8 +81,7 @@ button{
   --web-action-type: page;
   border-radius: 60px;
   opacity: 0.6;
-  margin: 2.2em;
-}
+margin: 2.2em;}
 
 button:hover{
 

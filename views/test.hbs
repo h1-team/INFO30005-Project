@@ -1,0 +1,33 @@
+
+
+
+
+<ul>
+    {{#with status}}
+        <li>{{#if (isrecord this.weight)}}
+                <p>Wight</p>
+                <img src="/icon/check.svg">
+            {{else}}
+                <p>Wight</p>
+                <img src="/icon/alarm.svg">
+            {{/if}}
+        </li>
+        
+        <li>
+            {{#if (isrecord this.insulin)}}
+                <p>Doses</p>
+                <img src="/icon/check.svg">
+            {{else}}
+                <p>Doses</p>
+                <img src="/icon/alarm.svg">
+            {{/if}}
+        </li>
+
+        <li>{{this.glucose}}</li>
+        <li>{{this.weight}}</li>
+    {{/with}}
+</ul>
+
+
+
+

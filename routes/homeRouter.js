@@ -1,5 +1,4 @@
 const express = require('express')
-const homepage =  require('../public/js/homepage.js')
 const homeRouter = express.Router()
 const patientController = require('../controllers/patientController')
 const homeController = require('../controllers/homeController')
@@ -19,9 +18,7 @@ homeRouter.get('/aboutdia', homeController.aboutdia)
 
 homeRouter.get('/aboutdia2', homeController.aboutdia2)
 
-homeRouter.get('/homepage', async (req, res) => {
-    homepage.getStatus(res)
-})
+homeRouter.get('/homepage', homeController.homepage)
 
 homeRouter.get('/dashboard', patientController.getAllPatientRecordToday)
 

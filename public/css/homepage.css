@@ -1,0 +1,212 @@
+:root {
+    --text-big: 3em;
+    --text-small:  1em;
+    --font-faily-body:adobe-text-pro, serif;
+    --color-blue:#2D63AB;
+    --color-yellow:#F2B705;
+    --color-gery:#EBEBEB;
+    --color-dark_blue:#1D4881;
+    --color-light_blue:#3B83E3;
+    --color-light_green: #D2F2DD;
+}
+
+
+body{
+    margin: 0;
+}
+
+
+header{
+    text-align: center;
+    background-color:var(--color-blue);
+    color: white;
+}
+
+h1{
+    margin:0px;
+    margin-bottom: 1em;
+}
+
+h2{
+    font-size: 3em;
+    margin-top: 0;
+}
+
+p{
+    font-size: 1.7em;
+}
+
+section{
+    display:flex;
+    justify-content: space-around;
+}
+
+div{
+    padding: 2em;
+    border-radius: 1em;
+    width: 47em;
+    height: 27em;
+}
+
+.hello{
+    background-color:var(--color-gery);
+}
+
+#message{
+    margin-top: 2em;
+    margin-left: 1em;
+}
+
+.today{
+    background-color:var(--color-dark_blue);
+    color: white;
+}
+
+.today a{
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding-bottom: 1em;
+}
+
+#date{
+    border-bottom: solid;
+    border-color: white;
+}
+
+
+
+li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+li p{
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2em;
+    margin-right: 2em;
+
+}
+
+
+
+.link p {
+    font-size: 1em;
+    margin-right: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+
+.leaderboard{
+    background-color:var(--color-yellow);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    text-align: center;
+    vertical-align: middle;
+    width: 40em;
+    height: 8em;
+}
+
+.leaderboard p{
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.box{
+    background-color: var(--color-light_blue);
+    color: white;
+    width: 20em;
+    height: 20em;
+    margin-bottom: 3em;
+    padding: 2em;
+    border-radius: 1em;
+    text-decoration: none
+}
+
+@media screen and (max-width: 375px){
+    section{
+        flex-direction: column;
+    }
+
+    h2{
+        font-size: 2em;
+    }
+    p{
+        font-size: 20px;
+    }
+    div{
+        padding: 2em;
+        border-radius:0;
+        width: 311px;
+        height: 365px;
+    }
+    
+    #message{
+        margin-left: 10px;
+    }
+
+    .hello{
+        height: 300px;
+    }
+
+    .today{
+        height: 470px;
+    }
+
+    .today p {
+        font-size: 20px;
+    }
+    ul{
+        padding: 0.5em;
+    }
+    li{
+        margin-bottom: 0.5em;
+    }
+
+    li p{
+        width: 250px;
+        margin:0;
+    }
+
+    li img{
+        font-size: 80%;
+        margin-right: 1em;
+    }
+    .leaderboard{
+        width: 300px;
+        height: 67px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .leaderboard p{
+        font-size: 15px;
+    }
+
+    .function{
+        flex-flow: row wrap;
+    }
+    .box{
+        padding: 1em;
+        width: 150px;
+        height: 150px;
+    }
+
+    .box h2{
+        font-size: 20px;
+    }
+
+    .box p{
+        font-size: 15px;
+    }
+}
+
