@@ -1,6 +1,7 @@
 // import demo model
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
+const utils = require('../utils/utils.js')
 const findAll = async (req, res) => {
     result = await Patient.find()
     res.send(result)
@@ -159,6 +160,39 @@ const getAllPatientRecordToday = async (req, res) => {
     return res.render('dashboard', { patient: arr })
 }
 
+const getEngagement= async (req, res) => {
+    result = await Patient.find()
+    if (!result) {
+        res.status(404).send([])
+        return
+    }
+    const today = new Date(utils.getMelbDate())
+    var arr = new Array()
+    for (var i = 0; i < result.length; i++) {
+        var create = new Date(result[i].create_date)
+        var time_diff = today - create
+        var day = Math.floor(time_diff/86400000) + 1
+        count = 0
+        for(var j=0;j<result[i].records.length;j++){
+            if(result[i].records[j].isDone){
+                count +=1
+            }
+        }
+        arr.push({"username":result[i].username,
+                    "rate":count/day})
+
+
+
+    }
+    arr.sort((a, b) => b.rate - a.rate)
+    res.send(arr)
+
+
+}
+
+
+
+
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -179,4 +213,5 @@ module.exports = {
     editOne,
     deleteOne,
     getAllPatientRecordToday,
+    getEngagement,
 }
