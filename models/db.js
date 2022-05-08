@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const utils = require('../utils/utils.js')
 
 
 const STATUS = ['RECORDED', 'UNRECORDED', 'NO_NEED']
@@ -10,6 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
+    isDone: { type: Boolean, default : false},
     data: {
         glucose: {
             status: { type: String, enum: STATUS, default: 'UNRECORDED' },
@@ -50,6 +52,7 @@ const patientSchema = new mongoose.Schema({
     thresholdGlucose: { type: Number, default: 10, min: 0 },
     thresholdWeight: { type: Number, default: 60, min: 0 },
     thresholdInsulin: { type: Number, default: 2, min: 0 },
+    create_date:{type:Date,default: utils.getMelbDate()},
     records: [recordSchema],
 })
 
