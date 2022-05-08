@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
+const utils = require('../utils/utils.js')
+
 
 const STATUS = ['RECORDED', 'UNRECORDED', 'NO_NEED']
 const recordSchema = new mongoose.Schema({
@@ -8,6 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
+    isDone: { type: Boolean, default : false},
     data: {
         glucose: {
             status: { type: String, enum: STATUS, default: 'UNRECORDED' },
@@ -39,7 +43,7 @@ const patientSchema = new mongoose.Schema({
     address: { type: String, default: '' },
     dob: Date,
     phone: { type: String, default: '' },
-    password: { type: String, required: true, min: 8 },
+    password: { type: String, required: true },
     needExecrise: { type: Boolean, default: true },
     needGlucose: { type: Boolean, default: true },
     needWeight: { type: Boolean, default: true },
@@ -48,9 +52,33 @@ const patientSchema = new mongoose.Schema({
     thresholdGlucose: { type: Number, default: 10, min: 0 },
     thresholdWeight: { type: Number, default: 60, min: 0 },
     thresholdInsulin: { type: Number, default: 2, min: 0 },
+    create_date:{type:Date,default: utils.getMelbDate()},
     records: [recordSchema],
 })
 
+patientSchema.methods.verifyPassword = function (password, callback) {
+    bcrypt.compare(password, this.password, (err, valid) => {
+    callback(err, valid)
+    })
+}
+
+const SALT_FACTOR = 10
+patientSchema.pre('save', function save(next) {
+    const user = this
+    // Go to next if password field has not been modified
+    if (!user.isModified('password')) {
+        return next()
+    }
+    // Automatically generate salt, and calculate hash
+    bcrypt.hash(user.password, SALT_FACTOR, (err, hash) => {
+    if (err) {
+        return next(err)
+    }
+    // Replace password with hash
+    user.password = hash
+    next()
+    })
+})
 
 
 const Record = mongoose.model('record', recordSchema)

@@ -3,12 +3,30 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
 var path = require('path')
+const flash = require('express-flash') 
 const homeRouter = require('./routes/homeRouter.js')
+const session = require('express-session')
 const router = require('./routes/router.js')
 const recordRouter = require('./routes/recordRouter.js')
 // connect to MongoDB
 require('./models/index.js')
-
+app.use(flash())
+app.use(
+    session({
+        // The secret used to sign session cookies (ADD ENV VAR)
+        secret: process.env.SESSION_SECRET || 'bad-designers',
+        name: 'demo', // The cookie name (CHANGE THIS)
+        saveUninitialized: false,
+        resave: false,
+        proxy: process.env.NODE_ENV === 'production', //  to work on Heroku
+        cookie: {
+            sameSite: 'strict',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 300000 // sessions expire after 5 minutes
+        },
+    })
+)
 // configure Handlebars
 app.engine(
     'hbs',
@@ -23,11 +41,11 @@ app.engine(
         }
     })
     )
-    // set Handlebars view engine
-    app.set('view engine', 'hbs')
-    app.use(express.json()) // needed if POST data is in JSON format
-    app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
-    app.use(express.static('./public'))
+// set Handlebars view engine
+app.set('view engine', 'hbs')
+app.use(express.json()) // needed if POST data is in JSON format
+app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
+app.use(express.static('./public'))
 
 app.use('/',homeRouter)
 
