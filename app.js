@@ -58,6 +58,11 @@ app.get('/register',(req,res)=>{
         style:'login.css'
     })
 })
+app.get('/doctor',(req,res)=>{
+    res.render('doctor.hbs',{
+        style:'doctor_home.css'
+    })
+})
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
 })
