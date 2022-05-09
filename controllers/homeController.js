@@ -49,7 +49,11 @@ const aboutdia2 =  (req, res) => {
         style: 'about.css',
     })
 }
-
+const register=(req, res)=>{
+    res.render('register.hbs',{
+        style:'login.css'
+    })
+}
 
 
 const homepage = async (req, res) => {
@@ -84,4 +88,5 @@ module.exports = {
     aboutdia,
     aboutdia2,
     homepage,
+    register
 }
