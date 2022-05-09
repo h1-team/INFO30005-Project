@@ -1,7 +1,7 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
-// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
-axios.defaults.baseURL = 'http://localhost:3000/api'
+axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+// axios.defaults.baseURL = 'http://localhost:3000/api'
 
 const welcome = (req, res) => {
     res.render('welcome.hbs', {
