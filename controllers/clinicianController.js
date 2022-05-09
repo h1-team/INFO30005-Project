@@ -57,10 +57,7 @@ const renderRegister = (req,res)=>{
 const register = async (req, res) => {
     // find if the patient already exists
     if (await Patient.findOne({ username: req.body.username }, {})) {
-        return res.render("register.hbs", {
-            input: req.body,
-            registerMSG: "The username already exists",
-        })
+        return res.render("register.hbs", { registerUsernameExists: true })
     }
 
     // add new patient
@@ -72,7 +69,7 @@ const register = async (req, res) => {
     clinician.patients.push({ patientId: newPatient._id });
     await clinician.save()
   
-    return res.render("register.hbs", {registerMSG: "Register Successfully!"})
+    return res.render("register.hbs", { registerSuccess: true })
 }
 
 module.exports = {

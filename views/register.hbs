@@ -5,7 +5,6 @@
 <body style="background-color: #2D3033;">
 
   <h1 style="color: white;">Diabetes@HOME</h1>
-  {{#if registerMSG}} <p> {{registerMSG}} </p> {{/if}}
 
   <div class="login" >
     <form class="login-form" id="register" action="/api/clinician/register" method="post">
@@ -35,3 +34,25 @@
   </div>
 
 </body>
+
+
+{{#if registerSuccess}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Register Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if registerUsernameExists}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("The username already exists");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
