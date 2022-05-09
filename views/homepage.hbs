@@ -1,12 +1,13 @@
 <header>
     <h1>Home Page</h1>
 </header>
-
+<p>This is where our registered users will arrive after they log in. We'll need to identify users so we can display their data.</p>
+{{#with pat}}
 <main>
     <section>
 
         <div class = "hello">
-            <h2> Hello </h2>
+            <h2> Hello, {{name}}} </h2>
             <p>From your clinician:</p>
 
             <p id = "message">  We will get through this together, knowing 
@@ -125,3 +126,4 @@
 
 
 </main>
+{{/with}}
