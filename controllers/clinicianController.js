@@ -68,7 +68,6 @@ const register = async (req, res) => {
     const clinician = await Clinician.findOne({ _id: clinicianId }, {})
     clinician.patients.push({ patientId: newPatient._id });
     await clinician.save()
-  
     return res.render("register.hbs", { registerSuccess: true })
 }
 
