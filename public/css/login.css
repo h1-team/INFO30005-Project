@@ -48,7 +48,7 @@ body{
  }
   
     
-  input[type=ID],
+  input[type=text],
   input[type=password] {
     border-radius: 25px;
     margin-bottom: 1rem;
