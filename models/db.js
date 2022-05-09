@@ -88,14 +88,7 @@ const clinicianSchema = new mongoose.Schema({
     phone: { type: String, default: '' },
     password: { type: String, required: true },
     create_date:{type:Date,default: utils.getMelbDate()},
-    patients: [
-        {
-            patientId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Patient',
-            },
-        },
-    ],
+    patients: [],
 })
 
 

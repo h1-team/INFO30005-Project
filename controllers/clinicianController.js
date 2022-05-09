@@ -61,11 +61,16 @@ const register = async (req, res) => {
     }
 
     // add new patient
-    const newPatient = patientController.addOne(req, res)
 
+    const newPatient = new Patient()
+    Object.assign(newPatient, req.body)
+    await newPatient.save().then()
+    .catch((err) => res.send(err))
+    ///////////////////catch里加一个render 如果病人添加失败的情况
+    
     // insert patient into clinician's patientList
-    const clinicianId = "6278be431a5d6d69ba56a707"
-    const clinician = await Clinician.findOne({ _id: clinicianId }, {})
+    const clinicianId = "62791ae11515ffb0ad2fcf07"
+    const clinician = await Clinician.findById(clinicianId)
     clinician.patients.push({ patientId: newPatient._id });
     await clinician.save()
   

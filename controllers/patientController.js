@@ -13,10 +13,15 @@ const findOneById = async (req, res) => {
 }
 
 const addOne = async (req, res) => {
-    console.log('adding patient')
-    const newPatient = new Patient()
-    Object.assign(newPatient, req.body)
-    return await newPatient.save()
+  
+        console.log('adding patient')
+        const newPatient = new Patient()
+        Object.assign(newPatient, req.body)
+        await newPatient
+        .save()
+        .then((result) => res.send(result))
+        .catch((err) => res.send(err))
+    
 }
 
 const editOne = async (req, res) => {
