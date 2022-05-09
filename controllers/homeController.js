@@ -11,11 +11,79 @@ const welcome =  (req, res) => {
     })
 }
 
+const insert = async (req, res) => {
+    const record = await axios({
+        url: '/record/getOneRecord',
+        method: 'POST',
+        data: {
+            patientId: '62779e55ef8bd14bb5143922',
+            recordDate: utils.getMelbDate(),
+        },
+    })
 
-
-const insert  =(req, res) => {
+    const {
+        data
+    } = record.data
+    console.log(data);
+    //if no data
+    let state = {
+        glucose: 'show',
+        weight: 'show',
+        insulin: 'show',
+        exercise: 'show',
+    }
+    // 如果数据存在则检测状态是否是No_NEED 是则返回hidden类名
+    //if the status is NO NEED, we hidden that entry
+    if (data) {
+        state = {
+            glucose: data.glucose && data.glucose.status == "NO_NEED" ? 'hidden' : 'show',
+            weight: data.weight && data.weight.status == "NO_NEED" ? 'hidden' : 'show',
+            insulin: data.insulin && data.insulin.status == "NO_NEED" ? 'hidden' : 'show',
+            exercise: data.exercise && data.exercise.status == "NO_NEED" ? 'hidden' : 'show',
+        }
+    }
     res.render('insert.hbs', {
         style: 'insert.css',
+        record: data,
+        state
+    })
+}
+
+
+const leaderboard = async (req, res) => {
+    const patient = await axios({
+        url: '/patient/getEngagement',
+        methods: "post",
+    })
+
+    console.log(patient.data);
+    //create a list to store rank
+    let list = []
+    // count the num of users
+    let userCount = 0
+    if (patient.data) {
+        // { username: 'chris123', rate: 1 },
+        userCount = patient.data.length
+        list = patient.data
+            //filter the engagement rate which is greater than or equal to 0.8 
+            .filter(item => item.rate >= 0.8)
+            // then sort the list, only get five users 
+            .sort((a, b) => b - a).splice(0,5)
+        //present the rank
+        list.forEach((item, index) => {
+            item.ranke = index + 1
+            item.rate *= 100
+        })
+    }
+    res.render('leaderboard.hbs', {
+        style: 'leaderboard.css',
+        list,
+        //that user engagement rate
+        thisRate: 60,
+        //that user rank
+        thisRank: 1,
+        // total number of users
+        userCount
     })
 }
 
@@ -88,5 +156,6 @@ module.exports = {
     aboutdia,
     aboutdia2,
     homepage,
-    register
+    register,
+    leaderboard
 }

@@ -22,8 +22,10 @@ const isAuthenticated = (req, res, next) => {
 
 homeRouter.get('/', homeController.welcome)
 // turn on after finsih login
-homeRouter.get('/insert',isAuthenticated, homeController.insert)
+homeRouter.get('/insert',homeController.insert)
 //homeRouter.get('/insert', homeController.insert)
+
+homeRouter.get('/leaderboard', homeController.leaderboard)
 
 homeRouter.get('/login', homeController.login)
 

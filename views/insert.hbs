@@ -1,4 +1,6 @@
-{{>patient_header}}
+
+{{> patient_header}}
+
 <div class="insertBox">
   <div class="content">
     <div class="left">
@@ -6,12 +8,12 @@
     </div>
     <div class="right">
       <form id="insertForm" action="">
-        <div class="form-group">
+        <div class="form-group {{state.glucose}}">
           <div class="inner">
             <label for="glucose">
               Blood glucose level
             </label>
-            <input name="glucose" id="glucose" value="{{data.glucose.data}}" type="text" />
+            <input name="glucose" id="glucose" value="{{record.glucose.data}}" type="text" />
             nom/L
             <p>
               Add new comment
@@ -34,17 +36,18 @@
               id="glucoseComment"
               class="comment"
               type="text"
-              value="{{data.glucose.comment}}"
+              value="{{record.glucose.comment}}"
               placeholder="Add your comment here"
             />
           </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group {{state.weight}}">
           <div class="inner">
             <label for="weight">
               Weight
             </label>
-            <input name="weight" id="weight" value="{{data.weight.data}}" type="text" />
+            <input name="weight" id="weight" value="{{record.weight.data}}" type="text" />
             Kg
             <p>
               Add new comment
@@ -67,17 +70,18 @@
               id="weightComment"
               class="comment"
               type="text"
-              value="{{data.weight.comment}}"
+              value="{{record.weight.comment}}"
               placeholder="Add your comment here"
             />
           </div>
         </div>
-        <div class="form-group">
-          <div class="inner">
+
+        <div class="form-group {{state.insulin}}">
+            <div class="inner">
             <label for="insulin">
               Doses of insulin taken
             </label>
-            <input name="insulin" id="insulin" value="{{data.insulin.data}}"  type="text" />
+            <input name="insulin" id="insulin" value="{{record.insulin.data}}" type="text" />
             Doses
             <p>
               Add new comment
@@ -99,17 +103,18 @@
               id="insulinComment"
               class="comment"
               type="text"
-              value="{{data.insulin.comment}}"
+              value="{{record.insulin.comment}}"
               placeholder="Add your comment here"
             />
           </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group {{state.exercise}}">
           <div class="inner">
             <label for="exercise">
-              Exercise
+              Exercise  
             </label>
-            <input name="exercise" id="exercise" value="{{data.exercise.data}}" type="text" />
+            <input name="exercise" id="exercise" value="{{record.exercise.data}}" type="text" />
             Step count
             <p>
               Add new comment
@@ -131,12 +136,13 @@
               id="exerciseComment"
               class="comment"
               type="text"
-              value="{{data.exercise.comment}}"
+              value="{{record.exercise.comment}}"
               placeholder="Add your comment here"
             />
           </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-groups mt-3">
           <button class="submit">
             Submit
           </button>
@@ -145,7 +151,5 @@
     </div>
   </div>
 </div>
-<script
-  src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"
-></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
 <script src="/js/insert.js"></script>
