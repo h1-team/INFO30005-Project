@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const utils = require('../utils/utils.js')
 
-
 const STATUS = ['RECORDED', 'UNRECORDED', 'NO_NEED']
 const recordSchema = new mongoose.Schema({
     patientId: {
@@ -80,8 +79,28 @@ patientSchema.pre('save', function save(next) {
     })
 })
 
+const clinicianSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    photo: { type: String, default: '' },
+    name: { type: String, default: '' },
+    address: { type: String, default: '' },
+    dob: Date,
+    phone: { type: String, default: '' },
+    password: { type: String, required: true },
+    create_date:{type:Date,default: utils.getMelbDate()},
+    patients: [
+        {
+            patientId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Patient',
+            },
+        },
+    ],
+})
+
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
+const Clinician = mongoose.model('clinician', clinicianSchema)
 
-module.exports = { Patient, Record }
+module.exports = { Patient, Record, Clinician }

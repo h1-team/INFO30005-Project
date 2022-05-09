@@ -6,8 +6,10 @@ var path = require('path')
 const flash = require('express-flash') 
 const homeRouter = require('./routes/homeRouter.js')
 const session = require('express-session')
-const router = require('./routes/router.js')
+const clinicianRouter = require('./routes/clinicianRouter.js')
+const patientRouter = require('./routes/patientRouter.js')
 const recordRouter = require('./routes/recordRouter.js')
+
 // connect to MongoDB
 require('./models/index.js')
 app.use(flash())
@@ -15,10 +17,10 @@ app.use(
     session({
         // The secret used to sign session cookies (ADD ENV VAR)
         secret: process.env.SESSION_SECRET || 'bad-designers',
-        name: 'demo', // The cookie name (CHANGE THIS)
+        name: 'bad-designers', // The cookie name
         saveUninitialized: false,
         resave: false,
-        proxy: process.env.NODE_ENV === 'production', //  to work on Heroku
+        proxy: process.env.NODE_ENV === 'production', // to work on Heroku
         cookie: {
             sameSite: 'strict',
             httpOnly: true,
@@ -27,6 +29,7 @@ app.use(
         },
     })
 )
+
 // configure Handlebars
 app.engine(
     'hbs',
@@ -40,7 +43,8 @@ app.engine(
             isalert: (a) => a == 'ALERT',
         },
     })
-    )
+)
+
 // set Handlebars view engine
 app.set('view engine', 'hbs')
 app.use(express.json()) // needed if POST data is in JSON format
@@ -48,16 +52,10 @@ app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded 
 app.use(express.static('./public'))
 
 app.use('/',homeRouter)
-
-app.use('/api/patient', router)
-// the record routes are added to the end of the '/record' path
+app.use('/api/clinician', clinicianRouter)
+app.use('/api/patient', patientRouter)
 app.use('/api/record', recordRouter)
 
-app.get('/register',(req,res)=>{
-    res.render('register.hbs',{
-        style:'login.css'
-    })
-})
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
 })

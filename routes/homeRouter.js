@@ -1,6 +1,5 @@
 const express = require('express')
 const homeRouter = express.Router()
-const patientController = require('../controllers/patientController')
 const homeController = require('../controllers/homeController')
 const passport = require('../models/passport.js')
 
@@ -45,7 +44,5 @@ homeRouter.get('/aboutdia2', homeController.aboutdia2)
 // turn on after finsih login
 // homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
 homeRouter.get('/homepage', homeController.homepage)
-
-homeRouter.get('/dashboard', patientController.getAllPatientRecordToday)
 
 module.exports = homeRouter
