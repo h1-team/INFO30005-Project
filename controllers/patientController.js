@@ -13,10 +13,10 @@ const findOneById = async (req, res) => {
 }
 
 const addOne = async (req, res) => {
-        console.log('adding patient')
-        const newPatient = new Patient()
-        Object.assign(newPatient, req.body)
-        await newPatient
+    console.log('adding patient')
+    const newPatient = new Patient()
+    Object.assign(newPatient, req.body)
+    await newPatient
         .save()
         .then((result) => res.send(result))
         .catch((err) => res.send(err))
@@ -73,30 +73,33 @@ const getAllPatientRecordToday = async (req, res) => {
             recordDate: { $gte: today, $lt: tmr },
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
-        var glucose =null, weight=null, insulin=null, exercise=null
+        var glucose = null,
+            weight = null,
+            insulin = null,
+            exercise = null
         if (record) {
-            if(result[i].needGlucose){
+            if (result[i].needGlucose) {
                 glucoseStatus = record.data.glucose.status
                 glucose = record.data.glucose.data
-            }else{
+            } else {
                 glucoseStatus = 'NO_NEED'
             }
-            if(result[i].needExecrise){
+            if (result[i].needExecrise) {
                 exerciseStatus = record.data.exercise.status
                 exercise = record.data.exercise.data
-            }else{
+            } else {
                 exerciseStatus = 'NO_NEED'
             }
-            if(result[i].needInsulin){
+            if (result[i].needInsulin) {
                 insulinStatus = record.data.insulin.status
                 insulin = record.data.insulin.data
-            }else{
+            } else {
                 insulinStatus = 'NO_NEED'
             }
-            if(result[i].needWeight){
+            if (result[i].needWeight) {
                 weightStatus = record.data.weight.status
                 weight = record.data.weight.data
-            }else{
+            } else {
                 weightStatus = 'NO_NEED'
             }
         } else {
@@ -160,7 +163,7 @@ const getAllPatientRecordToday = async (req, res) => {
     return res.render('dashboard', { patient: arr })
 }
 
-const getEngagement= async (req, res) => {
+const getEngagement = async (req, res) => {
     result = await Patient.find()
     if (!result) {
         res.status(404).send([])
@@ -171,27 +174,18 @@ const getEngagement= async (req, res) => {
     for (var i = 0; i < result.length; i++) {
         var create = new Date(result[i].create_date)
         var time_diff = today - create
-        var day = Math.floor(time_diff/86400000) + 1
+        var day = Math.floor(time_diff / 86400000) + 1
         count = 0
-        for(var j=0;j<result[i].records.length;j++){
-            if(result[i].records[j].isDone){
-                count +=1
+        for (var j = 0; j < result[i].records.length; j++) {
+            if (result[i].records[j].isDone) {
+                count += 1
             }
         }
-        arr.push({"username":result[i].username,
-                    "rate":count/day})
-
-
-
+        arr.push({ username: result[i].username, rate: count / day })
     }
     arr.sort((a, b) => b.rate - a.rate)
     res.send(arr)
-
-
 }
-
-
-
 
 function formatDate(date) {
     var d = new Date(date),

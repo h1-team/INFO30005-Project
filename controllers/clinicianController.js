@@ -48,34 +48,35 @@ const deleteOne = async (req, res) => {
     res.send(result)
 }
 
-const renderRegister = (req,res)=>{
-    res.render('register.hbs',{
-        style:'login.css'
+const renderRegister = (req, res) => {
+    res.render('register.hbs', {
+        style: 'login.css',
     })
 }
 
 const register = async (req, res) => {
     // find if the patient already exists
     if (await Patient.findOne({ username: req.body.username }, {})) {
-        return res.render("register.hbs", { registerUsernameExists: true })
+        return res.render('register.hbs', { registerUsernameExists: true })
     }
 
     // add new patient
     const newPatient = new Patient()
     Object.assign(newPatient, req.body)
-    await newPatient.save().then()
-    .catch((err) => 
-    res.send(err)
-       .render("register.hbs", { registerFailure: true })
-    )
-    
+    await newPatient
+        .save()
+        .then()
+        .catch((err) =>
+            res.send(err).render('register.hbs', { registerFailure: true })
+        )
+
     // insert patient into clinician's patientList
-    const clinicianId = "62791ae11515ffb0ad2fcf07"
+    const clinicianId = '62791ae11515ffb0ad2fcf07'
     const clinician = await Clinician.findById(clinicianId)
-    clinician.patients.push({ patientId: newPatient._id });
+    clinician.patients.push({ patientId: newPatient._id })
     await clinician.save()
-  
-    return res.render("register.hbs", { registerSuccess: true })
+
+    return res.render('register.hbs', { registerSuccess: true })
 }
 
 module.exports = {
