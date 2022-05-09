@@ -28,14 +28,12 @@ body{
 .wel{
     transform: rotate(-20deg);
     background-color: #2D3033;
-    padding: 2%;
-    margin-left: 15.2em;
-    margin-top: 13.2em;
     height: 33em;
     width: 33em;
     max-width: 600px;
     min-height: 300px;
     min-width: 300px;
+
 }
 .wel ul{
     margin: 3.5em;
@@ -52,9 +50,7 @@ li{
     background-color: #F2B705 !important;
     transform: rotate(15deg);
     max-width: 600px;
-    max-height: 350px;
-    margin-right: 22.3em;
-    margin-top: 25.3em;
+    max-height: 300px;
 }
 .today li{
     color: #2D3033;
@@ -84,6 +80,30 @@ h1{
 a{
     text-decoration:none;
 }
-@media all and (min-width: 770px) {
+@media all and (min-width: 1824px) {
     .doc-col { width: 50% }
+    .today{
+        margin-right: 11.3em;
+        margin-top: 25.3em;
+        padding: 3%;
+    }
+    .wel{
+        margin-left: 15.2em;
+        margin-top: 13.2em;
+        padding: 2%; 
+    }
+}
+@media all and (max-width: 1824px) {
+    .doc-col { width: 100% }
+    .today{
+        margin: 36.3em;
+        margin-right: 11.3em;
+        margin-top: 20.3em;
+        padding: 3%;
+    }
+    .wel{
+        margin-left: 15.2em;
+        margin-top: 13.2em;
+        padding: 2%; 
+    }
 }

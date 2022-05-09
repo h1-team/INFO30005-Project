@@ -32,7 +32,6 @@ const insert = async (req, res) => {
         insulin: 'show',
         exercise: 'show',
     }
-    // 如果数据存在则检测状态是否是No_NEED 是则返回hidden类名
     //if the status is NO NEED, we hidden that entry
     if (data) {
         state = {
@@ -117,17 +116,13 @@ const aboutdia2 =  (req, res) => {
         style: 'about.css',
     })
 }
-const register=(req, res)=>{
-    res.render('register.hbs',{
-        style:'login.css'
-    })
-}
+
 
 
 const homepage = async (req, res) => {
     try {
         const data = {
-            patientId: '62694cb55403b01e62571abd',
+            patientId: req.user._id,
             recordDate: utils.getMelbDate(),
         }
 
@@ -138,6 +133,7 @@ const homepage = async (req, res) => {
         })
         res.render('homepage.hbs', {
             status: status.data,
+            name:req.user.name,
             style: 'homepage.css',
         })
     } catch (error) {
@@ -156,6 +152,5 @@ module.exports = {
     aboutdia,
     aboutdia2,
     homepage,
-    register,
     leaderboard
 }

@@ -1,34 +1,58 @@
 
 
+<link rel="stylesheet" href="/css/login.css">
+
 <body style="background-color: #2D3033;">
-<h1 style="color: white;">Sign up</h1>
-<div class="login" >
-  
-    <form class="login-form" action="/register" method="post"> 
+
+  <h1 style="color: white;">Diabetes@HOME</h1>
+
+  <div class="login" >
+    <form class="login-form" id="register" action="/api/clinician/register" method="post">
+        <label class="pat-text-color">Username</label>
+        <input class="input" type="text" name="username" placeholder="Enter username" value="{{input.username}}" required>
+
+        <label class="pat-text-color">Password</label>
+        <input class="input" type="password" name="password" placeholder="Enter password" value="{{input.password}}" required>
         
-      <label class="pat-text-color" for="fullname">Full Name</label>
-      <br/>
-      <input id="fullname" type="text" name="fullname" class="input">
-      <br/>
-      <label class="pat-text-color" for="email">Email</label>
-      <br/>
-      <input id="email" type="text" name="email" class="input">
-      <br/>
-      <label class="pat-text-color" for="username">User Name</label>
-      <br/>
-      <input id="username" type="text" name="username" class="input">
-      <br/>
-      <label class="pat-text-color" for="password"> Password:</label>
-      <br/>
-      <input id="password" name="password" type="password" class="input" >
-      <div class="checkbox">
-          <input type="checkbox" >
-          <label class="pat-text-color" >I agree to the Terms and Policy</label>
-      </div>
-      <button type="submit" class="btn-login  log-bg" style="margin-bottom: 1.5em;"> Sign up</button>
-      
-      <button type="button" class="btn-login  log-bg" onclick="location.href = '/dashboard';return false;"> Cancel</button>
-  </form>
-</div> 
+        <label class="pat-text-color">Address</label>
+        <input class="input" type="text" name="address" placeholder="Enter address" value="{{input.address}}">
+        
+        <label class="pat-text-color">Phone</label>
+        <input class="input" type="text" name="phone" placeholder="Enter phone" value="{{input.phone}}">
+
+        <label class="pat-text-color"> Name</label>
+        <input class="input" type="text" name="name" placeholder="Enter name" value="{{input.name}}">
+
+        <div class="checkbox">
+            <input type="checkbox" >
+            <label class="pat-text-color" >I agree to the Terms and Policy</label>
+        </div>
+
+        <button type="submit" class="btn-login log-bg" style="margin-bottom: 1.5em;">Register</button>
+        <button type="button" class="btn-login log-bg" onclick="location.href = './dashboard';return false;">Cancel</button>
+      </form>
+  </div>
+
 </body>
 
+
+{{#if registerSuccess}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Register Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if registerUsernameExists}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("The username already exists");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
