@@ -53,7 +53,11 @@ app.use('/api/patient', router)
 // the record routes are added to the end of the '/record' path
 app.use('/api/record', recordRouter)
 
-
+app.get('/register',(req,res)=>{
+    res.render('register.hbs',{
+        style:'login.css'
+    })
+})
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
 })

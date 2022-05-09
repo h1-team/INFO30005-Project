@@ -22,8 +22,8 @@ const isAuthenticated = (req, res, next) => {
 
 homeRouter.get('/', homeController.welcome)
 // turn on after finsih login
-homeRouter.get('/insert',isAuthenticated, homeController.insert)
-//homeRouter.get('/insert', homeController.insert)
+// homeRouter.get('/insert',isAuthenticated, homeController.insert)
+homeRouter.get('/insert', homeController.insert)
 
 homeRouter.get('/login', homeController.login)
 
@@ -43,9 +43,9 @@ homeRouter.get('/aboutdia', homeController.aboutdia)
 homeRouter.get('/aboutdia2', homeController.aboutdia2)
 
 // turn on after finsih login
-homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
-//homeRouter.get('/homepage', homeController.homepage)
+// homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
+homeRouter.get('/homepage', homeController.homepage)
 
 homeRouter.get('/dashboard', patientController.getAllPatientRecordToday)
-homeRouter.get('/register', homeController.register)
+
 module.exports = homeRouter
