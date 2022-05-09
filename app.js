@@ -56,6 +56,19 @@ app.use('/api/clinician', clinicianRouter)
 app.use('/api/patient', patientRouter)
 app.use('/api/record', recordRouter)
 
+<<<<<<< HEAD
+=======
+app.get('/register',(req,res)=>{
+    res.render('register.hbs',{
+        style:'login.css'
+    })
+})
+app.get('/doctor',(req,res)=>{
+    res.render('doctor.hbs',{
+        style:'doctor_home.css'
+    })
+})
+>>>>>>> 97080af927cf6cca9bb758b3661ae4d8e000e290
 app.listen(process.env.PORT || 3000, () => {
     console.log('demo is listening on port 3000!')
 })

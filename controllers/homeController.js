@@ -55,7 +55,7 @@ const aboutdia2 =  (req, res) => {
 const homepage = async (req, res) => {
     try {
         const data = {
-            patientId: '62694cb55403b01e62571abd',
+            patientId: req.user._id,
             recordDate: utils.getMelbDate(),
         }
 
@@ -66,6 +66,7 @@ const homepage = async (req, res) => {
         })
         res.render('homepage.hbs', {
             status: status.data,
+            name:req.user.name,
             style: 'homepage.css',
         })
     } catch (error) {
