@@ -61,12 +61,13 @@ const register = async (req, res) => {
     }
 
     // add new patient
-
     const newPatient = new Patient()
     Object.assign(newPatient, req.body)
     await newPatient.save().then()
-    .catch((err) => res.send(err))
-    ///////////////////catch里加一个render 如果病人添加失败的情况
+    .catch((err) => 
+    res.send(err)
+       .render("register.hbs", { registerFailure: true })
+    )
     
     // insert patient into clinician's patientList
     const clinicianId = "62791ae11515ffb0ad2fcf07"
