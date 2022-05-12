@@ -5,18 +5,20 @@ axios.defaults.baseURL = 'http://localhost:3000/api'
 
 
 
-const welcome =  (req, res) => {
+const welcome = (req, res) => {
     res.render('welcome.hbs', {
         style: 'welcome.css',
     })
 }
 
 const insert = async (req, res) => {
+    const userID = req.session.passport ? req.session.passport.user : ''
     const record = await axios({
         url: '/record/getOneRecord',
         method: 'POST',
         data: {
-            patientId: '62779e55ef8bd14bb5143922',
+            patientId: userID,
+            // patientId: '62779e55ef8bd14bb5143922',
             recordDate: utils.getMelbDate(),
         },
     })
@@ -44,46 +46,89 @@ const insert = async (req, res) => {
     res.render('insert.hbs', {
         style: 'insert.css',
         record: data,
-        state
+        state,
+        userID
     })
 }
 
 
 const leaderboard = async (req, res) => {
-    const patient = await axios({
-        url: '/patient/getEngagement',
-        methods: "post",
-    })
-
-    console.log(patient.data);
-    //create a list to store rank
-    let list = []
-    // count the num of users
-    let userCount = 0
-    if (patient.data) {
-        // { username: 'chris123', rate: 1 },
-        userCount = patient.data.length
-        list = patient.data
-            //filter the engagement rate which is greater than or equal to 0.8 
-            .filter(item => item.rate >= 0.8)
-            // then sort the list, only get five users 
-            .sort((a, b) => b - a).splice(0,5)
-        //present the rank
-        list.forEach((item, index) => {
-            item.ranke = index + 1
-            item.rate *= 100
+    try {
+        //log in this user_id
+        const userID = req.session.passport ? req.session.passport.user : ''
+        // send request
+        const patient = await axios({
+            url: '/patient/getEngagement',
+            methods: "post",
         })
+        //Array to store temp data
+        let tempList = []
+        //Array to render data list
+        let list = []
+        //current user info
+        let activeUserInfo = {}
+        // count the num of users
+        let userCount = 0
+        if (patient.data) {
+            // { username: 'chris123', rate: 1 },
+            userCount = patient.data.length
+            //Get current user info
+            tempList = patient.data
+                .sort((a, b) => {
+                    if (a.rate == b.rate) {
+                        return a.rate - b.rate
+                    }
+                    return b.rate - a.rate
+                })
+            //reset the rank info
+            for (let n = 0; n < tempList.length; n++) {
+                //Set the default ranking attribute, the information of the
+                //first object starts from 1 by default, and the subsequent ones increase in turn
+                tempList[n].rank = n == 0 ? 1 : tempList[n - 1].rank + 1
+                //Judge if it is not the first object
+                if (n != 0) {
+                    //last user info
+                    let a = tempList[n - 1]
+                    //current user info
+                    let b = tempList[n]
+                    //Determine whether the current and previous information rates are equal, 
+                    //if they are equal, set the same ranking
+                    if (a.rate == b.rate) {
+                        b.rank = a.rank
+                    }
+                }
+
+                //extract the users whose engagement rate is greater than or equal to 0.8
+                if (tempList[n].rate >= 0.8) {
+                    list.push(tempList[n])
+                }
+                // rate* 100
+                console.log(tempList[n].rate);
+                tempList[n].rate =  parseInt(parseInt(tempList[n].rate)*100)
+                //Judging that the user id cannot be empty and the user
+                // id must be the same as an item in the loop,
+                if (tempList[n]._id == userID && userID) {
+                    //Assign to the current user object
+                    activeUserInfo = {
+                        ...tempList[n],
+                        show: tempList[n].rate >= 0.8 ? "" : "hide"
+                    }
+                }
+            }
+
+        }
+        res.render('leaderboard.hbs', {
+            style: 'leaderboard.css',
+            //the list need to render
+            list,
+            //that user rank
+            activeUserInfo,
+            // total number of users
+            userCount
+        })
+    } catch (err) {
+        console.log(err);
     }
-    res.render('leaderboard.hbs', {
-        style: 'leaderboard.css',
-        list,
-        //that user engagement rate
-        thisRate: 60,
-        //that user rank
-        thisRank: 1,
-        // total number of users
-        userCount
-    })
 }
 
 const login = (req, res) => {
@@ -99,19 +144,19 @@ const aboutweb = (req, res) => {
     })
 }
 
-const aboutweb2 =  (req, res) => {
+const aboutweb2 = (req, res) => {
     res.render('aboutweb2.hbs', {
         style: 'about.css',
     })
 }
 
-const aboutdia =  (req, res) => {
+const aboutdia = (req, res) => {
     res.render('aboutdia.hbs', {
         style: 'about.css',
     })
 }
 
-const aboutdia2 =  (req, res) => {
+const aboutdia2 = (req, res) => {
     res.render('aboutdia2.hbs', {
         style: 'about.css',
     })
@@ -133,7 +178,7 @@ const homepage = async (req, res) => {
         })
         res.render('homepage.hbs', {
             status: status.data,
-            name:req.user.name,
+            name: req.user.name,
             style: 'homepage.css',
         })
     } catch (error) {

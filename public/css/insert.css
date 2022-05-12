@@ -104,7 +104,12 @@ li a{
 .insertBox .form-group .comment {
     width: 150px;
 }
-
+.show{
+    display: block;
+}
+.insertBox .hidden{
+    display: none;
+}
 @media screen and (max-width:768px) {
     .insertBox .left {
         display: none;

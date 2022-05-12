@@ -1,6 +1,10 @@
 // import demo model
-const { Patient } = require('../models/db.js')
-const { Record } = require('../models/db.js')
+const {
+    Patient
+} = require('../models/db.js')
+const {
+    Record
+} = require('../models/db.js')
 const utils = require('../utils/utils.js')
 const findAll = async (req, res) => {
     result = await Patient.find()
@@ -8,7 +12,9 @@ const findAll = async (req, res) => {
 }
 
 const findOneById = async (req, res) => {
-    result = await Patient.findOne({ username: req.params.username }, {})
+    result = await Patient.findOne({
+        username: req.params.username
+    }, {})
     res.send(result)
 }
 
@@ -21,7 +27,9 @@ const addOne = async (req, res) => {
 
 const editOne = async (req, res) => {
     console.log('editing patient ' + req.params.username)
-    patient = await Patient.findOne({ username: req.params.username }, {})
+    patient = await Patient.findOne({
+        username: req.params.username
+    }, {})
     if (!patient) {
         res.status(404).send('patient not found')
         return
@@ -34,13 +42,17 @@ const editOne = async (req, res) => {
 }
 
 const deleteOne = async (req, res) => {
-    result = await Patient.findOne({ username: req.params.username }, {})
+    result = await Patient.findOne({
+        username: req.params.username
+    }, {})
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     console.log('deleting patient ' + req.params.username)
-    await Patient.deleteOne({ username: req.params.username }, {})
+    await Patient.deleteOne({
+        username: req.params.username
+    }, {})
     result = await Patient.find()
     res.send(result)
 }
@@ -67,33 +79,39 @@ const getAllPatientRecordToday = async (req, res) => {
         tmr.setDate(today.getDate() + 1)
         const record = await Record.findOne({
             patientId: result[i]._id,
-            recordDate: { $gte: today, $lt: tmr },
+            recordDate: {
+                $gte: today,
+                $lt: tmr
+            },
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
-        var glucose =null, weight=null, insulin=null, exercise=null
+        var glucose = null,
+            weight = null,
+            insulin = null,
+            exercise = null
         if (record) {
-            if(result[i].needGlucose){
+            if (result[i].needGlucose) {
                 glucoseStatus = record.data.glucose.status
                 glucose = record.data.glucose.data
-            }else{
+            } else {
                 glucoseStatus = 'NO_NEED'
             }
-            if(result[i].needExecrise){
+            if (result[i].needExecrise) {
                 exerciseStatus = record.data.exercise.status
                 exercise = record.data.exercise.data
-            }else{
+            } else {
                 exerciseStatus = 'NO_NEED'
             }
-            if(result[i].needInsulin){
+            if (result[i].needInsulin) {
                 insulinStatus = record.data.insulin.status
                 insulin = record.data.insulin.data
-            }else{
+            } else {
                 insulinStatus = 'NO_NEED'
             }
-            if(result[i].needWeight){
+            if (result[i].needWeight) {
                 weightStatus = record.data.weight.status
                 weight = record.data.weight.data
-            }else{
+            } else {
                 weightStatus = 'NO_NEED'
             }
         } else {
@@ -154,10 +172,12 @@ const getAllPatientRecordToday = async (req, res) => {
         }
     }
     // res.send(arr)
-    return res.render('dashboard', { patient: arr })
+    return res.render('dashboard', {
+        patient: arr
+    })
 }
 
-const getEngagement= async (req, res) => {
+const getEngagement = async (req, res) => {
     result = await Patient.find()
     if (!result) {
         res.status(404).send([])
@@ -168,15 +188,18 @@ const getEngagement= async (req, res) => {
     for (var i = 0; i < result.length; i++) {
         var create = new Date(result[i].create_date)
         var time_diff = today - create
-        var day = Math.floor(time_diff/86400000) + 1
+        var day = Math.floor(time_diff / 86400000) + 1
         count = 0
-        for(var j=0;j<result[i].records.length;j++){
-            if(result[i].records[j].isDone){
-                count +=1
+        for (var j = 0; j < result[i].records.length; j++) {
+            if (result[i].records[j].isDone) {
+                count += 1
             }
         }
-        arr.push({"username":result[i].username,
-                    "rate":count/day})
+        arr.push({
+            "username": result[i].username,
+            "_id": result[i]._id,
+            "rate": count / day
+        })
 
 
 

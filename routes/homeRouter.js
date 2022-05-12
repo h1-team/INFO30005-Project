@@ -45,6 +45,6 @@ homeRouter.get('/aboutdia2', homeController.aboutdia2)
 
 // turn on after finsih login
 // homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
-homeRouter.get('/homepage', homeController.homepage)
+homeRouter.get('/homepage', isAuthenticated,homeController.homepage)
 
 module.exports = homeRouter

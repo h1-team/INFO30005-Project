@@ -4,13 +4,23 @@
       <div class="left">
         <div class="title">
           <p>
-            Your engagement rate currently is {{thisRate}}%
+            Your engagement rate currently is
+            {{activeUserInfo.rate}}
+            %
           </p>
           <p>
-            Your rank is No.{{thisRank}} out of {{userCount}} users
+            Your rank is No.
+            {{activeUserInfo.rank}}
+            out of
+            {{userCount}}
+            users
           </p>
           <p>
             You have won this week's medal! keep going!
+            
+              <span class="icon {{activeUserInfo.show}}">
+              <img src="/icon/medal.svg">
+            </span>
           </p>
         </div>
         <div class="content">
@@ -30,20 +40,27 @@
             </thead>
             <tbody>
               {{#each list}}
-              {{#with this}}
-              <tr>
-                <td>{{ranke}}</td>
-                <td>{{username}}</td>
-                <td>{{rate}}%</td>
-              </tr>
-              {{/with}}
+                {{#with this}}
+                  <tr>
+                    <td>
+                      {{rank}}
+                    </td>
+                    <td>
+                      {{username}}
+                    </td>
+                    <td>
+                      {{rate}}
+                      %
+                    </td>
+                  </tr>
+                {{/with}}
               {{/each}}
             </tbody>
           </table>
         </div>
       </div>
       <div class="right">
-        <img src="/picture/istockphoto-1282822649-170667a.jpeg" alt="">
+        <img src="/picture/istockphoto-1282822649-170667a.jpeg" alt="" />
       </div>
     </div>
   </div>

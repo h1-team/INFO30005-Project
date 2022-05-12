@@ -54,6 +54,9 @@
 .box .right img {
   height: 100%;
 }
+.box .hide{
+  display: none;
+}
 
 
 @media screen and (max-width:768px) {

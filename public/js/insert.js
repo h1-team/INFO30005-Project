@@ -4,7 +4,9 @@ axios.defaults.baseURL = '/api'
 insertForm.addEventListener('submit', async function (e) {
     e.preventDefault()
     const data = {
-        patientId: '62779e55ef8bd14bb5143922',
+        //patientId: '62779e55ef8bd14bb5143922',
+        patientId: userID,
+        //recordDate: utils.getMelbDate(),
         recordDate: getTime(),
         data: {
             glucose: {
