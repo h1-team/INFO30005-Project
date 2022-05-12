@@ -50,7 +50,11 @@ const insert = async (req, res) => {
         userID
     })
 }
+function fomatFloat(src,pos){
 
+    return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+    
+    }
 
 const leaderboard = async (req, res) => {
     try {
@@ -103,8 +107,10 @@ const leaderboard = async (req, res) => {
                     list.push(tempList[n])
                 }
                 // rate* 100
+                //console.log(tempList[n].rate);
+                tempList[n].rate =  tempList[n].rate*100
+                tempList[n].rate = fomatFloat(tempList[n].rate,0)
                 console.log(tempList[n].rate);
-                tempList[n].rate =  parseInt(parseInt(tempList[n].rate)*100)
                 //Judging that the user id cannot be empty and the user
                 // id must be the same as an item in the loop,
                 if (tempList[n]._id == userID && userID) {
