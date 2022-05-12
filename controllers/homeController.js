@@ -117,7 +117,7 @@ const leaderboard = async (req, res) => {
                     //Assign to the current user object
                     activeUserInfo = {
                         ...tempList[n],
-                        show: tempList[n].rate >= 0.8 ? "" : "hide"
+                        show: tempList[n].rate >= 80 ? "" : "hide"
                     }
                 }
             }
