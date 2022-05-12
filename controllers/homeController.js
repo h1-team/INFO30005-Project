@@ -1,9 +1,7 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
-// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+//axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
 axios.defaults.baseURL = 'http://localhost:3000/api'
-
-
 
 const welcome = (req, res) => {
     res.render('welcome.hbs', {
@@ -143,7 +141,6 @@ const login = (req, res) => {
     })
 }
 
-
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
@@ -168,8 +165,6 @@ const aboutdia2 = (req, res) => {
     })
 }
 
-
-
 const homepage = async (req, res) => {
     try {
         const data = {
@@ -192,7 +187,6 @@ const homepage = async (req, res) => {
         res.send('404 Error')
     }
 }
-
 
 module.exports = {
     welcome,

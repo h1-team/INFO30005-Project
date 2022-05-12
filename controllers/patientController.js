@@ -22,7 +22,10 @@ const addOne = async (req, res) => {
     console.log('adding patient')
     const newPatient = new Patient()
     Object.assign(newPatient, req.body)
-    return await newPatient.save()
+    await newPatient
+        .save()
+        .then((result) => res.send(result))
+        .catch((err) => res.send(err))
 }
 
 const editOne = async (req, res) => {
@@ -206,12 +209,7 @@ const getEngagement = async (req, res) => {
     }
     arr.sort((a, b) => b.rate - a.rate)
     res.send(arr)
-
-
 }
-
-
-
 
 function formatDate(date) {
     var d = new Date(date),

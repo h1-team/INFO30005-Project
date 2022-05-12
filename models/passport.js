@@ -21,21 +21,25 @@ passport.deserializeUser((userId, done) => {
 var strategy = new LocalStrategy((username, password, cb) => {
     // first, check if there is a user in the db with this username
     Patient.findOne({ name: username }, {}, {}, (err, user) => {
-        console.log("strategy")
-        if (err) { return cb(null, false, { message: 'Unknown error.' }) }
+        console.log('strategy')
+        if (err) {
+            return cb(null, false, { message: 'Unknown error.' })
+        }
         if (!user) {
-            console.log("no user")
+            console.log('no user')
             return cb(null, false, { message: 'Incorrect username.' })
         }
         // if there is a user with this username, check if the password matches
-        console.log("yes user")
+        console.log('yes user')
         user.verifyPassword(password, (err, valid) => {
-            if (err) { return cb(null, false, { message: 'Unknown error.' }) }
+            if (err) {
+                return cb(null, false, { message: 'Unknown error.' })
+            }
             if (!valid) {
-                console.log("no pw")
+                console.log('no pw')
                 return cb(null, false, { message: 'Incorrect password.' })
             }
-            console.log("success")
+            console.log('success')
             return cb(null, user)
         })
     })

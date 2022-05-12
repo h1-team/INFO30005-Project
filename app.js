@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
 var path = require('path')
-const flash = require('express-flash') 
+const flash = require('express-flash')
 const homeRouter = require('./routes/homeRouter.js')
 const session = require('express-session')
 const clinicianRouter = require('./routes/clinicianRouter.js')
@@ -25,7 +25,7 @@ app.use(
             sameSite: 'strict',
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 300000 // sessions expire after 5 minutes
+            maxAge: 300000, // sessions expire after 5 minutes
         },
     })
 )
@@ -51,7 +51,7 @@ app.use(express.json()) // needed if POST data is in JSON format
 app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
 app.use(express.static('./public'))
 
-app.use('/',homeRouter)
+app.use('/', homeRouter)
 app.use('/api/clinician', clinicianRouter)
 app.use('/api/patient', patientRouter)
 app.use('/api/record', recordRouter)
