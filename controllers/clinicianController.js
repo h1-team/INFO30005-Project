@@ -1,7 +1,21 @@
 const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const patientController = require('../controllers/patientController')
-
+const doctorhome = (req, res) => {
+    res.render('home.hbs', {
+        style: 'doctor.css',
+    })
+}
+const doctor_login = (req, res) => {
+    res.render('doc_login.hbs', {
+        style: 'login.css',
+    })
+}
+const doctor = (req, res) => {
+    res.render('doctor.hbs', {
+        style: 'doctor_home.css',
+    })
+}
 const findAll = async (req, res) => {
     result = await Clinician.find()
     res.send(result)
@@ -89,5 +103,8 @@ module.exports = {
     deleteOne,
     renderRegister,
     register,
-    clinical_note
+    clinical_note,
+    doctorhome,
+    doctor_login,
+    doctor
 }

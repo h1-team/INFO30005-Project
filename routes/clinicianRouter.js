@@ -1,5 +1,4 @@
 const express = require('express')
-
 // create clinician Router object
 const clinicianRouter = express.Router()
 
@@ -12,7 +11,9 @@ clinicianRouter.get('/findOne/:username', clinicianController.findOneById)
 clinicianRouter.post('/addOne', clinicianController.addOne)
 clinicianRouter.put('/editOne/:username', clinicianController.editOne)
 clinicianRouter.delete('/deleteOne/:username', clinicianController.deleteOne)
-
+clinicianRouter.get('/', clinicianController.doctorhome)
+clinicianRouter.get('/login', clinicianController.doctor_login)
+clinicianRouter.get('/homepage',clinicianController.doctor)
 clinicianRouter.get('/dashboard', patientController.getAllPatientRecordToday)
 clinicianRouter.get('/register', clinicianController.renderRegister)
 clinicianRouter.post('/register', clinicianController.register)

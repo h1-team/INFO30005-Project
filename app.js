@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded 
 app.use(express.static('./public'))
 
 app.use('/', homeRouter)
-app.use('/api/clinician', clinicianRouter)
+app.use('/doctor', clinicianRouter)
 app.use('/api/patient', patientRouter)
 app.use('/api/record', recordRouter)
 
