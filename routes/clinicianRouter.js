@@ -1,7 +1,33 @@
 const express = require('express')
 // create clinician Router object
 const clinicianRouter = express.Router()
+const passport = require('../models/passport.js')
 
+clinicianRouter.use(passport.authenticate('session'))
+// Passport Authentication middleware
+const isAuthenticated = (req, res, next) => {
+    // If user is not authenticated via Passport, redirect to login page
+    console.log(req.user.role)
+    if(req.user.role == "clinician"){
+        if (!req.isAuthenticated()) {
+            console.log('not auth\n')
+            return res.redirect('/doctor/login')
+        }
+    
+        // Otherwise, proceed to next middleware function
+        console.log('yes auth\n')
+        return next()
+    }
+    res.status(404).send("incorrect role")
+}
+
+const isLogin = (req, res, next) => {
+    // If user is not authenticated via Passport, redirect to login page
+    if(req.isAuthenticated() && req.user.role == "clinician"){
+        return res.redirect('/homepage')
+    }
+    return next()
+}
 // import clinician controller functions
 const patientController = require('../controllers/patientController')
 const clinicianController = require('../controllers/clinicianController')
@@ -12,10 +38,22 @@ clinicianRouter.post('/addOne', clinicianController.addOne)
 clinicianRouter.put('/editOne/:username', clinicianController.editOne)
 clinicianRouter.delete('/deleteOne/:username', clinicianController.deleteOne)
 clinicianRouter.get('/', clinicianController.doctorhome)
-clinicianRouter.get('/login', clinicianController.doctor_login)
-clinicianRouter.get('/homepage',clinicianController.doctor)
-clinicianRouter.get('/dashboard', patientController.getAllPatientRecordToday)
-clinicianRouter.get('/register', clinicianController.renderRegister)
+clinicianRouter.get('/login', isLogin,clinicianController.doctor_login)
+
+clinicianRouter.post(
+    '/login',
+    passport.authenticate('clinician-login', {
+        failureRedirect: '/doctor/login',
+        failureFlash: true,
+    }), // if bad login, send user back to login page
+    (req, res) => {
+        res.redirect('/doctor/dashboard') // login was successful, send user to home page
+    }
+)
+
+clinicianRouter.get('/homepage', isAuthenticated, clinicianController.doctor)
+clinicianRouter.get('/dashboard',isAuthenticated, patientController.getAllPatientRecordToday)
+clinicianRouter.get('/register', isAuthenticated, clinicianController.renderRegister)
 clinicianRouter.post('/register', clinicianController.register)
 
 // export the clinician router

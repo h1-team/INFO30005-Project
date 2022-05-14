@@ -10,7 +10,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
-    isDone: { type: Boolean, default: false },
+    isEngaged: { type: Boolean, default: false },
     data: {
         glucose: {
             status: { type: String, enum: STATUS, default: 'UNRECORDED' },

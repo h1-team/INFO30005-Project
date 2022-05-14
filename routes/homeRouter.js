@@ -8,15 +8,27 @@ homeRouter.use(passport.authenticate('session'))
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
     console.log(req.user.role)
-    if (!req.isAuthenticated()) {
-        console.log('not auth\n')
-        return res.redirect('/login')
+    if(req.user.role == "patient"){
+        if (!req.isAuthenticated()) {
+            console.log('not auth\n')
+            return res.redirect('/login')
+        }
+        // Otherwise, proceed to next middleware function
+        console.log('yes auth\n')
+        return next()
     }
+    res.status(404).send("incorrect role")
+}
 
-    // Otherwise, proceed to next middleware function
-    console.log('yes auth\n')
+const isLogin = (req, res, next) => {
+    // If user is not authenticated via Passport, redirect to login page
+    if(req.isAuthenticated() && req.user.role == "patient"){
+        return res.redirect('/homepage')
+    }
     return next()
 }
+
+
 
 homeRouter.get('/', homeController.welcome)
 // turn on after finsih login
@@ -25,7 +37,7 @@ homeRouter.get('/insert',homeController.insert)
 
 homeRouter.get('/leaderboard', homeController.leaderboard)
 
-homeRouter.get('/login', homeController.login)
+homeRouter.get('/login', isLogin, homeController.login)
 
 homeRouter.post(
     '/login',
