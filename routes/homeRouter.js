@@ -7,6 +7,7 @@ homeRouter.use(passport.authenticate('session'))
 // Passport Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
+    console.log(req.user.role)
     if (!req.isAuthenticated()) {
         console.log('not auth\n')
         return res.redirect('/login')
@@ -28,7 +29,7 @@ homeRouter.get('/login', homeController.login)
 
 homeRouter.post(
     '/login',
-    passport.authenticate('local', {
+    passport.authenticate('patient-login', {
         failureRedirect: '/login',
         failureFlash: true,
     }), // if bad login, send user back to login page

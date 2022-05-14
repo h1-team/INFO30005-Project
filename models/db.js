@@ -41,6 +41,7 @@ const patientSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     address: { type: String, default: '' },
     dob: Date,
+    role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
     needExecrise: { type: Boolean, default: true },
@@ -60,6 +61,7 @@ patientSchema.methods.verifyPassword = function (password, callback) {
         callback(err, valid)
     })
 }
+
 
 const SALT_FACTOR = 10
 patientSchema.pre('save', function save(next) {
@@ -85,11 +87,39 @@ const clinicianSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     address: { type: String, default: '' },
     dob: Date,
+    role: { type: String, default: 'clinician' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
     create_date: { type: Date, default: utils.getMelbDate() },
     patients: [],
 })
+
+const SALT_FACTOR_C = 11
+
+clinicianSchema.pre('save', function save(next) {
+    const user = this
+    // Go to next if password field has not been modified
+    if (!user.isModified('password')) {
+        return next()
+    }
+    // Automatically generate salt, and calculate hash
+    bcrypt.hash(user.password, SALT_FACTOR_C, (err, hash) => {
+        if (err) {
+            return next(err)
+        }
+        // Replace password with hash
+        user.password = hash
+        next()
+    })
+})
+
+clinicianSchema.methods.verifyPassword = function (password, callback) {
+    bcrypt.compare(password, this.password, (err, valid) => {
+        callback(err, valid)
+    })
+}
+
+
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
