@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/clinical_note.css">
+{{> header}}
+<div class="grey-top">
+    <nav>
+        <ul >
+            <li><a class="top-anchor active">Clinical Notes</a></li>   
+            <li><a class="top-anchor">Display Data</a></li>
+            <li><a class="top-anchor">Modify Data</a></li>
+            <li><a class="top-anchor">Support Message</a></li>
+        </ul>  
+    </nav>  
+</div> 
+<div class="new">
+    <p class="date" id="date">Note on <script> date = new Date().toLocaleDateString();
+        document.write(date); </script></p>
+    <textarea id="note"></textarea>
+    <input type="button" value="submit note" id="submit">
+</div>

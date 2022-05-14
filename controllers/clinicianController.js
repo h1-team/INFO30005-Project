@@ -78,7 +78,9 @@ const register = async (req, res) => {
 
     return res.render('register.hbs', { registerSuccess: true })
 }
-
+const clinical_note = async (req, res) => {
+    return res.render('clinical_note.hbs')
+}
 module.exports = {
     findAll,
     findOneById,
@@ -87,4 +89,5 @@ module.exports = {
     deleteOne,
     renderRegister,
     register,
+    clinical_note
 }

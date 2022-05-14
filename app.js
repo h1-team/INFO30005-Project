@@ -44,7 +44,11 @@ app.engine(
         }
     })
 )
-
+app.get('/clinical_notes',(req,res)=>{
+    res.render('clinical_note.hbs',{
+        style:'clinical_note.css'
+    })
+})
 // set Handlebars view engine
 app.set('view engine', 'hbs')
 app.use(express.json()) // needed if POST data is in JSON format
