@@ -50,4 +50,7 @@ homeRouter.get('/aboutdia2', homeController.aboutdia2)
 homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
 // homeRouter.get('/homepage', homeController.homepage)
 
+
+homeRouter.get('/table', homeController.table)
+
 module.exports = homeRouter

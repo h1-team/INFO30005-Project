@@ -188,6 +188,12 @@ const homepage = async (req, res) => {
     }
 }
 
+const table = (req, res) => {
+    res.render('table.hbs', {
+        style: 'table.css',
+    })
+}
+
 module.exports = {
     welcome,
     insert,
@@ -197,5 +203,6 @@ module.exports = {
     aboutdia,
     aboutdia2,
     homepage,
-    leaderboard
+    leaderboard,
+    table
 }
