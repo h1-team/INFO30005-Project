@@ -66,6 +66,27 @@ button{
     margin-top: 2em;
     margin-left: 3em;
 }
+button.cancel{
+    margin-left: 18em;
+}
+.new{    
+    border-radius: 40px;
+    padding: 2.3rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: whitesmoke;
+    width: 50%;
+    height: 30%;
+    margin-top: 6.3em;
+    margin-left: 25%;
+    margin-right: 25%;
+    align-items: center;
+    min-width: 300px;
+}
+textarea{
+    padding: 2%;
+    width: 47vw;
+    height: 20vh;
+}
 
 .text{
     border-radius: 40px;
@@ -81,9 +102,9 @@ button{
       grid-template-columns: repeat(2, minmax(300px, 1fr));
     }
 
-      .footer-list-top {
+    .footer-list-top {
         width: 100%;
-      }
+    }
     
       .footer-list-header {
         text-align: center;

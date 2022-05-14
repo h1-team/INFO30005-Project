@@ -44,8 +44,8 @@ app.engine(
         }
     })
 )
-app.get('/clinical_notes',(req,res)=>{
-    res.render('clinical_note.hbs',{
+app.get('/new_note',(req,res)=>{
+    res.render('new_note.hbs',{
         style:'clinical_note.css'
     })
 })
