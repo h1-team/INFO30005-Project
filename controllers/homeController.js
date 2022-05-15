@@ -110,7 +110,7 @@ const leaderboard = async (req, res) => {
                 //console.log(tempList[n].rate);
                 tempList[n].rate =  tempList[n].rate*100
                 tempList[n].rate = fomatFloat(tempList[n].rate,0)
-                console.log(tempList[n].rate);
+                console.log(tempList[n].username,tempList[n].rate);
                 //Judging that the user id cannot be empty and the user
                 // id must be the same as an item in the loop,
                 if (tempList[n]._id == userID && userID) {
