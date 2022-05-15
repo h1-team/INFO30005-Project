@@ -6,7 +6,8 @@ insertForm.addEventListener('submit', async function (e) {
     const data = {
         //patientId: '62779e55ef8bd14bb5143922',
         patientId: userID,
-        recordDate: getMelbDate(),
+        //recordDate: getMelbDate(),
+        recordDate: getMelbDateTime(),
         
         //recordDate: getTime(),
         data: {
@@ -53,6 +54,15 @@ function getMelbDate() {
         day = '0' + day
     }
     return year + '-' + month + '-' + day
+}
+function getMelbDateTime() {
+    var timezone = 10
+    var offset_GMT = new Date().getTimezoneOffset()
+    var nowDate = new Date().getTime()
+    var date = new Date(
+        nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000
+    )
+    return date
 }
 
 function getTime() {

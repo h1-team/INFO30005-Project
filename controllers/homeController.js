@@ -11,14 +11,16 @@ const welcome = (req, res) => {
 }
 
 const insert = async (req, res) => {
-    const userID = req.session.passport ? req.session.passport.user : ''
+    //const userID = req.session.passport ? req.session.passport.user : ''
+    const userID = req.user._id
     const record = await axios({
         url: '/record/getOneRecord',
         method: 'POST',
         data: {
             patientId: userID,
             // patientId: '62779e55ef8bd14bb5143922',
-            recordDate: utils.getMelbDate(),
+            recordDate: utils.getMelbDateTime(),
+            
         },
     })
 
@@ -57,8 +59,12 @@ function fomatFloat(src,pos){
 
 const leaderboard = async (req, res) => {
     try {
+        //console.log(utils.getMelbDate())
+        //console.log(utils.getMelbDateTime())
         //log in this user_id
-        const userID = req.session.passport ? req.session.passport.user : ''
+        //const userID = req.session.passport ? req.session.passport.user : ''
+        const userID = req.user._id
+
         // send request
         const patient = await axios({
             url: '/patient/getEngagement',
