@@ -12,14 +12,16 @@ const welcome = (req, res) => {
 }
 
 const insert = async (req, res) => {
-    const userID = req.session.passport ? req.session.passport.user : ''
+    //const userID = req.session.passport ? req.session.passport.user : ''
+    const userID = req.user._id
     const record = await axios({
         url: '/record/getOneRecord',
         method: 'POST',
         data: {
             patientId: userID,
             // patientId: '62779e55ef8bd14bb5143922',
-            recordDate: utils.getMelbDate(),
+            recordDate: utils.getMelbDateTime(),
+            
         },
     })
 
@@ -58,8 +60,12 @@ function fomatFloat(src,pos){
 
 const leaderboard = async (req, res) => {
     try {
+        //console.log(utils.getMelbDate())
+        //console.log(utils.getMelbDateTime())
         //log in this user_id
-        const userID = req.session.passport ? req.session.passport.user : ''
+        //const userID = req.session.passport ? req.session.passport.user : ''
+        const userID = req.user._id
+
         // send request
         const patient = await axios({
             url: '/patient/getEngagement',
@@ -110,7 +116,7 @@ const leaderboard = async (req, res) => {
                 //console.log(tempList[n].rate);
                 tempList[n].rate =  tempList[n].rate*100
                 tempList[n].rate = fomatFloat(tempList[n].rate,0)
-                console.log(tempList[n].rate);
+                console.log(tempList[n].username,tempList[n].rate);
                 //Judging that the user id cannot be empty and the user
                 // id must be the same as an item in the loop,
                 if (tempList[n]._id == userID && userID) {
