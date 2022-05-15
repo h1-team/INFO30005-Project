@@ -7,18 +7,21 @@ clinicianRouter.use(passport.authenticate('session'))
 // Passport Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
-    console.log(req.user.role)
-    if(req.user.role == "clinician"){
+    try{
         if (!req.isAuthenticated()) {
             console.log('not auth\n')
             return res.redirect('/doctor/login')
         }
-    
+        console.log(req.user.role)
+        if(req.user.role == "clinician"){
         // Otherwise, proceed to next middleware function
-        console.log('yes auth\n')
-        return next()
+            console.log('yes auth\n')
+            return next()
+        }
+        return res.redirect('/doctor/login')
+    }catch(err){
+        res.status(404).send(err)
     }
-    res.status(404).send("incorrect role")
 }
 
 const isLogin = (req, res, next) => {
@@ -50,6 +53,7 @@ clinicianRouter.post(
         res.redirect('/doctor/dashboard') // login was successful, send user to home page
     }
 )
+clinicianRouter.post('/logout',isAuthenticated,clinicianController.logout)
 
 clinicianRouter.get('/homepage', isAuthenticated, clinicianController.doctor)
 clinicianRouter.get('/dashboard',isAuthenticated, patientController.getAllPatientRecordToday)

@@ -141,6 +141,11 @@ const login = (req, res) => {
     })
 }
 
+const logout = (req, res) => {
+    req.logout()
+    res.redirect("/login")
+}
+
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
@@ -204,5 +209,6 @@ module.exports = {
     aboutdia2,
     homepage,
     leaderboard,
-    table
+    table,
+    logout,
 }

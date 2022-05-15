@@ -95,6 +95,10 @@ const register = async (req, res) => {
 const clinical_note = async (req, res) => {
     return res.render('clinical_note.hbs')
 }
+const logout = (req, res) => {
+    req.logout()
+    res.redirect("/doctor/login")
+}
 module.exports = {
     findAll,
     findOneById,
@@ -106,5 +110,6 @@ module.exports = {
     clinical_note,
     doctorhome,
     doctor_login,
-    doctor
+    doctor,
+    logout,
 }
