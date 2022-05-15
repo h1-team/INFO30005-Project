@@ -66,10 +66,42 @@ h1{
     transition-property: all;
     transition-timing-function: line;
 }
-
-
-
-
 #alert{
     background-color: red;
+}
+header {
+    background-color: #3B7FD9;
+    height: 35px;
+    top: 0;
+    width: 100%;
+}
+.grey-top {
+    background-color: #E4E4E4;
+    height: 35px;
+    top: 0;
+    width: 100%;
+}
+nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+}
+.grey-top nav ul{
+    text-align: center;
+}
+.grey-top .top-anchor{
+    color: #000;
+}
+
+ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+}
+.top-anchor{
+    font: 0.7em normal, PT Serif;
+    color: white;
+  }
+.top-anchor.active{
+    color: #3B7FD9;
 }

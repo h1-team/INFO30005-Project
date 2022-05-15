@@ -1,5 +1,6 @@
 const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
+const { Record } = require('../models/db.js')
 const patientController = require('../controllers/patientController')
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
@@ -99,6 +100,29 @@ const logout = (req, res) => {
     req.logout()
     res.redirect("/doctor/login")
 }
+const table = async(req, res) => {
+    try{
+        const table = await Record.find({patientId: '627f68e06aecfbc0f73ac661'}).lean()
+        //console.log(table)
+        for (var data of table) {
+            var d = data.recordDate
+            var date = d.getUTCDate();
+            var y = d.getFullYear();
+            var m = d.getMonth();
+            var monthArr = ["January", "February","March", "April", "May", "June", "July","August", "September", "October", "November","December"];
+            m = monthArr[m];
+            tableDate = m + "/" + date + "/" + y
+            //console.log(tableDate);
+            data.recordDate = tableDate
+        }
+        res.render('check_pat_data.hbs', {
+            style: 'table.css',
+            record: table,
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
 module.exports = {
     findAll,
     findOneById,
@@ -112,4 +136,5 @@ module.exports = {
     doctor_login,
     doctor,
     logout,
+    table
 }
