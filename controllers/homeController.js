@@ -203,7 +203,7 @@ const table = async(req, res) => {
             var date = d.getUTCDate();
             var y = d.getFullYear();
             var m = d.getMonth();
-            var monthArr = ["January", "February","March", "April", "May", "June", "July","August", "September", "October", "November","December"];
+            var monthArr = ["Jan.", "Feb.","Mar.", "Apr.", "May", "Jun.", "Jul.","Aug.", "Sep.", "Oct.", "Nov.","Dec."];
             m = monthArr[m];
             tableDate = m + "/" + date + "/" + y
             //console.log(tableDate);
