@@ -1,5 +1,6 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
+const { Record } = require('../models/db.js')
 //axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
 axios.defaults.baseURL = 'http://localhost:3000/api'
 
@@ -193,10 +194,28 @@ const homepage = async (req, res) => {
     }
 }
 
-const table = (req, res) => {
-    res.render('table.hbs', {
-        style: 'table.css',
-    })
+const table = async(req, res) => {
+    try{
+        const table = await Record.find({patientId: '627f68e06aecfbc0f73ac661'}).lean()
+        //console.log(table)
+        for (var data of table) {
+            var d = data.recordDate
+            var date = d.getUTCDate();
+            var y = d.getFullYear();
+            var m = d.getMonth();
+            var monthArr = ["January", "February","March", "April", "May", "June", "July","August", "September", "October", "November","December"];
+            m = monthArr[m];
+            tableDate = m + "/" + date + "/" + y
+            //console.log(tableDate);
+            data.recordDate = tableDate
+        }
+        res.render('table.hbs', {
+            style: 'table.css',
+            record: table,
+        })
+    }catch(err){
+        console.log(err)
+    }
 }
 
 module.exports = {
