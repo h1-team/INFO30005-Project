@@ -23,7 +23,7 @@ nav ul {
     color: #000;
 }
 
-nav ul li { 
+ul li { 
     display: inline-block; 
     margin-left: 10px;
 }
@@ -48,6 +48,7 @@ nav ul li {
 }
 body{
     background-color: #3B7FD9;
+    align-items: center;
 }
 .container {
     display: grid;
@@ -66,15 +67,21 @@ button{
     margin-top: 2em;
     margin-left: 3em;
 }
-button.cancel{
-    margin-left: 18em;
+.note-btn{
+    background: #3A855D;
+    border: 1px solid #707070;
+    color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 16px;
+    margin-left: -0.5em;
 }
 .new{    
+    width: fit-content;
     border-radius: 40px;
     padding: 2.3rem;
     border: 2px solid rgba(255, 255, 255, 0.6);
     background: whitesmoke;
-    width: 50%;
     height: 30%;
     margin-top: 6.3em;
     margin-left: 25%;
@@ -96,6 +103,42 @@ textarea{
 }
 .date{
     margin-bottom: 1.2em;
+}
+.message{
+    padding: 20%;
+    padding-top: 10%;
+    font-size: 9em;
+}
+h1{
+    font-size: 0.2em;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 0.7em;
+}
+.input{
+    float: left;
+}
+ul p{
+    border: #4b4b4b;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    margin: 0.5em;
+}
+
+input[type="checkbox" i]{
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+}
+.message button{
+    background: #3A855D;
+    border: 1px solid #707070;
+    color: #ffffff;
+    padding: 10px;
+    width: 70%;
+    border-radius: 16px;
 }
 @media all and (max-width: 1500px) {
     .container{

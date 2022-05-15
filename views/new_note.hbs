@@ -11,10 +11,14 @@
     </nav>  
 </div> 
 <div class="new">
+
     <p class="date" id="date">Note on <script> date = new Date().toLocaleDateString();
         document.write(date); </script></p>
-    <textarea id="note"></textarea>
-    <button type="button">Submit</button>
-    <button class="cancel" type="button" onclick="location.href = './clinical_note';return false;">Cancel</button>
+    <textarea id="note" name="note" placeholder="Enter clinician note(you can adjust comment box size)..."></textarea>
+    <button class="note-btn" type="button">Submit</button>
+    <button class="note-btn" type="button">Save</button>
+    <button class="note-btn" type="button" onclick="location.href = './clinical_note';return false;">Cancel</button>
+    
 </div>
+
 
