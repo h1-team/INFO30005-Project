@@ -44,9 +44,9 @@ app.engine(
         }
     })
 )
-app.get('/message',(req,res)=>{
-    res.render('message.hbs',{
-        style:'clinical_note.css'
+app.get('/viewdata',(req,res)=>{
+    res.render('check_pat_data.hbs',{
+        style:'table.css'
     })
 })
 // set Handlebars view engine
