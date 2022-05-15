@@ -46,6 +46,16 @@
   }
 </script>
 {{/if}}
+{{#if registerFailure}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("Fail to register");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
 {{#if registerUsernameExists}}
   <script>
     window.onload=function() {

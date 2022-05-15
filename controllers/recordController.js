@@ -55,9 +55,9 @@ const updateRecord = async (req, res) => {
             // update data
             console.log('updating record\n')
             Object.assign(record, req.body)
-            record.isDone = changeStatus(patient.needExecrise, record.data.exercise) &
-                            changeStatus(patient.needGlucose, record.data.glucose) &
-                            changeStatus(patient.needWeight, record.data.weight) &
+            record.isEngaged = changeStatus(patient.needExecrise, record.data.exercise) |
+                            changeStatus(patient.needGlucose, record.data.glucose) |
+                            changeStatus(patient.needWeight, record.data.weight) |
                             changeStatus(patient.needInsulin, record.data.insulin)
             patient.records[0] = record
             patient.save()
@@ -69,10 +69,11 @@ const updateRecord = async (req, res) => {
             //create new record
             newRecord = new Record()
             Object.assign(newRecord, req.body)
-            newRecord.isDone =changeStatus(patient.needExecrise, newRecord.data.exercise)&
-                            changeStatus(patient.needGlucose, newRecord.data.glucose)&
-                            changeStatus(patient.needWeight, newRecord.data.weight)&
-                            changeStatus(patient.needInsulin, newRecord.data.insulin)
+            newRecord.isEngaged =
+                changeStatus(patient.needExecrise, newRecord.data.exercise) |
+                changeStatus(patient.needGlucose, newRecord.data.glucose) |
+                changeStatus(patient.needWeight, newRecord.data.weight) |
+                changeStatus(patient.needInsulin, newRecord.data.insulin)
             patient.records.unshift(newRecord)
             patient.save()
             await newRecord
@@ -99,7 +100,7 @@ function changeStatus(isNeed, record) {
     } else {
         record.status = 'RECORDED'
     }
-    return record.status =='NO_NEED' || record.status =='RECORDED' 
+    return record.status == 'RECORDED'
 }
 
 const getRecordStatus = async (req, res) => {

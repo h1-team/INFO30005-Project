@@ -1,13 +1,13 @@
 
-{{!#with thisdoctor}}
+{{#with doctor}}
 <div class="container-block container-flexbox" >
 
       <!-- First column -->
       <div class="doc-col wel">
-        <h1 class="text-black">Welcome, Dr. {{!thisdoctor.name}}</h1>
+        <h1 class="text-black">Welcome, Dr. {{name}}</h1>
               <ul >
-                <li><img src="/icon/dashboard.svg"><a href="/inbox" class="item">Dashboard</a></li>   
-                <li><img src="/icon/inbox.svg"><a href="inbox" class="item">Inbox</a></li>
+                <li><img src="/icon/dashboard.svg"><a href="/dashboard" class="item">Dashboard</a></li>   
+                <li><img src="/icon/inbox.svg"><a href="/inbox" class="item">Inbox</a></li>
               </ul>   
       </div>
       <!-- second column -->
@@ -27,7 +27,7 @@
         </ul>            
       </div>
   </div>
-{{!/with}}  
+{{/with}}  
 <!--form class="logout" action="/logout" method="post">
     <button type="submit">Log Out</button>
 </form !-->

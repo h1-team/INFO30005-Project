@@ -23,7 +23,7 @@ body{
     border: 2px solid rgba(255, 255, 255, 0.6); 
     align-content: space-between;
     flex-wrap: nowrap;
-  padding: 5%;
+    padding: 5%;
 }
   .pat_bg{
     background: #6394d6; 
@@ -87,7 +87,7 @@ body{
     background: #57b382;;
   }
   @media all and (min-width: 880px) {
-    .login { width: 40% ;padding: 2%;/* min-width: 600px; */}
+    .login { width: 40% ;padding: 2%;}
   }
   @media all and (max-width: 880px) {
     .login { width: 50% }

@@ -22,7 +22,10 @@ const addOne = async (req, res) => {
     console.log('adding patient')
     const newPatient = new Patient()
     Object.assign(newPatient, req.body)
-    return await newPatient.save()
+    await newPatient
+        .save()
+        .then((result) => res.send(result))
+        .catch((err) => res.send(err))
 }
 
 const editOne = async (req, res) => {
@@ -191,27 +194,34 @@ const getEngagement = async (req, res) => {
         var day = Math.floor(time_diff / 86400000) + 1
         count = 0
         for (var j = 0; j < result[i].records.length; j++) {
-            if (result[i].records[j].isDone) {
+            if (result[i].records[j].isEngaged) {
                 count += 1
             }
+        }
+        update_time = null
+        if(result[i].records.length>0){
+            update_time = result[i].records[0].recordDate
         }
         arr.push({
             "username": result[i].username,
             "_id": result[i]._id,
-            "rate": count / day
+            "rate": count / day,
+            "update_time" : update_time
         })
 
 
-
     }
-    arr.sort((a, b) => b.rate - a.rate)
+    arr.sort((a, b) => {
+        if(a.rate == b.rate){
+            a_time = new Date(a.update_time)
+            b_time = new Date(b.update_time)
+            return b_time-a_time
+        }
+        return b.rate - a.rate})
+
+    console.log(arr)
     res.send(arr)
-
-
 }
-
-
-
 
 function formatDate(date) {
     var d = new Date(date),

@@ -1,0 +1,190 @@
+header {
+    background-color: #3B7FD9;
+    height: 35px;
+    top: 0;
+    width: 100%;
+}
+.grey-top {
+    background-color: #E4E4E4;
+    height: 35px;
+    top: 0;
+    width: 100%;
+}
+nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+}
+.grey-top nav ul{
+    text-align: center;
+}
+.grey-top .top-anchor{
+    color: #000;
+}
+
+ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+*.info{
+    font-family: "PT Serif";
+    font-weight: normal;
+    color: #4b4b4b;
+}
+.top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: white;
+}
+.top-anchor.active{
+    color: #3B7FD9;
+}
+* { 
+    box-sizing: border-box; 
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #3B7FD9;
+    align-items: center;
+}
+.container {
+    display: grid;
+    
+    grid-auto-rows: minmax(200px, auto);
+    grid-gap: 40px;
+    padding: 2.2em;
+} 
+button{
+    background: whitesmoke;
+    border: 1px solid #707070;
+    color: black;
+    padding: 10px;
+    width: 7em;
+    border-radius: 16px;
+    margin-top: 2em;
+    margin-left: 3em;
+}
+.note-btn{
+    background: #3A855D;
+    border: 1px solid #707070;
+    color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 16px;
+    margin-left: -0.5em;
+}
+.new{    
+    width: fit-content;
+    border-radius: 40px;
+    padding: 2.3rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: whitesmoke;
+    height: 30%;
+    margin-top: 6.3em;
+    margin-left: 25%;
+    margin-right: 25%;
+    align-items: center;
+    min-width: 300px;
+}
+textarea{
+    padding: 2%;
+    width: 47vw;
+    height: 20vh;
+}
+
+.text{
+    border-radius: 40px;
+    padding: 2.3rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: whitesmoke;
+}
+.date{
+    margin-bottom: 1.2em;
+}
+.message{
+    padding: 20%;
+    padding-top: 10%;
+    font-size: 9em;
+}
+h1{
+    font-size: 0.2em;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 0.7em;
+}
+.input{
+    float: left;
+}
+ul p{
+    border: #4b4b4b;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    margin: 0.5em;
+}
+
+input[type="checkbox" i]{
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+}
+.message button{
+    background: #3A855D;
+    border: 1px solid #707070;
+    color: #ffffff;
+    padding: 10px;
+    width: 70%;
+    border-radius: 16px;
+}
+@media all and (max-width: 1500px) {
+    .container{
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+
+    .footer-list-top {
+        width: 100%;
+    }
+    
+      .footer-list-header {
+        text-align: center;
+        font-size: 1em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1em;
+      }
+  
+  }
+
+  
+  @media only screen and (max-width: 840px) {
+    .container{
+      grid-template-columns: repeat(1, minmax(300px, 1fr));
+    }
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      text-align: center;
+      font-size: 1.5em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.2em;
+    }
+  
+    
+  }
+
+  
+    @font-face
+  {
+      font-family: Tahoma;
+          src: url('Tahoma Regular font.ttf');
+  }
+
