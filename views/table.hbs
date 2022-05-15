@@ -15,39 +15,56 @@
     </thead>
 
     <tbody>
+    {{#each record}}
         <tr>
-            <td> Apr/8/2022</td>
-            <td> 115</td>
-            <td> 90</td>
-            <td> 2 </td>
-            <td> 1100</td>
-        </tr>
+            <td> {{this.recordDate}}</td>
 
-        <tr>
-            <td> Apr/7/2022</td>
-            <td> 115</td>
-            <td> 90</td>
-            <td> 2 </td>
-            <td> 1100</td>
-        </tr>
+            {{#if (isunrecord this.data.glucose.status)}}
+                <td>Unrecorded</td>
+            {{else if (isalert this.data.glucose.status)}}
+                <td id = 'alert'> {{this.data.glucose.data}}</td>
+            {{else if (isnoneed this.data.glucose.status)}}
+                <td>Not required</td>
+            {{else}}
+                <td> {{this.data.glucose.data}}</td>
+            {{/if}}
 
-        <tr>
-            <td> Apr/6/2022</td>
-            <td> 115</td>
-            <td> 90</td>
-            <td> 2 </td>
-            <td> 1100</td>
-        </tr>
+            {{#if (isunrecord this.data.weight.status)}}
+                <td>Unrecorded</td>
+            {{else if (isalert this.data.weight.status)}}
+                <td id = 'alert'> {{this.data.weight.data}}</td>
+            {{else if (isnoneed this.data.weight.status)}}
+                <td>Not required</td>
+            {{else}}
+                <td> {{this.data.weight.data}}</td>
+            {{/if}}
 
-         <tr>
-            <td> Apr/5/2022</td>
-            <td> 115</td>
-            <td> 90</td>
-            <td> 2 </td>
-            <td> 1100</td>
-        </tr>
 
+            {{#if (isunrecord this.data.insulin.status)}}
+                <td>Unrecorded</td>
+            {{else if (isalert this.data.insulin.status)}}
+                <td id = 'alert'> {{this.data.insulin.data}}</td>
+            {{else if (isnoneed this.data.insulin.status)}}
+                <td>Not required</td>
+            {{else}}
+                <td> {{this.data.insulin.data}}</td>
+            {{/if}}
+
+
+            {{#if (isunrecord this.data.exercise.status)}}
+                <td>Unrecorded</td>
+            {{else if (isalert this.data.exercise.status)}}
+                <td id = 'alert'> {{this.data.exercise.data}}</td>
+            {{else if (isnoneed this.data.exercise.status)}}
+                <td>Not required</td>
+            {{else}}
+                <td> {{this.data.exercise.data}}</td>
+            {{/if}}
+
+        </tr>
+    {{/each}}
     </tbody>
+
     
 </table>
 
