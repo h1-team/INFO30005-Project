@@ -1,17 +1,53 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    line-height: 1.42em;
+    margin: 0;
+}
+
+header h1 {
+    text-align: center;
+    background-color: #2D63AB;
+    color: white;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 2em;
+}
+
+ul{
+    list-style-type: none;
+    padding:0;
+    padding-top: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 12em;
+    background: #EBEBEB;
+    text-align: center;
+    height: 15em;
+}
+
+li{
+    margin-bottom: 17px;
+}
+
+li a{
+    color: black;
+    text-decoration: none;
 }
 
 h1{
     color: #F2B705;
     font-size: 5em;
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     margin-left: 1em;
 }
 
+p{
+    font-size: 2em;
+    margin-left: 2.5em;
+    margin-bottom: 1.5em;
+}
 
 .datatable {
     text-align: left;
@@ -67,9 +103,47 @@ h1{
     transition-timing-function: line;
 }
 
-
-
-
 #alert{
     background-color: red;
+}
+
+
+
+@media screen and (max-width: 1024px){
+    .datatable{
+        font-size: 1em;
+    }
+
+    h1{
+        font-size: 2.5em;
+    }
+
+    p{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 375px){
+    h1{
+        font-size: 2em;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    p{
+        font-size: 1em;
+        margin: 0;
+        text-align: center;
+    }
+
+    .datatable{
+        font-size: 5px;
+        width: 97%;
+    }
+
+    .datatable td{
+        padding-left: 0;
+        text-align: center;
+    }
+
 }
