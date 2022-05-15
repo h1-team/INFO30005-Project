@@ -1,6 +1,7 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
 const { Record } = require('../models/db.js')
+const {Patient} = require('../models/db.js')
 //axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
 axios.defaults.baseURL = 'http://localhost:3000/api'
 
@@ -196,10 +197,14 @@ const homepage = async (req, res) => {
 
 const table = async(req, res) => {
     try{
-        const table = await Record.find({patientId: '627f68e06aecfbc0f73ac661'}).lean()
-        //console.log(table)
-        for (var data of table) {
-            var d = data.recordDate
+        const table = await Record.find({patientId: req.user._id}).lean()
+        const patient =  await Patient.findOne({_id: req.user._id}).lean()
+        console.log(patient.username)     
+        console.log(req.user._id)   
+        for (var record of table) {
+
+            // date formatting
+            var d = record.recordDate
             var date = d.getUTCDate();
             var y = d.getFullYear();
             var m = d.getMonth();
@@ -207,14 +212,62 @@ const table = async(req, res) => {
             m = monthArr[m];
             tableDate = m + "/" + date + "/" + y
             //console.log(tableDate);
-            data.recordDate = tableDate
+            record.recordDate = tableDate
+
+
+            // indentify alert data
+            var glucose = record.data.glucose.data
+            var glucoseStatus = record.data.glucose.status
+            var thresholdGlucose = patient.thresholdGlucose
+
+            if (glucoseStatus == 'RECORDED' &&
+                (glucose < thresholdGlucose * 0.9 ||
+                    glucose > thresholdGlucose * 1.1)
+            ) {
+                record.data.glucose.status = 'ALERT'
+            }
+
+            var weight = record.data.weight.data
+            var weightStatus = record.data.weight.status
+            var thresholdWeight = patient.thresholdWeight
+
+            if (weightStatus == 'RECORDED' &&
+                (weight < thresholdWeight * 0.9 || weight > thresholdWeight * 1.1)
+            ) {
+                record.data.weight.status = 'ALERT'
+            }
+
+            var insulin = record.data.insulin.data
+            var insulinStatus = record.data.insulin.status
+            var thresholdInsulin = patient.thresholdInsulin
+
+            if (insulinStatus == 'RECORDED' &&
+                (insulin < thresholdInsulin * 0.9 ||
+                    insulin > thresholdInsulin * 1.1)
+            ) {
+                record.data.insulin.status = 'ALERT'
+            }
+
+            var exercise = record.data.exercise.data
+            var exerciseStatus = record.data.exercise.status
+            var thresholdExecrise = patient.thresholdExecrise
+
+            if (exerciseStatus == 'RECORDED' &&
+                (exercise < thresholdExecrise * 0.9 ||
+                    exercise > thresholdExecrise * 1.1)
+            ) {
+                record.data.exercise.status = 'ALERT'
+            }
+
         }
         res.render('table.hbs', {
             style: 'table.css',
             record: table,
+            name: patient.username
         })
     }catch(err){
         console.log(err)
+        //res.redirect('/login')
     }
 }
 
