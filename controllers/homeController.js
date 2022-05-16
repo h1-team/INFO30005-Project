@@ -193,6 +193,7 @@ const homepage = async (req, res) => {
         res.render('homepage.hbs', {
             status: status.data,
             name: req.user.name,
+            supportMSG: req.user.supportMSG,
             style: 'homepage.css',
         })
     } catch (error) {
