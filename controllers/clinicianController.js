@@ -161,17 +161,16 @@ const register = async (req, res) => {
     }
 
     // add new patient
-    const newPatient = new Patient()
-    Object.assign(newPatient, req.body)
-    await newPatient
-        .save()
-        .then()
-        .catch((err) =>
-            res.send(err).render('register.hbs', { registerFailure: true })
-        )
+    try {
+        const newPatient = new Patient()
+        Object.assign(newPatient, req.body)
+        await newPatient.save()
+    } catch (err) {
+        console.log(err);
+        return res.render('register.hbs', { registerFailure: true })
+    }
 
     // insert patient into clinician's patientList
-    // const clinicianId = '62791ae11515ffb0ad2fcf07'
     const clinicianId = req.session.passport ? req.session.passport.user : ''
     const clinician = await Clinician.findById(clinicianId)
     clinician.patients.push({ patientId: newPatient._id })

@@ -40,6 +40,8 @@ const patientSchema = new mongoose.Schema({
     photo: { type: String, default: '' },
     name: { type: String, default: '' },
     address: { type: String, default: '' },
+    email: { type: String, default: '', unique: true },
+    textBio: { type: String },
     yob: { type: Number, required: true, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
@@ -120,10 +122,28 @@ clinicianSchema.methods.verifyPassword = function (password, callback) {
     })
 }
 
-
+const clinicianNoteSchema = new mongoose.Schema(
+    {
+      patient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
+        required: true,
+      },
+      clinician: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Clinician",
+        required: true,
+      },
+      text: { type: String },
+    },
+    {
+      timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
+    }
+  )
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
 const Clinician = mongoose.model('clinician', clinicianSchema)
+const clinicianNote = mongoose.model('clinicianNote', clinicianNoteSchema)
 
-module.exports = { Patient, Record, Clinician }
+module.exports = { Patient, Record, Clinician, clinicianNote }
