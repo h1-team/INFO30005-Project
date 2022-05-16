@@ -194,7 +194,7 @@ const getEngagement = async (req, res) => {
         }
         update_time = null
         if(result[i].records.length>0){
-            update_time = result[i].records[0].recordDate
+            update_time = utils.formatDate(result[i].records[0].recordDate)+"T"+result[i].records[0].updateTime 
         }
         arr.push({
             "username": result[i].username,
