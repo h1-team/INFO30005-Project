@@ -20,7 +20,9 @@ const insert = async (req, res) => {
         data: {
             patientId: userID,
             // patientId: '62779e55ef8bd14bb5143922',
-            recordDate: utils.getMelbDateTime(),
+            //recordDate: utils.getMelbDateTime(),
+            recordDate : utils.getMelbDate(),
+            
             
         },
     })
