@@ -44,9 +44,9 @@ app.engine(
         }
     })
 )
-app.get('/viewdata',(req,res)=>{
-    res.render('check_pat_data.hbs',{
-        style:'table.css'
+app.get('/profile',(req,res)=>{
+    res.render('profile.hbs',{
+        style:'dashboard.css'
     })
 })
 // set Handlebars view engine

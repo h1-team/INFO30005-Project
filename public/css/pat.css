@@ -1,0 +1,220 @@
+.pat_info{
+    padding: 10.3rem;
+    height: 900px;
+}
+table.pat_col{
+    height: 1.2em;
+    text-align: left;
+    margin-left: 10em}
+.profile{
+  float: left;
+}
+.name{
+  text-align: center;
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+  max-width: 80px;
+  flex-flow: row wrap;
+  margin-left: 1em;;
+}
+.profile img {
+  position: relative;
+  width: 8em;
+  height: 8em;
+  margin: 2em;
+  background-color: #fff;
+  border-radius: 1.2em;
+  border: #373737;
+  padding: 12%;
+}
+* { 
+    box-sizing: border-box; 
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+  }
+  /*header*/
+  header {
+    background-color: white;
+    height: 35px;
+    top: 0;
+    width: 100%;
+  }
+  nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+  }
+  nav ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+  }
+  
+  *.info{
+    font-family: "PT Serif";
+    font-weight: normal;
+    color: #4b4b4b;
+  }
+  .top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: black;
+  }
+  /*footer*/
+  ul {
+    list-style: none;
+  margin-top: 1.2em;}
+  
+  a {
+    text-decoration: none;
+  /* margin-top: 2em; */}
+  .generic-anchor {
+    color: #8db9ed;
+  }
+  .generic-anchor:visited {
+    color: #8db9ed;
+  }
+  .generic-anchor:hover {
+    color: #ccc;
+  }
+  
+  .footer-flex {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    align-content: flex-start;
+    margin: 0;
+  }
+  
+  footer {
+    background: #373737;
+    margin-top: auto;
+    margin-bottom: 0%;
+    width: 100%;
+  }
+  
+  .footer-list-top {
+    width: 25%;
+  }
+  
+  .footer-list-top > li {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+  .footer-list-header {
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font: 2.0vw  Tahoma;
+  }
+  
+  .footer-list-anchor {
+    font: 1.0em Tahoma;
+  }
+  
+  .slogan{
+    color:white
+  }
+  
+  
+  
+
+  
+  
+  
+
+  @media all and (min-width:1385px) { 
+    .container{
+      grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
+    .footer-list-header {
+      font-size: 2em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.1em;
+    }
+  
+    table img {
+      margin-left: 20em;
+      margin-top: 1.1em;
+    }
+    .profile{
+      margin-left: 11em;
+    }
+  }
+  
+
+  
+  
+  
+  body {
+    font-family: Tahoma;
+    background: #D2F2DD;;
+  }
+  
+  
+  
+  @media all and (max-width: 1385px) {
+    .container{
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+    legend{
+      align-items: center;
+      height: 150px;
+      width: 246px;
+      margin-left: 68px;
+  }
+      .footer-list-top {
+        width: 100%;
+      }
+    
+      .footer-list-header {
+        text-align: center;
+        font-size: 1em;
+      }
+    
+      .footer-list-anchor {
+        font-size: 1em;
+      }
+      table img {
+        margin-left: 11em;
+        margin-top: 1.1em;
+      }
+  }
+  
+  
+  @media only screen and (max-width: 840px) {
+    .container{
+      grid-template-columns: repeat(1, minmax(300px, 1fr));
+    }
+    .footer-list-top {
+      width: 100%;
+    }
+  
+    .footer-list-header {
+      text-align: center;
+      font-size: 1.5em;
+    }
+  
+    .footer-list-anchor {
+      font-size: 1.2em;
+    }
+    table img {
+      margin-left: 1em;
+      margin-top: 1.1em;
+    }
+    
+  }
+
+  
+    @font-face
+  {
+      font-family: Tahoma;
+          src: url('Tahoma Regular font.ttf');
+  }
+  
+  

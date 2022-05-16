@@ -29,14 +29,21 @@ const getAllPatientCommentToday = async (req, res) => {
         return
     }
     var arr = new Array()
+    console.log(result.length)
     for (var i = 0; i < result.length; i++) {
         date = Date.now()
         date = formatDate(date)
-        const patient = await Patient.findOne({
-            patientId: result[i].patientId,
+        //console.log(i)
+        var patient = await Patient.findOne({
+            _id: result[i].patientId,
         })
+        //console.log(patient) 
+        if(!patient){
+            continue;
+        }else{
+            var name=patient.name
+        }       
         
-        var name=patient.name
         const record=result[i]
         var date=record.recordDate
         var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
@@ -67,11 +74,14 @@ const getAllPatientCommentToday = async (req, res) => {
             insulinComment != null ||
             exerciseComment != null
         ){
-           arr.add(resjson) 
+           arr.push(resjson)
         }
+
         
             
     }
+    console.log(arr.length)
+    arr.reverse();
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',
