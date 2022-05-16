@@ -20,6 +20,9 @@
         <label class="pat-text-color">Year of Birth</label>
         <input class="input" type="number" max="2022" name="yob" placeholder="Enter year of birth" value="{{input.yob}}" required>
         
+        <label class="pat-text-color">Email</label>
+        <input class="input" type="email" name="email" placeholder="Enter email" value="{{input.email}}" required>
+        
         <label class="pat-text-color">Address</label>
         <input class="input" type="text" name="address" placeholder="Enter address" value="{{input.address}}" required>
         
@@ -31,8 +34,8 @@
             <label class="pat-text-color" >I agree to the Terms and Policy</label>
         </div>
 
-        <button type="submit" class="btn-login log-bg" style="margin-bottom: 1.5em;">Register</button>
-        <button type="button" class="btn-login log-bg" onclick="location.href = './dashboard';return false;">Cancel</button>
+        <button type="submit" class="btn-login log-bg">Register</button>
+        <button type="button" class="btn-login log-bg" onclick="location.href = './dashboard'">Cancel</button>
       </form>
   </div>
 

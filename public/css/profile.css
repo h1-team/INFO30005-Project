@@ -92,13 +92,15 @@ a{
     text-decoration: none;
 }
 
-.submit input{
+.submit button{
     font-size: 2em;
     height: 60px;
     color:#3B83E3;
     background-color: white;
     border-radius: 1em;
     margin-left: 1em;
+    width: 60%;
+    margin-bottom: 1em;
 }
 
 

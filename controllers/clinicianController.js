@@ -161,12 +161,13 @@ const register = async (req, res) => {
     }
 
     // add new patient
+    const newPatient = new Patient()
     try {
-        const newPatient = new Patient()
         Object.assign(newPatient, req.body)
         await newPatient.save()
     } catch (err) {
-        console.log(err);
+        console.log(err)
+        res.send(err)
         return res.render('register.hbs', { registerFailure: true })
     }
 
@@ -187,11 +188,12 @@ const writeSupportMSG = async (req, res) => {
     try {
         const patientId = '628232e50d0230caaa118181'
         const patient = await Patient.findById(patientId)
-        patient.supportMSG = req.body.supportMSG;
-        await patient.save();
+        patient.supportMSG = req.body.supportMSG
+        await patient.save()
         return res.render('message.hbs', { supportSuccess: true })
     } catch (err) {
-        console.log(err);
+        console.log(err)
+        res.send(err)
         return res.render('message.hbs', { supportFailure: true })
     }
 }
