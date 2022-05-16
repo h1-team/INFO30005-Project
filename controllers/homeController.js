@@ -201,6 +201,18 @@ const homepage = async (req, res) => {
     }
 }
 
+const profile = async (req, res) => {
+    try {
+        const patient =  await Patient.findOne({_id: req.user._id}).lean()
+        res.render('p_profile.hbs', {
+            style: 'profile.css', 
+        }) 
+    } catch (error) {
+        console.log(error)
+        res.send('404 Error')
+    }
+}
+
 const table = async(req, res) => {
     try{
         const table = await Record.find({patientId: req.user._id}).lean()
@@ -289,4 +301,5 @@ module.exports = {
     leaderboard,
     table,
     logout,
+    profile,
 }
