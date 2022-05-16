@@ -25,11 +25,13 @@ header{
 
 h1{
     margin:0px;
+    font-size: 3em;
 }
 
 h2{
     font-size: 3vmax;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 

@@ -206,6 +206,7 @@ const profile = async (req, res) => {
         const patient =  await Patient.findOne({_id: req.user._id}).lean()
         res.render('p_profile.hbs', {
             style: 'profile.css', 
+            patient: patient,
         }) 
     } catch (error) {
         console.log(error)
