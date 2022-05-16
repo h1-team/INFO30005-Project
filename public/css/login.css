@@ -50,15 +50,9 @@ body{
  }
   
     
-<<<<<<< HEAD
   input[type=text],
   input[type=number],
   input[type=password] {
-=======
-input[type=text],
-input[type=password] {
-    font-size: 1.5em;
->>>>>>> 3f60c405501e3b4ce9a7f58f93477b9be7db5145
     border-radius: 25px;
     margin-bottom: 1rem;
     width: 100%;
