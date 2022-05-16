@@ -67,6 +67,8 @@ homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
 // homeRouter.get('/homepage', homeController.homepage)
 homeRouter.post('/logout',isAuthenticated,homeController.logout)
 
-homeRouter.get('/table', homeController.table)
+homeRouter.get('/table', isAuthenticated,homeController.table)
+
+homeRouter.get('/p_profile', isAuthenticated,homeController.profile)
 
 module.exports = homeRouter

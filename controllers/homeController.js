@@ -1,6 +1,7 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
 const { Record } = require('../models/db.js')
+const {Patient} = require('../models/db.js')
 //axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
 axios.defaults.baseURL = 'http://localhost:3000/api'
 
@@ -11,14 +12,16 @@ const welcome = (req, res) => {
 }
 
 const insert = async (req, res) => {
-    const userID = req.session.passport ? req.session.passport.user : ''
+    //const userID = req.session.passport ? req.session.passport.user : ''
+    const userID = req.user._id
     const record = await axios({
         url: '/record/getOneRecord',
         method: 'POST',
         data: {
             patientId: userID,
             // patientId: '62779e55ef8bd14bb5143922',
-            recordDate: utils.getMelbDate(),
+            recordDate: utils.getMelbDateTime(),
+            
         },
     })
 
@@ -57,8 +60,12 @@ function fomatFloat(src,pos){
 
 const leaderboard = async (req, res) => {
     try {
+        //console.log(utils.getMelbDate())
+        //console.log(utils.getMelbDateTime())
         //log in this user_id
-        const userID = req.session.passport ? req.session.passport.user : ''
+        //const userID = req.session.passport ? req.session.passport.user : ''
+        const userID = req.user._id
+
         // send request
         const patient = await axios({
             url: '/patient/getEngagement',
@@ -109,7 +116,7 @@ const leaderboard = async (req, res) => {
                 //console.log(tempList[n].rate);
                 tempList[n].rate =  tempList[n].rate*100
                 tempList[n].rate = fomatFloat(tempList[n].rate,0)
-                console.log(tempList[n].rate);
+                console.log(tempList[n].username,tempList[n].rate);
                 //Judging that the user id cannot be empty and the user
                 // id must be the same as an item in the loop,
                 if (tempList[n]._id == userID && userID) {
@@ -194,12 +201,28 @@ const homepage = async (req, res) => {
     }
 }
 
+const profile = async (req, res) => {
+    try {
+        const patient =  await Patient.findOne({_id: req.user._id}).lean()
+        res.render('p_profile.hbs', {
+            style: 'profile.css', 
+        }) 
+    } catch (error) {
+        console.log(error)
+        res.send('404 Error')
+    }
+}
+
 const table = async(req, res) => {
     try{
-        const table = await Record.find({patientId: '627f68e06aecfbc0f73ac661'}).lean()
-        //console.log(table)
-        for (var data of table) {
-            var d = data.recordDate
+        const table = await Record.find({patientId: req.user._id}).lean()
+        const patient =  await Patient.findOne({_id: req.user._id}).lean()
+        console.log(patient.username)     
+        console.log(req.user._id)   
+        for (var record of table) {
+
+            // date formatting
+            var d = record.recordDate
             var date = d.getUTCDate();
             var y = d.getFullYear();
             var m = d.getMonth();
@@ -207,14 +230,62 @@ const table = async(req, res) => {
             m = monthArr[m];
             tableDate = m + "/" + date + "/" + y
             //console.log(tableDate);
-            data.recordDate = tableDate
+            record.recordDate = tableDate
+
+
+            // indentify alert data
+            var glucose = record.data.glucose.data
+            var glucoseStatus = record.data.glucose.status
+            var thresholdGlucose = patient.thresholdGlucose
+
+            if (glucoseStatus == 'RECORDED' &&
+                (glucose < thresholdGlucose * 0.9 ||
+                    glucose > thresholdGlucose * 1.1)
+            ) {
+                record.data.glucose.status = 'ALERT'
+            }
+
+            var weight = record.data.weight.data
+            var weightStatus = record.data.weight.status
+            var thresholdWeight = patient.thresholdWeight
+
+            if (weightStatus == 'RECORDED' &&
+                (weight < thresholdWeight * 0.9 || weight > thresholdWeight * 1.1)
+            ) {
+                record.data.weight.status = 'ALERT'
+            }
+
+            var insulin = record.data.insulin.data
+            var insulinStatus = record.data.insulin.status
+            var thresholdInsulin = patient.thresholdInsulin
+
+            if (insulinStatus == 'RECORDED' &&
+                (insulin < thresholdInsulin * 0.9 ||
+                    insulin > thresholdInsulin * 1.1)
+            ) {
+                record.data.insulin.status = 'ALERT'
+            }
+
+            var exercise = record.data.exercise.data
+            var exerciseStatus = record.data.exercise.status
+            var thresholdExecrise = patient.thresholdExecrise
+
+            if (exerciseStatus == 'RECORDED' &&
+                (exercise < thresholdExecrise * 0.9 ||
+                    exercise > thresholdExecrise * 1.1)
+            ) {
+                record.data.exercise.status = 'ALERT'
+            }
+
         }
         res.render('table.hbs', {
             style: 'table.css',
             record: table,
+            name: patient.username
         })
     }catch(err){
         console.log(err)
+        //res.redirect('/login')
     }
 }
 
@@ -230,4 +301,5 @@ module.exports = {
     leaderboard,
     table,
     logout,
+    profile,
 }

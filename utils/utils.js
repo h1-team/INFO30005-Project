@@ -18,10 +18,10 @@ function getMelbDate() {
 }
 function getMelbDateTime() {
     var timezone = 10
-    var offset_GMT = new Date().getTimezoneOffset()
+    // var offset_GMT = new Date().getTimezoneOffset()
     var nowDate = new Date().getTime()
     var date = new Date(
-        nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000
+        nowDate + timezone * 60 * 60 * 1000
     )
     return date
 }
