@@ -144,42 +144,15 @@ input[type="checkbox" i]{
     .container{
       grid-template-columns: repeat(2, minmax(300px, 1fr));
     }
-
-    .footer-list-top {
-        width: 100%;
-    }
-    
-      .footer-list-header {
-        text-align: center;
-        font-size: 1em;
-      }
-    
-      .footer-list-anchor {
-        font-size: 1em;
-      }
-  
   }
 
   
-  @media only screen and (max-width: 840px) {
+@media only screen and (max-width: 840px) {
     .container{
       grid-template-columns: repeat(1, minmax(300px, 1fr));
     }
-    .footer-list-top {
-      width: 100%;
-    }
-  
-    .footer-list-header {
-      text-align: center;
-      font-size: 1.5em;
-    }
-  
-    .footer-list-anchor {
-      font-size: 1.2em;
-    }
-  
     
-  }
+}
 
   
     @font-face

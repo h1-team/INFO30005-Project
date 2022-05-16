@@ -54,11 +54,12 @@ clinicianRouter.post(
     }
 )
 clinicianRouter.post('/logout',isAuthenticated,clinicianController.logout)
-
+clinicianRouter.get('/inbox',clinicianController.getAllPatientCommentToday)
 clinicianRouter.get('/homepage', isAuthenticated, clinicianController.doctor)
 clinicianRouter.get('/dashboard',isAuthenticated, patientController.getAllPatientRecordToday)
 clinicianRouter.get('/register', isAuthenticated, clinicianController.renderRegister)
 clinicianRouter.post('/register', clinicianController.register)
 clinicianRouter.get('/table',clinicianController.table)
+clinicianRouter.get('/comment',clinicianController.comment)
 // export the clinician router
 module.exports = clinicianRouter

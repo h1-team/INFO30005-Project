@@ -1,0 +1,35 @@
+<div class="wrap">
+    <div class="note">
+        <li><img src="/icon/red-circle.svg"><p class="legend-item">unread(click checkbox to mark it read)</p></li>
+    </div>
+
+<div class="container">
+
+    {{#each record}}
+    <div class="comment" type="button" onclick="location.href = './comment';return false;">
+
+        <p><input type="checkbox" value="Today">{{this.date}}</p>
+        <p>patient {{this.name}}</p>
+        {{! #if }}
+        <p>new comment on 
+            {{#if this.glucoseComment}}
+            <a>glucose</a>
+            {{/if}}
+            {{#if this.weightComment}}
+            <a>weight</a>
+            {{/if}}
+            {{#if this.exerciseComment}}
+            <a>exercise</a>
+            {{/if}}
+            {{#if this.insulinComment}}
+            <a>insulin</a>
+            {{/if}}
+        </p>
+    </div>
+    {{/each}}
+</div>
+
+<div class="right">
+    <iframe id="mainIframe" name="mainIframe" src="./comment" frameborder="0" scrolling="auto" ></iframe>
+</div>
+</div>
