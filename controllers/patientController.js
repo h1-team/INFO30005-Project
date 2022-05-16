@@ -76,17 +76,10 @@ const getAllPatientRecordToday = async (req, res) => {
         thresholdWeight = result[i].thresholdWeight
         thresholdInsulin = result[i].thresholdInsulin
 
-        date = Date.now()
-        date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
+        date = utils.getMelbDate()
         const record = await Record.findOne({
             patientId: result[i]._id,
-            recordDate: {
-                $gte: today,
-                $lt: tmr
-            },
+            recordDate: date,
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
         var glucose = null,
