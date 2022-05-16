@@ -213,6 +213,19 @@ const profile = async (req, res) => {
     }
 }
 
+const edit = async (req, res) => {
+    try {
+        const patient =  await Patient.findOne({_id: req.user._id}).lean()
+        res.render('edit.hbs', {
+            style: 'profile.css', 
+        }) 
+    } catch (error) {
+        console.log(error)
+        res.send('404 Error')
+    }
+}
+
+
 const table = async(req, res) => {
     try{
         const table = await Record.find({patientId: req.user._id}).lean()
@@ -302,4 +315,5 @@ module.exports = {
     table,
     logout,
     profile,
+    edit,
 }

@@ -36,6 +36,11 @@ p{
 
 .contact{
     background-color: #F2B705;
+    margin-bottom: 2em;
+}
+
+.password{
+    background-color: #D2F2DD;
 }
 
 ul{
@@ -53,6 +58,23 @@ li{
     justify-content: space-between;
 }
 
+section{
+    display: flex;
+    font-size: 2.5em;
+    margin-right: 2em;
+    margin-top: 0.7em;
+    margin-left: 2em;
+}
+
+input{
+    font-size: 1em;
+    width: 30%;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 4em;
+    padding-left: 10px;
+}
+
 .edit{
     color:#3B83E3;
     margin-top: 3em;
@@ -68,4 +90,14 @@ li{
 
 .edit a{
     text-decoration: none;
+}
+
+.submit input{
+    font-size: 2em;
+    height: 60px;
+    margin-left: 0;
+    color:#3B83E3;
+    background-color: white;
+    border-radius: 1em;
+    margin-left: 1em;
 }
