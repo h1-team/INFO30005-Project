@@ -7,21 +7,24 @@
   <h1 style="color: white;">Diabetes@HOME</h1>
 
   <div class="login" >
-    <form class="login-form" id="register" action="/api/clinician/register" method="post">
+    <form class="login-form" id="register" action="/doctor/register" method="post">
+        <label class="pat-text-color">Name</label>
+        <input class="input" type="text" name="name" placeholder="Enter name" value="{{input.name}}" required>
+
         <label class="pat-text-color">Username</label>
         <input class="input" type="text" name="username" placeholder="Enter username" value="{{input.username}}" required>
 
         <label class="pat-text-color">Password</label>
         <input class="input" type="password" name="password" placeholder="Enter password" value="{{input.password}}" required>
+
+        <label class="pat-text-color">Year of Birth</label>
+        <input class="input" type="text" max="2022" name="yob" placeholder="Enter year of birth" value="{{input.yob}}" required>
         
         <label class="pat-text-color">Address</label>
         <input class="input" type="text" name="address" placeholder="Enter address" value="{{input.address}}">
         
         <label class="pat-text-color">Phone</label>
         <input class="input" type="text" name="phone" placeholder="Enter phone" value="{{input.phone}}">
-
-        <label class="pat-text-color"> Name</label>
-        <input class="input" type="text" name="name" placeholder="Enter name" value="{{input.name}}">
 
         <div class="checkbox">
             <input type="checkbox" >

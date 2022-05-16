@@ -2,21 +2,25 @@ const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
 const patientController = require('../controllers/patientController')
+
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
         style: 'doctor.css',
     })
 }
+
 const doctor_login = (req, res) => {
     res.render('doc_login.hbs', {
         style: 'login.css',
     })
 }
+
 const doctor = (req, res) => {
     res.render('doctor.hbs', {
         style: 'doctor_home.css',
     })
 }
+
 const findAll = async (req, res) => {
     result = await Clinician.find()
     res.send(result)
@@ -64,9 +68,7 @@ const deleteOne = async (req, res) => {
 }
 
 const renderRegister = (req, res) => {
-    res.render('register.hbs', {
-        style: 'login.css',
-    })
+    res.render('register.hbs')
 }
 
 const register = async (req, res) => {
@@ -86,20 +88,41 @@ const register = async (req, res) => {
         )
 
     // insert patient into clinician's patientList
-    const clinicianId = '62791ae11515ffb0ad2fcf07'
+    // const clinicianId = '62791ae11515ffb0ad2fcf07'
+    const clinicianId = req.session.passport ? req.session.passport.user : ''
     const clinician = await Clinician.findById(clinicianId)
     clinician.patients.push({ patientId: newPatient._id })
     await clinician.save()
 
     return res.render('register.hbs', { registerSuccess: true })
 }
-const clinical_note = async (req, res) => {
+
+const renderSupportMSG = async (req, res) => {
+    return res.render('message.hbs')
+}
+
+const writeSupportMSG = async (req, res) => {
+    try {
+        const patientId = '628232e50d0230caaa118181'
+        const patient = await Patient.findById(patientId)
+        patient.supportMSG = req.body.supportMSG;
+        await patient.save();
+        return res.render('message.hbs', { supportSuccess: true })
+    } catch (err) {
+        console.log(err);
+        return res.render('message.hbs', { supportFailure: true })
+    }
+}
+
+const renderClinicalNote = async (req, res) => {
     return res.render('clinical_note.hbs')
 }
+
 const logout = (req, res) => {
     req.logout()
     res.redirect("/doctor/login")
 }
+
 const table = async(req, res) => {
     try{
         const table = await Record.find({patientId: '627f68e06aecfbc0f73ac661'}).lean()
@@ -123,6 +146,7 @@ const table = async(req, res) => {
         console.log(err)
     }
 }
+
 module.exports = {
     findAll,
     findOneById,
@@ -131,7 +155,9 @@ module.exports = {
     deleteOne,
     renderRegister,
     register,
-    clinical_note,
+    renderClinicalNote,
+    renderSupportMSG,
+    writeSupportMSG,
     doctorhome,
     doctor_login,
     doctor,

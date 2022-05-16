@@ -40,7 +40,7 @@ const patientSchema = new mongoose.Schema({
     photo: { type: String, default: '' },
     name: { type: String, default: '' },
     address: { type: String, default: '' },
-    dob: Date,
+    yob: { type: Number, required: true, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
@@ -54,6 +54,7 @@ const patientSchema = new mongoose.Schema({
     thresholdInsulin: { type: Number, default: 2, min: 0 },
     create_date: { type: Date, default: utils.getMelbDate() },
     records: [recordSchema],
+    supportMSG: { type: String, default: '' },
 })
 
 patientSchema.methods.verifyPassword = function (password, callback) {

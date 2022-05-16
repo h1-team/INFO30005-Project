@@ -1,28 +1,57 @@
+<link rel="stylesheet" href="/css/clinical_note.css">
+
 {{> header}}
 <body style="background-color: #F2B705">
-<div class="grey-top">
-    <nav>
-        <ul >
-            <li><a class="top-anchor">Clinical Notes</a></li>   
-            <li><a class="top-anchor">Display Data</a></li>
-            <li><a class="top-anchor">Modify Data</a></li>
-            <li><a class="top-anchor active">Support Message</a></li>
-        </ul>  
-    </nav>  
-</div>
-<div class="message">
-    <h1>Current Message</h1>
-     <textarea type="text" class="input" id="currmsg" name="currmsg" placeholder="{{!message}}(modify it or choose recommended message below)"></textarea>
-     <br/>
-    <h1>Recommended Message</h1>
-    <ul id="choose" class="choose" name="recomsg" >
-		<p><input class="input" type="checkbox" name="msg1" id="msg1"/>Diabetes is like a roller coaster. It has its ups and downs, but it's your choice to scream or enjoy the ride.</p>
-		<p><input class="input" type="checkbox"name="msg2" id="msg2"/>Losing weight is not about the pounds and inches. It is about being what you have always wanted to be.</p>
-		<p><input class="input" type="checkbox" name="msg3" id="msg3"/>Each Day Brings new healing.</p>
-        <p><input class="input" type="checkbox" name="msg4" id="msg4"/>Here's to you—steadier, stronger and better every day.</p>
-        <p><input class="input" type="checkbox"name="msg5" id="msg5"/>The hard days are what make you stronger.</p>
-        <p><input class="input" type="checkbox" name="msg6" id="msg6"/>Start where you are. Use what you have. Do what you can.</p>
-        <p><input class="input" type="checkbox" name="msg7" id="msg7"/>We'll get through this together, knowing there are brighter days ahead.</p>
-	</ul>
-    <button type="submit" onclick="sendmsg();">Submit</button>
-</div>
+    <div class="grey-top">
+        <nav>
+            <ul >
+                <li><a class="top-anchor">Clinical Notes</a></li>   
+                <li><a class="top-anchor">Display Data</a></li>
+                <li><a class="top-anchor">Modify Data</a></li>
+                <li><a class="top-anchor active">Support Message</a></li>
+            </ul>  
+        </nav>  
+    </div>
+    <div class="message">
+        <form action="/doctor/supportMSG" method="post">
+            <h1>Current Message</h1>
+        
+            <textarea type="text" class="input" id="currmsg" name="supportMSG" placeholder="{{!message}}(modify it or choose recommended message below)" value="{{input.supportMSG}}"></textarea>
+
+            <br/>
+
+            <h1>Recommended Message</h1>
+            <ul id="choose" class="choose" name="recomsg" >
+                <p><input class="input" type="checkbox" name="msg1" id="msg1"/>Diabetes is like a roller coaster. It has its ups and downs, but it's your choice to scream or enjoy the ride.</p>
+                <p><input class="input" type="checkbox"name="msg2" id="msg2"/>Losing weight is not about the pounds and inches. It is about being what you have always wanted to be.</p>
+                <p><input class="input" type="checkbox" name="msg3" id="msg3"/>Each Day Brings new healing.</p>
+                <p><input class="input" type="checkbox" name="msg4" id="msg4"/>Here's to you—steadier, stronger and better every day.</p>
+                <p><input class="input" type="checkbox"name="msg5" id="msg5"/>The hard days are what make you stronger.</p>
+                <p><input class="input" type="checkbox" name="msg6" id="msg6"/>Start where you are. Use what you have. Do what you can.</p>
+                <p><input class="input" type="checkbox" name="msg7" id="msg7"/>We'll get through this together, knowing there are brighter days ahead.</p>
+            </ul>
+            <button type="submit" class="btn-login log-bg" style="margin-bottom: 1.5em;">Register</button>
+        </form>
+    </div>
+</body>
+
+{{#if supportSuccess}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Support message update Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if supportFailure}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("Fail to update support message");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
