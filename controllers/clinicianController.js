@@ -26,6 +26,89 @@ const findAll = async (req, res) => {
     res.send(result)
 }
 
+const getAllPatientCommentToday = async (req, res) => {
+    result = await Record.find()
+    if (!result) {
+        res.status(404).send('patient not found')
+        return
+    }
+    var arr = new Array()
+    console.log(result.length)
+    for (var i = 0; i < result.length; i++) {
+        date = Date.now()
+        date = formatDate(date)
+        //console.log(i)
+        var patient = await Patient.findOne({
+            _id: result[i].patientId,
+        })
+        //console.log(patient) 
+        if(!patient){
+            continue;
+        }else{
+            var name=patient.name
+        }       
+        
+        const record=result[i]
+        var date=record.recordDate
+        var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
+            if (record.data.glucose.comment!="") {
+                glucoseComment = record.data.glucose.comment
+            }
+            if ( record.data.exercise.comment!="") {
+                exerciseComment = record.data.exercise.comment
+            }
+            if ( record.data.insulin.comment!="") {
+                insulinComment = record.data.insulin.comment
+            }
+            if ( record.data.weight.comment!="") {
+                weightComment = record.data.weight.comment
+            }
+        
+        resjson = {
+            date:date,
+            name:name,
+            weightComment:weightComment,
+            insulinComment:insulinComment,
+            exerciseComment:exerciseComment,
+            glucoseComment:glucoseComment
+        }
+        if (
+            glucoseComment != null ||
+            weightComment != null ||
+            insulinComment != null ||
+            exerciseComment != null
+        ){
+           arr.push(resjson)
+        }
+
+        
+            
+    }
+    console.log(arr.length)
+    arr.reverse();
+    // res.send(arr)
+    return res.render('inbox.hbs', {
+        style: 'inbox.css',
+        record: arr
+    })
+}
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear()
+
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
+
+    return [year, month, day].join('-')
+}
+
+const comment = (req, res) => {
+    res.render('comment.hbs', {
+        style: 'inbox.css',
+    })
+}
 const findOneById = async (req, res) => {
     result = await Clinician.findOne({ username: req.params.username }, {})
     res.send(result)
@@ -162,5 +245,7 @@ module.exports = {
     doctor_login,
     doctor,
     logout,
+    comment,
+    getAllPatientCommentToday,
     table
 }

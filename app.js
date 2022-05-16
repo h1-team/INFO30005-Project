@@ -25,7 +25,7 @@ app.use(
             sameSite: 'strict',
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 300000, // sessions expire after 5 minutes
+            maxAge: 3000000, // sessions expire after 5 minutes
         },
     })
 )
@@ -44,9 +44,9 @@ app.engine(
         }
     })
 )
-app.get('/viewdata',(req,res)=>{
-    res.render('check_pat_data.hbs',{
-        style:'table.css'
+app.get('/profile',(req,res)=>{
+    res.render('profile.hbs',{
+        style:'dashboard.css'
     })
 })
 // set Handlebars view engine

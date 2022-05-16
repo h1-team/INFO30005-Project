@@ -38,6 +38,8 @@ body{
   }
   label{
     color: white;
+    font-size: 1.8em;
+    margin-top: 10px;
   }
   
   h1 {
@@ -48,21 +50,36 @@ body{
  }
   
     
+<<<<<<< HEAD
   input[type=text],
   input[type=number],
   input[type=password] {
+=======
+input[type=text],
+input[type=password] {
+    font-size: 1.5em;
+>>>>>>> 3f60c405501e3b4ce9a7f58f93477b9be7db5145
     border-radius: 25px;
     margin-bottom: 1rem;
     width: 100%;
-    padding: 1em 6em;
+    padding-left: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
     margin: 0.5em 0;
     display: inline-block;
     border: 0.1em solid #ccc;
     box-sizing: border-box;
   }
+input[type=checkbox]{
+  transform: scale(2.5);
+  margin-right: 1em;
+  margin-left: 0.5em;
+}
+
   .checkbox{
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    display:inline-block;
   }
   a.forget{
     margin-bottom: auto;
@@ -76,7 +93,7 @@ body{
   
   
   .btn-login{
-
+    margin-bottom: 1em;
     background: #3A855D;
     border: 1px solid #707070;
     color: #ffffff;
@@ -218,6 +235,10 @@ footer {
   .container-block { padding: 11% 8% } 
   .footer-list-top {
     width: 100%;
+  }
+
+  label{
+    font-size: 1.5em;
   }
 
   .footer-list-header {

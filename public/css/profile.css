@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+}
+
+div{
+    width: 60%;
+    padding: 2em;
+    border-radius: 2em;
+    margin-bottom: 2em;
+    margin: auto;
+}
+
+h2{
+    font-size: 3em;
+    margin-left: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p{
+    font-size: 2em;
+    margin-left:0;
+    margin-right: 2em;
+    margin-bottom: 0;
+}
+
+
+.basic{
+    background-color: #1D4881;
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+}
+
+
+.contact{
+    background-color: #F2B705;
+    margin-bottom: 2em;
+}
+
+.password{
+    background-color: #D2F2DD;
+}
+
+ul{
+    margin-left: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+}
+
+li{
+    display: flex;
+    flex-direction: row;
+    border-bottom-style: solid;
+    border-radius: 0;
+    width: 1000px;
+    justify-content: space-between;
+}
+
+section{
+    display: flex;
+    font-size: 2.5em;
+    margin-right: 2em;
+    margin-top: 0.7em;
+    margin-left: 2em;
+}
+
+input{
+    font-size: 1em;
+    width: 30%;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 4em;
+    padding-left: 10px;
+}
+
+.edit{
+    color:#3B83E3;
+    margin-top: 3em;
+    width: 25%;
+    border-style: solid;
+    text-align: center;
+}
+
+.edit p {
+    margin: 0;
+    color: #3B83E3;
+}
+
+a{
+    text-decoration: none;
+}
+
+.submit input{
+    font-size: 2em;
+    height: 60px;
+    color:#3B83E3;
+    background-color: white;
+    border-radius: 1em;
+    margin-left: 1em;
+}
+
+
+@media screen and (max-width: 1024px){
+    body{
+        padding-bottom: 1em;
+    }
+
+    h2{
+        margin-left: 0.5em;
+    }
+
+    ul{
+        margin: 0;
+        padding-left: 3.5em;
+    }
+
+    li{
+        width: 500px;
+    }
+
+    p{
+       margin-right: 0;
+    }
+
+    section{
+        font-size: 2em;
+        margin-right: 0;
+    }
+
+    input{
+        width: 45%;
+        margin-left: 1.5em;
+    }
+
+    .submit input{
+        width: 30%;
+        font-size: 1.5em;
+        height: 60px;
+        margin-left: 0.5em;
+        color:#3B83E3;
+        background-color: white;
+        border-radius: 1em;
+    }
+}
+
+@media screen and (max-width: 375px){
+    div{
+        width: 330px;
+        height: 330px;
+        margin-right: 0;
+        padding: 1em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h2{
+        font-size: 2em;
+        text-align: center;
+    }
+    p{
+        font-size: 1.5em;
+    }
+
+    ul{
+        padding-left: 1em;
+    }
+    li{
+        width: 300px;
+    }
+
+    .edit{
+        width: 180px;
+        height: 70px;
+        padding: 0.5em;
+    }
+
+    section{
+        font-size: 1.5em;
+        margin-top: 1em;
+        margin-left: 1em;
+    }
+
+
+    .one_line{
+        display: inline-block;
+    }
+
+    .password{
+        height: 200px;
+    }
+
+    .submit input{
+        margin-left: 0.2em;
+    }
+
+}

@@ -70,6 +70,7 @@ const getAllPatientRecordToday = async (req, res) => {
     for (var i = 0; i < result.length; i++) {
         username = result[i].username
         realname = result[i].name
+        
         thresholdExecrise = result[i].thresholdExecrise
         thresholdGlucose = result[i].thresholdGlucose
         thresholdWeight = result[i].thresholdWeight
