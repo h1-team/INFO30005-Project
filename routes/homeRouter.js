@@ -41,6 +41,8 @@ homeRouter.get('/insert',homeController.insert)
 
 homeRouter.get('/leaderboard', homeController.leaderboard)
 
+homeRouter.get('/manage_patient', homeController.manage_patient)
+
 homeRouter.get('/login', isLogin, homeController.login)
 
 homeRouter.post(

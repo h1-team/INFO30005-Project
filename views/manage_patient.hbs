@@ -1,0 +1,138 @@
+<body>
+  <div class="manager">
+    <div class="left">
+      <div class="head">
+        {{!-- <img src="{{photo}}" alt=""> --}}
+      </div>
+      <div class="name">
+        {{name}}
+      </div>
+    </div>
+    <div class="right">
+      <h2>
+        Green if the patient needs to fill in the data, click to Red if they don't
+      </h2>
+      <form id="patientForm">
+        <div class="info-item">
+        <div class="check">
+          <div class="radio-toggle">
+            <input id="needGlucose" type="checkbox" {{isChecked.needGlucose}} />
+            <label for="needGlucose"></label>
+          </div>
+        </div>
+        <div class="text">
+          <label for="needGlucose">
+            Blood glucose level
+          </label>
+        </div>
+        <div class="inp">
+          <span>
+            Threshold
+          </span>
+          <input
+            id="thresholdGlucose"
+            value="{{vals.thresholdGlucose}}"
+            type="text"
+          />
+          <span>
+            +- 10%
+          </span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="check">
+          <div class="radio-toggle">
+            <input id="needWeight" type="checkbox" {{isChecked.needWeight}} />
+            <label for="needWeight"></label>
+          </div>
+        </div>
+        <div class="text">
+          <label for="needWeight">
+            Weight
+          </label>
+        </div>
+        <div class="inp">
+          <span>
+            Threshold
+          </span>
+          <input
+            id="thresholdWeight"
+            value="{{vals.thresholdWeight}}"
+            type="text"
+          />
+          <span>
+            +- 10%
+          </span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="check">
+          <div class="radio-toggle">
+            <input id="needInsulin" type="checkbox" {{isChecked.needInsulin}} />
+            <label for="needInsulin"></label>
+          </div>
+        </div>
+        <div class="text">
+          <label for="needInsulin">
+            Doses of insulin taken
+          </label>
+        </div>
+        <div class="inp">
+          <span>
+            Threshold
+          </span>
+          <input
+            id="thresholdInsulin"
+            value="{{vals.thresholdInsulin}}"
+            type="text"
+          />
+          <span>
+            +- 10%
+          </span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="check">
+          <div class="radio-toggle">
+            <input
+              id="needExecrise"
+              type="checkbox"
+              {{isChecked.needExecrise}}
+            />
+            <label for="needExecrise"></label>
+          </div>
+        </div>
+        <div class="text">
+          <label for="needExecrise">
+            Exercise
+          </label>
+        </div>
+        <div class="inp">
+          <span>
+            Threshold
+          </span>
+          <input
+            id="thresholdExecrise"
+            value="{{vals.thresholdExecrise}}"
+            type="text"
+          />
+          <span>
+            +- 10%
+          </span>
+        </div>
+      </div>
+      <div class="info-item">
+        <button class="btn">
+          Submit
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+  <script>
+    const userName= "{{name}}"
+    const patientId= "{{patientId}}"
+  </script>
+  <script src="/js/manage_patient.js"></script>
+</body>

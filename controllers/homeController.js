@@ -15,11 +15,11 @@ const insert = async (req, res) => {
     //const userID = req.session.passport ? req.session.passport.user : ''
     const userID = req.user._id
     const update_time = req.user.records[0].recordDate
-    console.log("222")
-    console.log("patient id" + req.user._id)
-    console.log(req.user.records[0].recordDate)
-    console.log(utils.getMelbDate())
-    console.log(utils.getMelbDateTime())
+    //console.log("222")
+    //console.log("patient id" + req.user._id)
+    //console.log(req.user.records[0].recordDate)
+    //console.log(utils.getMelbDate())
+    //console.log(utils.getMelbDateTime())
 
     const record = await axios({
         url: '/record/getOneRecord',
@@ -192,15 +192,50 @@ const homepage = async (req, res) => {
             patientId: req.user._id,
             recordDate: utils.getMelbDate(),
         }
+        const userID = req.user._id
 
         const status = await axios({
             url: '/record/getRecordStatus',
             data,
             method: 'POST',
         })
+        const patient = await axios({
+            url: '/patient/getEngagement',
+            methods: "POST",
+        })
+        let renderMedal = {}
+        let tempList = []
+        if (patient.data) {
+            userCount = patient.data.length
+            tempList = patient.data
+                .sort((a, b) => {
+                    if (a.rate == b.rate) {
+                        return a.rate - b.rate
+                    }
+                    return b.rate - a.rate
+                })
+            for (let n = 0; n < tempList.length; n++) {
+                tempList[n].rank = n == 0 ? 1 : tempList[n - 1].rank + 1
+                if (n != 0) {
+                    let a = tempList[n - 1]
+                    let b = tempList[n]
+                    if (a.rate == b.rate) {
+                        b.rank = a.rank
+                    }
+                }
+                tempList[n].rate =  tempList[n].rate*100
+                tempList[n].rate = fomatFloat(tempList[n].rate,0)
+                if (tempList[n]._id == userID && userID) {
+                    renderMedal = {
+                        show: tempList[n].rate >= 80 ? "" : "hide"
+                    }
+                }
+            }
+        }
         res.render('homepage.hbs', {
             status: status.data,
             name: req.user.name,
+            renderMedal,
             supportMSG: req.user.supportMSG,
             style: 'homepage.css',
         })
@@ -351,6 +386,41 @@ const table = async(req, res) => {
     }
 }
 
+const manage_patient = async (req, res) => {
+    try {
+        const {
+            username
+        } = req.user
+        // send request
+        const patient = await axios({
+            url: `/patient/findone/${username.toLocaleLowerCase()}`,
+            methods: "get",
+        })
+        console.log(req.user);
+        // console.log(req.user);
+        res.render('manage_patient.hbs', {
+            style: 'manage_patient.css',
+            isChecked: {
+                needExecrise: patient.data.needExecrise ? 'checked' : '',
+                needGlucose: patient.data.needGlucose ? 'checked' : '',
+                needWeight: patient.data.needWeight ? 'checked' : '',
+                needInsulin: patient.data.needInsulin ? 'checked' : '',
+            },
+            vals: {
+                thresholdExecrise: patient.data.thresholdExecrise,
+                thresholdGlucose: patient.data.thresholdGlucose,
+                thresholdWeight: patient.data.thresholdWeight,
+                thresholdInsulin: patient.data.thresholdInsulin,
+            },
+            name: username,
+            patientId: patient.data._id,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 module.exports = {
     welcome,
     insert,
@@ -366,4 +436,5 @@ module.exports = {
     profile,
     renderEdit,
     edit,
+    manage_patient,
 }

@@ -104,6 +104,7 @@ function changeStatus(isNeed, record) {
 }
 
 const getRecordStatus = async (req, res) => {
+    //console.log('success to change status!')
     try {
         id = req.body.patientId
         date = req.body.recordDate
