@@ -2,24 +2,24 @@
 {{>header3}}    
     <div class="pat_info">
         <div class="pats_col profile">
-            <img class="sponge"src="/picture/SpongeBob.svg.png">
-            <div class="name">{{!patient.name}}</div>
+            <img src="/picture/SpongeBob.svg.png">
+            <div class="name">{{patient.name}}</div>
         </div>
 
         <table class="pats_col">
             <tr>
                 <td><img src="/icon/note.svg"></td>
-                <td class="tdp">Clinical Note</td>
+                <td class="tdp" href='./notes/{{this._id}}'>Clinical Note</td>
             </tr>
 
             <tr>
                 <td><img src="/icon/display.svg"></td>
-                <td class="tdp">Display Data</td>
+                <td class="tdp" href='./display/{{this._id}}'>Display Data</td>
             </tr>
             
             <tr>
                 <td><img src="/icon/modify.svg"></td>
-                <td class="tdp">Modify data</td>
+                <td class="tdp" href='#'>Modify data</td>
             </tr> 
 
             <tr>
