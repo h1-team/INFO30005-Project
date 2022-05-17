@@ -15,7 +15,7 @@
 
 
 <h1>{{name}}'s Data</h1>
-<p>*Red numbers indicate that this data is over the limit, please take care. </p>
+<h2>*Red numbers indicate that this data is over the limit, please take care. </h2>
 
 <table class="datatable">
     <thead>
@@ -39,11 +39,11 @@
                 <td class = "comment" id = 'alert'> 
                     {{this.data.glucose.data}}
                     {{#if this.data.glucose.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.glucose.comment}}</p>
-                        </div>
-                     {{/if}}
+                        <details>
+                            <summary>comment:</summary>
+                            <p>{{this.data.glucose.comment}}</p>
+                        </details>
+                    {{/if}}
                 </td>
             {{else if (isnoneed this.data.glucose.status)}}
                 <td>Not required</td>
@@ -51,10 +51,10 @@
                 <td class = "comment"> 
                     {{this.data.glucose.data}}
                     {{#if this.data.glucose.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.glucose.comment}}</p>
-                        </div>
+                    <details>
+                        <summary>comment:</summary>
+                        <p>{{this.data.glucose.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{/if}}
@@ -65,10 +65,10 @@
                 <td class = "comment" id = 'alert'> 
                     {{this.data.weight.data}}
                     {{#if this.data.weight.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">your comment: {{this.data.weight.comment}}</p>
-                        </div>
+                    <details>
+                        <summary>comment:</summary>
+                        <p>{{this.data.weight.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{else if (isnoneed this.data.weight.status)}}
@@ -77,10 +77,10 @@
                 <td class = "comment"> 
                     {{this.data.weight.data}}
                     {{#if this.data.weight.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.weight.comment}}</p>
-                        </div>
+                    <details>
+                        <summary>comment:</summary>
+                        <p> {{this.data.weight.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{/if}}
@@ -92,10 +92,10 @@
                <td class = "comment" id = 'alert'> 
                     {{this.data.insulin.data}}
                     {{#if this.data.insulin.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.insulin.comment}}</p>
-                        </div>
+                    <details>
+                        <summary>comment:</summary>
+                        <p>{{this.data.insulin.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{else if (isnoneed this.data.insulin.status)}}
@@ -104,10 +104,10 @@
                 <td class = "comment" > 
                     {{this.data.insulin.data}}
                     {{#if this.data.insulin.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">your comment: {{this.data.insulin.comment}}</p>
-                        </div>
+                    <details>
+                        <summary>comment:</summary>
+                        <p> {{this.data.insulin.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{/if}}
@@ -119,10 +119,10 @@
                 <td class = "comment" id = 'alert'> 
                     {{this.data.exercise.data}}
                     {{#if this.data.exercise.comment}}
-                        <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.exercise.comment}}</p>
-                        </div>
+                        <details>
+                            <summary>comment:</summary>
+                            <p> {{this.data.exercise.comment}}</p>
+                        </details>
                      {{/if}}
                 </td>
             {{else if (isnoneed this.data.exercise.status)}}
@@ -131,10 +131,10 @@
                 <td class = "comment"> 
                     {{this.data.exercise.data}}
                     {{#if this.data.exercise.comment}}
-                    <i class='fa fa-comment'></i>
-                        <div class="comment_box">
-                            <p class="comment_text">comment: {{this.data.exercise.comment}}</p>
-                        </div>
+                    <details>
+                            <summary>comment:</summary>
+                            <p> {{this.data.exercise.comment}}</p>
+                    </details>
                      {{/if}}
                 </td>
             {{/if}}
@@ -145,5 +145,3 @@
 
     
 </table>
-
-  

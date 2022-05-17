@@ -221,10 +221,11 @@ const logout = (req, res) => {
 
 const table = async(req, res) => {
         try{
-            const table = await Record.find({patientId: req.user._id}).lean()
-            const patient =  await Patient.findOne({_id: req.user._id}).lean()
-            console.log(patient.username)     
-            console.log(req.user._id)   
+            console.log(req)
+            const table = await Record.find({patientId: req.params._id}).lean()
+            const patient =  await Patient.findOne({_id: req.params._id}).lean()
+            console.log(table)
+            console.log(patient)     
             for (var record of table) {
     
                 // date formatting
@@ -284,11 +285,12 @@ const table = async(req, res) => {
                 }
     
             }
-            res.render('table_doctor.hbs', {
-                style: 'table.css',
+            res.render('check_pat_data.hbs', {
+                style: 'table_doctor.css',
                 title: "Viewing data",
                 record: table.reverse(),
-                name: patient.username
+                name: patient.username,
+                patient: patient
             })
         }catch(err){
             console.log(err)
