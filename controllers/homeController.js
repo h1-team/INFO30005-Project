@@ -213,7 +213,11 @@ const homepage = async (req, res) => {
 const profile = async (req, res) => {
     try {
         const patient = await Patient.findOne({_id: req.user._id}).lean()
-        return res.render('p_profile.hbs', {patient: patient})
+        return res.render('p_profile.hbs', {
+            style: 'profile.css',
+            patient: patient
+
+        })
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -221,11 +225,18 @@ const profile = async (req, res) => {
 }
 
 const renderEdit = (req, res) => {
-    res.render('edit.hbs')
+    res.render('edit.hbs',{
+        style: 'profile.css',
+    }
+    
+    )
 }
 const edit = async (req, res) => {
     if (await Patient.findOne({ username: req.body.username }, {})) {
-        return res.render('register.hbs', { usernameExists: true })
+        return res.render('register.hbs', { 
+            style: 'profile.css',
+            usernameExists: true 
+        })
     }
 
     try {
