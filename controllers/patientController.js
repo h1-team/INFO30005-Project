@@ -80,17 +80,10 @@ const getAllPatientRecordToday = async (req, res) => {
         thresholdWeight = patient.thresholdWeight
         thresholdInsulin = patient.thresholdInsulin
 
-        date = Date.now()
-        date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
+        date = utils.getMelbDate()
         const record = await Record.findOne({
             patientId: patient._id,
-            recordDate: {
-                $gte: today,
-                $lt: tmr
-            },
+            recordDate: date,
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
         var glucose = null,
@@ -205,7 +198,7 @@ const getEngagement = async (req, res) => {
         }
         update_time = null
         if(result[i].records.length>0){
-            update_time = result[i].records[0].recordDate
+            update_time = utils.formatDate(result[i].records[0].recordDate)+"T"+result[i].records[0].updateTime 
         }
         arr.push({
             "username": result[i].username,

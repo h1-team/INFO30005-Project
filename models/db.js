@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const utils = require('../utils/utils.js')
+const { Timestamp } = require('mongodb')
 
 const STATUS = ['RECORDED', 'UNRECORDED', 'NO_NEED']
 const recordSchema = new mongoose.Schema({
@@ -10,6 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
+    updateTime: { type: String, required: true },
     isEngaged: { type: Boolean, default: false },
     data: {
         glucose: {
@@ -42,7 +44,7 @@ const patientSchema = new mongoose.Schema({
     address: { type: String, default: '' },
     email: { type: String, default: '', unique: true },
     textBio: { type: String, default: '' },
-    yob: { type: Number, required: true, min: 1900, max: 2022 },
+    yob: { type: Number, min: 1900, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
