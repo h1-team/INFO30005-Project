@@ -110,7 +110,7 @@ const comment = (req, res) => {
     })
 }
 const findOneById = async (req, res) => {
-    result = await Clinician.findOne({ username: req.params.username }, {})
+    result = await Clinician.findOne({ _id: req.params._id }, {})
     res.send(result)
 }
 
@@ -198,6 +198,16 @@ const writeSupportMSG = async (req, res) => {
     }
 }
 
+const renderOnePatientProfile = async (req, res) => {
+    try {
+        const patient = await Patient.findOne({_id: req.params._id}).lean()
+        res.render('profile.hbs', {patient: patient})
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+}
+
 const renderClinicalNote = async (req, res) => {
     return res.render('clinical_note.hbs')
 }
@@ -242,6 +252,7 @@ module.exports = {
     renderClinicalNote,
     renderSupportMSG,
     writeSupportMSG,
+    renderOnePatientProfile,
     doctorhome,
     doctor_login,
     doctor,
