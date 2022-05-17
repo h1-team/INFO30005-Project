@@ -220,7 +220,7 @@ const getEngagement = async (req, res) => {
         }
         return b.rate - a.rate})
 
-    console.log(arr)
+    //console.log(arr)
     res.send(arr)
 }
 
