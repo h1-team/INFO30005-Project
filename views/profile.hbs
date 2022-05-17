@@ -1,36 +1,32 @@
-<section id="pat">
+<link rel="stylesheet" href="/css/pat.css">
+{{>header}}    
+    <div class="pat_info">
+        <div class="pats_col profile">
+            <img src="/picture/SpongeBob.svg.png">
+            <div class="name">{{!this.name}}</div>
+        </div>
 
-    <section id="profile">
-        <section id="pat-picture">
-            <img class="pat-pic" src={{thisdoctor.photo}}" alt="pat">
-            <a>{{thisdoctor.name}}</a> 
-        </section>
-        <nav>
-            <ul >
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="81" height="63" viewBox="0 0 81 63">
-                    <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M39.425,18.6,13.5,39.954V63a2.25,2.25,0,0,0,2.25,2.25l15.757-.041a2.25,2.25,0,0,0,2.239-2.25V49.5A2.25,2.25,0,0,1,36,47.252h9a2.25,2.25,0,0,1,2.25,2.25V62.953a2.25,2.25,0,0,0,2.25,2.257l15.752.044A2.25,2.25,0,0,0,67.5,63V39.938L41.576,18.6A1.714,1.714,0,0,0,39.425,18.6ZM80.376,33.113,68.621,23.421V3.941a1.688,1.688,0,0,0-1.687-1.688H59.059a1.688,1.688,0,0,0-1.687,1.688V14.153L44.782,3.794a6.748,6.748,0,0,0-8.577,0L.611,33.113A1.688,1.688,0,0,0,.386,35.49l3.586,4.36a1.687,1.687,0,0,0,2.378.229L39.425,12.831a1.714,1.714,0,0,1,2.151,0L74.653,40.079a1.687,1.687,0,0,0,2.376-.225l3.586-4.36a1.688,1.688,0,0,0-.239-2.381Z" transform="translate(0.001 -2.254)" fill="#fff"/>
-                    </svg>
-                    <a href="#note" class="anchor">Clinical Note</a></li>   
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="63" viewBox="0 0 72 63">
-                    <path id="Icon_awesome-table" data-name="Icon awesome-table" d="M65.25,2.25H6.75A6.75,6.75,0,0,0,0,9V58.5a6.75,6.75,0,0,0,6.75,6.75h58.5A6.75,6.75,0,0,0,72,58.5V9A6.75,6.75,0,0,0,65.25,2.25Zm-33.75,54H9V42.75H31.5Zm0-22.5H9V20.25H31.5ZM63,56.25H40.5V42.75H63Zm0-22.5H40.5V20.25H63Z" transform="translate(0 -2.25)" fill="#fff"/>
-                    </svg>
-                    <a href="#display_data" class="anchor">Display Data</a></li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="81" height="71.89" viewBox="0 0 81 71.89">
-                    <path id="Icon_awesome-edit" data-name="Icon awesome-edit" d="M56.616,11.677,69.3,24.345a1.372,1.372,0,0,1,0,1.938L38.588,56.954,25.538,58.4a2.733,2.733,0,0,1-3.023-3.019l1.448-13.033L54.675,11.677A1.376,1.376,0,0,1,56.616,11.677ZM79.4,8.461,72.534,1.608a5.505,5.505,0,0,0-7.762,0L59.794,6.58a1.372,1.372,0,0,0,0,1.938L72.478,21.185a1.376,1.376,0,0,0,1.941,0L79.4,16.214a5.487,5.487,0,0,0,0-7.752ZM54,48.612v14.3H9V17.969H41.316a1.73,1.73,0,0,0,1.2-.492l5.625-5.618a1.685,1.685,0,0,0-1.2-2.879H6.75A6.747,6.747,0,0,0,0,15.722V65.156A6.747,6.747,0,0,0,6.75,71.9h49.5A6.747,6.747,0,0,0,63,65.156V42.995A1.691,1.691,0,0,0,60.117,41.8l-5.625,5.618A1.726,1.726,0,0,0,54,48.612Z" transform="translate(0 -0.007)" fill="#fff"/>
-                    </svg>
-                    <a href="#modify_data" class="anchor">Modify data</a></li>
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">  
-                    <path id="Icon_material-message" data-name="Icon material-message" d="M57,3H9A5.992,5.992,0,0,0,3.03,9L3,63,15,51H57a6.018,6.018,0,0,0,6-6V9A6.018,6.018,0,0,0,57,3ZM51,39H15V33H51Zm0-9H15V24H51Zm0-9H15V15H51Z" transform="translate(-3 -3)" fill="#fff"/>
-                    </svg>
-                    <a href="#message" class="anchor">Encourage message</a></li>
-            </ul>  
-        </nav>  
+        <table class="pats_col">
+            <tr>
+                <td><img src="/icon/note.svg"></td>
+                <td>Clinical Note</td>
+            </tr>
+
+            <tr>
+                <td><img src="/icon/display.svg"></td>
+                <td>Display Data</td>
+            </tr>
+            
+            <tr>
+                <td><img src="/icon/modify.svg"></td>
+                <td>Modify data</td>
+            </tr> 
+
+            <tr>
+                <td><img src="/icon/msg.svg"></td>
+                <td>Encourage message</td>
+            </tr>
+            </table>
+
     </div>
-
-    </section>
-
-</section>
+{{>footer}}   

@@ -39,22 +39,21 @@ const updateRecord = async (req, res) => {
     try {
         id = req.body.patientId
         date = req.body.recordDate
+        time = req.body.updateTime
         const patient = await Patient.findById(id)
         if (!patient) {
             throw new Error('no such patient')
         }
         date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
         const record = await Record.findOne({
             patientId: id,
-            recordDate: { $gte: today, $lt: tmr },
+            recordDate: date ,
         })
         if (record) {
             // update data
             console.log('updating record\n')
             Object.assign(record, req.body)
+            record.recordDate = date
             record.isEngaged = changeStatus(patient.needExecrise, record.data.exercise) |
                             changeStatus(patient.needGlucose, record.data.glucose) |
                             changeStatus(patient.needWeight, record.data.weight) |
@@ -69,6 +68,7 @@ const updateRecord = async (req, res) => {
             //create new record
             newRecord = new Record()
             Object.assign(newRecord, req.body)
+            newRecord.recordDate = date
             newRecord.isEngaged =
                 changeStatus(patient.needExecrise, newRecord.data.exercise) |
                 changeStatus(patient.needGlucose, newRecord.data.glucose) |
@@ -112,13 +112,10 @@ const getRecordStatus = async (req, res) => {
             throw new Error('no such patient')
         }
         date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
         result = await Patient.findById(req.body.patientId)
         const record = await Record.findOne({
             patientId: id,
-            recordDate: { $gte: today, $lt: tmr },
+            recordDate: date,
         })
         var glucose, weight, insulin, exercise
         if (record) {
@@ -152,12 +149,9 @@ const getOneRecord = async (req, res) => {
             throw new Error('no such patient')
         }
         date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
         record = await Record.findOne({
             patientId: id,
-            recordDate: { $gte: today, $lt: tmr },
+            recordDate: date,
         })
         if (record) {
             res.send(record)

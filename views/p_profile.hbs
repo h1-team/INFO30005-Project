@@ -1,0 +1,48 @@
+
+<link rel="stylesheet" href="/css/profile.css">
+
+<body style="background-color: #FFFF">
+    <div class = "basic">
+        <h2> Basic information</h2>
+        <ul>
+            <li>
+                <p>User name</p>
+                <p>{{patient.username}}</p>
+            </li>
+
+            <li>
+                <p>Year of Birth</p>
+                <p>{{patient.yob}}</p>
+            </li>
+        </ul>
+        
+    </div>
+
+
+    <div class = "contact">
+        <h2> Contact information</h2>
+        <ul>
+            <li>
+                <p>Email</p>
+                <p>{{patient.email}}</p>
+            </li>
+
+            <li>
+                <p>Home Address</p>
+                <p>{{patient.address}}</p>
+            </li>
+
+            <li>
+                <p>Phone number</p>
+                <p>{{patient.phone}}</p>
+            </li>
+        </ul>
+    </div>
+
+
+    <a href="/edit">
+        <div class="edit"> 
+            <p>Edit your info and password</p>
+        </div>
+    </a>
+</body>

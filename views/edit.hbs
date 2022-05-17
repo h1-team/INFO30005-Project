@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+<form action="/edit" method="POST">
+
+    <div class = "basic">
+        <h2> Basic information</h2>
+        <section>
+            <label>User name</label>
+            <input class="input"  type="text" name="username" placeholder="Enter your new username" value="{{input.username}}">
+        </section>
+
+        <section class = 'one_line'>
+        <label>Year of Birth</label>
+        <input class="input"  type="number" name="yob" placeholder="Enter your new year of birth" value="{{input.yob}}">
+        </section>
+    </div>
+
+
+
+    <div class = "contact">
+        <h2> Contact information</h2>
+        <section class = 'one_line'>
+            <label>Email</label>
+            <input class="input"  type="email" name="email" placeholder="Enter your new email" value="{{input.email}}">
+        </section>
+
+        <section>
+            <label>Home Address</label>
+            <input class="input"  type="text" name="address" placeholder="Enter your new home address" value="{{input.address}}">
+        </section>
+
+        <section>
+            <label>Phone number</label>
+            <input class="input"  type="text" name="phone" placeholder="Enter your new phone number" value="{{input.phone}}">
+        </section>
+    </div>
+
+    <div class = "password">
+        <h2> Security</h2>
+        <section class = 'one_line'>
+            <label>Password</label>
+            <input class="input"  type="text" name="password" placeholder="Enter your new password" value="{{input.password}}">
+        </section>
+    </div>
+
+    <div class="submit"> 
+        <button type="submit">Submit</button>
+        <button type="button" class="btn-login log-bg" onclick="location.href = './p_profile'">Cancel</button>
+    </div>
+
+</form>
+
+{{#if editSuccess}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Update Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if editFailure}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("Fail to update");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
+{{#if usernameExists}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("The username already exists");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}

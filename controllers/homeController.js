@@ -201,6 +201,7 @@ const homepage = async (req, res) => {
         res.render('homepage.hbs', {
             status: status.data,
             name: req.user.name,
+            supportMSG: req.user.supportMSG,
             style: 'homepage.css',
         })
     } catch (error) {
@@ -208,6 +209,58 @@ const homepage = async (req, res) => {
         res.send('404 Error')
     }
 }
+
+const profile = async (req, res) => {
+    try {
+        const patient = await Patient.findOne({_id: req.user._id}).lean()
+        return res.render('p_profile.hbs', {patient: patient})
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+}
+
+const renderEdit = (req, res) => {
+    res.render('edit.hbs')
+}
+const edit = async (req, res) => {
+    if (await Patient.findOne({ username: req.body.username }, {})) {
+        return res.render('register.hbs', { usernameExists: true })
+    }
+
+    try {
+        const patientId = req.session.passport ? req.session.passport.user : ''
+        const patient = await Patient.findById(patientId)
+
+        if (req.body.username) {
+            patient.username = req.body.username
+        }
+        if (req.body.yob) {
+            patient.yob = req.body.yob
+        }
+        if (req.body.email) {
+            patient.email = req.body.email
+        }
+        if (req.body.address) {
+            patient.address = req.body.address
+        }
+        if (req.body.phone) {
+            patient.phone = req.body.phone
+        }
+        if (req.body.passward) {
+            patient.passward = req.body.passward
+        }
+        
+        await patient.save()
+
+        return res.render('edit.hbs',  { editSuccess: true }) 
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+        return res.render('edit.hbs', { editFailure: true })
+    }
+}
+
 
 const table = async(req, res) => {
     try{
@@ -297,4 +350,7 @@ module.exports = {
     leaderboard,
     table,
     logout,
+    profile,
+    renderEdit,
+    edit,
 }

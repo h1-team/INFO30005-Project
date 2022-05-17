@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const utils = require('../utils/utils.js')
+const { Timestamp } = require('mongodb')
 
 const STATUS = ['RECORDED', 'UNRECORDED', 'NO_NEED']
 const recordSchema = new mongoose.Schema({
@@ -10,6 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
+    updateTime: { type: String, required: true },
     isEngaged: { type: Boolean, default: false },
     data: {
         glucose: {
@@ -40,7 +42,9 @@ const patientSchema = new mongoose.Schema({
     photo: { type: String, default: '' },
     name: { type: String, default: '' },
     address: { type: String, default: '' },
-    dob: Date,
+    email: { type: String, default: '', unique: true },
+    textBio: { type: String, default: '' },
+    yob: { type: Number, min: 1900, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
@@ -54,6 +58,7 @@ const patientSchema = new mongoose.Schema({
     thresholdInsulin: { type: Number, default: 2, min: 0 },
     create_date: { type: Date, default: utils.getMelbDate() },
     records: [recordSchema],
+    supportMSG: { type: String, default: '' },
 })
 
 patientSchema.methods.verifyPassword = function (password, callback) {
@@ -119,10 +124,28 @@ clinicianSchema.methods.verifyPassword = function (password, callback) {
     })
 }
 
-
+const clinicianNoteSchema = new mongoose.Schema(
+    {
+      patient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
+        required: true,
+      },
+      clinician: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Clinician",
+        required: true,
+      },
+      text: { type: String },
+    },
+    {
+      timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
+    }
+  )
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
 const Clinician = mongoose.model('clinician', clinicianSchema)
+const clinicianNote = mongoose.model('clinicianNote', clinicianNoteSchema)
 
-module.exports = { Patient, Record, Clinician }
+module.exports = { Patient, Record, Clinician, clinicianNote }
