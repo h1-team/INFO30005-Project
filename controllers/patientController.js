@@ -71,7 +71,8 @@ const getAllPatientRecordToday = async (req, res) => {
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {
         patient = await Patient.findById(result[i].patientId)
-
+        
+        patientId = patient._id
         username = patient.username
         realname = patient.name
         
@@ -150,6 +151,7 @@ const getAllPatientRecordToday = async (req, res) => {
             exerciseStatus = 'ALERT'
         }
         resjson = {
+            _id: patientId,
             username: username,
             name: realname,
             glucoseStatus: glucoseStatus,
@@ -173,6 +175,7 @@ const getAllPatientRecordToday = async (req, res) => {
         }
     }
     // res.send(arr)
+    console.log(arr)
     return res.render('dashboard', {
         patient: arr
     })
@@ -221,17 +224,6 @@ const getEngagement = async (req, res) => {
     res.send(arr)
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
-
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
-
-    return [year, month, day].join('-')
-}
 
 // exports an object, which contains a function named getAllDemoData
 module.exports = {

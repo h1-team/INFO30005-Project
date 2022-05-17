@@ -6,7 +6,7 @@ const patientController = require('../controllers/patientController')
 // add a route to handle the GET request for all demo data
 patientRouter.get('/findAll', patientController.findAll)
 // add a route to handle the GET request for one data instance
-patientRouter.get('/findOne/:username', patientController.findOneById)
+patientRouter.get('/findOne/:_id', patientController.findOneById)
 patientRouter.get('/getEngagement', patientController.getEngagement)
 
 patientRouter.post('/addOne', patientController.addOne)

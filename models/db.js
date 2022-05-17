@@ -124,24 +124,22 @@ clinicianSchema.methods.verifyPassword = function (password, callback) {
     })
 }
 
-const clinicianNoteSchema = new mongoose.Schema(
-    {
-      patient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Patient",
-        required: true,
-      },
-      clinician: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Clinician",
-        required: true,
-      },
-      text: { type: String },
+const clinicianNoteSchema = new mongoose.Schema({
+    patient: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Patient",
+    required: true,
     },
-    {
-      timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
-    }
-  )
+
+    clinician: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Clinician",
+    required: true,
+    },
+    
+    text: { type: String },
+    create_date: { type: Date, default: utils.getMelbDate() },
+})
 
 const Record = mongoose.model('record', recordSchema)
 const Patient = mongoose.model('patient', patientSchema)
