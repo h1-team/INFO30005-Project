@@ -56,6 +56,14 @@ div{
     background-color:var(--color-yellow);
 }
 
+.hello .hide{
+    display: none;
+}
+
+.hello .show{
+    display: block;
+}
+
 #message{
     margin-top: 2em;
     margin-left: 1em;

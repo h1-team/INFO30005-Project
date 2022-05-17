@@ -2,7 +2,7 @@
     <h1>Home Page
         <form class="logout" action="/logout" method="post">
     <button type="submit" onclick="logout()">Log Out</button>
-     </form>
+    </form>
     </h1>
     
 </header>
@@ -11,9 +11,10 @@
     <section>
 
         <div class = "hello">
-            <h2> Hello, {{name}} <img width="40" src="/icon/medal.svg"></h2>
+            <h2> Hello, {{name}}<img class="{{renderMedal.show}}" 
+            width="40" src="/icon/medal.svg">
+            </h2>
             <p>From your clinician:</p>
-
             <p id = "message">  {{supportMSG}}
             </p>
         </div>
@@ -39,6 +40,9 @@
                     {{#if (isrecord this.glucose)}}
                         <p>Blood glucose level</p>
                         <p>Successfully entered</p>
+                    {{else if (isnoneed this.glucose)}}
+                        <p>Weight</p>
+                        <p>Do not required</p>    
                     {{else}}
                         <p>Blood glucose level</p>
                         <p>Not yet entered</p>
@@ -49,6 +53,9 @@
                     {{#if (isrecord this.weight)}}
                         <p>Weight</p>
                         <p>Successfully entered</p>
+                    {{else if (isnoneed this.weight)}}
+                        <p>Weight</p>
+                        <p>Do not required</p>
                     {{else}}
                         <p>Weight</p>
                         <p>Not yet entered</p>
@@ -59,6 +66,9 @@
                     {{#if (isrecord this.insulin)}}
                         <p>Doses of insulin taken</p>
                         <p>Successfully entered</p>
+                    {{else if (isnoneed this.insulin)}}
+                        <p>Weight</p>
+                        <p>Do not required</p>    
                     {{else}}
                         <p>Doses of insulin taken</p>
                         <p>Not yet entered</p>
@@ -69,6 +79,9 @@
                     {{#if (isrecord this.exercise)}}
                         <p>Exercise</p>
                         <p>Successfully entered</p>
+                    {{else if (isnoneed this.exercise)}}
+                        <p>Weight</p>
+                        <p>Do not required</p>    
                     {{else}}
                         <p>Exercise</p>
                         <p>Not yet entered</p>
