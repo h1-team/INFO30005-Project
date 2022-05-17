@@ -36,7 +36,7 @@ patientForm.addEventListener('submit', async function (e) {
             status: needInsulin.checked ? "UNRECORDED" : "NO_NEED",
         },
         exercise: {
-            status: needExecrise.checked ? "UNECORDED" : "NO_NEED",
+            status: needExecrise.checked ? "UNRECORDED" : "NO_NEED",
         }
     }
     const res2 = await axios({
