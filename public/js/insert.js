@@ -7,7 +7,9 @@ insertForm.addEventListener('submit', async function (e) {
         //patientId: '62779e55ef8bd14bb5143922',
         patientId: userID,
         recordDate: getMelbDate(),
+        //updateTime: getMelbDateTime(),
         //recordDate: getMelbDateTime(),
+        updateTime : formatTime(),
         
         //recordDate: getTime(),
         data: {
@@ -76,4 +78,30 @@ function getTime() {
         day = '0' + day
     }
     return year + '-' + month + '-' + day
+}
+function getMelbDateTime() {
+    var timezone = 2
+    // var offset_GMT = new Date().getTimezoneOffset()
+    var nowDate = new Date().getTime()
+    var date = new Date(
+        nowDate + timezone * 60 * 60 * 1000
+    )
+    return date
+}
+
+function formatTime(){
+    var time = new Date(getMelbDateTime());
+    var hour = time.getHours();
+    var mins = time.getMinutes();
+    var sec = time.getSeconds();
+    if(hour >= 0 && hour <= 9){
+        hour = "0" + hour;
+    }
+    if(mins >= 0 && mins <= 9){
+        mins = "0" + mins;
+    }
+    if(sec >= 0 && sec <= 9){
+        sec = "0" + sec;
+    }
+    return [hour,mins,sec].join(':')
 }
