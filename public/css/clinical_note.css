@@ -58,7 +58,7 @@ body{
     padding: 2.2em;
 } 
 .logout{
-    margin-top: 2.5px;
+    margin-top: 0.5px;
     position: absolute;
     top: 0;
     right: 0;
@@ -74,6 +74,7 @@ body{
     border: none;
     border-left-style: solid;
     border-color: white;
+    margin-top: 35px;
 }
 button{
     background: whitesmoke;

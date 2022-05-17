@@ -30,6 +30,7 @@ table.pat_col{
   border: #373737;
   padding: 12%;
 }
+
 .legend{
   background-color: white;
   border: #4b4b4b;
@@ -126,7 +127,9 @@ li img{
     border-left-style: solid;
     border-color: white;
 }
-
+.tdp{
+  font-size: 2em;
+}
   /*footer*/
   ul {
     list-style: none;
