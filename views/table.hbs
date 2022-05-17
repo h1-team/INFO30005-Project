@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {{> header2}}
 
 
@@ -24,43 +24,107 @@
             {{#if (isunrecord this.data.glucose.status)}}
                 <td>Unrecorded</td>
             {{else if (isalert this.data.glucose.status)}}
-                <td id = 'alert'> {{this.data.glucose.data}}</td>
+                <td class = "comment" id = 'alert'> 
+                    {{this.data.glucose.data}}
+                    {{#if this.data.glucose.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.glucose.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{else if (isnoneed this.data.glucose.status)}}
                 <td>Not required</td>
             {{else}}
-                <td> {{this.data.glucose.data}}</td>
+                <td class = "comment"> 
+                    {{this.data.glucose.data}}
+                    {{#if this.data.glucose.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.glucose.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{/if}}
 
             {{#if (isunrecord this.data.weight.status)}}
                 <td>Unrecorded</td>
             {{else if (isalert this.data.weight.status)}}
-                <td id = 'alert'> {{this.data.weight.data}}</td>
+                <td class = "comment" id = 'alert'> 
+                    {{this.data.weight.data}}
+                    {{#if this.data.weight.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.weight.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{else if (isnoneed this.data.weight.status)}}
                 <td>Not required</td>
             {{else}}
-                <td> {{this.data.weight.data}}</td>
+                <td class = "comment"> 
+                    {{this.data.weight.data}}
+                    {{#if this.data.weight.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.weight.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{/if}}
 
 
             {{#if (isunrecord this.data.insulin.status)}}
                 <td>Unrecorded</td>
             {{else if (isalert this.data.insulin.status)}}
-                <td id = 'alert'> {{this.data.insulin.data}}</td>
+               <td class = "comment" id = 'alert'> 
+                    {{this.data.insulin.data}}
+                    {{#if this.data.insulin.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.insulin.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{else if (isnoneed this.data.insulin.status)}}
                 <td>Not required</td>
             {{else}}
-                <td> {{this.data.insulin.data}}</td>
+                <td class = "comment" > 
+                    {{this.data.insulin.data}}
+                    {{#if this.data.insulin.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.insulin.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{/if}}
 
 
             {{#if (isunrecord this.data.exercise.status)}}
                 <td>Unrecorded</td>
             {{else if (isalert this.data.exercise.status)}}
-                <td id = 'alert'> {{this.data.exercise.data}}</td>
+                <td class = "comment" id = 'alert'> 
+                    {{this.data.exercise.data}}
+                    {{#if this.data.exercise.comment}}
+                        <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.exercise.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{else if (isnoneed this.data.exercise.status)}}
                 <td>Not required</td>
             {{else}}
-                <td> {{this.data.exercise.data}}</td>
+                <td class = "comment"> 
+                    {{this.data.exercise.data}}
+                    {{#if this.data.exercise.comment}}
+                    <i class='fa fa-comment'></i>
+                        <div class="comment_box">
+                            <p class="comment_text">your comment: {{this.data.exercise.comment}}</p>
+                        </div>
+                     {{/if}}
+                </td>
             {{/if}}
 
         </tr>

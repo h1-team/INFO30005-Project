@@ -119,6 +119,17 @@ p{
     font-weight: normal;
 }
 
+.comment{
+    z-index: 1;
+}
+.comment_box{
+    width: 150px;
+    z-index: 2;
+}
+.comment_text{
+    margin: 0;
+    font-size: 0.7em;
+}
 
 
 .datatable td:hover {
@@ -136,6 +147,7 @@ p{
 
 #alert{
     background-color: red;
+    color: black;
 }
 
 
@@ -167,7 +179,7 @@ p{
         padding-right: 0.5em;
         padding-left: 0.3em;
     }
-    
+
     h1{
         font-size: 2em;
         margin-left: 0;

@@ -342,7 +342,7 @@ const table = async(req, res) => {
         res.render('table.hbs', {
             style: 'table.css',
             title: "Viewing data",
-            record: table,
+            record: table.reverse(),
             name: patient.username
         })
     }catch(err){
