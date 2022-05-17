@@ -125,3 +125,53 @@ a{
         padding: 2%; 
     }
 }
+header {
+    background-color: white;
+    height: 35px;
+    top: 0;
+    width: 100%;
+  }
+  nav ul { 
+    margin: 0 7% auto 0;
+    padding-right: initial;
+    text-align: left;
+    max-width: 100%
+  }
+  nav ul li { 
+    display: inline-block; 
+    margin-left: 10px;
+  }
+  
+  *.info{
+    font-family: "PT Serif";
+    font-weight: normal;
+    color: #4b4b4b;
+  }
+  .top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: black;
+  }
+  .logout{
+    margin-top: 5.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logout button{
+    font-size: 1.5em;
+    padding: 0;
+    padding-right: 1em;
+    padding-left: 1em;
+    background-color: #2D63AB;
+    color:white;
+    border: none;
+    border-left-style: solid;
+    border-color: white;
+}
+* { 
+    box-sizing: border-box; 
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+  }

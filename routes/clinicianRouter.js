@@ -42,16 +42,16 @@ clinicianRouter.post('/addOne', clinicianController.addOne)
 clinicianRouter.put('/editOne/:username', clinicianController.editOne)
 clinicianRouter.delete('/deleteOne/:username', clinicianController.deleteOne)
 clinicianRouter.get('/', clinicianController.doctorhome)
-clinicianRouter.get('/doctor/login', isLogin,clinicianController.doctor_login)
+clinicianRouter.get('/login', isLogin,clinicianController.doctor_login)
 
 clinicianRouter.post(
-    '/doctor/login',
+    '/login',
     passport.authenticate('clinician-login', {
         failureRedirect: '/doctor/login',
         failureFlash: true,
     }), // if bad login, send user back to login page
     (req, res) => {
-        res.redirect('/doctor/dashboard') // login was successful, send user to home page
+        res.redirect('/doctor/homepage') // login was successful, send user to home page
     }
 )
 clinicianRouter.post('/logout',isAuthenticated,clinicianController.logout)
