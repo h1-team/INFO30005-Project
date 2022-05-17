@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 45px;
     display: flex;
     background-color: #2D63AB;
     color: white;
@@ -154,6 +155,19 @@ p{
 }
 
 @media screen and (max-width: 375px){
+
+    .logout{
+        margin-top: 6px;
+    }
+
+    .logout button{
+        font-size: 1em;
+        padding-top: 7.5px;
+        padding-bottom: 7.5px;
+        padding-right: 0.5em;
+        padding-left: 0.3em;
+    }
+    
     h1{
         font-size: 2em;
         margin-left: 0;
