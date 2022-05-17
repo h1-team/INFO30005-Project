@@ -108,6 +108,25 @@ li img{
   font: 0.7em normal, PT Serif;
   color: black;
   }
+  .logout{
+    margin-top: 2.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logout button{
+    font-size: 1.5em;
+    padding: 0;
+    padding-right: 1em;
+    padding-left: 1em;
+    background-color: #2D63AB;
+    color:white;
+    border: none;
+    border-left-style: solid;
+    border-color: white;
+}
+
   /*footer*/
   ul {
     list-style: none;

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/dashboard.css">
  
-{{> header}}
+{{> header3}}
 
 <p class="sign">Sign up for new patient from <a href="./register">here</a ></p >
 
@@ -16,7 +16,7 @@
 <div class="container">
 
     {{#each patient}}
-    <div class="pat_info" type="button" onclick="location.href = "/profiles/{{this._id}}">{{this.name}};">
+    <div class="pat_info" type="button" onclick="location.href = "./profiles/{{this._id}}">{{this.name}};">
         <div class="pats_col profile">
             <img src="/picture/SpongeBob.svg.png">
             <div class="name">{{this.name}}</div>

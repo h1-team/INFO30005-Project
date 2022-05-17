@@ -25,6 +25,7 @@ const isAuthenticated = (req, res, next) => {
 }
 
 const isLogin = (req, res, next) => {
+    console.log('y')
     // If user is not authenticated via Passport, redirect to login page
     if(req.isAuthenticated() && req.user.role == "clinician"){
         return res.redirect('/homepage')
@@ -41,10 +42,10 @@ clinicianRouter.post('/addOne', clinicianController.addOne)
 clinicianRouter.put('/editOne/:username', clinicianController.editOne)
 clinicianRouter.delete('/deleteOne/:username', clinicianController.deleteOne)
 clinicianRouter.get('/', clinicianController.doctorhome)
-clinicianRouter.get('/login', isLogin,clinicianController.doctor_login)
+clinicianRouter.get('/doctor/login', isLogin,clinicianController.doctor_login)
 
 clinicianRouter.post(
-    '/login',
+    '/doctor/login',
     passport.authenticate('clinician-login', {
         failureRedirect: '/doctor/login',
         failureFlash: true,
