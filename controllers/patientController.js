@@ -1,6 +1,6 @@
 // import demo model
 const {
-    Patient
+    Patient, Clinician
 } = require('../models/db.js')
 const {
     Record
@@ -61,20 +61,24 @@ const deleteOne = async (req, res) => {
 }
 
 const getAllPatientRecordToday = async (req, res) => {
-    result = await Patient.find()
+    clinician = await Clinician.findById(req.user._id)
+    result = clinician.patients
+
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {
-        username = result[i].username
-        realname = result[i].name
+        patient = await Patient.findById(result[i].patientId)
+
+        username = patient.username
+        realname = patient.name
         
-        thresholdExecrise = result[i].thresholdExecrise
-        thresholdGlucose = result[i].thresholdGlucose
-        thresholdWeight = result[i].thresholdWeight
-        thresholdInsulin = result[i].thresholdInsulin
+        thresholdExecrise = patient.thresholdExecrise
+        thresholdGlucose = patient.thresholdGlucose
+        thresholdWeight = patient.thresholdWeight
+        thresholdInsulin = patient.thresholdInsulin
 
         date = Date.now()
         date = formatDate(date)
@@ -82,7 +86,7 @@ const getAllPatientRecordToday = async (req, res) => {
         tmr = new Date(today)
         tmr.setDate(today.getDate() + 1)
         const record = await Record.findOne({
-            patientId: result[i]._id,
+            patientId: patient._id,
             recordDate: {
                 $gte: today,
                 $lt: tmr
@@ -94,35 +98,35 @@ const getAllPatientRecordToday = async (req, res) => {
             insulin = null,
             exercise = null
         if (record) {
-            if (result[i].needGlucose) {
+            if (patient.needGlucose) {
                 glucoseStatus = record.data.glucose.status
                 glucose = record.data.glucose.data
             } else {
                 glucoseStatus = 'NO_NEED'
             }
-            if (result[i].needExecrise) {
+            if (patient.needExecrise) {
                 exerciseStatus = record.data.exercise.status
                 exercise = record.data.exercise.data
             } else {
                 exerciseStatus = 'NO_NEED'
             }
-            if (result[i].needInsulin) {
+            if (patient.needInsulin) {
                 insulinStatus = record.data.insulin.status
                 insulin = record.data.insulin.data
             } else {
                 insulinStatus = 'NO_NEED'
             }
-            if (result[i].needWeight) {
+            if (patient.needWeight) {
                 weightStatus = record.data.weight.status
                 weight = record.data.weight.data
             } else {
                 weightStatus = 'NO_NEED'
             }
         } else {
-            glucoseStatus = result[i].needGlucose ? 'UNRECORDED' : 'NO_NEED'
-            weightStatus = result[i].needWeight ? 'UNRECORDED' : 'NO_NEED'
-            insulinStatus = result[i].needInsulin ? 'UNRECORDED' : 'NO_NEED'
-            exerciseStatus = result[i].needExecrise ? 'UNRECORDED' : 'NO_NEED'
+            glucoseStatus = patient.needGlucose ? 'UNRECORDED' : 'NO_NEED'
+            weightStatus = patient.needWeight ? 'UNRECORDED' : 'NO_NEED'
+            insulinStatus = patient.needInsulin ? 'UNRECORDED' : 'NO_NEED'
+            exerciseStatus = patient.needExecrise ? 'UNRECORDED' : 'NO_NEED'
         }
 
         if (
