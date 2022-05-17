@@ -1,15 +1,17 @@
-<form action="/people" method="POST">
+
+
+<form action="/edit" method="POST">
 
     <div class = "basic">
         <h2> Basic information</h2>
         <section>
             <label>User name</label>
-            <input type="text" name="username" />
+            <input class="input"  type="text" name="username" placeholder="Enter your new username" value="{{input.username}}">
         </section>
 
         <section class = 'one_line'>
-        <label>Birthday</label>
-        <input type="date" name="Birthday" />
+        <label>Year of Birth</label>
+        <input class="input"  type="number" name="yob" placeholder="Enter your new year of birth" value="{{input.yob}}">
         </section>
     </div>
 
@@ -19,17 +21,17 @@
         <h2> Contact information</h2>
         <section class = 'one_line'>
             <label>Email</label>
-            <input type="email" name="email" placeholder="Email" />
+            <input class="input"  type="email" name="email" placeholder="Enter your new email" value="{{input.email}}">
         </section>
 
         <section>
             <label>Home Address</label>
-            <input type="text" name="address" />
+            <input class="input"  type="text" name="address" placeholder="Enter your new home address" value="{{input.address}}">
         </section>
 
         <section>
             <label>Phone number</label>
-            <input type="tel" name="phone" placeholder="123-45-678" />
+            <input class="input"  type="text" name="phone" placeholder="Enter your new phone number" value="{{input.phone}}">
         </section>
     </div>
 
@@ -37,14 +39,45 @@
         <h2> Security</h2>
         <section class = 'one_line'>
             <label>Password</label>
-            <input type="text" name="password" placeholder="new password" />
+            <input class="input"  type="text" name="password" placeholder="Enter your new password" value="{{input.password}}">
         </section>
     </div>
 
     <div class="submit"> 
-        <input type="submit" value="Submit">
-        <input type="reset" value = "Reset">
-        <input type="button" onclick="location.href='/p_profile';" value = "Cancel">
+        <button type="submit">Submit</button>
+        <button type="button" class="btn-login log-bg" onclick="location.href = './p_profile'">Cancel</button>
+        <button type="reset"> Reset </button>
     </div>
 
 </form>
+
+{{#if editSuccess}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Update Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if editFailure}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("Fail to update");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
+{{#if usernameExists}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("The username already exists");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}

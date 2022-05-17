@@ -1,47 +1,46 @@
 
+{{> header2}}
 
 <div class = "basic">
     <h2> Basic information</h2>
     <ul>
-        <li>
+        <li class="info">
             <p>User name</p>
             <p>{{patient.username}}</p>
         </li>
 
-        <li>
-            <p>Birthday   </p>
-            <p>Apr/13/1997</p>
+        <li class="info">
+            <p>Year of Birth</p>
+            <p>{{patient.yob}}</p>
         </li>
     </ul>
     
 </div>
 
-
-    
 
 <div class = "contact">
     <h2> Contact information</h2>
     <ul>
-        <li>
-            <p>Email       </p>
-            <p>chris123@163.com</p>
+        <li class="info">
+            <p>Email</p>
+            <p>{{patient.email}}</p>
         </li>
 
-        <li>
+        <li class="info">
             <p>Home Address</p>
-            <p>1997/ Sweaston st, Australia</p>
-        </li>
+            <p>{{patient.address}}</p>
+        </li class="info">
 
-        <li>
+        <li class="info">
             <p>Phone number</p>
-            <p>8800-31999</p>
+            <p>{{patient.phone}}</p>
         </li>
     </ul>
 </div>
 
 
-<a href="/edit">
-    <div class="edit"> 
+<div class="edit"> 
+    <a href="/edit">
         <p>Edit your info and password</p>
-    </div>
-</a>
+    </a>
+</div>

@@ -1,6 +1,6 @@
 // import demo model
 const {
-    Patient
+    Patient, Clinician
 } = require('../models/db.js')
 const {
     Record
@@ -61,32 +61,30 @@ const deleteOne = async (req, res) => {
 }
 
 const getAllPatientRecordToday = async (req, res) => {
-    result = await Patient.find()
+    clinician = await Clinician.findById(req.user._id)
+    result = clinician.patients
+
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {
-        username = result[i].username
-        realname = result[i].name
+        patient = await Patient.findById(result[i].patientId)
         
-        thresholdExecrise = result[i].thresholdExecrise
-        thresholdGlucose = result[i].thresholdGlucose
-        thresholdWeight = result[i].thresholdWeight
-        thresholdInsulin = result[i].thresholdInsulin
+        patientId = patient._id
+        username = patient.username
+        realname = patient.name
+        
+        thresholdExecrise = patient.thresholdExecrise
+        thresholdGlucose = patient.thresholdGlucose
+        thresholdWeight = patient.thresholdWeight
+        thresholdInsulin = patient.thresholdInsulin
 
-        date = Date.now()
-        date = formatDate(date)
-        today = new Date(date)
-        tmr = new Date(today)
-        tmr.setDate(today.getDate() + 1)
+        date = utils.getMelbDate()
         const record = await Record.findOne({
-            patientId: result[i]._id,
-            recordDate: {
-                $gte: today,
-                $lt: tmr
-            },
+            patientId: patient._id,
+            recordDate: date,
         })
         var glucoseStatus, weightStatus, insulinStatus, exerciseStatus
         var glucose = null,
@@ -94,35 +92,35 @@ const getAllPatientRecordToday = async (req, res) => {
             insulin = null,
             exercise = null
         if (record) {
-            if (result[i].needGlucose) {
+            if (patient.needGlucose) {
                 glucoseStatus = record.data.glucose.status
                 glucose = record.data.glucose.data
             } else {
                 glucoseStatus = 'NO_NEED'
             }
-            if (result[i].needExecrise) {
+            if (patient.needExecrise) {
                 exerciseStatus = record.data.exercise.status
                 exercise = record.data.exercise.data
             } else {
                 exerciseStatus = 'NO_NEED'
             }
-            if (result[i].needInsulin) {
+            if (patient.needInsulin) {
                 insulinStatus = record.data.insulin.status
                 insulin = record.data.insulin.data
             } else {
                 insulinStatus = 'NO_NEED'
             }
-            if (result[i].needWeight) {
+            if (patient.needWeight) {
                 weightStatus = record.data.weight.status
                 weight = record.data.weight.data
             } else {
                 weightStatus = 'NO_NEED'
             }
         } else {
-            glucoseStatus = result[i].needGlucose ? 'UNRECORDED' : 'NO_NEED'
-            weightStatus = result[i].needWeight ? 'UNRECORDED' : 'NO_NEED'
-            insulinStatus = result[i].needInsulin ? 'UNRECORDED' : 'NO_NEED'
-            exerciseStatus = result[i].needExecrise ? 'UNRECORDED' : 'NO_NEED'
+            glucoseStatus = patient.needGlucose ? 'UNRECORDED' : 'NO_NEED'
+            weightStatus = patient.needWeight ? 'UNRECORDED' : 'NO_NEED'
+            insulinStatus = patient.needInsulin ? 'UNRECORDED' : 'NO_NEED'
+            exerciseStatus = patient.needExecrise ? 'UNRECORDED' : 'NO_NEED'
         }
 
         if (
@@ -153,6 +151,7 @@ const getAllPatientRecordToday = async (req, res) => {
             exerciseStatus = 'ALERT'
         }
         resjson = {
+            _id: patientId,
             username: username,
             name: realname,
             glucoseStatus: glucoseStatus,
@@ -176,6 +175,7 @@ const getAllPatientRecordToday = async (req, res) => {
         }
     }
     // res.send(arr)
+    console.log(arr)
     return res.render('dashboard', {
         patient: arr
     })
@@ -201,7 +201,7 @@ const getEngagement = async (req, res) => {
         }
         update_time = null
         if(result[i].records.length>0){
-            update_time = result[i].records[0].recordDate
+            update_time = utils.formatDate(result[i].records[0].recordDate)+"T"+result[i].records[0].updateTime 
         }
         arr.push({
             "username": result[i].username,
@@ -224,17 +224,6 @@ const getEngagement = async (req, res) => {
     res.send(arr)
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
-
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
-
-    return [year, month, day].join('-')
-}
 
 // exports an object, which contains a function named getAllDemoData
 module.exports = {

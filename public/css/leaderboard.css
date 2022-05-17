@@ -20,8 +20,7 @@
   flex: 0 0 48%;
 }
 
-.box .left .title {
-  width: 80%;
+.box .right .title {
   margin: 0 auto;
   padding: 2%;
   text-align: center;
@@ -29,35 +28,62 @@
   background-color: #F2B705;
   border-radius: 10px;
 }
-
+.box .left{
+  flex: 0 0 40%;
+}
 .box .left .content {
   margin-top: 5%;
 }
 
-.box .left .content table {
-  text-align: center;
+
+
+.box .right>img {
+  margin-top: 3rem;
   width: 100%;
-  border-spacing: 0;
-}
-
-.box .left .content table thead th {
-  padding-bottom: 1%;
-}
-
-.box .left .content table tbody tr td {
-  vertical-align: bottom;
-  border-bottom: 2px solid #ccc;
-  font-size: 14px;
-  padding-top: 2%;
-}
-
-.box .right img {
-  height: 100%;
 }
 .box .hide{
   display: none;
 }
 
+.box .left .content h3 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+.box .user-item{
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  background-color: #1D4881;
+  color: #fff;
+  line-height: 3;
+  border-radius: 20px;
+  padding: 0 5%;
+  margin-bottom: 2rem;
+}
+.user-item .user-info{
+  display: flex;
+  align-items: center;
+}
+.user-item .rank{
+  flex: 0 0 10%;
+}
+
+.user-item .user-info{
+  flex: 0 0 60%;
+}
+.user-item .val{
+  flex: 0 0 30%;
+  text-align: right;
+}
+
+.user-item .head{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 10%;
+}
 
 @media screen and (max-width:768px) {
   .leader {
@@ -65,9 +91,11 @@
     width: 100%;
     margin: 0 auto;
   }
+  .box{
+    flex-direction: column;
+  }
 
-
-  .box .right {
+  .box .right>img{
     display: none;
   }
 

@@ -2,6 +2,66 @@ body{
     margin: 0;
 }
 
+.head{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    background-color: #2D63AB;
+    color: white;
+    border-radius: 0;
+    padding: 0;
+    margin:0;
+}
+.head h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.logout{
+    margin-top: 7.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logout button{
+    font-size: 1.5em;
+    padding: 0;
+    padding-right: 1em;
+    padding-left: 1em;
+    background-color: #2D63AB;
+    color:white;
+    border: none;
+    border-left-style: solid;
+    border-color: white;
+}
+
+.niv1 {
+    list-style-type: none;
+    padding:0;
+    padding-top: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    height: 25em;
+    background: #EBEBEB;
+    text-align: center;
+    height: 15em;
+}
+
+.niv2{
+    margin-bottom: 15px;
+}
+
+.niv2 a{
+    font-size: 1.2em;
+    color: black;
+    text-decoration: none;
+}
+
+
 div{
     width: 60%;
     padding: 2em;
@@ -49,7 +109,7 @@ ul{
     margin-bottom: 2em;
 }
 
-li{
+.info{
     display: flex;
     flex-direction: row;
     border-bottom-style: solid;
@@ -68,7 +128,7 @@ section{
 
 input{
     font-size: 1em;
-    width: 30%;
+    width: 50%;
     height: 40px;
     margin-top: 5px;
     margin-left: 4em;
@@ -78,6 +138,7 @@ input{
 .edit{
     color:#3B83E3;
     margin-top: 3em;
+    margin-bottom: 3em;
     width: 25%;
     border-style: solid;
     text-align: center;
@@ -92,13 +153,17 @@ a{
     text-decoration: none;
 }
 
-.submit input{
+
+
+.submit button{
     font-size: 2em;
     height: 60px;
     color:#3B83E3;
     background-color: white;
     border-radius: 1em;
     margin-left: 1em;
+    width: 30%;
+    margin-bottom: 1em;
 }
 
 
@@ -108,39 +173,56 @@ a{
     }
 
     h2{
-        margin-left: 0.5em;
+        margin-left: 0;
     }
 
     ul{
         margin: 0;
-        padding-left: 3.5em;
+        padding-left: 0em;
     }
 
-    li{
+    .info{
         width: 500px;
+        margin-bottom: 1.5em;
     }
 
     p{
        margin-right: 0;
+       margin-top: 1em;
     }
 
+    div{
+        padding-bottom: 0.3em;
+        width: 70%;
+    }
+
+
     section{
-        font-size: 2em;
+        font-size: 1.5em;
         margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 2em;
     }
 
     input{
-        width: 45%;
         margin-left: 1.5em;
+        margin-top: 0;
+
     }
 
-    .submit input{
+    label{
+        margin-top: 0.2em;
+    }
+
+    .edit{
+        width: 50%;
+        padding: 0.5em;
+    }
+
+    .submit button{
         width: 30%;
         font-size: 1.5em;
-        height: 60px;
-        margin-left: 0.5em;
-        color:#3B83E3;
-        background-color: white;
+        margin-left: 0.3em;
         border-radius: 1em;
     }
 }
@@ -156,7 +238,7 @@ a{
     }
 
     h2{
-        font-size: 2em;
+        font-size: 1.5em;
         text-align: center;
     }
     p{
@@ -166,8 +248,10 @@ a{
     ul{
         padding-left: 1em;
     }
-    li{
+
+    .info{
         width: 300px;
+        margin-bottom: 1em;
     }
 
     .edit{
@@ -177,8 +261,8 @@ a{
     }
 
     section{
-        font-size: 1.5em;
-        margin-top: 1em;
+        font-size: 1.1em;
+        margin-bottom: 0;
         margin-left: 1em;
     }
 
@@ -187,11 +271,22 @@ a{
         display: inline-block;
     }
 
-    .password{
-        height: 200px;
+    .basic{
+        height: 180px;
     }
 
-    .submit input{
+    .contact{
+        height: 250px;
+    }
+
+    .password{
+        height: 100px;
+    }
+
+    .submit{
+        height: 80px;
+    }
+    .submit button{
         margin-left: 0.2em;
     }
 

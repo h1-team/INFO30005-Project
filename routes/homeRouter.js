@@ -71,5 +71,8 @@ homeRouter.get('/table', isAuthenticated,homeController.table)
 
 homeRouter.get('/p_profile', isAuthenticated,homeController.profile)
 
-homeRouter.get('/edit', isAuthenticated,homeController.edit)
+homeRouter.get('/edit', isAuthenticated,homeController.renderEdit)
+
+homeRouter.post('/edit', isAuthenticated,homeController.edit)
+
 module.exports = homeRouter
