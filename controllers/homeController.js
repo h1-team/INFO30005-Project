@@ -10,10 +10,17 @@ const welcome = (req, res) => {
         style: 'welcome.css',
     })
 }
-
+//Here is the function to get the latest data
 const insert = async (req, res) => {
     //const userID = req.session.passport ? req.session.passport.user : ''
     const userID = req.user._id
+    const update_time = req.user.records[0].recordDate
+    console.log("222")
+    console.log("patient id" + req.user._id)
+    console.log(req.user.records[0].recordDate)
+    console.log(utils.getMelbDate())
+    console.log(utils.getMelbDateTime())
+
     const record = await axios({
         url: '/record/getOneRecord',
         method: 'POST',
@@ -22,8 +29,7 @@ const insert = async (req, res) => {
             // patientId: '62779e55ef8bd14bb5143922',
             //recordDate: utils.getMelbDateTime(),
             recordDate : utils.getMelbDate(),
-            
-            
+            //recordDate : update_time,
         },
     })
 

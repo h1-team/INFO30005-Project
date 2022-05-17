@@ -70,16 +70,16 @@
 }
 
 .user-item .user-info{
-  flex: 0 0 40%;
+  flex: 0 0 60%;
 }
 .user-item .val{
-  flex: 0 0 50%;
+  flex: 0 0 30%;
   text-align: right;
 }
 
 .user-item .head{
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
   background-color: #fff;
   margin-right: 10%;
@@ -91,9 +91,11 @@
     width: 100%;
     margin: 0 auto;
   }
+  .box{
+    flex-direction: column;
+  }
 
-
-  .box .right {
+  .box .right>img{
     display: none;
   }
 

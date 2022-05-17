@@ -1,13 +1,13 @@
 axios.defaults.baseURL = '/api'
-
+//Here is the function to post and update the data
 //when clink submit, the event function will work
 insertForm.addEventListener('submit', async function (e) {
     e.preventDefault()
     const data = {
         //patientId: '62779e55ef8bd14bb5143922',
         patientId: userID,
-        //recordDate: getMelbDate(),
-        recordDate: getMelbDateTime(),
+        recordDate: getMelbDate(),
+        //recordDate: getMelbDateTime(),
         
         //recordDate: getTime(),
         data: {
