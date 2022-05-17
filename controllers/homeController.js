@@ -215,6 +215,7 @@ const profile = async (req, res) => {
         const patient = await Patient.findOne({_id: req.user._id}).lean()
         return res.render('p_profile.hbs', {
             style: 'profile.css',
+            title: 'Profile',
             patient: patient
 
         })
@@ -340,6 +341,7 @@ const table = async(req, res) => {
         }
         res.render('table.hbs', {
             style: 'table.css',
+            title: "Viewing data",
             record: table,
             name: patient.username
         })
