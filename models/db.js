@@ -11,7 +11,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: Date, required: true },
-    updateTime: { type: String, required: true },
+    updateTime: { type: String, required: false },
     isEngaged: { type: Boolean, default: false },
     data: {
         glucose: {

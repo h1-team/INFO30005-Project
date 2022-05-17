@@ -27,16 +27,16 @@ patientForm.addEventListener('submit', async function (e) {
         patientId,
         recordDate: getMelbDate(),
         glucose: {
-            status: needGlucose.checked ? "RECORDED" : "NO_NEED",
+            status: needGlucose.checked ? "UNRECORDED" : "NO_NEED",
         },
         weight: {
-            status: needWeight.checked ? "RECORDED" : "NO_NEED",
+            status: needWeight.checked ? "UNRECORDED" : "NO_NEED",
         },
         insulin: {
-            status: needInsulin.checked ? "RECORDED" : "NO_NEED",
+            status: needInsulin.checked ? "UNRECORDED" : "NO_NEED",
         },
         exercise: {
-            status: needExecrise.checked ? "RECORDED" : "NO_NEED",
+            status: needExecrise.checked ? "UNECORDED" : "NO_NEED",
         }
     }
     const res2 = await axios({
