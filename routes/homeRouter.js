@@ -36,10 +36,10 @@ const isLogin = (req, res, next) => {
 
 homeRouter.get('/', homeController.welcome)
 // turn on after finsih login
-homeRouter.get('/insert',homeController.insert)
+homeRouter.get('/insert',isAuthenticated,homeController.insert)
 //homeRouter.get('/insert', homeController.insert)
 
-homeRouter.get('/leaderboard', homeController.leaderboard)
+homeRouter.get('/leaderboard',isAuthenticated, homeController.leaderboard)
 
 homeRouter.get('/manage_patient', homeController.manage_patient)
 

@@ -49,6 +49,7 @@ const updateRecord = async (req, res) => {
             patientId: id,
             recordDate: date ,
         })
+        console.log(date)
         if (record) {
             // update data
             console.log('updating record\n')
@@ -150,6 +151,7 @@ const getOneRecord = async (req, res) => {
             throw new Error('no such patient')
         }
         date = formatDate(date)
+        console.log(date)
         record = await Record.findOne({
             patientId: id,
             recordDate: date,

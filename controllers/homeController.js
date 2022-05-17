@@ -299,12 +299,17 @@ const edit = async (req, res) => {
         }
         
         await patient.save()
-
-        return res.render('edit.hbs',  { editSuccess: true }) 
+        return res.render('edit.hbs',  { 
+            editSuccess: true,
+            style: 'profile.css'
+        }) 
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('edit.hbs', { editFailure: true })
+        return res.render('edit.hbs', { 
+            editFailure: true,
+            style: 'profile.css'
+        })
     }
 }
 
