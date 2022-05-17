@@ -174,8 +174,8 @@ const getAllPatientRecordToday = async (req, res) => {
             arr.push(resjson)
         }
     }
+    
     // res.send(arr)
-    console.log(arr)
     return res.render('dashboard', {
         patient: arr
     })
