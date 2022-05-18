@@ -39,7 +39,6 @@ patientForm.addEventListener('submit', async function (e) {
             status: needExecrise.checked ? "UNRECORDED" : "NO_NEED",
         }
     }
-    
     const res2 = await axios({
         url: '/record/updateData',
         data: records,

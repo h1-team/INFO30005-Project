@@ -1,7 +1,10 @@
+const axios = require('axios').default
 const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
 const { clinicianNote } = require('../models/db.js')
+// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:3000/api'
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
@@ -342,14 +345,16 @@ const table = async(req, res) => {
 
 const manage_patient = async (req, res) => {
     try {
-        const userID = req.user._id
-        const username = req.user.username
+        const userID = req.params._id
+        const patient_user = await Patient.findById(req.params._id)
+
+        const username = patient_user.username
         // send request
         const patient = await axios({
             url: `/patient/findone/${userID}`,
             methods: "get",
         })
-        console.log(req.user);
+        // console.log(req.user);
         // console.log(req.user);
         res.render('manage_patient.hbs', {
             style: 'manage_patient.css',

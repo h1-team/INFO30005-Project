@@ -68,7 +68,7 @@ clinicianRouter.post('/newNote/:_id', clinicianController.addNewNote)
 clinicianRouter.get('/clinicalNote/:_id', clinicianController.clinicalNote)
 clinicianRouter.get('/comment',clinicianController.comment)
 clinicianRouter.get('/profiles/:_id', isAuthenticated, clinicianController.renderOnePatientProfile)
-clinicianRouter.get('/manage_patient', isAuthenticated, clinicianController.manage_patient)
+clinicianRouter.get('/manage_patient/:_id', isAuthenticated, clinicianController.manage_patient)
 
 // export the clinician router
 module.exports = clinicianRouter
