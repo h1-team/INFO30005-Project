@@ -150,6 +150,11 @@ input{
     color: #3B83E3;
 }
 
+.des{
+    margin-left: 2.3em;
+    margin-right: 0;
+}
+
 a{
     text-decoration: none;
 }
@@ -180,6 +185,7 @@ a{
     ul{
         margin: 0;
         padding-left: 0em;
+        margin-left: 5em;
     }
 
     .info{
@@ -201,7 +207,6 @@ a{
     section{
         font-size: 1.5em;
         margin-right: 0;
-        margin-left: 0;
         margin-bottom: 2em;
     }
 
@@ -218,6 +223,21 @@ a{
     .edit{
         width: 50%;
         padding: 0.5em;
+    }
+
+    #pw{
+        margin-bottom: 1em;
+    }
+
+    #user{
+        margin-bottom: 1em;
+    }
+
+    .des{
+        font-size: 1.5em;
+        margin-top: 0.5em;
+        margin-left: 0em;
+        margin-bottom: 0.5em;
     }
 
     .submit button{
@@ -286,7 +306,7 @@ a{
     }
 
     .basic{
-        height: 180px;
+        height: 240px;
     }
 
     .contact{
@@ -294,8 +314,28 @@ a{
     }
 
     .password{
-        height: 100px;
+        height: 180px;
     }
+
+    #pw{
+        margin-bottom: 1em;
+    }
+
+    #user{
+        margin-bottom: 1em;
+    }
+    
+    .des{
+        font-size: 1em;
+        margin-top: 0.5em;
+        margin-left: 1em;
+        margin-bottom: 0.5em;
+    }
+
+
+
+
+
 
     .submit{
         height: 80px;
