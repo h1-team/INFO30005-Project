@@ -44,9 +44,9 @@ app.engine(
         }
     })
 )
-app.get('/profile',(req,res)=>{
-    res.render('profile.hbs',{
-        style:'dashboard.css'
+app.get('/note',(req,res)=>{
+    res.render('new_note.hbs',{
+        style:'clinical_note.css'
     })
 })
 // set Handlebars view engine

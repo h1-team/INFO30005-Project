@@ -1,7 +1,7 @@
 <header>
     <h1>Home Page</h1>
     <form class="logout" action="/logout" method="post">
-            <button type="submit" onclick="logout()">Log Out</button>
+            <button type="submit" style="cursor: pointer" onclick="logout()">Log Out</button>
     </form>
     
 </header>
@@ -40,7 +40,7 @@
                         <p>Blood glucose level</p>
                         <p>Successfully entered</p>
                     {{else if (isnoneed this.glucose)}}
-                        <p>Weight</p>
+                        <p>Blood glucose level</p>
                         <p>Do not required</p>    
                     {{else}}
                         <p>Blood glucose level</p>
@@ -66,7 +66,7 @@
                         <p>Doses of insulin taken</p>
                         <p>Successfully entered</p>
                     {{else if (isnoneed this.insulin)}}
-                        <p>Weight</p>
+                        <p>Doses of insulin taken</p>
                         <p>Do not required</p>    
                     {{else}}
                         <p>Doses of insulin taken</p>
@@ -79,7 +79,7 @@
                         <p>Exercise</p>
                         <p>Successfully entered</p>
                     {{else if (isnoneed this.exercise)}}
-                        <p>Weight</p>
+                        <p>Exercise</p>
                         <p>Do not required</p>    
                     {{else}}
                         <p>Exercise</p>
