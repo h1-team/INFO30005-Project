@@ -361,7 +361,6 @@ const manage_patient = async (req, res) => {
         // console.log(req.user);
         // console.log(req.user);
         res.render('manage_patient.hbs', {
-            style: 'manage_patient.css',
             isChecked: {
                 needExecrise: patient.data.needExecrise ? 'checked' : '',
                 needGlucose: patient.data.needGlucose ? 'checked' : '',

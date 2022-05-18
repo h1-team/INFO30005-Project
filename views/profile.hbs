@@ -1,32 +1,32 @@
 <link rel="stylesheet" href="/css/pat.css">
-{{>header3}}    
-    <div class="pat_info">
-        <div class="pats_col profile">
-            <img src="/picture/SpongeBob.svg.png">
-            <div class="name">{{patient.name}}</div>
-        </div>
-
-        <table class="pats_col">
-            <tr>
-                <td><img src="/icon/note.svg"></td>
-                <td class="tdp"><a href="../clinicalNote/{{patient._id}}">Clinical Note</a></td>
-            </tr>
-
-            <tr>
-                <td><img src="/icon/display.svg"></td>
-                <td class="tdp" ><a href="../table/{{patient._id}}">Display Data</a></td>
-            </tr>
-            
-            <tr>
-                <td><img src="/icon/modify.svg"></td>
-                <td class="tdp"><a href="../manage_patient/{{patient._id}}">Modify data</a></td>
-            </tr> 
-
-            <tr>
-                <td><img src="/icon/msg.svg"></td>
-                <td class="tdp"><a href="../supportMSG/{{patient._id}}">Encourage message</a></td>
-            </tr>
-            </table>
-
+{{>header3}}
+<div class="pat_info">
+    <div class="pats_col profile">
+        <img src="/picture/SpongeBob.svg.png">
+        <div class="name">{{patient.name}}</div>
     </div>
+
+    <table class="pats_col">
+        <tr>
+            <td><img src="/icon/note.svg"></td>
+            <td class="tdp"><a href="../clinicalNote/{{patient._id}}">Clinical Note</a></td>
+        </tr>
+
+        <tr>
+            <td><img src="/icon/display.svg"></td>
+            <td class="tdp" ><a href="../table/{{patient._id}}">Display Data</a></td>
+        </tr>
+        
+        <tr>
+            <td><img src="/icon/modify.svg"></td>
+            <td class="tdp"><a href="../manage_patient/{{patient._id}}">Modify data</a></td>
+        </tr> 
+
+        <tr>
+            <td><img src="/icon/msg.svg"></td>
+            <td class="tdp"><a href="../supportMSG/{{patient._id}}">Support message</a></td>
+        </tr>
+        </table>
+
+</div>
 {{>footer}}   

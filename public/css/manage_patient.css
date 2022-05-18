@@ -1,3 +1,71 @@
+header {
+  background-color: #3B7FD9;
+  height: 35px;
+  top: 0;
+  width: 100%;
+}
+.grey-top {
+  background-color: #E4E4E4;
+  height: 35px;
+  top: 0;
+  width: 100%;
+}
+nav ul { 
+  margin: 0 7% auto 0;
+  padding-right: initial;
+  text-align: left;
+  max-width: 100%
+}
+.grey-top nav ul{
+  text-align: center;
+}
+.grey-top .top-anchor{
+  color: #000;
+}
+
+ul li { 
+  display: inline-block; 
+  margin-left: 10px;
+}
+
+.logout{
+  margin-top: 7.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.logout button{
+  font-size: 1.5em;
+  padding: 0;
+  padding-right: 1em;
+  padding-left: 1em;
+  background-color: #2D63AB;
+  color:white;
+  border: none;
+  border-left-style: solid;
+  border-color: white;
+}
+
+button{
+  background: whitesmoke;
+  border: 1px solid #707070;
+  color: black;
+  padding: 10px;
+  width: 7em;
+  border-radius: 16px;
+  margin-top: 2em;
+  margin-left: 3em;
+}
+
+.top-anchor{
+  font: 0.7em normal, PT Serif;
+  color: white;
+}
+.top-anchor.active{
+    color: #3B7FD9;
+}
+
 .manager {
   display: flex;
   background-color: #D2F2DD;

@@ -3,13 +3,13 @@
 <div class="grey-top">
     <nav>
         <ul >
-            <li><a class="top-anchor active">Clinical Notes</a></li>   
-            <li><a class="top-anchor">Display Data</a></li>
-            <li><a class="top-anchor">Modify Data</a></li>
-            <li><a class="top-anchor">Support Message</a></li>
+            <li><a class="top-anchor" href="../clinicalNote/{{patient._id}}">Clinical Note</a></li>   
+            <li><a class="top-anchor" href="../table/{{patient._id}}">Display Data</a></li>
+            <li><a class="top-anchor" href="../manage_patient/{{patient._id}}">Modify data</a></li>
+            <li><a class="top-anchor active" href="../supportMSG/{{patient._id}}">Support message</a></li>
         </ul>  
     </nav>  
-</div> 
+</div>
 <div class="new">
     <form action="/doctor/newNote/{{patient._id}}" method="post">
         <p class="date" id="date">Note on {{date}}</p>

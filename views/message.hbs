@@ -5,10 +5,10 @@
     <div class="grey-top">
         <nav>
             <ul >
-                <li><a class="top-anchor">Clinical Notes</a></li>   
-                <li><a class="top-anchor">Display Data</a></li>
-                <li><a class="top-anchor">Modify Data</a></li>
-                <li><a class="top-anchor active">Support Message</a></li>
+                <li><a class="top-anchor" href="../clinicalNote/{{patient._id}}">Clinical Note</a></li>   
+                <li><a class="top-anchor" href="../table/{{patient._id}}">Display Data</a></li>
+                <li><a class="top-anchor" href="../manage_patient/{{patient._id}}">Modify data</a></li>
+                <li><a class="top-anchor active" href="../supportMSG/{{patient._id}}">Support message</a></li>
             </ul>  
         </nav>  
     </div>
@@ -22,15 +22,16 @@
 
             <h1>Recommended Message</h1>
             <ul id="choose" class="choose" name="recomsg" >
-                <p><input class="input" type="checkbox" name="msg1" id="msg1"/>Diabetes is like a roller coaster. It has its ups and downs, but it's your choice to scream or enjoy the ride.</p>
-                <p><input class="input" type="checkbox"name="msg2" id="msg2"/>Losing weight is not about the pounds and inches. It is about being what you have always wanted to be.</p>
-                <p><input class="input" type="checkbox" name="msg3" id="msg3"/>Each Day Brings new healing.</p>
-                <p><input class="input" type="checkbox" name="msg4" id="msg4"/>Here's to you—steadier, stronger and better every day.</p>
-                <p><input class="input" type="checkbox"name="msg5" id="msg5"/>The hard days are what make you stronger.</p>
-                <p><input class="input" type="checkbox" name="msg6" id="msg6"/>Start where you are. Use what you have. Do what you can.</p>
-                <p><input class="input" type="checkbox" name="msg7" id="msg7"/>We'll get through this together, knowing there are brighter days ahead.</p>
+                <p>Diabetes is like a roller coaster. It has its ups and downs, but it's your choice to scream or enjoy the ride.</p>
+                <p>Losing weight is not about the pounds and inches. It is about being what you have always wanted to be.</p>
+                <p>Each day brings new healing.</p>
+                <p>Here's to you—steadier, stronger and better every day.</p>
+                <p>The hard days are what make you stronger.</p>
+                <p>Start where you are. Use what you have. Do what you can.</p>
+                <p>We'll get through this together, knowing there are brighter days ahead.</p>
             </ul>
-            <button type="submit" class="btn-login log-bg" style="margin-bottom: 1.5em;">Submit</button>
+            <button type="submit" class="btn-login log-bg">Submit</button>
+            <button type="button" class="btn-login log-bg" onclick="location.href = '/doctor/profiles/{{patient._id}}'">Back</button>
         </form>
 
 </body>
