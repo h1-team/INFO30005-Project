@@ -83,7 +83,7 @@ const getAllPatientCommentToday = async (req, res) => {
             insulinComment != null ||
             exerciseComment != null
         ){
-           arr.push(resjson)
+            arr.push(resjson)
         }    
     }
     console.log(arr.length)
@@ -214,11 +214,21 @@ const renderOnePatientProfile = async (req, res) => {
         res.send(err)
     }
 }
-
+function getMelbDateTime() {
+    var timezone = 2
+    // var offset_GMT = new Date().getTimezoneOffset()
+    var nowDate = new Date().getTime()
+    var date = new Date(
+        nowDate + timezone * 60 * 60 * 1000
+    )
+    return date
+}
 const renderNewNote = async (req, res) => {
     try {
+        const date = getMelbDateTime()
         const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('new_note.hbs', {patient: patient})
+        res.render('new_note.hbs', {patient: patient,
+        date: date},)
     } catch (err) {
         console.log(err)
         res.send(err)
