@@ -3,50 +3,52 @@
     <div class="note">
         <li><img src="/icon/red-circle.svg"><p class="legend-item">unread(click checkbox to mark it read)</p></li>
     </div>
-
-<div class="container">
-
-    {{#each record}}
-    <button class="tablinks comment" onmouseover="openCity(event, {{this._id}})">
+<div class="tab">
+  <button class="tablinks" onmouseover="openCity(event, 'London')">London</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
+  {{#each record}}
+    <button class="tablinks " onmouseover="openCity(event, {{this.name}})">
         <p><input type="checkbox" value="Today">{{this.date}}</p>
         <p>patient {{this.name}}</p>
         {{! #if }}
         <p>new comment on 
             {{#if this.glucoseComment}}
-            <a>glucose</a>
+            <p>glucose</p>
             {{/if}}
             {{#if this.weightComment}}
-            <a>weight</a>
+            <p>weight</p>
             {{/if}}
             {{#if this.exerciseComment}}
-            <a>exercise</a>
+            <p>exercise</p>
             {{/if}}
             {{#if this.insulinComment}}
-            <a>insulin</a>
+            <p>insulin</p>
             {{/if}}
         </p>
-    </div>
     </button>
-    <!--div class="tab" type="button" class="tablinks" onmouseover="openCity(event, 'London')"-->
-    <div id={{this.name}} class="tabcontent">
-        <h3>London</h3>
-        <p>London is the capital city of England.</p>
-    </div>
-    <div class="clearfix"></div>
-       
-    </div>
     {{/each}}
 </div>
 
-</div>
-<h2>Hover Tabs</h2>
-<p>Move the mouse over a button inside the tabbed menu:</p>
-
-<div class="tab">
-  <button class="tablinks" onmouseover="openCity(event, 'London')">London</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
-</div>
+    {{#each record}}
+    <div id={{this.name}} class="tabcontent">
+    {{#each this.comments}}
+    
+            {{#if this.glucoseComment}}
+            <p>glucose:{{this.glucoseComment}}</p>
+            {{/if}}
+            {{#if this.weightComment}}
+            <p>weight:{{this.weightComment}}</p>
+            {{/if}}
+            {{#if this.exerciseComment}}
+            <a>exercise:{{this.exerciseComment}}</a>
+            {{/if}}
+            {{#if this.insulinComment}}
+            <a>insulin:{{this.insulinComment}}</a>
+            {{/if}}
+     {{/each}}          
+    </div>
+    {{/each}}
 
 <div id="London" class="tabcontent">
   <h3>London</h3>
@@ -64,18 +66,21 @@
 </div>
 
 <div class="clearfix"></div>
+
 <script>
-function openCity(evt, cityName) {
+function openCity(evt, username) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+     tabcontent[i].style.display = "none";
   }
   tablinks = document.getElementsByClassName("tablinks");
+  console.log(tablinks)
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    tablinks[i].className = tablinks[i].className.replace("active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(username).style.display = "block";
+  console.log(document.getElementById(username))
   evt.currentTarget.className += " active";
 }
 </script>

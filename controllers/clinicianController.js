@@ -29,10 +29,8 @@ const findAll = async (req, res) => {
 }
 
 const getAllPatientCommentToday = async (req, res) => {
-    const table = await Record.find({patientId: req.params._id}).lean()
-    const patient =  await Patient.findOne({_id: req.params._id}).lean()
+    const table = await Record.find({patientId: req.params._id}).lean()   
     clinician = await Clinician.findById(req.user._id)
-    console.log(clinician)
     result = clinician.patients
     
     if (!result) {
@@ -40,57 +38,62 @@ const getAllPatientCommentToday = async (req, res) => {
         return
     }
     var arr = new Array()
-    console.log(result.length)
     for (var i = 0; i < result.length; i++) {
         date = Date.now()
         date = formatDate(date)
-        console.log(i)
-        console.log(result[i].patientId)
+        //console.log(i)
+        console.log(result[i].patientId)       
+        const patient =  await Patient.findOne({_id: result[i].patientId}).lean()
         const record = await Record.find({
-            _id: result[i].patientId
+            patientId: patient._id
         }).lean()
-        console.log(record)
+        var name=patient.username
+        if(!record){
+            continue;
+        }
+        //console.log(record)
+        var comments=new Array()
         for(var j=0;j<record.length;j++){
-            var date=record.recordDate
-            var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
-            if (record.data.glucose.comment!="") {
-                glucoseComment = record.data.glucose.comment
+            var d = record[j].recordDate
+            console.log(record[j].data)
+            var glucoseComment=record[j].data.glucose.comment
+                weightComment= record[j].data.exercise.comment, 
+                insulinComment= record[j].data.insulin.comment, 
+                exerciseComment= record[j].data.exercise.comment
+            var comment = {
+                date:d,
+                weightComment:weightComment,
+                insulinComment:insulinComment,
+                exerciseComment:exerciseComment,
+                glucoseComment:glucoseComment
             }
-            if ( record.data.exercise.comment!="") {
-                exerciseComment = record.data.exercise.comment
+            console.log(comment)
+            if (
+                glucoseComment != "" ||
+                weightComment != "" ||
+                insulinComment != "" ||
+                exerciseComment != ""
+            ){
+               comments.push(comment)
             }
-            if ( record.data.insulin.comment!="") {
-                insulinComment = record.data.insulin.comment
-            }
-            if ( record.data.weight.comment!="") {
-                weightComment = record.data.weight.comment
-            }
-        
         }     
-        
+        console.log(comments)
         
         resjson = {
-            date:date,
-            name:name,
             weightComment:weightComment,
             insulinComment:insulinComment,
             exerciseComment:exerciseComment,
-            glucoseComment:glucoseComment
+            glucoseComment:glucoseComment,
+            comments:comments,
+            name:name,
         }
-        if (
-            glucoseComment != null ||
-            weightComment != null ||
-            insulinComment != null ||
-            exerciseComment != null
-        ){
-           arr.push(resjson)
-        }
-
-        
-            
+        if(comments.length!=0){
+           arr.push(resjson) 
+        }        
     }
     console.log(arr.length)
     arr.reverse();
+    console.log(arr)
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',
