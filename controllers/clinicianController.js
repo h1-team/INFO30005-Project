@@ -342,12 +342,11 @@ const table = async(req, res) => {
 
 const manage_patient = async (req, res) => {
     try {
-        const {
-            username
-        } = req.user
+        const userID = req.user._id
+        const username = req.user.username
         // send request
         const patient = await axios({
-            url: `/patient/findone/${username.toLocaleLowerCase()}`,
+            url: `/patient/findone/${userID}`,
             methods: "get",
         })
         console.log(req.user);
