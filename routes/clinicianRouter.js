@@ -28,7 +28,7 @@ const isLogin = (req, res, next) => {
     console.log('y')
     // If user is not authenticated via Passport, redirect to login page
     if(req.isAuthenticated() && req.user.role == "clinician"){
-        return res.redirect('/homepage')
+        return res.redirect('/doctor/homepage')
     }
     return next()
 }

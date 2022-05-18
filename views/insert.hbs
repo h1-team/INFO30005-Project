@@ -14,10 +14,15 @@
               Blood glucose level
             </label>
             <input name="glucose" id="glucose" value="{{record.glucose.data}}" type="text" />
-            nom/L
+            nom/L 
+                  {{#if record.glucose.data}}
+                      (uploaded!You can modify again!)
+                  {{else}}
+                      <font color="red">(please enter data!)</font>
+                  {{/if}}
+          
             <p>
               Add new comment to the box
-
             </p>
             <input
               id="glucoseComment"
@@ -34,12 +39,14 @@
             <label for="weight">
               Weight
             </label>
-            <input name="weight" id="weight" value="{{record.weight.data}}" type="text" />
-            Kg
+            <input name="weight"  id="weight" value="{{record.weight.data}}" type="text" />
+            Kg {{#if record.weight.data}}
+                  (uploaded!You can modify again!)
+                {{else}}
+                  <font color="red">(please enter data!)</font>
+                {{/if}}
             <p>
               Add new comment to the box
-
-
             </p>
             <input
               id="weightComment"
@@ -56,8 +63,12 @@
             <label for="insulin">
               Doses of insulin taken
             </label>
-            <input name="insulin" id="insulin" value="{{record.insulin.data}}" type="text" />
-            Doses
+            <input name="insulin"  id="insulin" value="{{record.insulin.data}}" type="text" />
+            Doses {{#if record.insulin.data}}
+                    (uploaded!You can modify again!)
+                  {{else}}
+                    <font color="red">(please enter data!)</font>
+                  {{/if}}
             <p>
               Add new comment to the box
             </p>
@@ -76,8 +87,12 @@
             <label for="exercise">
               Exercise  
             </label>
-            <input name="exercise" id="exercise" value="{{record.exercise.data}}" type="text" />
-            Step count
+            <input name="exercise"  id="exercise" value="{{record.exercise.data}}" type="text" />
+            Step count{{#if record.exercise.data}}
+                  (uploaded!You can modify again!)
+                {{else}}
+                  <font color="red">(please enter data!)</font>
+                {{/if}}
             <p>
               Add new comment to the box
             </p>
