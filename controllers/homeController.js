@@ -295,8 +295,8 @@ const edit = async (req, res) => {
         if (req.body.phone) {
             patient.phone = req.body.phone
         }
-        if (req.body.passward) {
-            patient.passward = req.body.passward
+        if (req.body.password) {
+            patient.password = req.body.password
         }
         
         await patient.save()
