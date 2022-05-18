@@ -38,6 +38,8 @@ insertForm.addEventListener('submit', async function (e) {
     }).catch(function (error) {
         alert('invalid input')
     })
+    //refresh the web page
+    location.reload()
     alert('update success!')
 })
 
