@@ -22,6 +22,25 @@ header{
     color: white;
 }
 
+.logout{
+    margin-top: 7.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logout button{
+    font-size: 1.5em;
+    padding: 0;
+    padding-right: 1em;
+    padding-left: 1em;
+    background-color: #2D63AB;
+    color:white;
+    border: none;
+    border-left-style: solid;
+    border-color: white;
+}
+
 h1{
     margin:0px;
     margin-bottom: 1em;
@@ -167,6 +186,18 @@ li p{
 }
 
 @media screen and (max-width: 375px){
+    .logout{
+        margin-top: 6px;
+    }
+
+    .logout button{
+        font-size: 1em;
+        padding-top: 7.5px;
+        padding-bottom: 7.5px;
+        padding-right: 0.5em;
+        padding-left: 0.3em;
+    }
+    
     section{
         flex-direction: column;
     }

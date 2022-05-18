@@ -53,10 +53,15 @@
             <img src="/picture/comment.jpeg" >
         </div>
     </div>
+</div>
+
+{{#if loggedin}}
+    {{> aboutfooter2}}
+{{else}}
     <div class="con_dl">
         If you want to access more features,please <a href="/login">log in</a> for more details.
     </div>
-</div>
+    {{> aboutfooter1}}
+{{/if}}
 
-{{> aboutfooter1}}
  

@@ -12,9 +12,7 @@ const findAll = async (req, res) => {
 }
 
 const findOneById = async (req, res) => {
-    result = await Patient.findOne({
-        username: req.params.username
-    }, {})
+    result = await Patient.findById(req.params.id)
     res.send(result)
 }
 
@@ -29,10 +27,8 @@ const addOne = async (req, res) => {
 }
 
 const editOne = async (req, res) => {
-    console.log('editing patient ' + req.params.username)
-    patient = await Patient.findOne({
-        username: req.params.username
-    }, {})
+    console.log('editing patient ' + req.params.id)
+    patient = await Patient.findById(req.params.id)
     if (!patient) {
         res.status(404).send('patient not found')
         return
@@ -65,8 +61,7 @@ const getAllPatientRecordToday = async (req, res) => {
     result = clinician.patients
 
     if (!result) {
-        res.status(404).send('patient not found')
-        return
+        return res.render('dashboard')
     }
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {

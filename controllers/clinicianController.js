@@ -1,7 +1,11 @@
+const axios = require('axios').default
 const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
-const patientController = require('../controllers/patientController')
+const { clinicianNote } = require('../models/db.js')
+// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:3000/api'
+const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
@@ -29,71 +33,62 @@ const findAll = async (req, res) => {
 }
 
 const getAllPatientCommentToday = async (req, res) => {
-    const table = await Record.find({patientId: req.params._id}).lean()   
-    clinician = await Clinician.findById(req.user._id)
-    result = clinician.patients
-    
+    result = await Record.find()
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     var arr = new Array()
+    console.log(result.length)
     for (var i = 0; i < result.length; i++) {
         date = Date.now()
         date = formatDate(date)
         //console.log(i)
-        console.log(result[i].patientId)       
-        const patient =  await Patient.findOne({_id: result[i].patientId}).lean()
-        const record = await Record.find({
-            patientId: patient._id
-        }).lean()
-        var name=patient.username
-        if(!record){
+        var patient = await Patient.findOne({
+            _id: result[i].patientId,
+        })
+        //console.log(patient) 
+        if(!patient){
             continue;
-        }
-        //console.log(record)
-        var comments=new Array()
-        for(var j=0;j<record.length;j++){
-            var d = record[j].recordDate
-            console.log(record[j].data)
-            var glucoseComment=record[j].data.glucose.comment
-                weightComment= record[j].data.exercise.comment, 
-                insulinComment= record[j].data.insulin.comment, 
-                exerciseComment= record[j].data.exercise.comment
-            var comment = {
-                date:d,
-                weightComment:weightComment,
-                insulinComment:insulinComment,
-                exerciseComment:exerciseComment,
-                glucoseComment:glucoseComment
+        }else{
+            var name=patient.name
+        }       
+        
+        const record=result[i]
+        var date=record.recordDate
+        var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
+            if (record.data.glucose.comment!="") {
+                glucoseComment = record.data.glucose.comment
             }
-            console.log(comment)
-            if (
-                glucoseComment != "" ||
-                weightComment != "" ||
-                insulinComment != "" ||
-                exerciseComment != ""
-            ){
-               comments.push(comment)
+            if ( record.data.exercise.comment!="") {
+                exerciseComment = record.data.exercise.comment
             }
-        }     
-        console.log(comments)
+            if ( record.data.insulin.comment!="") {
+                insulinComment = record.data.insulin.comment
+            }
+            if ( record.data.weight.comment!="") {
+                weightComment = record.data.weight.comment
+            }
         
         resjson = {
+            date:date,
+            name:name,
             weightComment:weightComment,
             insulinComment:insulinComment,
             exerciseComment:exerciseComment,
-            glucoseComment:glucoseComment,
-            comments:comments,
-            name:name,
+            glucoseComment:glucoseComment
         }
-        if(comments.length!=0){
-           arr.push(resjson) 
-        }        
+        if (
+            glucoseComment != null ||
+            weightComment != null ||
+            insulinComment != null ||
+            exerciseComment != null
+        ){
+            arr.push(resjson)
+        }    
     }
     console.log(arr.length)
     arr.reverse();
-    console.log(arr)
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',
@@ -189,13 +184,18 @@ const register = async (req, res) => {
 }
 
 const renderSupportMSG = async (req, res) => {
-    return res.render('message.hbs')
+    try {
+        const patient = await Patient.findOne({_id: req.params._id}).lean()
+        res.render('message.hbs', {patient: patient})
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
 }
 
 const writeSupportMSG = async (req, res) => {
     try {
-        const patientId = '628232e50d0230caaa118181'
-        const patient = await Patient.findById(patientId)
+        const patient = await Patient.findById(req.params._id);
         patient.supportMSG = req.body.supportMSG
         await patient.save()
         return res.render('message.hbs', { supportSuccess: true })
@@ -216,8 +216,51 @@ const renderOnePatientProfile = async (req, res) => {
     }
 }
 
-const renderClinicalNote = async (req, res) => {
-    return res.render('clinical_note.hbs')
+const renderNewNote = async (req, res) => {
+    try {
+        const date = utils.getMelbDate()
+        const patient = await Patient.findOne({_id: req.params._id}).lean()
+        res.render('new_note.hbs', {patient: patient, date: date},)
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+}
+
+const addNewNote = async (req, res) => {
+    try {
+        const date = utils.getMelbDate()
+        const patient_id = req.params._id
+        const clinician_id = req.session.passport ? req.session.passport.user : ''
+        const newNote = new clinicianNote({
+            patient: patient_id,
+            clinician: clinician_id,
+            message: req.body.message,
+        })
+
+        await newNote.save()
+        return res.render('new_note.hbs', { success: true, date: date })
+    } catch (err) {
+        const date = utils.getMelbDate()
+        console.log(err)
+        return res.render('new_note.hbs', { failure: true, date: date })
+    }
+}
+
+const clinicalNote = async (req, res) => {
+    const patient_id = req.params._id
+    const clinician_id = req.session.passport ? req.session.passport.user : ''
+    const patient = await Patient.findById(patient_id).lean()
+    const notes = await clinicianNote.find({
+        patient: patient_id,
+        clinician: clinician_id,
+    }).lean()
+
+    if (!result) {
+        return res.render('clinical_note.hbs', {note: notes, patient: patient})
+    }
+
+    return res.render('clinical_note.hbs', {note: notes, patient: patient})
 }
 
 const logout = (req, res) => {
@@ -227,10 +270,11 @@ const logout = (req, res) => {
 
 const table = async(req, res) => {
         try{
+            console.log(req)
             const table = await Record.find({patientId: req.params._id}).lean()
             const patient =  await Patient.findOne({_id: req.params._id}).lean()
-            //console.log(table)
-            //console.log(patient)     
+            console.log(table)
+            console.log(patient)     
             for (var record of table) {
     
                 // date formatting
@@ -303,6 +347,41 @@ const table = async(req, res) => {
         }
 }
 
+const manage_patient = async (req, res) => {
+    try {
+        const userID = req.params._id
+        const patient_user = await Patient.findById(req.params._id)
+
+        const username = patient_user.username
+        // send request
+        const patient = await axios({
+            url: `/patient/findone/${userID}`,
+            methods: "get",
+        })
+        // console.log(req.user);
+        // console.log(req.user);
+        res.render('manage_patient.hbs', {
+            style: 'manage_patient.css',
+            isChecked: {
+                needExecrise: patient.data.needExecrise ? 'checked' : '',
+                needGlucose: patient.data.needGlucose ? 'checked' : '',
+                needWeight: patient.data.needWeight ? 'checked' : '',
+                needInsulin: patient.data.needInsulin ? 'checked' : '',
+            },
+            vals: {
+                thresholdExecrise: patient.data.thresholdExecrise,
+                thresholdGlucose: patient.data.thresholdGlucose,
+                thresholdWeight: patient.data.thresholdWeight,
+                thresholdInsulin: patient.data.thresholdInsulin,
+            },
+            name: username,
+            patientId: patient.data._id,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     findAll,
     findOneById,
@@ -311,7 +390,9 @@ module.exports = {
     deleteOne,
     renderRegister,
     register,
-    renderClinicalNote,
+    renderNewNote,
+    addNewNote,
+    clinicalNote,
     renderSupportMSG,
     writeSupportMSG,
     renderOnePatientProfile,
@@ -321,5 +402,6 @@ module.exports = {
     logout,
     comment,
     getAllPatientCommentToday,
-    table
+    table,
+    manage_patient,
 }

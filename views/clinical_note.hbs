@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/clinical_note.css">
+
 {{> header}}
 <div class="grey-top">
     <nav>
@@ -9,15 +10,15 @@
             <li><a class="top-anchor">Support Message</a></li>
         </ul>  
     </nav>  
-</div> 
- <button type="button" onclick="location.href = './new_note';return false;">New note</button>
+</div>
+
+<button type="button" onclick="location.href = '/doctor/newNote/{{patient._id}}'">New note</button>
+
 <div class="container">
-    
-    {{#each note}}
-    <div class="text">
-        <p class="date">Note on <script> date = new Date().toLocaleDateString();
-            document.write(date); </script></p>
-        <p>{{Message}}</p>
-    </div>
+    {{#each note}} 
+        <div class="text">
+            <p class="date">Note on {{this.create_date}}</p>
+            <p>{{this.message}}</p>
+        </div>
     {{/each}}
 </div>

@@ -14,7 +14,7 @@ const welcome = (req, res) => {
 const insert = async (req, res) => {
     //const userID = req.session.passport ? req.session.passport.user : ''
     const userID = req.user._id
-    const update_time = req.user.records[0].recordDate
+    // const update_time = req.user.records[0].recordDate
     //console.log("222")
     //console.log("patient id" + req.user._id)
     //console.log(req.user.records[0].recordDate)
@@ -165,6 +165,7 @@ const logout = (req, res) => {
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
+        loggedin: req.isAuthenticated()
     })
 }
 
@@ -294,8 +295,8 @@ const edit = async (req, res) => {
         if (req.body.phone) {
             patient.phone = req.body.phone
         }
-        if (req.body.passward) {
-            patient.passward = req.body.passward
+        if (req.body.password) {
+            patient.password = req.body.password
         }
         
         await patient.save()
@@ -391,40 +392,6 @@ const table = async(req, res) => {
     }
 }
 
-const manage_patient = async (req, res) => {
-    try {
-        const {
-            username
-        } = req.user
-        // send request
-        const patient = await axios({
-            url: `/patient/findone/${username.toLocaleLowerCase()}`,
-            methods: "get",
-        })
-        console.log(req.user);
-        // console.log(req.user);
-        res.render('manage_patient.hbs', {
-            style: 'manage_patient.css',
-            isChecked: {
-                needExecrise: patient.data.needExecrise ? 'checked' : '',
-                needGlucose: patient.data.needGlucose ? 'checked' : '',
-                needWeight: patient.data.needWeight ? 'checked' : '',
-                needInsulin: patient.data.needInsulin ? 'checked' : '',
-            },
-            vals: {
-                thresholdExecrise: patient.data.thresholdExecrise,
-                thresholdGlucose: patient.data.thresholdGlucose,
-                thresholdWeight: patient.data.thresholdWeight,
-                thresholdInsulin: patient.data.thresholdInsulin,
-            },
-            name: username,
-            patientId: patient.data._id,
-        })
-    } catch (err) {
-        console.log(err);
-    }
-}
-
 
 module.exports = {
     welcome,
@@ -441,5 +408,4 @@ module.exports = {
     profile,
     renderEdit,
     edit,
-    manage_patient,
 }

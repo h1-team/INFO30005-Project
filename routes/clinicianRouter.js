@@ -59,13 +59,16 @@ clinicianRouter.get('/inbox',isAuthenticated,clinicianController.getAllPatientCo
 clinicianRouter.get('/homepage', isAuthenticated, clinicianController.doctor)
 clinicianRouter.get('/dashboard', isAuthenticated, patientController.getAllPatientRecordToday)
 clinicianRouter.get('/register', isAuthenticated, clinicianController.renderRegister)
-clinicianRouter.post('/register', clinicianController.register)
+clinicianRouter.post('/register', isAuthenticated, clinicianController.register)
 clinicianRouter.get('/table/:_id',isAuthenticated, clinicianController.table)
-clinicianRouter.get('/supportMSG', clinicianController.renderSupportMSG)
-clinicianRouter.post('/supportMSG', clinicianController.writeSupportMSG)
-clinicianRouter.get('/note', clinicianController.renderClinicalNote)
+clinicianRouter.get('/supportMSG/:_id', isAuthenticated, clinicianController.renderSupportMSG)
+clinicianRouter.post('/supportMSG/:_id', isAuthenticated, clinicianController.writeSupportMSG)
+clinicianRouter.get('/newNote/:_id', isAuthenticated, clinicianController.renderNewNote)
+clinicianRouter.post('/newNote/:_id', isAuthenticated, clinicianController.addNewNote)
+clinicianRouter.get('/clinicalNote/:_id', isAuthenticated, clinicianController.clinicalNote)
 clinicianRouter.get('/comment',clinicianController.comment)
 clinicianRouter.get('/profiles/:_id', isAuthenticated, clinicianController.renderOnePatientProfile)
+clinicianRouter.get('/manage_patient/:_id', isAuthenticated, clinicianController.manage_patient)
 
 // export the clinician router
 module.exports = clinicianRouter
