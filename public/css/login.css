@@ -14,7 +14,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;    
-    max-width: 983px;
+    max-width: 600px;
     min-width: 375px;
     min-height: 400px;
     margin: 3em;
@@ -56,30 +56,15 @@ input[type=number],
 input[type=email],
 input[type=password] {
   border-radius: 25px;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   width: 100%;
   padding: 1em 6em;
-  margin: 0.5em 0;
+  margin: 1em 0;
   display: inline-block;
   border: 0.1em solid #ccc;
   box-sizing: border-box;
 }
 
-.checkbox{
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-a.forget{
-  margin-bottom: auto;
-  margin-top: 1 rem;
-  color: #E8D426;
-}
-
-a.forget:hover{
-  color: white;
-  text-decoration: none;
-}
 
 .btn-login{
 
@@ -89,6 +74,7 @@ a.forget:hover{
   padding: 10px;
   width: 100%;
   border-radius: 16px;
+  margin:1em 0 ;
 }
 .btn-login:hover {
   background: #57b382;;
@@ -173,7 +159,10 @@ footer {
   margin-bottom: 0%;
   width: 100%;
 }
-
+footer img{
+  padding: 2%;
+  margin-left: 39%;
+}
 .footer-list-top {
   width: 25%;
 }

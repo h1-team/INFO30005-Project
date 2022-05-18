@@ -1,11 +1,16 @@
 .pat_info{
-    padding: 10.3rem;
-    height: 900px;
+  padding: 1.3rem;
+  height: 900px;
+  border: #8fa9f2 solid 102px;
+  border-radius: 120px;
+  margin: 40px;
 }
 table.pat_col{
     height: 1.2em;
     text-align: left;
-    margin-left: 10em}
+    margin-left: 10em;
+    margin-top: 1em;
+  }
 .profile{
   float: left;
 }
@@ -35,7 +40,7 @@ table.pat_col{
   color: black;
   max-width: 80px;
   flex-flow: row wrap;
-  margin-left: 1em;;
+  margin-left: 2em;
 }
 .profile img {
   position: relative;
@@ -87,6 +92,7 @@ table.pat_col{
   
   a {
     text-decoration: none;
+    font-size: 2em;
   /* margin-top: 2em; */}
   .generic-anchor {
     color: #8db9ed;
@@ -113,7 +119,10 @@ table.pat_col{
     margin-bottom: 0%;
     width: 100%;
   }
-  
+  footer img{
+    padding: 2%;
+    margin-left: 39%;
+  }
   .footer-list-top {
     width: 25%;
   }
@@ -157,8 +166,9 @@ table.pat_col{
     }
   
     table img {
-      margin-left: 20em;
-      margin-top: 1.1em;
+      margin-left: 29em;
+      margin-top: 2.1em;
+      padding-bottom: 2em;
     }
     .profile{
       margin-left: 11em;
