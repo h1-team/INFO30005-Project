@@ -165,6 +165,7 @@ const logout = (req, res) => {
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
+        loggedin: req.isAuthenticated()
     })
 }
 
@@ -294,8 +295,8 @@ const edit = async (req, res) => {
         if (req.body.phone) {
             patient.phone = req.body.phone
         }
-        if (req.body.passward) {
-            patient.passward = req.body.passward
+        if (req.body.password) {
+            patient.password = req.body.password
         }
         
         await patient.save()
