@@ -15,14 +15,14 @@ patientForm.addEventListener('submit', async function (e) {
 
     }
 
-
     const res = await axios({
-        url: `/patient/editone/${userName.toLocaleLowerCase()}`,
+        url: `/patient/editone/${patientId}`,
         data,
         method: 'PUT',
     }).catch(function (error) {
         alert('invalid input')
     })
+
     const records = {
         patientId,
         recordDate: getMelbDate(),
@@ -49,8 +49,6 @@ patientForm.addEventListener('submit', async function (e) {
     // console.log(res2);
     alert('update success!')
 })
-
-
 
 function getMelbDate() {
     var timezone = 10;

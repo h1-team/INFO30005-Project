@@ -28,7 +28,7 @@ const isLogin = (req, res, next) => {
     console.log('y')
     // If user is not authenticated via Passport, redirect to login page
     if(req.isAuthenticated() && req.user.role == "clinician"){
-        return res.redirect('/homepage')
+        return res.redirect('/doctor/homepage')
     }
     return next()
 }
@@ -61,11 +61,14 @@ clinicianRouter.get('/dashboard', isAuthenticated, patientController.getAllPatie
 clinicianRouter.get('/register', isAuthenticated, clinicianController.renderRegister)
 clinicianRouter.post('/register', clinicianController.register)
 clinicianRouter.get('/table/:_id',isAuthenticated, clinicianController.table)
-clinicianRouter.get('/supportMSG', clinicianController.renderSupportMSG)
-clinicianRouter.post('/supportMSG', clinicianController.writeSupportMSG)
-clinicianRouter.get('/note', clinicianController.renderClinicalNote)
+clinicianRouter.get('/supportMSG/:_id', clinicianController.renderSupportMSG)
+clinicianRouter.post('/supportMSG/:_id', clinicianController.writeSupportMSG)
+clinicianRouter.get('/newNote/:_id', clinicianController.renderNewNote)
+clinicianRouter.post('/newNote/:_id', clinicianController.addNewNote)
+clinicianRouter.get('/clinicalNote/:_id', clinicianController.clinicalNote)
 clinicianRouter.get('/comment',clinicianController.comment)
 clinicianRouter.get('/profiles/:_id', isAuthenticated, clinicianController.renderOnePatientProfile)
+clinicianRouter.get('/manage_patient/:_id', isAuthenticated, clinicianController.manage_patient)
 
 // export the clinician router
 module.exports = clinicianRouter

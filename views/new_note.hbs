@@ -11,14 +11,31 @@
     </nav>  
 </div> 
 <div class="new">
-
-    <p class="date" id="date">Note on <script> date = new Date().toLocaleDateString();
-        document.write(date); </script></p>
-    <textarea id="note" name="note" placeholder="Enter clinician note(you can adjust comment box size)..."></textarea>
-    <button class="note-btn" type="button">Submit</button>
-    <button class="note-btn" type="button">Save</button>
-    <button class="note-btn" type="button" onclick="location.href = './clinical_note';return false;">Cancel</button>
-    
+    <form action="/doctor/newNote/{{patient._id}}" method="post">
+        <p class="date" id="date">Note on {{date}}</p>
+        <textarea id="note" name="message" placeholder="Enter clinician note(you can adjust comment box size)..." value="{{input.message}}"></textarea>
+        <button class="note-btn" type="submit">Submit</button>
+        <button class="note-btn" type="button" onclick="location.href = '/doctor/clinicalNote/{{patient._id}}'">Cancel</button>
+    </form>
 </div>
 
-
+{{#if success}}
+<script>
+  window.onload=function() {
+    setTimeout(() => {
+      alert("Add new note Successfully!");
+      window.location.href = window.location.origin + window.location.pathname
+    }, 500) 
+  }
+</script>
+{{/if}}
+{{#if failure}}
+  <script>
+    window.onload=function() {
+      setTimeout(() => {
+        alert("Fail to add new note.");
+        window.location.href = window.location.origin + window.location.pathname
+      }, 500) 
+    }
+  </script>
+{{/if}}
