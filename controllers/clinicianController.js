@@ -5,6 +5,7 @@ const { Record } = require('../models/db.js')
 const { clinicianNote } = require('../models/db.js')
 // axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
 axios.defaults.baseURL = 'http://localhost:3000/api'
+const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
@@ -214,21 +215,12 @@ const renderOnePatientProfile = async (req, res) => {
         res.send(err)
     }
 }
-function getMelbDateTime() {
-    var timezone = 2
-    // var offset_GMT = new Date().getTimezoneOffset()
-    var nowDate = new Date().getTime()
-    var date = new Date(
-        nowDate + timezone * 60 * 60 * 1000
-    )
-    return date
-}
+
 const renderNewNote = async (req, res) => {
     try {
-        const date = getMelbDateTime()
+        const date = utils.getMelbDate()
         const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('new_note.hbs', {patient: patient,
-        date: date},)
+        res.render('new_note.hbs', {patient: patient, date: date},)
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -237,6 +229,7 @@ const renderNewNote = async (req, res) => {
 
 const addNewNote = async (req, res) => {
     try {
+        const date = utils.getMelbDate()
         const patient_id = req.params._id
         const clinician_id = req.session.passport ? req.session.passport.user : ''
         const newNote = new clinicianNote({
@@ -246,10 +239,11 @@ const addNewNote = async (req, res) => {
         })
 
         await newNote.save()
-        return res.render('new_note.hbs', { success: true })
+        return res.render('new_note.hbs', { success: true, date: date })
     } catch (err) {
+        const date = utils.getMelbDate()
         console.log(err)
-        return res.render('new_note.hbs', { failure: true })
+        return res.render('new_note.hbs', { failure: true, date: date })
     }
 }
 

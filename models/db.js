@@ -138,7 +138,7 @@ const clinicianNoteSchema = new mongoose.Schema({
     },
     
     message: { type: String, default: '' },
-    create_date: { type: Date, default: utils.getMelbDate() },
+    create_date: { type: String, default: utils.getMelbDate() },
 })
 
 const Record = mongoose.model('record', recordSchema)
