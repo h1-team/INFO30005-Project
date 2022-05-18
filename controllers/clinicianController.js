@@ -1,7 +1,7 @@
 const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
-const patientController = require('../controllers/patientController')
+const { clinicianNote } = require('../models/db.js')
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
@@ -81,10 +81,7 @@ const getAllPatientCommentToday = async (req, res) => {
             exerciseComment != null
         ){
            arr.push(resjson)
-        }
-
-        
-            
+        }    
     }
     console.log(arr.length)
     arr.reverse();
@@ -183,13 +180,18 @@ const register = async (req, res) => {
 }
 
 const renderSupportMSG = async (req, res) => {
-    return res.render('message.hbs')
+    try {
+        const patient = await Patient.findOne({_id: req.params._id}).lean()
+        res.render('message.hbs', {patient: patient})
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
 }
 
 const writeSupportMSG = async (req, res) => {
     try {
-        const patientId = '628232e50d0230caaa118181'
-        const patient = await Patient.findById(patientId)
+        const patient = await Patient.findById(req.params._id);
         patient.supportMSG = req.body.supportMSG
         await patient.save()
         return res.render('message.hbs', { supportSuccess: true })
@@ -210,8 +212,48 @@ const renderOnePatientProfile = async (req, res) => {
     }
 }
 
-const renderClinicalNote = async (req, res) => {
-    return res.render('clinical_note.hbs')
+const renderNewNote = async (req, res) => {
+    try {
+        const patient = await Patient.findOne({_id: req.params._id}).lean()
+        res.render('new_note.hbs', {patient: patient})
+    } catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+}
+
+const addNewNote = async (req, res) => {
+    try {
+        const patient_id = req.params._id
+        const clinician_id = req.session.passport ? req.session.passport.user : ''
+        const newNote = new clinicianNote({
+            patient: patient_id,
+            clinician: clinician_id,
+            message: req.body.message,
+        })
+
+        await newNote.save()
+        return res.render('new_note.hbs', { success: true })
+    } catch (err) {
+        console.log(err)
+        return res.render('new_note.hbs', { failure: true })
+    }
+}
+
+const clinicalNote = async (req, res) => {
+    const patient_id = req.params._id
+    const clinician_id = req.session.passport ? req.session.passport.user : ''
+    const patient = await Patient.findById(patient_id).lean()
+    const notes = await clinicianNote.find({
+        patient: patient_id,
+        clinician: clinician_id,
+    }).lean()
+
+    if (!result) {
+        return res.render('clinical_note.hbs', {note: notes, patient: patient})
+    }
+
+    return res.render('clinical_note.hbs', {note: notes, patient: patient})
 }
 
 const logout = (req, res) => {
@@ -298,6 +340,40 @@ const table = async(req, res) => {
         }
 }
 
+const manage_patient = async (req, res) => {
+    try {
+        const {
+            username
+        } = req.user
+        // send request
+        const patient = await axios({
+            url: `/patient/findone/${username.toLocaleLowerCase()}`,
+            methods: "get",
+        })
+        console.log(req.user);
+        // console.log(req.user);
+        res.render('manage_patient.hbs', {
+            style: 'manage_patient.css',
+            isChecked: {
+                needExecrise: patient.data.needExecrise ? 'checked' : '',
+                needGlucose: patient.data.needGlucose ? 'checked' : '',
+                needWeight: patient.data.needWeight ? 'checked' : '',
+                needInsulin: patient.data.needInsulin ? 'checked' : '',
+            },
+            vals: {
+                thresholdExecrise: patient.data.thresholdExecrise,
+                thresholdGlucose: patient.data.thresholdGlucose,
+                thresholdWeight: patient.data.thresholdWeight,
+                thresholdInsulin: patient.data.thresholdInsulin,
+            },
+            name: username,
+            patientId: patient.data._id,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     findAll,
     findOneById,
@@ -306,7 +382,9 @@ module.exports = {
     deleteOne,
     renderRegister,
     register,
-    renderClinicalNote,
+    renderNewNote,
+    addNewNote,
+    clinicalNote,
     renderSupportMSG,
     writeSupportMSG,
     renderOnePatientProfile,
@@ -316,5 +394,6 @@ module.exports = {
     logout,
     comment,
     getAllPatientCommentToday,
-    table
+    table,
+    manage_patient,
 }

@@ -15,7 +15,6 @@ patientForm.addEventListener('submit', async function (e) {
 
     }
 
-
     const res = await axios({
         url: `/patient/editone/${userName.toLocaleLowerCase()}`,
         data,
@@ -23,6 +22,7 @@ patientForm.addEventListener('submit', async function (e) {
     }).catch(function (error) {
         alert('invalid input')
     })
+
     const records = {
         patientId,
         recordDate: getMelbDate(),
@@ -39,6 +39,7 @@ patientForm.addEventListener('submit', async function (e) {
             status: needExecrise.checked ? "UNRECORDED" : "NO_NEED",
         }
     }
+    
     const res2 = await axios({
         url: '/record/updateData',
         data: records,
@@ -49,8 +50,6 @@ patientForm.addEventListener('submit', async function (e) {
     // console.log(res2);
     alert('update success!')
 })
-
-
 
 function getMelbDate() {
     var timezone = 10;

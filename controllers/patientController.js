@@ -65,8 +65,7 @@ const getAllPatientRecordToday = async (req, res) => {
     result = clinician.patients
 
     if (!result) {
-        res.status(404).send('patient not found')
-        return
+        return res.render('dashboard')
     }
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {

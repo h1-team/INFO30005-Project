@@ -25,81 +25,88 @@ body{
     flex-wrap: nowrap;
     padding: 5%;
 }
-  .pat_bg{
-    background: #6394d6; 
-  }
-  .doc_bg{
-    background: #5F97E0;
-  }
-  .login_form{
-    border-radius: 40px;
-    display: flex;
-    position: relative;
-  }
-  label{
-    color: white;
-  }
-  
-  h1 {
-  font-size: revert;text-align:center;
-  padding: 4%;
-  font-family: Tahoma;
-  font-weight: bold;
- }
-  
-    
-  input[type=text],
-  input[type=password] {
-    border-radius: 25px;
-    margin-bottom: 1rem;
-    width: 100%;
-    padding: 1em 6em;
-    margin: 0.5em 0;
-    display: inline-block;
-    border: 0.1em solid #ccc;
-    box-sizing: border-box;
-  }
-  .checkbox{
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-  }
-  a.forget{
-    margin-bottom: auto;
-    margin-top: 1 rem;
-    color: #E8D426;
-  }
-  a.forget:hover{
-    color: white;
-    text-decoration: none;
-  }
-  
-  
-  .btn-login{
 
-    background: #3A855D;
-    border: 1px solid #707070;
-    color: #ffffff;
-    padding: 10px;
-    width: 100%;
-    border-radius: 16px;
-  }
-  .btn-login:hover {
-    background: #57b382;;
-  }
-  @media all and (min-width: 880px) {
-    .login { width: 40% ;padding: 2%;}
-  }
-  @media all and (max-width: 880px) {
-    .login { width: 50% }
+.pat_bg{
+  background: #6394d6; 
 }
 
-  
+.doc_bg{
+  background: #5F97E0;
+}
+
+.login_form{
+  border-radius: 40px;
+  display: flex;
+  position: relative;
+}
+
+label{
+  color: white;
+}
+
+h1 {
+font-size: revert;text-align:center;
+padding: 4%;
+font-family: Tahoma;
+font-weight: bold;
+}
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password] {
+  border-radius: 25px;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 1em 6em;
+  margin: 0.5em 0;
+  display: inline-block;
+  border: 0.1em solid #ccc;
+  box-sizing: border-box;
+}
+
+.checkbox{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+a.forget{
+  margin-bottom: auto;
+  margin-top: 1 rem;
+  color: #E8D426;
+}
+
+a.forget:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.btn-login{
+
+  background: #3A855D;
+  border: 1px solid #707070;
+  color: #ffffff;
+  padding: 10px;
+  width: 100%;
+  border-radius: 16px;
+}
+.btn-login:hover {
+  background: #57b382;;
+}
+@media all and (min-width: 880px) {
+  .login { width: 40% ;padding: 2%;}
+}
+@media all and (max-width: 880px) {
+  .login { width: 50% }
+}
+
 * { 
   box-sizing: border-box; 
   font-size: 18px;
   padding: 0;
   margin: 0;
 }
+
 /*header*/
 header {
   background-color: white;
@@ -107,12 +114,14 @@ header {
   top: 0;
   width: 100%;
 }
+
 nav ul { 
   margin: 0 7% auto 0;
   padding-right: initial;
   text-align: left;
   max-width: 100%
 }
+
 nav ul li { 
   display: inline-block; 
   margin-left: 10px;
@@ -123,10 +132,12 @@ nav ul li {
   font-weight: normal;
   color: #4b4b4b;
 }
+
 .top-anchor{
 font: 0.7em normal, PT Serif;
 color: black;
 }
+
 /*footer*/
 ul {
   list-style: none;
@@ -135,12 +146,15 @@ ul {
 a {
   text-decoration: none;
 }
+
 .generic-anchor {
   color: #8db9ed;
 }
+
 .generic-anchor:visited {
   color: #8db9ed;
 }
+
 .generic-anchor:hover {
   color: #ccc;
 }
@@ -208,8 +222,6 @@ footer {
   .footer-list-anchor {
     font-size: 1.1em;
   }
-
-
 }
 
 /* Mobiles */
@@ -226,13 +238,9 @@ footer {
   .footer-list-anchor {
     font-size: 1.5em;
   }
-
 }
 
-
-
-
-/*parent container */
+/* parent container */
 .container-flexbox {
     display: flex;
     justify-content: space-between;
@@ -256,6 +264,7 @@ footer {
       font-size: 1.3em;
     }
 }
+
 body {
   font-family: Tahoma;
   background: #3b7fd9;
@@ -285,9 +294,7 @@ body {
   .footer-list-anchor {
     font-size: 1.1em;
   }
-
 }
-
 
 @media only screen and (max-width: 560px) {
   main {
@@ -306,9 +313,8 @@ body {
   .footer-list-anchor {
     font-size: 1.2em;
   }
-
-  
 }
+
 @media only screen and (max-width: 320px) {
   .footer-list-header {
     font-size: 1.5em;
@@ -317,11 +323,9 @@ body {
   .footer-list-anchor {
     font-size: 1.0em;
   }
-
 }
 
-  @font-face
-{
-    font-family: Tahoma;
-        src: url('Tahoma Regular font.ttf');
+@font-face {
+  font-family: Tahoma;
+  src: url('Tahoma Regular font.ttf');
 }

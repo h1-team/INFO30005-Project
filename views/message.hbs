@@ -13,10 +13,10 @@
         </nav>  
     </div>
 
-        <form  class="message" action="/doctor/supportMSG" method="post">
+        <form class="message" action="/doctor/supportMSG/{{patient._id}}" method="post">
             <h1>Current Message</h1>
         
-            <textarea type="text" class="input" id="currmsg" name="supportMSG" placeholder="{{!message}}(modify it or choose recommended message below)" value="{{input.supportMSG}}"></textarea>
+            <textarea type="text" class="input" id="currmsg" name="supportMSG" placeholder="(modify it or choose recommended message below)" value="{{input.supportMSG}}"></textarea>
 
             <br/>
 
