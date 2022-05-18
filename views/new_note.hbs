@@ -12,7 +12,7 @@
 </div> 
 <div class="new">
     <form action="/doctor/newNote/{{patient._id}}" method="post">
-        <p class="date" id="date">Note on <script> document.write(new Date().toLocaleDateString('en-AU',{  year: 'numeric', month: 'short', day: 'numeric'})); </script></p>
+        <p class="date" id="date">Note on {{date}}</p>
         <textarea id="note" name="message" placeholder="Enter clinician note(you can adjust comment box size)..." value="{{input.message}}"></textarea>
         <button class="note-btn" type="submit">Submit</button>
         <button class="note-btn" type="button" onclick="location.href = '/doctor/clinicalNote/{{patient._id}}'">Cancel</button>
