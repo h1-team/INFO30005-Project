@@ -137,7 +137,25 @@ footer a{
     font-size: 22px;
 }
 
-@media screen and (max-width: 675px) {
+
+@media screen and (max-width: 1024px){
+    .contain{
+        width: 1024px;
+    }
+    .con_list{
+        width: 1024px;
+    }
+    .con_video{
+        width: 1024px;
+    }
+
+    .con_dl{
+        width: 900px;
+        margin-left: 2em;
+    }
+}
+
+@media screen and (max-width: 375px) {
     .contain{
         width: 90%;
         margin-top: 20px;
@@ -151,8 +169,14 @@ footer a{
     .con_list_rg{
         margin-left: 0;
     }
+
+    .con_video{
+        width: 337.5px;
+    }
     .con_dl{
+        width: 300px;
         padding:20px;
+        margin-left: 0;
     }
     .none{
         display: none;

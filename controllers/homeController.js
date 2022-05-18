@@ -165,6 +165,7 @@ const logout = (req, res) => {
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
+        loggedin: req.isAuthenticated()
     })
 }
 
