@@ -29,7 +29,12 @@ const findAll = async (req, res) => {
 }
 
 const getAllPatientCommentToday = async (req, res) => {
-    result = await Record.find()
+    const table = await Record.find({patientId: req.params._id}).lean()
+    const patient =  await Patient.findOne({_id: req.params._id}).lean()
+    clinician = await Clinician.findById(req.user._id)
+    console.log(clinician)
+    result = clinician.patients
+    
     if (!result) {
         res.status(404).send('patient not found')
         return
@@ -39,20 +44,15 @@ const getAllPatientCommentToday = async (req, res) => {
     for (var i = 0; i < result.length; i++) {
         date = Date.now()
         date = formatDate(date)
-        //console.log(i)
-        var patient = await Patient.findOne({
-            _id: result[i].patientId,
-        })
-        //console.log(patient) 
-        if(!patient){
-            continue;
-        }else{
-            var name=patient.name
-        }       
-        
-        const record=result[i]
-        var date=record.recordDate
-        var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
+        console.log(i)
+        console.log(result[i].patientId)
+        const record = await Record.find({
+            _id: result[i].patientId
+        }).lean()
+        console.log(record)
+        for(var j=0;j<record.length;j++){
+            var date=record.recordDate
+            var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
             if (record.data.glucose.comment!="") {
                 glucoseComment = record.data.glucose.comment
             }
@@ -65,6 +65,9 @@ const getAllPatientCommentToday = async (req, res) => {
             if ( record.data.weight.comment!="") {
                 weightComment = record.data.weight.comment
             }
+        
+        }     
+        
         
         resjson = {
             date:date,
@@ -221,11 +224,10 @@ const logout = (req, res) => {
 
 const table = async(req, res) => {
         try{
-            console.log(req)
             const table = await Record.find({patientId: req.params._id}).lean()
             const patient =  await Patient.findOne({_id: req.params._id}).lean()
-            console.log(table)
-            console.log(patient)     
+            //console.log(table)
+            //console.log(patient)     
             for (var record of table) {
     
                 // date formatting
