@@ -16,7 +16,7 @@ patientForm.addEventListener('submit', async function (e) {
     }
 
     const res = await axios({
-        url: `/patient/editone/${userName.toLocaleLowerCase()}`,
+        url: `/patient/editone/${patientId}`,
         data,
         method: 'PUT',
     }).catch(function (error) {

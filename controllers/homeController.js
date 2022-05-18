@@ -391,6 +391,7 @@ const table = async(req, res) => {
     }
 }
 
+
 module.exports = {
     welcome,
     insert,
