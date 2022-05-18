@@ -65,21 +65,21 @@ var clinicianStrategy = new LocalStrategy((username, password, cb) => {
     Clinician.findOne({ username: username }, {}, {}, (err, user) => {
         console.log('clinicianStrategy')
         if (err) {
-            return cb(null, false, { message: 'Unknown error.' })
+            return cb(null, false, { message: 'Incorrect username or password' })
         }
         if (!user) {
             console.log('no user')
-            return cb(null, false, { message: 'Incorrect username.' })
+            return cb(null, false, { message: 'Incorrect username or password' })
         }
         // if there is a user with this username, check if the password matches
         console.log('yes user')
         user.verifyPassword(password, (err, valid) => {
             if (err) {
-                return cb(null, false, { message: 'Unknown error.' })
+                return cb(null, false, { message: 'Incorrect username or password' })
             }
             if (!valid) {
                 console.log('no pw')
-                return cb(null, false, { message: 'Incorrect password.' })
+                return cb(null, false, { message: 'Incorrect username or password' })
             }
             console.log('success')
             return cb(null, user)

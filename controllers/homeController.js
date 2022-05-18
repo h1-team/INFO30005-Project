@@ -154,12 +154,13 @@ const leaderboard = async (req, res) => {
 const login = (req, res) => {
     res.render('login.hbs', {
         style: 'login.css',
+        flash: req.flash('error'),
     })
 }
 
 const logout = (req, res) => {
     req.logout()
-    res.redirect("/login")
+    res.redirect("/")
 }
 
 const aboutweb = (req, res) => {

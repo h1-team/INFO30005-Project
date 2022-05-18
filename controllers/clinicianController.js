@@ -16,11 +16,12 @@ const doctorhome = (req, res) => {
 const doctor_login = (req, res) => {
     res.render('doc_login.hbs', {
         style: 'login.css',
+        flash: req.flash('error'),
     })
 }
 
 const doctor = (req, res) => {
-    console.log(req)
+    // console.log(req)
     res.render('doctor.hbs', {
         name: req.user.username,
         style: 'doctor_home.css',
@@ -265,7 +266,7 @@ const clinicalNote = async (req, res) => {
 
 const logout = (req, res) => {
     req.logout()
-    res.redirect("/doctor/login")
+    res.redirect("/doctor")
 }
 
 const table = async(req, res) => {
