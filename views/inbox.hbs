@@ -1,87 +1,68 @@
-
+<body>
 <div class="wrap">
     <div class="note">
         <li><img src="/icon/red-circle.svg"><p class="legend-item">unread(click checkbox to mark it read)</p></li>
     </div>
-<div class="tab">
-  <button class="tablinks" onmouseover="openCity(event, 'London')">London</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
-  {{#each record}}
-    <button class="tablinks " onmouseover="openCity(event, {{this.name}})">
-        <p><input type="checkbox" value="Today">{{this.date}}</p>
-        <p>patient {{this.name}}</p>
-        {{! #if }}
-        <p>new comment on 
-            {{#if this.glucoseComment}}
-            <p>glucose</p>
-            {{/if}}
-            {{#if this.weightComment}}
-            <p>weight</p>
-            {{/if}}
-            {{#if this.exerciseComment}}
-            <p>exercise</p>
-            {{/if}}
-            {{#if this.insulinComment}}
-            <p>insulin</p>
-            {{/if}}
-        </p>
-    </button>
-    {{/each}}
 </div>
 
+	<div id="tabsDiv">
     {{#each record}}
-    <div id={{this.name}} class="tabcontent">
+    <div id={{this.name}} class="contentClass">
     {{#each this.comments}}
-    
-            {{#if this.glucoseComment}}
-            <p>glucose:{{this.glucoseComment}}</p>
+        {{#if this.glucoseComment}}
+        <p>glucose:{{this.glucoseComment}}</p>
             {{/if}}
             {{#if this.weightComment}}
             <p>weight:{{this.weightComment}}</p>
             {{/if}}
             {{#if this.exerciseComment}}
-            <a>exercise:{{this.exerciseComment}}</a>
+            <p>exercise:{{this.exerciseComment}}</p>
             {{/if}}
             {{#if this.insulinComment}}
-            <a>insulin:{{this.insulinComment}}</a>
+            <p>insulin:{{this.insulinComment}}</p>
             {{/if}}
      {{/each}}          
     </div>
     {{/each}}
+  </div>
 
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
+	
 
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
-</div>
+		<ul class="ulClass" style="height:300px">
+      <li style="list-style-type:none;">
+        {{#each record}}
+        <button class="linkClass" onclick=
+					"displayContent(event, '{{this.name}}')">
+        <p>{{this.date}}</p>
+        <p>patient {{this.name}}</p>
+        {{! #if }}
+        <p>new comment on 
+            {{#if this.glucoseComment}}
+            <a>glucose</a>
+            {{/if}}
+            {{#if this.weightComment}}
+            <a>weight</a>
+            {{/if}}
+            {{#if this.exerciseComment}}
+            <a>exercise</a>
+            {{/if}}
+            {{#if this.insulinComment}}
+            <a>insulin</a>
+            {{/if}}
+        </p>
+        </button>
+        {{/each}}
+      </li>
+		</ul>
+	</div>
 
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
 
-<div class="clearfix"></div>
 
-<script>
-function openCity(evt, username) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-     tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  console.log(tablinks)
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace("active", "");
-  }
-  document.getElementById(username).style.display = "block";
-  console.log(document.getElementById(username))
-  evt.currentTarget.className += " active";
-}
-</script>
+
+
+
+<script src="/js/inbox.js"></script>
+
+
+
    

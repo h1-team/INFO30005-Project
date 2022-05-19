@@ -34,83 +34,85 @@ const findAll = async (req, res) => {
 }
 
 const getAllPatientCommentToday = async (req, res) => {
-    result = await Record.find()
+    clinician = await Clinician.findById(req.user._id)
+    console.log(clinician)
+    result = clinician.patients
+
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     var arr = new Array()
-    console.log(result.length)
+    //console.log(result.length)
     for (var i = 0; i < result.length; i++) {
-        date = Date.now()
-        date = formatDate(date)
-        //console.log(i)
-        var patient = await Patient.findOne({
-            _id: result[i].patientId,
-        })
-        //console.log(patient) 
-        if(!patient){
+        console.log(i)
+        //console.log(result[i].patientId)     
+        const patient =  await Patient.findOne({_id: result[i].patientId}).lean()
+        const record = await Record.find({
+            patientId: patient._id
+        }).lean()
+        var name=patient.username
+        if(name=="zzz"){
             continue;
-        }else{
-            var name=patient.name
-        }       
-        
-        const record=result[i]
-        var date=record.recordDate
-        var glucoseComment=null, weightComment=null, insulinComment=null, exerciseComment=null
-            if (record.data.glucose.comment!="") {
-                glucoseComment = record.data.glucose.comment
+        }
+        //console.log(name)
+        if(!record){
+            continue;
+        }
+        var comments=new Array()
+        for(var j=0;j<record.length;j++){
+            var date=record.recordDate
+            var d = record[j].recordDate
+            //console.log(record[j].data)
+            var glucoseComment=record[j].data.glucose.comment
+                weightComment= record[j].data.exercise.comment, 
+                insulinComment= record[j].data.insulin.comment, 
+                exerciseComment= record[j].data.exercise.comment
+            var comment = {
+                date:d,
+                weightComment:weightComment,
+                insulinComment:insulinComment,
+                exerciseComment:exerciseComment,
+                glucoseComment:glucoseComment
             }
-            if ( record.data.exercise.comment!="") {
-                exerciseComment = record.data.exercise.comment
+            if (
+                glucoseComment != "" ||
+                weightComment != "" ||
+                insulinComment != "" ||
+                exerciseComment != ""
+            ){
+               comments.push(comment)
             }
-            if ( record.data.insulin.comment!="") {
-                insulinComment = record.data.insulin.comment
-            }
-            if ( record.data.weight.comment!="") {
-                weightComment = record.data.weight.comment
-            }
-        
+
+        }     
+        comments.reverse();
+        console.log(comments[0])
         resjson = {
-            date:date,
+            date:d,
             name:name,
-            weightComment:weightComment,
-            insulinComment:insulinComment,
-            exerciseComment:exerciseComment,
-            glucoseComment:glucoseComment
+            comments:comments,
+            weightComment:comments[0].weightComment,
+            insulinComment:comments[0].insulinComment,
+            exerciseComment:comments[0].exerciseComment,
+            glucoseComment:comments[0].glucoseComment
         }
         if (
             glucoseComment != null ||
             weightComment != null ||
             insulinComment != null ||
             exerciseComment != null
-        ){
-            arr.push(resjson)
-        }    
+        )
+        if(resjson.comments.length!=0){
+           arr.push(resjson) 
+        }        
     }
-    console.log(arr.length)
     arr.reverse();
+    console.log(arr)
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',
-        record: arr
-    })
-}
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear()
-
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
-
-    return [year, month, day].join('-')
-}
-
-const comment = (req, res) => {
-    res.render('comment.hbs', {
-        style: 'inbox.css',
+        title:"inbox",
+        record:arr
     })
 }
 const findOneById = async (req, res) => {
@@ -400,7 +402,6 @@ module.exports = {
     doctor_login,
     doctor,
     logout,
-    comment,
     getAllPatientCommentToday,
     table,
     manage_patient,

@@ -58,7 +58,7 @@ body{
     padding: 2.2em;
 } 
 .logout{
-    margin-top: 0.5px;
+    margin-top: 7.5px;
     position: absolute;
     top: 0;
     right: 0;
@@ -74,7 +74,6 @@ body{
     border: none;
     border-left-style: solid;
     border-color: white;
-    margin-top: 35px;
 }
 button{
     background: whitesmoke;
@@ -83,7 +82,7 @@ button{
     padding: 10px;
     width: 7em;
     border-radius: 16px;
-    margin-top: 2em;
+    margin-top: 1em;
     margin-left: 3em;
 }
 .note-btn{
@@ -137,20 +136,16 @@ h1{
     float: left;
 }
 ul p{
+    padding: 2%;
     border: #4b4b4b;
     border-radius: 12px;
     box-sizing: border-box;
     background-color: #ffffff;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
-    margin: 0.5em;
+    margin: 0.7em;
 }
 
-input[type="checkbox" i]{
-    width: 1.5em;
-    height: 1.5em;
-    margin-left: 0.5em;
-}
 .message button{
     background: #3A855D;
     border: 1px solid #707070;
@@ -158,6 +153,7 @@ input[type="checkbox" i]{
     padding: 10px;
     width: 70%;
     border-radius: 16px;
+    margin: 4px;
 }
 @media all and (max-width: 1500px) {
     .container{

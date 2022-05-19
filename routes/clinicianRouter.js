@@ -66,7 +66,7 @@ clinicianRouter.post('/supportMSG/:_id', isAuthenticated, clinicianController.wr
 clinicianRouter.get('/newNote/:_id', isAuthenticated, clinicianController.renderNewNote)
 clinicianRouter.post('/newNote/:_id', isAuthenticated, clinicianController.addNewNote)
 clinicianRouter.get('/clinicalNote/:_id', isAuthenticated, clinicianController.clinicalNote)
-clinicianRouter.get('/comment',clinicianController.comment)
+//clinicianRouter.get('/comment',clinicianController.comment)
 clinicianRouter.get('/profiles/:_id', isAuthenticated, clinicianController.renderOnePatientProfile)
 clinicianRouter.get('/manage_patient/:_id', isAuthenticated, clinicianController.manage_patient)
 

@@ -144,7 +144,11 @@ footer {
   color:white
 }
 
-
+footer img{
+  width: 4em;
+  padding: 2%;
+  margin-left: 39%;
+}
 
 
 
