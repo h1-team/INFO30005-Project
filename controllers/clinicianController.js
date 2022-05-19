@@ -52,10 +52,10 @@ const getAllPatientCommentToday = async (req, res) => {
             patientId: patient._id
         }).lean()
         var name=patient.username
-        if(name=="zzz"){
+        if(name=="asdf" || name=="zzz"){
             continue;
         }
-        //console.log(name)
+        console.log(name)
         if(!record){
             continue;
         }
