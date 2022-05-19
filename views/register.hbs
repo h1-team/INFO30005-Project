@@ -8,6 +8,7 @@
 
   <div class="login" >
     <form class="login-form" id="register" action="/doctor/register" method="post">
+
       <label class="pat-text-color">Given Name</label>
       <input class="input" type="text" name="name" pattern="([a-zA-Z]{3,30}\s*)+" placeholder="Enter given name" value="{{input.name}}" required>
 
@@ -31,6 +32,9 @@
       
       <label class="pat-text-color">Phone</label>
       <input class="input" type="text" name="phone" pattern="[0-9'\-\+]+" placeholder="Enter phone" value="{{input.phone}}" required>
+
+      <label class="pat-text-color">Text Bio</label>
+      <input class="input" type="text" name="textBio" placeholder="Enter user's text bio" value="{{input.textBio}}">
 
       <div class="checkbox">
           <input type="checkbox" >

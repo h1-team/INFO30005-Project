@@ -44,7 +44,7 @@ const patientSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     address: { type: String, default: '' },
     email: { type: String, default: '', unique: true },
-    textBio: { type: String, default: '' },
+    textBio: { type: String, default: 'Write something to introduce yourself.' },
     yob: { type: Number, min: 1900, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
