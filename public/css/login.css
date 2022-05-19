@@ -151,13 +151,16 @@ a {
   align-items: center;
   justify-content: space-between;
   align-content: flex-start;
-margin: 0;}
+  margin-top: 3em;
+  margin-bottom: 6em;
+}
 
 footer {
   background: #373737;
   margin-top: auto;
   margin-bottom: 0%;
   width: 100%;
+  margin-top: 45px;
 }
 footer img{
   padding: 2%;
