@@ -1,97 +1,58 @@
-.logout{
-    margin-top: 2.5px;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 
-.logout button{
-    font-size: 1.5em;
-    padding: 0;
-    padding-right: 1em;
-    padding-left: 1em;
-    background-color: #2D63AB;
-    color:white;
-    border: none;
-    border-left-style: solid;
-    border-color: white;
-}
-.wrap{
-    width:900px;
-    margin:0 auto;
-    overflow: hidden;
-}
+	* {
+		box-sizing: border-box;
+	}
 
+	#tabsDiv {
+		height: 300px;
+		border: 2px solid #c0c0c0;
+	}
 
-.comment:hover {
-    background-color: #F2B705;
-    
-  }
-li{
-    display: inline-block; 
-    margin-left: 10px;
-  }
-li img{
-    margin-bottom: -1em;
-}
-li p{
-    display: inline;
-    margin-bottom: 1.2em;
-  }
+	#tabsDiv ul {
+		height: 300px;
+		padding: 0px 5px;
+	}
 
-.note{
-    margin-left: 2.2em;
-    padding: 2%;
-    border: 2px solid black;
-} 
+	#tabsDiv li {
+		width: 15%;
+		height: 60px;
+	}
 
-  
-.tab {
-    float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width: 30%;
-    height: 100%;
-  }
-  
-  /* Style the buttons inside the tab */
-  .tab button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 17px;
-  }
-  
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ddd;
-  }
-  
-  /* Create an active/current "tab button" class */
-  .tab button.active {
-    background-color: #ccc;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
-    width: 70%;
-    border-left: none;
-    height: 300px;
-    display: none;
-  }
-  
-  /* Clear floats after the tab */
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+	#tabsDiv button {
+		float: left;
+		border: 1px solid #c0c0c0;
+		background-color: #f1f0f4;
+	}
+
+	/* Button to open the content */
+	#tabsDiv button {
+		display: block;
+		background-color: inherit;
+		color: black;
+		padding: 25px 15px;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	/* Button styling on mouse hover */
+	#tabsDiv button:hover {
+		background-color: #d1d1d1;
+		color: lime;
+	}
+
+	#tabsDiv button.active {
+		background-color: #c0c0c0;
+	}
+
+	/* Content for tabs*/
+	.contentClass {
+		display: none;
+		position: absolute;
+		left: 18%;
+		padding: 0px 15px;
+		width: 70%;
+		border-style: none;
+		height: 300px;
+	}
+
