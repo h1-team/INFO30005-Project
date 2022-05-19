@@ -40,6 +40,7 @@ const recordSchema = new mongoose.Schema({
 const patientSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     photo: { type: String, default: '' },
+    familyName: { type: String, default: '' },
     name: { type: String, default: '' },
     address: { type: String, default: '' },
     email: { type: String, default: '', unique: true },
@@ -91,7 +92,6 @@ const clinicianSchema = new mongoose.Schema({
     photo: { type: String, default: '' },
     name: { type: String, default: '' },
     address: { type: String, default: '' },
-    dob: Date,
     role: { type: String, default: 'clinician' },
     phone: { type: String, default: '' },
     password: { type: String, required: true },
