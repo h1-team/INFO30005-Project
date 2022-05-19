@@ -2,8 +2,8 @@ const utils = require('../utils/utils.js')
 const axios = require('axios').default
 const { Record } = require('../models/db.js')
 const {Patient} = require('../models/db.js')
-//axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
- axios.defaults.baseURL = 'http://localhost:3000/api'
+// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:3000/api'
 
 const welcome = (req, res) => {
     res.render('welcome.hbs', {
@@ -179,6 +179,7 @@ const aboutweb2 = (req, res) => {
 const aboutdia = (req, res) => {
     res.render('aboutdia.hbs', {
         style: 'about.css',
+        loggedin: req.isAuthenticated()
     })
 }
 

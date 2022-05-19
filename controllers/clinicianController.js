@@ -3,8 +3,8 @@ const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
 const { clinicianNote } = require('../models/db.js')
-axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
-// axios.defaults.baseURL = 'http://localhost:3000/api'
+// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:3000/api'
 const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
