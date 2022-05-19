@@ -343,7 +343,7 @@ const table = async(req, res) => {
             }
             res.render('check_pat_data.hbs', {
                 style: 'table_doctor.css',
-                title: "Viewing data",
+                title: "Display data",
                 record: table.reverse(),
                 name: patient.username,
                 patient: patient,

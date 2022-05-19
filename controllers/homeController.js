@@ -58,7 +58,7 @@ const insert = async (req, res) => {
         record: data,
         state,
         userID,
-        title: "New data"
+        title: "Insert data"
     })
 }
 function fomatFloat(src,pos){
@@ -378,7 +378,7 @@ const table = async(req, res) => {
         }
         res.render('table.hbs', {
             style: 'table.css',
-            title: "Viewing data",
+            title: "Display data",
             record: table.reverse(),
             name: patient.username
         })
