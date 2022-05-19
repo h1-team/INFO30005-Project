@@ -266,11 +266,11 @@ const renderEdit = (req, res) => {
 }
 const edit = async (req, res) => {
     if (await Patient.findOne({ username: req.body.username }, {})) {
-        return res.render('register.hbs', { 
+        return res.render('p_profile.hbs', { 
             style: 'profile.css',
             usernameExists: true 
         })
-    }
+}
 
     try {
         const patientId = req.session.passport ? req.session.passport.user : ''
