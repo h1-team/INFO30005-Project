@@ -8,11 +8,11 @@
             <label>User name</label>
             <input class="input"  type="text" name="username"  pattern="[A-Za-z0-9\-_\.]{4,20}" placeholder="your new username" value="{{input.username}}">
         </section>
-         <P class="des">* Username must have 4-20 numbers or letters and no special chars</P>
+         <P class="des">* Username must have 4-20 numbers, letters or '-' with no other special chars</P>
 
         <section class = 'one_line'>
         <label>Year of Birth</label>
-        <input class="input"  type="number" name="yob" pattern="d{4}" placeholder="YYYY" value="{{input.yob}}">
+        <input class="input"  type="number" name="yob" pattern="d{4}" min="1922" max="2022" placeholder="YYYY" value="{{input.yob}}">
         </section>
     </div>
 
@@ -40,7 +40,7 @@
         <h2> Security</h2>
         <section class = 'one_line' id="pw">
             <label>Password</label>
-            <input class="input"  type="text" name="password" patter="[A-Za-z0-9\-_\.]{8,20}" placeholder="your new password" value="{{input.password}}">
+            <input class="input"  type="password" name="password" patter="[A-Za-z0-9\-_\.]{8,20}" placeholder="your new password" value="{{input.password}}">
         </section>
         <P class="des">* Password must have 8-20 numbers or letters and no special chars</P>
     </div>
