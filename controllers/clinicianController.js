@@ -90,6 +90,7 @@ const getAllPatientCommentToday = async (req, res) => {
         resjson = {
             date:d,
             name:name,
+            _id:patient._id,
             comments:comments,
             weightComment:comments[0].weightComment,
             insulinComment:comments[0].insulinComment,
