@@ -35,7 +35,7 @@ const findAll = async (req, res) => {
 
 const getAllPatientCommentToday = async (req, res) => {
     clinician = await Clinician.findById(req.user._id)
-    console.log(clinician)
+    //console.log(clinician)
     result = clinician.patients
 
     if (!result) {
@@ -44,32 +44,32 @@ const getAllPatientCommentToday = async (req, res) => {
     }
     var arr = new Array()
     //console.log(result.length)
-    for (var i = 0; i < result.length; i++) {
-        console.log(i)
-        //console.log(result[i].patientId)     
+    for (var i = 0; i < result.length; i++) {  
         const patient =  await Patient.findOne({_id: result[i].patientId}).lean()
         const record = await Record.find({
             patientId: patient._id
         }).lean()
         var name=patient.username
-        if(name=="asdf" || name=="zzz"){
-            continue;
-        }
-        console.log(name)
-        if(!record){
+        if(!name){
             continue;
         }
         var comments=new Array()
         for(var j=0;j<record.length;j++){
-            var date=record.recordDate
             var d = record[j].recordDate
+            var date = d.getUTCDate();
+            var y = d.getFullYear();
+            var m = d.getMonth();
+            var monthArr = ["Jan.", "Feb.","Mar.", "Apr.", "May", "Jun.", "Jul.","Aug.", "Sep.", "Oct.", "Nov.","Dec."];
+            m = monthArr[m];
+            tableDate = m + "/" + date + "/" + y
+            record.recordDate = tableDate
             //console.log(record[j].data)
             var glucoseComment=record[j].data.glucose.comment
                 weightComment= record[j].data.exercise.comment, 
                 insulinComment= record[j].data.insulin.comment, 
                 exerciseComment= record[j].data.exercise.comment
             var comment = {
-                date:d,
+                date:tableDate,
                 weightComment:weightComment,
                 insulinComment:insulinComment,
                 exerciseComment:exerciseComment,
@@ -86,9 +86,12 @@ const getAllPatientCommentToday = async (req, res) => {
 
         }     
         comments.reverse();
-        console.log(comments[0])
+        if(comments.length==0){
+            continue;
+        }
+
         resjson = {
-            date:d,
+            date:comments[0].date,
             name:name,
             _id:patient._id,
             comments:comments,
@@ -108,7 +111,7 @@ const getAllPatientCommentToday = async (req, res) => {
         }        
     }
     arr.reverse();
-    console.log(arr)
+    //console.log(arr)
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',

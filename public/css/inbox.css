@@ -30,7 +30,7 @@
   color: black;
   }
   .logout{
-    margin-top: 2.5px;
+    margin-top:  18.5px;
     position: absolute;
     top: 0;
     right: 0;
@@ -71,9 +71,10 @@ li p{
   }
 
 .note{
-    margin-left: 2.2em;
-    padding: 2%;
-    border: 2px solid black;
+  margin-left: 2.2em;
+  padding: 0%;
+  color: white;
+  font-size: 1.5em;
 } 
 
 	#tabsDiv {
@@ -92,6 +93,7 @@ li p{
     padding: 2.2em;
     width: 46.8%;
     padding-top: 0px;
+
 	}
 .linkClass{
   width: 100%;
@@ -133,5 +135,6 @@ li p{
     margin-top: 16px;
     height: fit-content;
     border: black solid 1px;
+    background-color: white;
 	}
  

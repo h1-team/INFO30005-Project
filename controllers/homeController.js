@@ -179,6 +179,7 @@ const aboutweb2 = (req, res) => {
 const aboutdia = (req, res) => {
     res.render('aboutdia.hbs', {
         style: 'about.css',
+        loggedin: req.isAuthenticated()
     })
 }
 
