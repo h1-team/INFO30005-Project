@@ -13,7 +13,7 @@
             <label for="glucose">
               Blood glucose level
             </label>
-            <input name="glucose" id="glucose" value="{{record.glucose.data}}" type="text" />
+            <input name="glucose" pattern="[\d]+" id="glucose" value="{{record.glucose.data}}" type="text" />
             nom/L 
                   {{#if record.glucose.data}}
                       (uploaded!You can modify again!)
@@ -39,7 +39,7 @@
             <label for="weight">
               Weight
             </label>
-            <input name="weight"  id="weight" value="{{record.weight.data}}" type="text" />
+            <input name="weight" pattern="[\d]+" id="weight" value="{{record.weight.data}}" type="text" />
             Kg {{#if record.weight.data}}
                   (uploaded!You can modify again!)
                 {{else}}
@@ -63,7 +63,7 @@
             <label for="insulin">
               Doses of insulin taken
             </label>
-            <input name="insulin"  id="insulin" value="{{record.insulin.data}}" type="text" />
+            <input name="insulin" pattern="[\d]+"  id="insulin" value="{{record.insulin.data}}" type="text" />
             Doses {{#if record.insulin.data}}
                     (uploaded!You can modify again!)
                   {{else}}
@@ -87,7 +87,7 @@
             <label for="exercise">
               Exercise  
             </label>
-            <input name="exercise"  id="exercise" value="{{record.exercise.data}}" type="text" />
+            <input name="exercise" pattern="[\d]+" id="exercise" value="{{record.exercise.data}}" type="text" />
             Step count{{#if record.exercise.data}}
                   (uploaded!You can modify again!)
                 {{else}}
