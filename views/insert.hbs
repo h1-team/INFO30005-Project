@@ -16,7 +16,7 @@
             <input name="glucose" pattern="[\d]+" id="glucose" value="{{record.glucose.data}}" type="text" />
             nom/L 
                   {{#if record.glucose.data}}
-                      (uploaded!You can modify again!)
+                      <p>(uploaded!you can modify again!)</p>
                   {{else}}
                       <font color="red">(please enter data!)</font>
                   {{/if}}
@@ -41,7 +41,7 @@
             </label>
             <input name="weight" pattern="[\d]+" id="weight" value="{{record.weight.data}}" type="text" />
             Kg {{#if record.weight.data}}
-                  (uploaded!You can modify again!)
+                  <p>(uploaded!You can modify again!)</p>
                 {{else}}
                   <font color="red">(please enter data!)</font>
                 {{/if}}
@@ -65,7 +65,7 @@
             </label>
             <input name="insulin" pattern="[\d]+"  id="insulin" value="{{record.insulin.data}}" type="text" />
             Doses {{#if record.insulin.data}}
-                    (uploaded!You can modify again!)
+                    <p>(uploaded!You can modify again!)</p>
                   {{else}}
                     <font color="red">(please enter data!)</font>
                   {{/if}}
@@ -89,7 +89,7 @@
             </label>
             <input name="exercise" pattern="[\d]+" id="exercise" value="{{record.exercise.data}}" type="text" />
             Step count{{#if record.exercise.data}}
-                  (uploaded!You can modify again!)
+                  <p>(uploaded!You can modify again!)</p>
                 {{else}}
                   <font color="red">(please enter data!)</font>
                 {{/if}}
