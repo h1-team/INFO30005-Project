@@ -1,55 +1,55 @@
-<body>
-  <div class="leader">
-    <div class="box">
-      <div class="right">
-        <div class="title">
-          <p>
-            Your engagement rate currently is
-            {{activeUserInfo.rate}}
-            %
-          </p>
-          <p>
-            Your rank is No.
-            {{activeUserInfo.rank}}
-            out of
-            {{userCount}}
-            users
-          </p>
-          <p class="{{activeUserInfo.show}}">
-            You have won this week's medal! keep going!
-            <span class="icon">
-              <img width="20" src="/icon/medal.svg" />
-            </span>
-          </p>
-        </div>
-        <img src="/picture/istockphoto-1282822649-170667a.jpeg" alt="" />
+{{> header2}}
+
+<div class="leader">
+  <div class="box">
+    <div class="right">
+      <div class="title">
+        <p>
+          Your engagement rate currently is
+          {{activeUserInfo.rate}}
+          %
+        </p>
+        <p>
+          Your rank is No.
+          {{activeUserInfo.rank}}
+          out of
+          {{userCount}}
+          users
+        </p>
+        <p class="{{activeUserInfo.show}}">
+          You have won this week's medal! keep going!
+          <span class="icon">
+            <img width="20" src="/icon/medal.svg" />
+          </span>
+        </p>
       </div>
-      <div class="left">
-        <div class="content">
-          <h3>
-            Top 5 users with the highest engagement rate
-          </h3>
-          {{#each list}}
-            {{#with this}}
-              <div class="user-item">
-                <div class="rank">
-                  {{rank}}
-                </div>
-                <div class="user-info">
-                  <div class="head"></div>
-                  <div class="name">
-                    {{username}}
-                  </div>
-                </div>
-                <div class="val">
-                  {{rate}}
-                  %
+      <img src="/picture/istockphoto-1282822649-170667a.jpeg" alt="" />
+    </div>
+    <div class="left">
+      <div class="content">
+        <h3>
+          Top 5 users with the highest engagement rate
+        </h3>
+        {{#each list}}
+          {{#with this}}
+            <div class="user-item">
+              <div class="rank">
+                {{rank}}
+              </div>
+              <div class="user-info">
+                <div class="head"></div>
+                <div class="name">
+                  {{username}}
                 </div>
               </div>
-            {{/with}}
-          {{/each}}
-        </div>
+              <div class="val">
+                {{rate}}
+                %
+              </div>
+            </div>
+          {{/with}}
+        {{/each}}
       </div>
     </div>
   </div>
-</body>
+</div>

@@ -56,11 +56,8 @@ homeRouter.post(
 
 homeRouter.get('/aboutweb', homeController.aboutweb)
 
-homeRouter.get('/aboutweb2', homeController.aboutweb2)
-
 homeRouter.get('/aboutdia', homeController.aboutdia)
 
-homeRouter.get('/aboutdia2', homeController.aboutdia2)
 
 // turn on after finsih login
 homeRouter.get('/homepage', isAuthenticated, homeController.homepage)

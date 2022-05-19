@@ -15,19 +15,19 @@ insertForm.addEventListener('submit', async function (e) {
         data: {
             glucose: {
                 data: glucose.value,
-                comment: glucoseComment.value,
+                comment: glucoseComment.value.trim(),
             },
             weight: {
                 data: weight.value,
-                comment: weightComment.value,
+                comment: weightComment.value.trim(),
             },
             insulin: {
                 data: insulin.value,
-                comment: insulinComment.value,
+                comment: insulinComment.value.trim(),
             },
             exercise: {
                 data: exercise.value,
-                comment: exerciseComment.value,
+                comment: exerciseComment.value.trim(),
             },
         },
     }
@@ -36,11 +36,10 @@ insertForm.addEventListener('submit', async function (e) {
         data,
         method: 'POST',
     }).catch(function (error) {
-        alert('invalid input')
+        alert('invalid input!')
     })
     //refresh the web page
     location.reload()
-    alert('update success!')
 })
 
 function getMelbDate() {
@@ -59,14 +58,7 @@ function getMelbDate() {
     }
     return year + '-' + month + '-' + day
 }
-function getMelbDateTime() {
-    var timezone = 10
-    var nowDate = new Date().getTime()
-    var date = new Date(
-        nowDate + timezone * 60 * 60 * 1000
-    )
-    return date
-}
+
 
 function getTime() {
     var date = new Date()

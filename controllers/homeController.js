@@ -57,7 +57,8 @@ const insert = async (req, res) => {
         style: 'insert.css',
         record: data,
         state,
-        userID
+        userID,
+        title: "New data"
     })
 }
 function fomatFloat(src,pos){
@@ -144,7 +145,8 @@ const leaderboard = async (req, res) => {
             //that user rank
             activeUserInfo,
             // total number of users
-            userCount
+            userCount,
+            title: "Leaderboard",
         })
     } catch (err) {
         console.log(err);
@@ -170,11 +172,7 @@ const aboutweb = (req, res) => {
     })
 }
 
-const aboutweb2 = (req, res) => {
-    res.render('aboutweb2.hbs', {
-        style: 'about.css',
-    })
-}
+
 
 const aboutdia = (req, res) => {
     res.render('aboutdia.hbs', {
@@ -183,11 +181,7 @@ const aboutdia = (req, res) => {
     })
 }
 
-const aboutdia2 = (req, res) => {
-    res.render('aboutdia2.hbs', {
-        style: 'about.css',
-    })
-}
+
 
 const homepage = async (req, res) => {
     try {
@@ -400,9 +394,7 @@ module.exports = {
     insert,
     login,
     aboutweb,
-    aboutweb2,
     aboutdia,
-    aboutdia2,
     homepage,
     leaderboard,
     table,
