@@ -46,10 +46,9 @@ body{
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
-    height: 25em;
     background: #EBEBEB;
     text-align: center;
-    height: 15em;
+    height: 290px;
 }
 
 .niv2{
@@ -185,7 +184,7 @@ a{
     ul{
         margin: 0;
         padding-left: 0em;
-        margin-left: 5em;
+        margin-left: 6em;
     }
 
     .info{
@@ -280,7 +279,9 @@ a{
     }
 
     ul{
-        padding-left: 1em;
+        margin-left: 0;
+        padding-left: 0.7em;
+        
     }
 
     .info{
@@ -306,11 +307,12 @@ a{
     }
 
     .basic{
-        height: 240px;
+        height: auto;
     }
 
     .contact{
-        height: 250px;
+        width: auto;
+        margin: 6.5px;
     }
 
     .password{
@@ -331,10 +333,6 @@ a{
         margin-left: 1em;
         margin-bottom: 0.5em;
     }
-
-
-
-
 
 
     .submit{
