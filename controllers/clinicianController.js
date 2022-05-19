@@ -359,7 +359,7 @@ const manage_patient = async (req, res) => {
         const userID = req.params._id
         const patient_user = await Patient.findById(req.params._id)
 
-        const username = patient_user.username
+        const username = patient_user.name
         // send request
         const patient = await axios({
             url: `/patient/findone/${userID}`,
