@@ -19,7 +19,7 @@
       <input class="input" type="text" name="username" pattern="[A-Za-z0-9\-_\.]{4,20}" placeholder="Enter username" value="{{input.username}}" required>
 
       <label class="pat-text-color">Password</label>
-      <input class="input" type="password" name="password" patter="[A-Za-z0-9\-_\.]{8,20}" placeholder="Enter password" value="{{input.password}}" required>
+      <input class="input" type="password" name="password" pattern="[A-Za-z0-9\-_\.]{8,20}" placeholder="Enter password" value="{{input.password}}" required>
 
       <label class="pat-text-color">Year of Birth</label>
       <input class="input" type="number" min="1900" max="2022" name="yob" pattern="d{4}" placeholder="Enter year of birth" value="{{input.yob}}" required>
@@ -54,7 +54,7 @@
   window.onload=function() {
     setTimeout(() => {
       alert("Register Successfully!");
-      window.location.href = window.location.origin + window.location.pathname
+      window.location.href = window.location.origin + "/doctor/dashboard"
     }, 500) 
   }
 </script>
