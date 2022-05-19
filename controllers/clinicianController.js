@@ -3,8 +3,8 @@ const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
 const { clinicianNote } = require('../models/db.js')
-axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
-// axios.defaults.baseURL = 'http://localhost:3000/api'
+// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+axios.defaults.baseURL = 'http://localhost:3000/api'
 const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
@@ -52,10 +52,10 @@ const getAllPatientCommentToday = async (req, res) => {
             patientId: patient._id
         }).lean()
         var name=patient.username
-        if(name=="zzz"){
+        if(name=="asdf" || name=="zzz"){
             continue;
         }
-        //console.log(name)
+        console.log(name)
         if(!record){
             continue;
         }
@@ -90,6 +90,7 @@ const getAllPatientCommentToday = async (req, res) => {
         resjson = {
             date:d,
             name:name,
+            _id:patient._id,
             comments:comments,
             weightComment:comments[0].weightComment,
             insulinComment:comments[0].insulinComment,
