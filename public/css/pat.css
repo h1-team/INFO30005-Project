@@ -82,8 +82,22 @@ table.pat_col{
     color: #4b4b4b;
   }
   .top-anchor{
-  font: 0.7em normal, PT Serif;
+  font: 1.5em normal, PT Serif;
   color: black;
+  }
+  .grey-top {
+    margin-left: 61px;
+    margin-top: 20px;
+    width: 15%;
+    background-color: #8db9ed;
+    border: #4b4b4b solid 1px;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    border-radius: 10px;
+  }
+  .grey-top a{
+    color: white;
   }
   /*footer*/
   ul {

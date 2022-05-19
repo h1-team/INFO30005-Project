@@ -49,7 +49,7 @@ const getAllPatientCommentToday = async (req, res) => {
         const record = await Record.find({
             patientId: patient._id
         }).lean()
-        var name=patient.username
+        var name=patient.name
         if(!name){
             continue;
         }
@@ -346,7 +346,8 @@ const table = async(req, res) => {
                 title: "Viewing data",
                 record: table.reverse(),
                 name: patient.username,
-                patient: patient
+                patient: patient,
+                id:patient._id
             })
         }catch(err){
             console.log(err)

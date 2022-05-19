@@ -65,11 +65,14 @@ li img{
     flex-flow: row wrap;
   }
   .sign{
+    font-size: 1.5em;
     text-align: right;
     margin: 16px;
+    margin-right: 64px;
     color: white;
   }
   .sign a{
+    font-size: 1.5em;
     color: #F2B705;
   }
 
@@ -106,7 +109,7 @@ li img{
     color: #4b4b4b;
   }
   .top-anchor{
-  font: 0.7em normal, PT Serif;
+  font: 1.5em normal, PT Serif;
   color: black;
   }
   .logout{

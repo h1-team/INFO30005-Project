@@ -42,7 +42,7 @@ ul li {
     color: #4b4b4b;
   }
   .top-anchor{
-  font: 0.7em normal, PT Serif;
+  font: 1.5em normal, PT Serif;
   color: black;
   }
 .logout{
@@ -63,7 +63,9 @@ ul li {
     border-left-style: solid;
     border-color: white;
 }
-
+.active{
+    color: #3B83E3 !important;
+}
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
