@@ -408,7 +408,7 @@ const table = async (req, res) => {
             style: 'table_doctor.css',
             title: 'Display data',
             record: table.reverse(),
-            name: patient.username,
+            name: patient.name,
             patient: patient,
             id: patient._id,
         })
