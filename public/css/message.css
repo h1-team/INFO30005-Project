@@ -79,17 +79,7 @@ body{
     padding: 2.2em;
 } 
 
-button{
-    font-size: 1.5em;
-    background: whitesmoke;
-    border: 1px solid #707070;
-    color: black;
-    padding: 10px;
-    width: 7em;
-    border-radius: 16px;
-    margin-top: 2em;
-    margin-left: 1em;
-}
+
 .note-btn{
     background: #3A855D;
     border: 1px solid #707070;
@@ -116,6 +106,7 @@ textarea{
     padding: 2%;
     width: 47vw;
     height: 20vh;
+    margin-left: 5em;
 }
 
 .text{
@@ -129,7 +120,7 @@ textarea{
 }
 .message{
     padding: 20%;
-    padding-top: 5%;
+    padding-top: 2%;
     font-size: 9em;
 }
 
@@ -144,7 +135,7 @@ textarea{
 h1{
     font-size: 0.2em;
     font-family: 'Times New Roman', Times, serif;
-    margin-top: 3.7em;
+    margin-top: 2em;
 }
 .input{
     float: left;
@@ -166,9 +157,10 @@ ul p{
     border: 1px solid #707070;
     color: #ffffff;
     padding: 10px;
-    width: 50%;
+    width: 30%;
     border-radius: 16px;
     margin: 4px;
+    margin-left: 6.5em;
 }
 @media all and (max-width: 1500px) {
     .container{
