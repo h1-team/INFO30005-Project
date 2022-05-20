@@ -1,6 +1,17 @@
 <link rel="stylesheet" href="/css/message.css">
 
 {{> header3}}
+<div class="grey-top">
+    <nav>
+        <ul >
+            <li><a class="top-anchor active" href="../clinicalNote/{{patient._id}}">Clinical Note</a></li>   
+            <li><a class="top-anchor" href="../table/{{patient._id}}">Display Data</a></li>
+            <li><a class="top-anchor" href="../manage_patient/{{patient._id}}">Modify data</a></li>
+            <li><a class="top-anchor" href="../supportMSG/{{patient._id}}">Support message</a></li>
+            <li><a class="top-anchor" href="../inbox">Inbox</a></li>
+        </ul>  
+    </nav>  
+</div>
 <body style="background-color: #F2B705">
 
         <form class="message" action="/doctor/supportMSG/{{patient._id}}" method="post">

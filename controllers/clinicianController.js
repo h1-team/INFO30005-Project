@@ -24,7 +24,7 @@ const doctor_login = (req, res) => {
 const doctor = (req, res) => {
     // console.log(req)
     res.render('doctor.hbs', {
-        name: req.user.username,
+        name: req.user.name,
         title: "welcome_doctor",
         style: 'doctor_home.css',
     })
