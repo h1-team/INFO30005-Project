@@ -9,6 +9,7 @@ const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
+        title:"doctor_home",
         style: 'doctor.css',
     })
 }
@@ -24,6 +25,7 @@ const doctor = (req, res) => {
     // console.log(req)
     res.render('doctor.hbs', {
         name: req.user.username,
+        title: "welcome_doctor",
         style: 'doctor_home.css',
     })
 }
@@ -161,7 +163,9 @@ const deleteOne = async (req, res) => {
 }
 
 const renderRegister = (req, res) => {
-    res.render('register.hbs')
+    res.render('register.hbs'),{
+        title:"register"
+    }
 }
 
 const register = async (req, res) => {
@@ -178,7 +182,7 @@ const register = async (req, res) => {
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('register.hbs', { registerFailure: true })
+        return res.render('register.hbs', { registerFailure: true,  })
     }
 
     // insert patient into clinician's patientList
@@ -205,18 +209,18 @@ const writeSupportMSG = async (req, res) => {
         const patient = await Patient.findById(req.params._id);
         patient.supportMSG = req.body.supportMSG
         await patient.save()
-        return res.render('message.hbs', { supportSuccess: true })
+        return res.render('message.hbs', { supportSuccess: true, title:"support_msg" })
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('message.hbs', { supportFailure: true })
+        return res.render('message.hbs', { supportFailure: true,title:"support msg" })
     }
 }
 
 const renderOnePatientProfile = async (req, res) => {
     try {
         const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('profile.hbs', {patient: patient})
+        res.render('profile.hbs', {patient: patient, title:"profile"})
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -227,7 +231,7 @@ const renderNewNote = async (req, res) => {
     try {
         const date = utils.getMelbDate()
         const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('new_note.hbs', {patient: patient, date: date},)
+        res.render('new_note.hbs', {patient: patient, date: date, title:"new note"},)
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -246,11 +250,11 @@ const addNewNote = async (req, res) => {
         })
 
         await newNote.save()
-        return res.render('new_note.hbs', { success: true, date: date })
+        return res.render('new_note.hbs', { success: true, date: date, title:"new note"})
     } catch (err) {
         const date = utils.getMelbDate()
         console.log(err)
-        return res.render('new_note.hbs', { failure: true, date: date })
+        return res.render('new_note.hbs', { failure: true, date: date, title:"new note" })
     }
 }
 
@@ -267,7 +271,7 @@ const clinicalNote = async (req, res) => {
         return res.render('clinical_note.hbs', {note: notes, patient: patient})
     }
 
-    return res.render('clinical_note.hbs', {note: notes, patient: patient})
+    return res.render('clinical_note.hbs', {note: notes, patient: patient, title:"clinical note"})
 }
 
 const logout = (req, res) => {
@@ -383,6 +387,7 @@ const manage_patient = async (req, res) => {
             },
             name: username,
             patientId: patient.data._id,
+            title:"manage patient"
         })
     } catch (err) {
         console.log(err);
