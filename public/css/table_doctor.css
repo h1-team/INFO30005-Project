@@ -15,7 +15,7 @@ header {
     background-color: #E4E4E4;
     height: 35px;
     top: 0;
-    width: 100%;
+    justify-content: center;
 }
 nav ul { 
     margin: 0 7% auto 0;
@@ -36,36 +36,17 @@ ul li {
 }
 
   
-  *.info{
+*.info{
     font-family: "PT Serif";
     font-weight: normal;
     color: #4b4b4b;
-  }
+}
   .top-anchor{
   font: 1.5em normal, PT Serif;
   color: black;
   }
-.logout{
-    margin-top: 2.5px;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 
-.logout button{
-    font-size: 1.5em;
-    padding: 0;
-    padding-right: 1em;
-    padding-left: 1em;
-    background-color: #2D63AB;
-    color:white;
-    border: none;
-    border-left-style: solid;
-    border-color: white;
-}
-.active{
-    color: #3B83E3 !important;
-}
+
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -92,7 +73,7 @@ body {
 }
 
 .logout{
-    margin-top: 7.5px;
+    margin-top: 0px;
     position: absolute;
     top: 0;
     right: 0;

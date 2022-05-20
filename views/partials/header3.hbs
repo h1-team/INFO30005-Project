@@ -1,5 +1,6 @@
 
 <header>
+
     <div class="top">
             <div class="info">
               <nav>
@@ -10,8 +11,22 @@
               </ul>  
               </nav>  
             </div>
-      </div>  
-    <form class="logout" action="/doctor/logout" method="post">
-      <button type="submit" style="cursor: pointer" onclick="logout()">Log Out</button>
-    </form>  
+
+            <form class="logout" action="/doctor/logout" method="post">
+              <button type="submit" style="cursor: pointer" onclick="logout()">Log Out</button>
+            </form> 
+    </div> 
+
+<div class="grey-top">
+    <nav>
+        <ul >
+            <li><a class="top-anchor active" href="../clinicalNote/{{patient._id}}">Clinical Note</a></li>   
+            <li><a class="top-anchor" href="../table/{{patient._id}}">Display Data</a></li>
+            <li><a class="top-anchor" href="../manage_patient/{{patient._id}}">Modify data</a></li>
+            <li><a class="top-anchor" href="../supportMSG/{{patient._id}}">Support message</a></li>
+            <li><a class="top-anchor" href="../inbox">Inbox</a></li>
+        </ul>  
+    </nav>  
+</div>
+
 </header>
