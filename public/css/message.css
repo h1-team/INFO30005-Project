@@ -1,67 +1,89 @@
-header {
-    background-color: white;
-    color:black;
+body{
+    margin: 0;
+  }
+  header {
+    background-color: #3B7FD9;
+    color:white;
     width: 100%;
-}
-
-.top{
-    height: 40px;
-}
-
-.info{
+    top:0;
+  }
+  
+  .top{
+    height: 50px;
+    padding-left: 2em;
+  }
+  
+  .info{
     padding-top: 5px;
-}
-.grey-top {
+  }
+  
+  
+  
+  .info li{
+    display: inline;
+    margin: 0;
+    margin-left: 10px;
+  }
+  .grey-top {
     background-color: #E4E4E4;
     padding-top: 10px;
-    height: 40px;
+    height: 50px;
     justify-content: center;
     width: 100%;
-}
-nav ul { 
+  }
+  
+  
+  
+  nav ul { 
+    text-align: left;
+    max-width: 100%;
     margin: 0 ;
-}
-.grey-top nav ul{
+    padding: 0;
+  }
+
+  
+  .grey-top nav ul{
     text-align: center;
-}
-.grey-top .top-anchor{
+    font-size: 1.5em;
+  }
+
+  .grey-top .top-anchor{
     color: #000;
-}
+    text-decoration: none;
+  }
+  
 .grey-top li{
     display: inline-block;
 }
 nav ul li { 
     display: inline-block; 
     margin-left: 10px;
-}
-
-*.info{
+  }
+  
+  *.info{
     font-family: "PT Serif";
+    font-size: 1.5em;
     font-weight: normal;
-    color: #4b4b4b;
-}
-.top-anchor{
-  font: 2em
-}
-
-.logout{
-    margin-top: 0;
+  }
+  
+  
+  .logout{
+    margin-top: 5px;
     position: absolute;
     top: 0;
     right: 0;
-}
-
-.logout button{
+  }
+  
+  .logout button{
     font-size: 1.5em;
     padding: 0;
     padding-right: 1em;
     padding-left: 1em;
     margin-top: 0;
-    background-color: #2D63AB;
+    background-color: #3B7FD9;
     color:white;
     border: none;
-    border-left-style: solid;
-    border-color: white;
+  
 }
 
 body{ 
@@ -217,7 +239,7 @@ ul p{
   }
   
   .footer-list-top {
-    width: 25%;
+    width: 20%;
 
   }
   
@@ -384,4 +406,20 @@ ul p{
       font-size: 1.0em;
     }
   
+  }
+  .return{
+    background-color: white;
+    color: white;
+    border: #4b4b4b solid 1px;
+    width: 10%;
+    padding: 2%;
+    margin-left: 49px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .return a{
+    font-size: 1.5em !important;
+    color: black;
+    font-weight: bold;
   }

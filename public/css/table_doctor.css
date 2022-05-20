@@ -1,52 +1,88 @@
 
-
 header {
-    background-color: white;
-    height: 35px;
-    top: 0;
-    width: 100%;
-  }
-
-  nav ul li { 
-    display: inline-block; 
-    margin-left: 10px;
-  }
-  .grey-top {
-    background-color: #E4E4E4;
-    height: 35px;
-    top: 0;
-    justify-content: center;
+  background-color: #3B7FD9;
+  color:white;
+  width: 100%;
+  top:0;
 }
+
+.top{
+  height: 50px;
+  padding-left: 2em;
+}
+
+.info{
+  padding-top: 5px;
+}
+
+
+
+.info li{
+  display: inline;
+  margin: 0;
+  margin-left: 10px;
+}
+.grey-top {
+  background-color: #E4E4E4;
+  padding-top: 10px;
+  height: 50px;
+  justify-content: center;
+  width: 100%;
+}
+
+
+
 nav ul { 
-    margin: 0 7% auto 0;
-    padding-right: initial;
-    text-align: left;
-    max-width: 100%
+  text-align: left;
+  max-width: 100%;
+  margin: 0 ;
+  padding: 0;
 }
+
+
 .grey-top nav ul{
-    text-align: center;
+  text-align: center;
+  font-size: 1.5em;
 }
+
 .grey-top .top-anchor{
-    color: #000;
+  color: #000;
+  text-decoration: none;
 }
 
-.grey-top li { 
-    display: inline-block; 
-    margin-left: 10px;
+.grey-top li{
+  display: inline-block;
+}
+nav ul li { 
+  display: inline-block; 
+  margin-left: 10px;
 }
 
-  
 *.info{
-    font-family: "PT Serif";
-    font-weight: normal;
-    color: #4b4b4b;
+  font-family: "PT Serif";
+  font-size: 1.5em;
+  font-weight: normal;
 }
-  .top-anchor{
-  font: 1.5em normal, PT Serif;
-  color: black;
-  }
 
 
+.logout{
+  margin-top: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.logout button{
+  font-size: 1.5em;
+  padding: 0;
+  padding-right: 1em;
+  padding-left: 1em;
+  margin-top: 0;
+  background-color: #3B7FD9;
+  color:white;
+  border: none;
+
+}
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -72,24 +108,6 @@ body {
     margin-left: 5px;
 }
 
-.logout{
-    margin-top: 0px;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.logout button{
-    font-size: 1.5em;
-    padding: 0;
-    padding-right: 1em;
-    padding-left: 1em;
-    background-color: #2D63AB;
-    color:white;
-    border: none;
-    border-left-style: solid;
-    border-color: white;
-}
 
 .niv1 {
     list-style-type: none;
@@ -449,4 +467,20 @@ ul {
       font-size: 1.0em;
     }
   
+  }
+  .return{
+    background-color: #8db9ed;
+    color: white;
+    border: #4b4b4b solid 1px;
+    width: 14.3%;
+    padding: 2%;
+    margin-left: 49px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .return a{
+    font-size: 1.5em !important;
+    color: white;
+    font-weight: bold;
   }

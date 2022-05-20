@@ -5,6 +5,7 @@ header {
   background-color: #3B7FD9;
   color:white;
   width: 100%;
+  top:0;
 }
 
 .top{
@@ -15,6 +16,14 @@ header {
 .info{
   padding-top: 5px;
 }
+
+
+
+.info li{
+  display: inline;
+  margin: 0;
+  margin-left: 10px;
+}
 .grey-top {
   background-color: #E4E4E4;
   padding-top: 10px;
@@ -22,7 +31,12 @@ header {
   justify-content: center;
   width: 100%;
 }
+
+
+
 nav ul { 
+  text-align: left;
+  max-width: 100%;
   margin: 0 ;
   padding: 0;
 }
@@ -397,4 +411,20 @@ footer img{
     font-size: 1.0em;
   }
 
+}
+.return{
+  background-color: white;
+  color: white;
+  border: #4b4b4b solid 1px;
+  width: 10%;
+  padding: 2%;
+  margin-left: 49px;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+.return a{
+  font-size: 1.5em !important;
+  color: black;
+  font-weight: bold;
 }
