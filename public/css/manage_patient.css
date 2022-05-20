@@ -1,23 +1,34 @@
+body{
+  margin: 0;
+}
 header {
   background-color: #3B7FD9;
-  height: 35px;
-  top: 0;
+  color:white;
   width: 100%;
+}
+
+.top{
+  height: 40px;
+  padding-left: 2em;
+}
+
+.info{
+  padding-top: 5px;
 }
 .grey-top {
   background-color: #E4E4E4;
-  height: 35px;
-  top: 0;
+  padding-top: 10px;
+  height: 40px;
+  justify-content: center;
   width: 100%;
 }
 nav ul { 
-  margin: 0 7% auto 0;
-  padding-right: initial;
-  text-align: left;
-  max-width: 100%
+  margin: 0 ;
+  padding: 0;
 }
 .grey-top nav ul{
   text-align: center;
+  font-size: 1.5em;
 }
 .grey-top .top-anchor{
   color: #000;
@@ -28,8 +39,15 @@ nav ul {
   margin-left: 10px;
 }
 
+*.info{
+  font-family: "PT Serif";
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+
 .logout{
-  margin-top: 7.5px;
+  margin-top: 5px;
   position: absolute;
   top: 0;
   right: 0;
@@ -40,12 +58,13 @@ nav ul {
   padding: 0;
   padding-right: 1em;
   padding-left: 1em;
-  background-color: #2D63AB;
+  margin-top: 0;
+  background-color: #3B7FD9;
   color:white;
   border: none;
-  border-left-style: solid;
-  border-color: white;
+
 }
+
 
 button{
   background: whitesmoke;
@@ -58,13 +77,8 @@ button{
   margin-left: 3em;
 }
 
-.top-anchor{
-  font: 0.7em normal, PT Serif;
-  color: white;
-}
-.top-anchor.active{
-    color: #3B7FD9;
-}
+
+
 
 .manager {
   display: flex;

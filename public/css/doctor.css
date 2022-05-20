@@ -67,6 +67,7 @@ body {
   text-align: center;
   font-family: Phosphate;
   font-weight: bold;
+  font-size: 3em;
 }
 button{
   display: inline-block;
@@ -156,8 +157,9 @@ footer img{
 /* Desktops */
 @media all and (min-width:850px) { 
   .text-black{
-    margin-top: 1.2em;   
-    font-size: 2.2em;
+    margin-top: 1.2em;  
+    margin-bottom: 1.2em; 
+    font-size: 3em;
   }
   .footer-list-header {
     font-size: 2em;
@@ -180,7 +182,7 @@ footer img{
   }
   .text-black{
     margin-top: 1.2em;   
-    font-size: 2.2em;
+    font-size: 3em
   }
   .footer-list-top {
     width: 100%;

@@ -1,20 +1,25 @@
 header {
-    background-color: #3B7FD9;
-    height: 35px;
-    top: 0;
+    background-color: white;
+    color:black;
     width: 100%;
+}
+
+.top{
+    height: 40px;
+}
+
+.info{
+    padding-top: 5px;
 }
 .grey-top {
     background-color: #E4E4E4;
-    height: 35px;
-    top: 0;
+    padding-top: 10px;
+    height: 40px;
+    justify-content: center;
     width: 100%;
 }
 nav ul { 
-    margin: 0 7% auto 0;
-    padding-right: initial;
-    text-align: left;
-    max-width: 100%
+    margin: 0 ;
 }
 .grey-top nav ul{
     text-align: center;
@@ -36,31 +41,12 @@ nav ul li{
     color: #4b4b4b;
 }
 .top-anchor{
-  font: 1.5em normal, PT Serif;
-  color: white;
+  font: 2em
 }
-.top-anchor.active{
-    color: #3B7FD9;
-}
-* { 
-    box-sizing: border-box; 
-    font-size: 18px;
-    padding: 0;
-    margin: 0;
-}
-body{
-    background-color: #3B7FD9;
-    align-items: center;
-}
-.container {
-    display: grid;
-    
-    grid-auto-rows: minmax(200px, auto);
-    grid-gap: 40px;
-    padding: 2.2em;
-} 
+
+
 .logout{
-    margin-top: 7.5px;
+    margin-top: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -71,21 +57,41 @@ body{
     padding: 0;
     padding-right: 1em;
     padding-left: 1em;
+    margin-top: 0;
     background-color: #2D63AB;
     color:white;
     border: none;
     border-left-style: solid;
     border-color: white;
 }
+
+body{ 
+    box-sizing: border-box; 
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    background-color: #3B7FD9;
+    align-items: center;
+}
+
+.container {
+    display: grid;
+    
+    grid-auto-rows: minmax(200px, auto);
+    grid-gap: 40px;
+    padding: 2.2em;
+} 
+
 button{
+    font-size: 1.5em;
     background: whitesmoke;
     border: 1px solid #707070;
     color: black;
     padding: 10px;
     width: 7em;
     border-radius: 16px;
-    margin-top: 1em;
-    margin-left: 3em;
+    margin-top: 2em;
+    margin-left: 1em;
 }
 .note-btn{
     background: #3A855D;
