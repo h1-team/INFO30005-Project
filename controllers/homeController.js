@@ -358,8 +358,8 @@ const table = async(req, res) => {
             var thresholdInsulin = patient.thresholdInsulin
 
             if (insulinStatus == 'RECORDED' &&
-                (insulin < thresholdInsulin * 0.9 ||
-                    insulin > thresholdInsulin * 1.1)
+                (insulin < thresholdInsulin - 1 ||
+                    insulin > thresholdInsulin +1)
             ) {
                 record.data.insulin.status = 'ALERT'
             }
