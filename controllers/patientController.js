@@ -133,8 +133,8 @@ const getAllPatientRecordToday = async (req, res) => {
         }
         if (
             insulinStatus == 'RECORDED' &&
-            (insulin < thresholdInsulin * 0.9 ||
-                insulin > thresholdInsulin * 1.1)
+            (insulin < thresholdInsulin -1 ||
+                insulin > thresholdInsulin +1)
         ) {
             insulinStatus = 'ALERT'
         }
