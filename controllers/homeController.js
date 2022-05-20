@@ -1,9 +1,9 @@
 const utils = require('../utils/utils.js')
 const axios = require('axios').default
 const { Record } = require('../models/db.js')
-const {Patient} = require('../models/db.js')
-// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
-axios.defaults.baseURL = 'http://localhost:3000/api'
+const { Patient } = require('../models/db.js')
+axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+// axios.defaults.baseURL = 'http://localhost:3000/api'
 
 const welcome = (req, res) => {
     res.render('welcome.hbs', {
@@ -28,15 +28,13 @@ const insert = async (req, res) => {
             patientId: userID,
             // patientId: '62779e55ef8bd14bb5143922',
             //recordDate: utils.getMelbDateTime(),
-            recordDate : utils.getMelbDate(),
+            recordDate: utils.getMelbDate(),
             //recordDate : update_time,
         },
     })
 
-    const {
-        data
-    } = record.data
-    console.log(data);
+    const { data } = record.data
+    console.log(data)
     //if no data
     let state = {
         glucose: 'show',
@@ -47,10 +45,22 @@ const insert = async (req, res) => {
     //if the status is NO NEED, we hidden that entry
     if (data) {
         state = {
-            glucose: data.glucose && data.glucose.status == "NO_NEED" ? 'hidden' : 'show',
-            weight: data.weight && data.weight.status == "NO_NEED" ? 'hidden' : 'show',
-            insulin: data.insulin && data.insulin.status == "NO_NEED" ? 'hidden' : 'show',
-            exercise: data.exercise && data.exercise.status == "NO_NEED" ? 'hidden' : 'show',
+            glucose:
+                data.glucose && data.glucose.status == 'NO_NEED'
+                    ? 'hidden'
+                    : 'show',
+            weight:
+                data.weight && data.weight.status == 'NO_NEED'
+                    ? 'hidden'
+                    : 'show',
+            insulin:
+                data.insulin && data.insulin.status == 'NO_NEED'
+                    ? 'hidden'
+                    : 'show',
+            exercise:
+                data.exercise && data.exercise.status == 'NO_NEED'
+                    ? 'hidden'
+                    : 'show',
         }
     }
     res.render('insert.hbs', {
@@ -58,14 +68,12 @@ const insert = async (req, res) => {
         record: data,
         state,
         userID,
-        title: "Insert data"
+        title: 'Insert data',
     })
 }
-function fomatFloat(src,pos){
-
-    return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
-    
-    }
+function fomatFloat(src, pos) {
+    return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos)
+}
 
 const leaderboard = async (req, res) => {
     try {
@@ -78,7 +86,7 @@ const leaderboard = async (req, res) => {
         // send request
         const patient = await axios({
             url: '/patient/getEngagement',
-            methods: "post",
+            methods: 'post',
         })
         //Array to store temp data
         let tempList = []
@@ -92,13 +100,12 @@ const leaderboard = async (req, res) => {
             // { username: 'chris123', rate: 1 },
             userCount = patient.data.length
             //Get current user info
-            tempList = patient.data
-                .sort((a, b) => {
-                    if (a.rate == b.rate) {
-                        return a.rate - b.rate
-                    }
-                    return b.rate - a.rate
-                })
+            tempList = patient.data.sort((a, b) => {
+                if (a.rate == b.rate) {
+                    return a.rate - b.rate
+                }
+                return b.rate - a.rate
+            })
             //reset the rank info
             for (let n = 0; n < tempList.length; n++) {
                 //Set the default ranking attribute, the information of the
@@ -110,7 +117,7 @@ const leaderboard = async (req, res) => {
                     let a = tempList[n - 1]
                     //current user info
                     let b = tempList[n]
-                    //Determine whether the current and previous information rates are equal, 
+                    //Determine whether the current and previous information rates are equal,
                     //if they are equal, set the same ranking
                     if (a.rate == b.rate) {
                         b.rank = a.rank
@@ -123,20 +130,19 @@ const leaderboard = async (req, res) => {
                 }
                 // rate* 100
                 //console.log(tempList[n].rate);
-                tempList[n].rate =  tempList[n].rate*100
-                tempList[n].rate = fomatFloat(tempList[n].rate,0)
-                console.log(tempList[n].username,tempList[n].rate);
+                tempList[n].rate = tempList[n].rate * 100
+                tempList[n].rate = fomatFloat(tempList[n].rate, 0)
+                console.log(tempList[n].username, tempList[n].rate)
                 //Judging that the user id cannot be empty and the user
                 // id must be the same as an item in the loop,
                 if (tempList[n]._id == userID && userID) {
                     //Assign to the current user object
                     activeUserInfo = {
                         ...tempList[n],
-                        show: tempList[n].rate >= 80 ? "" : "hide"
+                        show: tempList[n].rate >= 80 ? '' : 'hide',
                     }
                 }
             }
-
         }
         res.render('leaderboard.hbs', {
             style: 'leaderboard.css',
@@ -146,10 +152,10 @@ const leaderboard = async (req, res) => {
             activeUserInfo,
             // total number of users
             userCount,
-            title: "Leaderboard",
+            title: 'Leaderboard',
         })
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 
@@ -162,26 +168,22 @@ const login = (req, res) => {
 
 const logout = (req, res) => {
     req.logout()
-    res.redirect("/")
+    res.redirect('/')
 }
 
 const aboutweb = (req, res) => {
     res.render('aboutweb.hbs', {
         style: 'about.css',
-        loggedin: req.isAuthenticated()
+        loggedin: req.isAuthenticated(),
     })
 }
-
-
 
 const aboutdia = (req, res) => {
     res.render('aboutdia.hbs', {
         style: 'about.css',
-        loggedin: req.isAuthenticated()
+        loggedin: req.isAuthenticated(),
     })
 }
-
-
 
 const homepage = async (req, res) => {
     try {
@@ -198,19 +200,18 @@ const homepage = async (req, res) => {
         })
         const patient = await axios({
             url: '/patient/getEngagement',
-            methods: "POST",
+            methods: 'POST',
         })
         let renderMedal = {}
         let tempList = []
         if (patient.data) {
             userCount = patient.data.length
-            tempList = patient.data
-                .sort((a, b) => {
-                    if (a.rate == b.rate) {
-                        return a.rate - b.rate
-                    }
-                    return b.rate - a.rate
-                })
+            tempList = patient.data.sort((a, b) => {
+                if (a.rate == b.rate) {
+                    return a.rate - b.rate
+                }
+                return b.rate - a.rate
+            })
             for (let n = 0; n < tempList.length; n++) {
                 tempList[n].rank = n == 0 ? 1 : tempList[n - 1].rank + 1
                 if (n != 0) {
@@ -220,11 +221,11 @@ const homepage = async (req, res) => {
                         b.rank = a.rank
                     }
                 }
-                tempList[n].rate =  tempList[n].rate*100
-                tempList[n].rate = fomatFloat(tempList[n].rate,0)
+                tempList[n].rate = tempList[n].rate * 100
+                tempList[n].rate = fomatFloat(tempList[n].rate, 0)
                 if (tempList[n]._id == userID && userID) {
                     renderMedal = {
-                        show: tempList[n].rate >= 80 ? "" : "hide"
+                        show: tempList[n].rate >= 80 ? '' : 'hide',
                     }
                 }
             }
@@ -244,12 +245,11 @@ const homepage = async (req, res) => {
 
 const profile = async (req, res) => {
     try {
-        const patient = await Patient.findOne({_id: req.user._id}).lean()
+        const patient = await Patient.findOne({ _id: req.user._id }).lean()
         return res.render('p_profile.hbs', {
             style: 'profile.css',
             title: 'Profile',
-            patient: patient
-
+            patient: patient,
         })
     } catch (err) {
         console.log(err)
@@ -258,19 +258,17 @@ const profile = async (req, res) => {
 }
 
 const renderEdit = (req, res) => {
-    res.render('edit.hbs',{
+    res.render('edit.hbs', {
         style: 'profile.css',
-    }
-    
-    )
+    })
 }
 const edit = async (req, res) => {
     if (await Patient.findOne({ username: req.body.username }, {})) {
-        return res.render('p_profile.hbs', { 
+        return res.render('p_profile.hbs', {
             style: 'profile.css',
-            usernameExists: true 
+            usernameExists: true,
         })
-}
+    }
 
     try {
         const patientId = req.session.passport ? req.session.passport.user : ''
@@ -294,49 +292,60 @@ const edit = async (req, res) => {
         if (req.body.password) {
             patient.password = req.body.password
         }
-        
+
         await patient.save()
-        return res.render('edit.hbs',  { 
+        return res.render('edit.hbs', {
             editSuccess: true,
-            style: 'profile.css'
-        }) 
+            style: 'profile.css',
+        })
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('edit.hbs', { 
+        return res.render('edit.hbs', {
             editFailure: true,
-            style: 'profile.css'
+            style: 'profile.css',
         })
     }
 }
 
-
-const table = async(req, res) => {
-    try{
-        const table = await Record.find({patientId: req.user._id}).lean()
-        const patient =  await Patient.findOne({_id: req.user._id}).lean()
-        console.log(patient.username)     
-        console.log(req.user._id)   
+const table = async (req, res) => {
+    try {
+        const table = await Record.find({ patientId: req.user._id }).lean()
+        const patient = await Patient.findOne({ _id: req.user._id }).lean()
+        console.log(patient.username)
+        console.log(req.user._id)
         for (var record of table) {
-
             // date formatting
             var d = record.recordDate
-            var date = d.getUTCDate();
-            var y = d.getFullYear();
-            var m = d.getMonth();
-            var monthArr = ["Jan.", "Feb.","Mar.", "Apr.", "May", "Jun.", "Jul.","Aug.", "Sep.", "Oct.", "Nov.","Dec."];
-            m = monthArr[m];
-            tableDate = m + "/" + date + "/" + y
+            var date = d.getUTCDate()
+            var y = d.getFullYear()
+            var m = d.getMonth()
+            var monthArr = [
+                'Jan.',
+                'Feb.',
+                'Mar.',
+                'Apr.',
+                'May',
+                'Jun.',
+                'Jul.',
+                'Aug.',
+                'Sep.',
+                'Oct.',
+                'Nov.',
+                'Dec.',
+            ]
+            m = monthArr[m]
+            tableDate = m + '/' + date + '/' + y
             //console.log(tableDate);
             record.recordDate = tableDate
-
 
             // indentify alert data
             var glucose = record.data.glucose.data
             var glucoseStatus = record.data.glucose.status
             var thresholdGlucose = patient.thresholdGlucose
 
-            if (glucoseStatus == 'RECORDED' &&
+            if (
+                glucoseStatus == 'RECORDED' &&
                 (glucose < thresholdGlucose * 0.9 ||
                     glucose > thresholdGlucose * 1.1)
             ) {
@@ -347,8 +356,10 @@ const table = async(req, res) => {
             var weightStatus = record.data.weight.status
             var thresholdWeight = patient.thresholdWeight
 
-            if (weightStatus == 'RECORDED' &&
-                (weight < thresholdWeight * 0.9 || weight > thresholdWeight * 1.1)
+            if (
+                weightStatus == 'RECORDED' &&
+                (weight < thresholdWeight * 0.9 ||
+                    weight > thresholdWeight * 1.1)
             ) {
                 record.data.weight.status = 'ALERT'
             }
@@ -357,9 +368,10 @@ const table = async(req, res) => {
             var insulinStatus = record.data.insulin.status
             var thresholdInsulin = patient.thresholdInsulin
 
-            if (insulinStatus == 'RECORDED' &&
+            if (
+                insulinStatus == 'RECORDED' &&
                 (insulin < thresholdInsulin - 1 ||
-                    insulin > thresholdInsulin +1)
+                    insulin > thresholdInsulin + 1)
             ) {
                 record.data.insulin.status = 'ALERT'
             }
@@ -368,26 +380,25 @@ const table = async(req, res) => {
             var exerciseStatus = record.data.exercise.status
             var thresholdExecrise = patient.thresholdExecrise
 
-            if (exerciseStatus == 'RECORDED' &&
+            if (
+                exerciseStatus == 'RECORDED' &&
                 (exercise < thresholdExecrise * 0.9 ||
                     exercise > thresholdExecrise * 1.1)
             ) {
                 record.data.exercise.status = 'ALERT'
             }
-
         }
         res.render('table.hbs', {
             style: 'table.css',
-            title: "Display data",
+            title: 'Display data',
             record: table.reverse(),
-            name: patient.username
+            name: patient.username,
         })
-    }catch(err){
+    } catch (err) {
         console.log(err)
         //res.redirect('/login')
     }
 }
-
 
 module.exports = {
     welcome,

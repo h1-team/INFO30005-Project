@@ -47,7 +47,7 @@ const updateRecord = async (req, res) => {
         date = formatDate(date)
         const record = await Record.findOne({
             patientId: id,
-            recordDate: date ,
+            recordDate: date,
         })
         console.log(date)
         if (record) {
@@ -55,10 +55,11 @@ const updateRecord = async (req, res) => {
             console.log('updating record\n')
             Object.assign(record, req.body)
             record.recordDate = date
-            record.isEngaged = changeStatus(patient.needExecrise, record.data.exercise) |
-                            changeStatus(patient.needGlucose, record.data.glucose) |
-                            changeStatus(patient.needWeight, record.data.weight) |
-                            changeStatus(patient.needInsulin, record.data.insulin)
+            record.isEngaged =
+                changeStatus(patient.needExecrise, record.data.exercise) |
+                changeStatus(patient.needGlucose, record.data.glucose) |
+                changeStatus(patient.needWeight, record.data.weight) |
+                changeStatus(patient.needInsulin, record.data.insulin)
             patient.records[0] = record
             patient.save()
             await record

@@ -1,10 +1,6 @@
 // import demo model
-const {
-    Patient, Clinician
-} = require('../models/db.js')
-const {
-    Record
-} = require('../models/db.js')
+const { Patient, Clinician } = require('../models/db.js')
+const { Record } = require('../models/db.js')
 const utils = require('../utils/utils.js')
 const findAll = async (req, res) => {
     result = await Patient.find()
@@ -41,17 +37,23 @@ const editOne = async (req, res) => {
 }
 
 const deleteOne = async (req, res) => {
-    result = await Patient.findOne({
-        username: req.params.username
-    }, {})
+    result = await Patient.findOne(
+        {
+            username: req.params.username,
+        },
+        {}
+    )
     if (!result) {
         res.status(404).send('patient not found')
         return
     }
     console.log('deleting patient ' + req.params.username)
-    await Patient.deleteOne({
-        username: req.params.username
-    }, {})
+    await Patient.deleteOne(
+        {
+            username: req.params.username,
+        },
+        {}
+    )
     result = await Patient.find()
     res.send(result)
 }
@@ -66,11 +68,11 @@ const getAllPatientRecordToday = async (req, res) => {
     var arr = new Array()
     for (var i = 0; i < result.length; i++) {
         patient = await Patient.findById(result[i].patientId)
-        
+
         patientId = patient._id
         username = patient.username
         realname = patient.name
-        
+
         thresholdExecrise = patient.thresholdExecrise
         thresholdGlucose = patient.thresholdGlucose
         thresholdWeight = patient.thresholdWeight
@@ -133,8 +135,7 @@ const getAllPatientRecordToday = async (req, res) => {
         }
         if (
             insulinStatus == 'RECORDED' &&
-            (insulin < thresholdInsulin -1 ||
-                insulin > thresholdInsulin +1)
+            (insulin < thresholdInsulin - 1 || insulin > thresholdInsulin + 1)
         ) {
             insulinStatus = 'ALERT'
         }
@@ -169,10 +170,10 @@ const getAllPatientRecordToday = async (req, res) => {
             arr.push(resjson)
         }
     }
-    
+
     // res.send(arr)
     return res.render('dashboard', {
-        patient: arr
+        patient: arr,
     })
 }
 
@@ -195,30 +196,31 @@ const getEngagement = async (req, res) => {
             }
         }
         update_time = null
-        if(result[i].records.length>0){
-            update_time = utils.formatDate(result[i].records[0].recordDate)+"T"+result[i].records[0].updateTime 
+        if (result[i].records.length > 0) {
+            update_time =
+                utils.formatDate(result[i].records[0].recordDate) +
+                'T' +
+                result[i].records[0].updateTime
         }
         arr.push({
-            "username": result[i].username,
-            "_id": result[i]._id,
-            "rate": count / day,
-            "update_time" : update_time
+            username: result[i].username,
+            _id: result[i]._id,
+            rate: count / day,
+            update_time: update_time,
         })
-
-
     }
     arr.sort((a, b) => {
-        if(a.rate == b.rate){
+        if (a.rate == b.rate) {
             a_time = new Date(a.update_time)
             b_time = new Date(b.update_time)
-            return b_time-a_time
+            return b_time - a_time
         }
-        return b.rate - a.rate})
+        return b.rate - a.rate
+    })
 
     //console.log(arr)
     res.send(arr)
 }
-
 
 // exports an object, which contains a function named getAllDemoData
 module.exports = {

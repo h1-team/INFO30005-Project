@@ -25,7 +25,7 @@ app.use(
             sameSite: 'strict',
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 3000000, 
+            maxAge: 3000000,
         },
     })
 )
@@ -37,16 +37,16 @@ app.engine(
         defaultLayout: 'main',
         extname: 'hbs',
         helpers: {
-            isrecord: a => a == "RECORDED",
-            isunrecord: a => a == "UNRECORDED",
-            isnoneed: a => a == "NO_NEED",
-            isalert: a => a == "ALERT"
-        }
+            isrecord: (a) => a == 'RECORDED',
+            isunrecord: (a) => a == 'UNRECORDED',
+            isnoneed: (a) => a == 'NO_NEED',
+            isalert: (a) => a == 'ALERT',
+        },
     })
 )
-app.get('/note',(req,res)=>{
-    res.render('new_note.hbs',{
-        style:'clinical_note.css'
+app.get('/note', (req, res) => {
+    res.render('new_note.hbs', {
+        style: 'clinical_note.css',
     })
 })
 // set Handlebars view engine

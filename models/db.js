@@ -44,7 +44,10 @@ const patientSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     address: { type: String, default: '' },
     email: { type: String, default: '', unique: true },
-    textBio: { type: String, default: 'Write something to introduce yourself.' },
+    textBio: {
+        type: String,
+        default: 'Write something to introduce yourself.',
+    },
     yob: { type: Number, min: 1900, max: 2022 },
     role: { type: String, default: 'patient' },
     phone: { type: String, default: '' },
@@ -67,7 +70,6 @@ patientSchema.methods.verifyPassword = function (password, callback) {
         callback(err, valid)
     })
 }
-
 
 const SALT_FACTOR = 10
 patientSchema.pre('save', function save(next) {
@@ -127,16 +129,16 @@ clinicianSchema.methods.verifyPassword = function (password, callback) {
 const clinicianNoteSchema = new mongoose.Schema({
     patient: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Patient",
+        ref: 'Patient',
         required: true,
     },
 
     clinician: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Clinician",
+        ref: 'Clinician',
         required: true,
     },
-    
+
     message: { type: String, default: '' },
     create_date: { type: String, default: utils.getMelbDate() },
 })

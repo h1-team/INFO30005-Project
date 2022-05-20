@@ -3,13 +3,13 @@ const { Clinician } = require('../models/db.js')
 const { Patient } = require('../models/db.js')
 const { Record } = require('../models/db.js')
 const { clinicianNote } = require('../models/db.js')
-// axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
-axios.defaults.baseURL = 'http://localhost:3000/api'
+axios.defaults.baseURL = 'https://bad-designers.herokuapp.com/api'
+// axios.defaults.baseURL = 'http://localhost:3000/api'
 const utils = require('../utils/utils.js')
 
 const doctorhome = (req, res) => {
     res.render('home.hbs', {
-        title:"doctor_home",
+        title: 'doctor_home',
         style: 'doctor.css',
     })
 }
@@ -25,7 +25,7 @@ const doctor = (req, res) => {
     // console.log(req)
     res.render('doctor.hbs', {
         name: req.user.name,
-        title: "welcome_doctor",
+        title: 'welcome_doctor',
         style: 'doctor_home.css',
     })
 }
@@ -46,61 +46,75 @@ const getAllPatientCommentToday = async (req, res) => {
     }
     var arr = new Array()
     //console.log(result.length)
-    for (var i = 0; i < result.length; i++) {  
-        const patient =  await Patient.findOne({_id: result[i].patientId}).lean()
-        const record = await Record.find({
-            patientId: patient._id
+    for (var i = 0; i < result.length; i++) {
+        const patient = await Patient.findOne({
+            _id: result[i].patientId,
         }).lean()
-        var name=patient.name
-        if(!name){
-            continue;
+        const record = await Record.find({
+            patientId: patient._id,
+        }).lean()
+        var name = patient.name
+        if (!name) {
+            continue
         }
-        var comments=new Array()
-        for(var j=0;j<record.length;j++){
+        var comments = new Array()
+        for (var j = 0; j < record.length; j++) {
             var d = record[j].recordDate
-            var date = d.getUTCDate();
-            var y = d.getFullYear();
-            var m = d.getMonth();
-            var monthArr = ["Jan.", "Feb.","Mar.", "Apr.", "May", "Jun.", "Jul.","Aug.", "Sep.", "Oct.", "Nov.","Dec."];
-            m = monthArr[m];
-            tableDate = m + "/" + date + "/" + y
+            var date = d.getUTCDate()
+            var y = d.getFullYear()
+            var m = d.getMonth()
+            var monthArr = [
+                'Jan.',
+                'Feb.',
+                'Mar.',
+                'Apr.',
+                'May',
+                'Jun.',
+                'Jul.',
+                'Aug.',
+                'Sep.',
+                'Oct.',
+                'Nov.',
+                'Dec.',
+            ]
+            m = monthArr[m]
+            tableDate = m + '/' + date + '/' + y
             record.recordDate = tableDate
             //console.log(record[j].data)
-            var glucoseComment=record[j].data.glucose.comment
-                weightComment= record[j].data.exercise.comment, 
-                insulinComment= record[j].data.insulin.comment, 
-                exerciseComment= record[j].data.exercise.comment
+            var glucoseComment = record[j].data.glucose.comment
+            ;(weightComment = record[j].data.exercise.comment),
+                (insulinComment = record[j].data.insulin.comment),
+                (exerciseComment = record[j].data.exercise.comment)
             var comment = {
-                date:tableDate,
-                weightComment:weightComment,
-                insulinComment:insulinComment,
-                exerciseComment:exerciseComment,
-                glucoseComment:glucoseComment
+                date: tableDate,
+                weightComment: weightComment,
+                insulinComment: insulinComment,
+                exerciseComment: exerciseComment,
+                glucoseComment: glucoseComment,
             }
             if (
-                glucoseComment != "" ||
-                weightComment != "" ||
-                insulinComment != "" ||
-                exerciseComment != ""
-            ){
-               comments.push(comment)
+                glucoseComment != '' ||
+                weightComment != '' ||
+                insulinComment != '' ||
+                exerciseComment != ''
+            ) {
+                comments.push(comment)
             }
-
-        }     
-        comments.reverse();
-        if(comments.length==0){
-            continue;
+        }
+        comments.reverse()
+        if (comments.length == 0) {
+            continue
         }
 
         resjson = {
-            date:comments[0].date,
-            name:name,
-            _id:patient._id,
-            comments:comments,
-            weightComment:comments[0].weightComment,
-            insulinComment:comments[0].insulinComment,
-            exerciseComment:comments[0].exerciseComment,
-            glucoseComment:comments[0].glucoseComment
+            date: comments[0].date,
+            name: name,
+            _id: patient._id,
+            comments: comments,
+            weightComment: comments[0].weightComment,
+            insulinComment: comments[0].insulinComment,
+            exerciseComment: comments[0].exerciseComment,
+            glucoseComment: comments[0].glucoseComment,
         }
         if (
             glucoseComment != null ||
@@ -108,17 +122,17 @@ const getAllPatientCommentToday = async (req, res) => {
             insulinComment != null ||
             exerciseComment != null
         )
-        if(resjson.comments.length!=0){
-           arr.push(resjson) 
-        }        
+            if (resjson.comments.length != 0) {
+                arr.push(resjson)
+            }
     }
-    arr.reverse();
+    arr.reverse()
     //console.log(arr)
     // res.send(arr)
     return res.render('inbox.hbs', {
         style: 'inbox.css',
-        title:"inbox",
-        record:arr
+        title: 'inbox',
+        record: arr,
     })
 }
 const findOneById = async (req, res) => {
@@ -163,9 +177,10 @@ const deleteOne = async (req, res) => {
 }
 
 const renderRegister = (req, res) => {
-    res.render('register.hbs'),{
-        title:"register"
-    }
+    res.render('register.hbs'),
+        {
+            title: 'register',
+        }
 }
 
 const register = async (req, res) => {
@@ -182,7 +197,7 @@ const register = async (req, res) => {
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('register.hbs', { registerFailure: true,  })
+        return res.render('register.hbs', { registerFailure: true })
     }
 
     // insert patient into clinician's patientList
@@ -196,8 +211,8 @@ const register = async (req, res) => {
 
 const renderSupportMSG = async (req, res) => {
     try {
-        const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('message.hbs', {patient: patient})
+        const patient = await Patient.findOne({ _id: req.params._id }).lean()
+        res.render('message.hbs', { patient: patient })
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -206,21 +221,27 @@ const renderSupportMSG = async (req, res) => {
 
 const writeSupportMSG = async (req, res) => {
     try {
-        const patient = await Patient.findById(req.params._id);
+        const patient = await Patient.findById(req.params._id)
         patient.supportMSG = req.body.supportMSG
         await patient.save()
-        return res.render('message.hbs', { supportSuccess: true, title:"support_msg" })
+        return res.render('message.hbs', {
+            supportSuccess: true,
+            title: 'support_msg',
+        })
     } catch (err) {
         console.log(err)
         res.send(err)
-        return res.render('message.hbs', { supportFailure: true,title:"support msg" })
+        return res.render('message.hbs', {
+            supportFailure: true,
+            title: 'support msg',
+        })
     }
 }
 
 const renderOnePatientProfile = async (req, res) => {
     try {
-        const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('profile.hbs', {patient: patient, title:"profile"})
+        const patient = await Patient.findOne({ _id: req.params._id }).lean()
+        res.render('profile.hbs', { patient: patient, title: 'profile' })
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -230,8 +251,12 @@ const renderOnePatientProfile = async (req, res) => {
 const renderNewNote = async (req, res) => {
     try {
         const date = utils.getMelbDate()
-        const patient = await Patient.findOne({_id: req.params._id}).lean()
-        res.render('new_note.hbs', {patient: patient, date: date, title:"new note"},)
+        const patient = await Patient.findOne({ _id: req.params._id }).lean()
+        res.render('new_note.hbs', {
+            patient: patient,
+            date: date,
+            title: 'new note',
+        })
     } catch (err) {
         console.log(err)
         res.send(err)
@@ -242,7 +267,9 @@ const addNewNote = async (req, res) => {
     try {
         const date = utils.getMelbDate()
         const patient_id = req.params._id
-        const clinician_id = req.session.passport ? req.session.passport.user : ''
+        const clinician_id = req.session.passport
+            ? req.session.passport.user
+            : ''
         const newNote = new clinicianNote({
             patient: patient_id,
             clinician: clinician_id,
@@ -250,11 +277,19 @@ const addNewNote = async (req, res) => {
         })
 
         await newNote.save()
-        return res.render('new_note.hbs', { success: true, date: date, title:"new note"})
+        return res.render('new_note.hbs', {
+            success: true,
+            date: date,
+            title: 'new note',
+        })
     } catch (err) {
         const date = utils.getMelbDate()
         console.log(err)
-        return res.render('new_note.hbs', { failure: true, date: date, title:"new note" })
+        return res.render('new_note.hbs', {
+            failure: true,
+            date: date,
+            title: 'new note',
+        })
     }
 }
 
@@ -262,101 +297,125 @@ const clinicalNote = async (req, res) => {
     const patient_id = req.params._id
     const clinician_id = req.session.passport ? req.session.passport.user : ''
     const patient = await Patient.findById(patient_id).lean()
-    const notes = await clinicianNote.find({
-        patient: patient_id,
-        clinician: clinician_id,
-    }).lean()
+    const notes = await clinicianNote
+        .find({
+            patient: patient_id,
+            clinician: clinician_id,
+        })
+        .lean()
 
     if (!result) {
-        return res.render('clinical_note.hbs', {note: notes, patient: patient})
+        return res.render('clinical_note.hbs', {
+            note: notes,
+            patient: patient,
+        })
     }
 
-    return res.render('clinical_note.hbs', {note: notes, patient: patient, title:"clinical note"})
+    return res.render('clinical_note.hbs', {
+        note: notes,
+        patient: patient,
+        title: 'clinical note',
+    })
 }
 
 const logout = (req, res) => {
     req.logout()
-    res.redirect("/doctor")
+    res.redirect('/doctor')
 }
 
-const table = async(req, res) => {
-        try{
-            console.log(req)
-            const table = await Record.find({patientId: req.params._id}).lean()
-            const patient =  await Patient.findOne({_id: req.params._id}).lean()
-            console.log(table)
-            console.log(patient)     
-            for (var record of table) {
-    
-                // date formatting
-                var d = record.recordDate
-                var date = d.getUTCDate();
-                var y = d.getFullYear();
-                var m = d.getMonth();
-                var monthArr = ["Jan.", "Feb.","Mar.", "Apr.", "May", "Jun.", "Jul.","Aug.", "Sep.", "Oct.", "Nov.","Dec."];
-                m = monthArr[m];
-                tableDate = m + "/" + date + "/" + y
-                //console.log(tableDate);
-                record.recordDate = tableDate
-    
-    
-                // indentify alert data
-                var glucose = record.data.glucose.data
-                var glucoseStatus = record.data.glucose.status
-                var thresholdGlucose = patient.thresholdGlucose
-    
-                if (glucoseStatus == 'RECORDED' &&
-                    (glucose < thresholdGlucose * 0.9 ||
-                        glucose > thresholdGlucose * 1.1)
-                ) {
-                    record.data.glucose.status = 'ALERT'
-                }
-    
-                var weight = record.data.weight.data
-                var weightStatus = record.data.weight.status
-                var thresholdWeight = patient.thresholdWeight
-    
-                if (weightStatus == 'RECORDED' &&
-                    (weight < thresholdWeight * 0.9 || weight > thresholdWeight * 1.1)
-                ) {
-                    record.data.weight.status = 'ALERT'
-                }
-    
-                var insulin = record.data.insulin.data
-                var insulinStatus = record.data.insulin.status
-                var thresholdInsulin = patient.thresholdInsulin
-    
-                if (insulinStatus == 'RECORDED' &&
-                    (insulin < thresholdInsulin -1 ||
-                        insulin > thresholdInsulin + 1)
-                ) {
-                    record.data.insulin.status = 'ALERT'
-                }
-    
-                var exercise = record.data.exercise.data
-                var exerciseStatus = record.data.exercise.status
-                var thresholdExecrise = patient.thresholdExecrise
-    
-                if (exerciseStatus == 'RECORDED' &&
-                    (exercise < thresholdExecrise * 0.9 ||
-                        exercise > thresholdExecrise * 1.1)
-                ) {
-                    record.data.exercise.status = 'ALERT'
-                }
-    
+const table = async (req, res) => {
+    try {
+        console.log(req)
+        const table = await Record.find({ patientId: req.params._id }).lean()
+        const patient = await Patient.findOne({ _id: req.params._id }).lean()
+        console.log(table)
+        console.log(patient)
+        for (var record of table) {
+            // date formatting
+            var d = record.recordDate
+            var date = d.getUTCDate()
+            var y = d.getFullYear()
+            var m = d.getMonth()
+            var monthArr = [
+                'Jan.',
+                'Feb.',
+                'Mar.',
+                'Apr.',
+                'May',
+                'Jun.',
+                'Jul.',
+                'Aug.',
+                'Sep.',
+                'Oct.',
+                'Nov.',
+                'Dec.',
+            ]
+            m = monthArr[m]
+            tableDate = m + '/' + date + '/' + y
+            //console.log(tableDate);
+            record.recordDate = tableDate
+
+            // indentify alert data
+            var glucose = record.data.glucose.data
+            var glucoseStatus = record.data.glucose.status
+            var thresholdGlucose = patient.thresholdGlucose
+
+            if (
+                glucoseStatus == 'RECORDED' &&
+                (glucose < thresholdGlucose * 0.9 ||
+                    glucose > thresholdGlucose * 1.1)
+            ) {
+                record.data.glucose.status = 'ALERT'
             }
-            res.render('check_pat_data.hbs', {
-                style: 'table_doctor.css',
-                title: "Display data",
-                record: table.reverse(),
-                name: patient.username,
-                patient: patient,
-                id:patient._id
-            })
-        }catch(err){
-            console.log(err)
-            //res.redirect('/login')
+
+            var weight = record.data.weight.data
+            var weightStatus = record.data.weight.status
+            var thresholdWeight = patient.thresholdWeight
+
+            if (
+                weightStatus == 'RECORDED' &&
+                (weight < thresholdWeight * 0.9 ||
+                    weight > thresholdWeight * 1.1)
+            ) {
+                record.data.weight.status = 'ALERT'
+            }
+
+            var insulin = record.data.insulin.data
+            var insulinStatus = record.data.insulin.status
+            var thresholdInsulin = patient.thresholdInsulin
+
+            if (
+                insulinStatus == 'RECORDED' &&
+                (insulin < thresholdInsulin - 1 ||
+                    insulin > thresholdInsulin + 1)
+            ) {
+                record.data.insulin.status = 'ALERT'
+            }
+
+            var exercise = record.data.exercise.data
+            var exerciseStatus = record.data.exercise.status
+            var thresholdExecrise = patient.thresholdExecrise
+
+            if (
+                exerciseStatus == 'RECORDED' &&
+                (exercise < thresholdExecrise * 0.9 ||
+                    exercise > thresholdExecrise * 1.1)
+            ) {
+                record.data.exercise.status = 'ALERT'
+            }
         }
+        res.render('check_pat_data.hbs', {
+            style: 'table_doctor.css',
+            title: 'Display data',
+            record: table.reverse(),
+            name: patient.username,
+            patient: patient,
+            id: patient._id,
+        })
+    } catch (err) {
+        console.log(err)
+        //res.redirect('/login')
+    }
 }
 
 const manage_patient = async (req, res) => {
@@ -368,7 +427,7 @@ const manage_patient = async (req, res) => {
         // send request
         const patient = await axios({
             url: `/patient/findone/${userID}`,
-            methods: "get",
+            methods: 'get',
         })
         // console.log(req.user);
         // console.log(req.user);
@@ -387,10 +446,10 @@ const manage_patient = async (req, res) => {
             },
             name: username,
             patientId: patient.data._id,
-            title:"manage patient"
+            title: 'manage patient',
         })
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 

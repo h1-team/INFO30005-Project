@@ -7,39 +7,37 @@ homeRouter.use(passport.authenticate('session'))
 // Passport Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
-    try{
+    try {
         if (!req.isAuthenticated()) {
             console.log('not auth\n')
             return res.redirect('/login')
         }
         console.log(req.user.role)
-        if(req.user.role == "patient"){
-        // Otherwise, proceed to next middleware function
+        if (req.user.role == 'patient') {
+            // Otherwise, proceed to next middleware function
             console.log('yes auth\n')
             return next()
         }
         return res.redirect('/login')
-    }catch(err){
+    } catch (err) {
         res.status(404).send(err)
     }
 }
 
 const isLogin = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
-    if(req.isAuthenticated() && req.user.role == "patient"){
+    if (req.isAuthenticated() && req.user.role == 'patient') {
         return res.redirect('/homepage')
     }
     return next()
 }
 
-
-
 homeRouter.get('/', homeController.welcome)
 // turn on after finsih login
-homeRouter.get('/insert',isAuthenticated,homeController.insert)
+homeRouter.get('/insert', isAuthenticated, homeController.insert)
 //homeRouter.get('/insert', homeController.insert)
 
-homeRouter.get('/leaderboard',isAuthenticated, homeController.leaderboard)
+homeRouter.get('/leaderboard', isAuthenticated, homeController.leaderboard)
 
 homeRouter.get('/login', isLogin, homeController.login)
 
@@ -58,18 +56,17 @@ homeRouter.get('/aboutweb', homeController.aboutweb)
 
 homeRouter.get('/aboutdia', homeController.aboutdia)
 
-
 // turn on after finsih login
 homeRouter.get('/homepage', isAuthenticated, homeController.homepage)
 // homeRouter.get('/homepage', homeController.homepage)
-homeRouter.post('/logout',isAuthenticated,homeController.logout)
+homeRouter.post('/logout', isAuthenticated, homeController.logout)
 
-homeRouter.get('/table', isAuthenticated,homeController.table)
+homeRouter.get('/table', isAuthenticated, homeController.table)
 
-homeRouter.get('/p_profile', isAuthenticated,homeController.profile)
+homeRouter.get('/p_profile', isAuthenticated, homeController.profile)
 
-homeRouter.get('/edit', isAuthenticated,homeController.renderEdit)
+homeRouter.get('/edit', isAuthenticated, homeController.renderEdit)
 
-homeRouter.post('/edit', isAuthenticated,homeController.edit)
+homeRouter.post('/edit', isAuthenticated, homeController.edit)
 
 module.exports = homeRouter

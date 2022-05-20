@@ -12,7 +12,6 @@ patientForm.addEventListener('submit', async function (e) {
         thresholdGlucose: +thresholdGlucose.value,
         thresholdWeight: +thresholdWeight.value,
         thresholdInsulin: +thresholdInsulin.value,
-
     }
 
     const res = await axios({
@@ -27,17 +26,17 @@ patientForm.addEventListener('submit', async function (e) {
         patientId,
         recordDate: getMelbDate(),
         glucose: {
-            status: needGlucose.checked ? "UNRECORDED" : "NO_NEED",
+            status: needGlucose.checked ? 'UNRECORDED' : 'NO_NEED',
         },
         weight: {
-            status: needWeight.checked ? "UNRECORDED" : "NO_NEED",
+            status: needWeight.checked ? 'UNRECORDED' : 'NO_NEED',
         },
         insulin: {
-            status: needInsulin.checked ? "UNRECORDED" : "NO_NEED",
+            status: needInsulin.checked ? 'UNRECORDED' : 'NO_NEED',
         },
         exercise: {
-            status: needExecrise.checked ? "UNRECORDED" : "NO_NEED",
-        }
+            status: needExecrise.checked ? 'UNRECORDED' : 'NO_NEED',
+        },
     }
     const res2 = await axios({
         url: '/record/updateData',
@@ -51,10 +50,12 @@ patientForm.addEventListener('submit', async function (e) {
 })
 
 function getMelbDate() {
-    var timezone = 10;
-    var offset_GMT = new Date().getTimezoneOffset();
-    var nowDate = new Date().getTime();
-    var date = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
+    var timezone = 10
+    var offset_GMT = new Date().getTimezoneOffset()
+    var nowDate = new Date().getTime()
+    var date = new Date(
+        nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000
+    )
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()

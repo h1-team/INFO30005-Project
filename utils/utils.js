@@ -20,12 +20,9 @@ function getMelbDateTime() {
     var timezone = 10
     // var offset_GMT = new Date().getTimezoneOffset()
     var nowDate = new Date().getTime()
-    var date = new Date(
-        nowDate + timezone * 60 * 60 * 1000
-    )
+    var date = new Date(nowDate + timezone * 60 * 60 * 1000)
     return date
 }
-
 
 function formatDate(date) {
     var d = new Date(date),

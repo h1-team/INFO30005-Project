@@ -9,8 +9,8 @@ insertForm.addEventListener('submit', async function (e) {
         recordDate: getMelbDate(),
         //updateTime: getMelbDateTime(),
         //recordDate: getMelbDateTime(),
-        updateTime : formatTime(),
-        
+        updateTime: formatTime(),
+
         //recordDate: getTime(),
         data: {
             glucose: {
@@ -43,10 +43,12 @@ insertForm.addEventListener('submit', async function (e) {
 })
 
 function getMelbDate() {
-    var timezone = 10; 
-    var offset_GMT = new Date().getTimezoneOffset(); 
-    var nowDate = new Date().getTime(); 
-    var date = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
+    var timezone = 10
+    var offset_GMT = new Date().getTimezoneOffset()
+    var nowDate = new Date().getTime()
+    var date = new Date(
+        nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000
+    )
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()
@@ -58,7 +60,6 @@ function getMelbDate() {
     }
     return year + '-' + month + '-' + day
 }
-
 
 function getTime() {
     var date = new Date()
@@ -77,25 +78,23 @@ function getMelbDateTime() {
     var timezone = 2
     // var offset_GMT = new Date().getTimezoneOffset()
     var nowDate = new Date().getTime()
-    var date = new Date(
-        nowDate + timezone * 60 * 60 * 1000
-    )
+    var date = new Date(nowDate + timezone * 60 * 60 * 1000)
     return date
 }
 
-function formatTime(){
-    var time = new Date(getMelbDateTime());
-    var hour = time.getHours();
-    var mins = time.getMinutes();
-    var sec = time.getSeconds();
-    if(hour >= 0 && hour <= 9){
-        hour = "0" + hour;
+function formatTime() {
+    var time = new Date(getMelbDateTime())
+    var hour = time.getHours()
+    var mins = time.getMinutes()
+    var sec = time.getSeconds()
+    if (hour >= 0 && hour <= 9) {
+        hour = '0' + hour
     }
-    if(mins >= 0 && mins <= 9){
-        mins = "0" + mins;
+    if (mins >= 0 && mins <= 9) {
+        mins = '0' + mins
     }
-    if(sec >= 0 && sec <= 9){
-        sec = "0" + sec;
+    if (sec >= 0 && sec <= 9) {
+        sec = '0' + sec
     }
-    return [hour,mins,sec].join(':')
+    return [hour, mins, sec].join(':')
 }

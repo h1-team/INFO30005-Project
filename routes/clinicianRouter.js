@@ -7,19 +7,19 @@ clinicianRouter.use(passport.authenticate('session'))
 // Passport Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via Passport, redirect to login page
-    try{
+    try {
         if (!req.isAuthenticated()) {
             console.log('not auth\n')
             return res.redirect('/doctor/login')
         }
         console.log(req.user.role)
-        if(req.user.role == "clinician"){
-        // Otherwise, proceed to next middleware function
+        if (req.user.role == 'clinician') {
+            // Otherwise, proceed to next middleware function
             console.log('yes auth\n')
             return next()
         }
         return res.redirect('/doctor/login')
-    }catch(err){
+    } catch (err) {
         res.status(404).send(err)
     }
 }
@@ -27,7 +27,7 @@ const isAuthenticated = (req, res, next) => {
 const isLogin = (req, res, next) => {
     console.log('y')
     // If user is not authenticated via Passport, redirect to login page
-    if(req.isAuthenticated() && req.user.role == "clinician"){
+    if (req.isAuthenticated() && req.user.role == 'clinician') {
         return res.redirect('/doctor/homepage')
     }
     return next()
@@ -42,7 +42,7 @@ clinicianRouter.post('/addOne', clinicianController.addOne)
 clinicianRouter.put('/editOne/:username', clinicianController.editOne)
 clinicianRouter.delete('/deleteOne/:username', clinicianController.deleteOne)
 clinicianRouter.get('/', clinicianController.doctorhome)
-clinicianRouter.get('/login', isLogin,clinicianController.doctor_login)
+clinicianRouter.get('/login', isLogin, clinicianController.doctor_login)
 
 clinicianRouter.post(
     '/login',
@@ -54,21 +54,61 @@ clinicianRouter.post(
         res.redirect('/doctor/homepage') // login was successful, send user to home page
     }
 )
-clinicianRouter.post('/logout',isAuthenticated,clinicianController.logout)
-clinicianRouter.get('/inbox',isAuthenticated,clinicianController.getAllPatientCommentToday)
+clinicianRouter.post('/logout', isAuthenticated, clinicianController.logout)
+clinicianRouter.get(
+    '/inbox',
+    isAuthenticated,
+    clinicianController.getAllPatientCommentToday
+)
 clinicianRouter.get('/homepage', isAuthenticated, clinicianController.doctor)
-clinicianRouter.get('/dashboard', isAuthenticated, patientController.getAllPatientRecordToday)
-clinicianRouter.get('/register', isAuthenticated, clinicianController.renderRegister)
+clinicianRouter.get(
+    '/dashboard',
+    isAuthenticated,
+    patientController.getAllPatientRecordToday
+)
+clinicianRouter.get(
+    '/register',
+    isAuthenticated,
+    clinicianController.renderRegister
+)
 clinicianRouter.post('/register', isAuthenticated, clinicianController.register)
-clinicianRouter.get('/table/:_id',isAuthenticated, clinicianController.table)
-clinicianRouter.get('/supportMSG/:_id', isAuthenticated, clinicianController.renderSupportMSG)
-clinicianRouter.post('/supportMSG/:_id', isAuthenticated, clinicianController.writeSupportMSG)
-clinicianRouter.get('/newNote/:_id', isAuthenticated, clinicianController.renderNewNote)
-clinicianRouter.post('/newNote/:_id', isAuthenticated, clinicianController.addNewNote)
-clinicianRouter.get('/clinicalNote/:_id', isAuthenticated, clinicianController.clinicalNote)
+clinicianRouter.get('/table/:_id', isAuthenticated, clinicianController.table)
+clinicianRouter.get(
+    '/supportMSG/:_id',
+    isAuthenticated,
+    clinicianController.renderSupportMSG
+)
+clinicianRouter.post(
+    '/supportMSG/:_id',
+    isAuthenticated,
+    clinicianController.writeSupportMSG
+)
+clinicianRouter.get(
+    '/newNote/:_id',
+    isAuthenticated,
+    clinicianController.renderNewNote
+)
+clinicianRouter.post(
+    '/newNote/:_id',
+    isAuthenticated,
+    clinicianController.addNewNote
+)
+clinicianRouter.get(
+    '/clinicalNote/:_id',
+    isAuthenticated,
+    clinicianController.clinicalNote
+)
 //clinicianRouter.get('/comment',clinicianController.comment)
-clinicianRouter.get('/profiles/:_id', isAuthenticated, clinicianController.renderOnePatientProfile)
-clinicianRouter.get('/manage_patient/:_id', isAuthenticated, clinicianController.manage_patient)
+clinicianRouter.get(
+    '/profiles/:_id',
+    isAuthenticated,
+    clinicianController.renderOnePatientProfile
+)
+clinicianRouter.get(
+    '/manage_patient/:_id',
+    isAuthenticated,
+    clinicianController.manage_patient
+)
 
 // export the clinician router
 module.exports = clinicianRouter
